@@ -1,30 +1,46 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="en">
+
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+        <meta charset="utf-8" />
+        <title>{{ env('APP_NAME') }} - @yield('title')</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset('home/assets/images/logo/favicon.png')}}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <!-- Bootstrap Css -->
+        <link href="{{ asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{{ asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    <body>
+       
+        <div class="account-pages my-5 pt-sm-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-7">
+                        {{ $slot }}
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+                    </div>
+                </div>
             </div>
         </div>
+    </body>
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js')}}"></script>
+    
+    <!-- App js -->
+    <script src="{{ asset('assets/js/app.js')}}"></script>
     </body>
 </html>
