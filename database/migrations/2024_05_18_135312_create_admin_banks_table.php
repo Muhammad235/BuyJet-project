@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('general_settings', function (Blueprint $table) {
+        Schema::create('admin_banks', function (Blueprint $table) {
             $table->id();
             $table->string('account_name');
             $table->string('account_number');
             $table->string('bank_name');
-            $table->integer('buy_rate')->default(0);
-            $table->integer('sell_rate')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('general_settings');
+        Schema::dropIfExists('admin_banks');
     }
 };

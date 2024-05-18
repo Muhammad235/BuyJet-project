@@ -7,8 +7,8 @@
         <title>{{ env('APP_NAME') }} - @yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <meta content="Flashpay Admin Panel" name="description" />
-        <meta content="Flashpay" name="author" />
+        <meta content="BuyJet Admin Panel" name="description" />
+        <meta content="BuyJet" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('home/assets/images/logo/favicon.png') }}">
 
