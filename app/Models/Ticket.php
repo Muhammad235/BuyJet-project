@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'title',
+        'message',
+        'priority',
+        'status',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function subTickets(){
+        return $this->hasMany(SubTickets::class);
+    }
 }

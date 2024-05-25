@@ -17,13 +17,6 @@ class CryptocurrencyController extends Controller
         return view('admin.manage.crypto', compact('crypto'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,19 +29,13 @@ class CryptocurrencyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $crypto)
+    public function show(Cryptocurrency $crypto)
     {
-        $crypto = Cryptocurrency::find($crypto);
+        // $crypto = Cryptocurrency::find($crypto);
+        // $crypto = Cryptocurrency::find($crypto);
         return response()->json($crypto);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
