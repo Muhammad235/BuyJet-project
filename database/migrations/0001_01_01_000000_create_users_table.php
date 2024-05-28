@@ -16,8 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('avatar')->nullable();
             $table->string('email')->unique();
+            $table->enum('role', [Status::USER, Status::ADMIN])->default(Status::USER);
+            $table->string('avatar')->nullable();
             $table->string('phone')->unique();
             $table->date('dob')->nullable();
             $table->string('bank_name')->nullable();

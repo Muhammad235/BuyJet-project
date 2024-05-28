@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sub_tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ticket_id')->constrained('tickets', 'ticket_id');
+            $table->foreignId('ticket_id')->constrained();
             $table->text('message');
             $table->boolean('is_admin')->default(0);
             $table->timestamps();

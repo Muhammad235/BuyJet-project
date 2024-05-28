@@ -90,7 +90,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.home') }}" class=" waves-effect">
+                    <a href="{{ route('admin.users.index') }}" class=" waves-effect">
                         <i class="bx bx-user-circle"></i>
                         <span key="t-dashboards">Users</span>
                     </a>

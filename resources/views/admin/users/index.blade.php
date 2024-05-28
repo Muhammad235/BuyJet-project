@@ -79,7 +79,7 @@
                                                         @endforeach
                                                     @else
                                                         <tr>
-                                                            <td colspan="7" class="text-center">No Cryptocurrency found.</td>
+                                                            <td colspan="7" class="text-center">No Available User.</td>
                                                         </tr>
                                                     @endif
                                                 </tbody>

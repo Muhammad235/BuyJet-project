@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\CryptocurrencyController;
@@ -26,6 +27,12 @@ Route::prefix('admin')->group(function (){
         Route::get('/cryptos/{crypto}', [CryptocurrencyController::class, 'show'])->name('admin.manage.cryptos.show');
         Route::post('/cryptos', [CryptocurrencyController::class, 'create'])->name('admin.manage.cryptos.store');
         // Route::patch('/cryptos/{crypto}', [ManageController::class, 'updateCrypto'])->name('admin.manage.cryptos.update');
+    });
+
+    Route::prefix('users')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/{user}', [UserController::class, 'show'])->name('admin.users.show');
+        Route::patch('/{user}', [UserController::class, 'update'])->name('admin.users.update');
     });
 
     Route::prefix('tickets')->group(function(){

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        GeneralSetting::factory()->create([
+        GeneralSetting::create([
             'account_name' => 'Admin',
             'account_number' => '00000000',
             'bank_name' => 'Gt Bank',
