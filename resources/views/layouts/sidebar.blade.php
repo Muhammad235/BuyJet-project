@@ -102,7 +102,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.home') }}" class=" waves-effect">
+                    <a href="{{ route('admin.tickets.index') }}" class=" waves-effect">
                         
                         <i class="bx bx-chat"></i>
                         <span key="t-dashboards">Tickets</span>
