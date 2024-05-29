@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sell_orders', function (Blueprint $table) {
+        Schema::create('buy_orders', function (Blueprint $table) {
             $table->id();
             $table->string('trx_hash');
             $table->foreignId('user_id')->constrained();
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sell_orders');
+        Schema::dropIfExists('buy_orders');
     }
 };

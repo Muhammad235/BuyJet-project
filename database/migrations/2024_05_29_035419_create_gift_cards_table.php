@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('buy_orders', function (Blueprint $table) {
+        Schema::create('gift_cards', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('symbol');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buy_orders');
+        Schema::dropIfExists('gift_cards');
     }
 };

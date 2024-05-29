@@ -12,16 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sell_orders', function (Blueprint $table) {
+        Schema::create('gift_card_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('trx_hash');
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('cryptocurrency_id')->constrained();
-            $table->string('asset_network');
+            $table->foreignId('gift_card_id')->constrained();
             $table->double('amount');
-            $table->string('payment_receipt');
-            $table->string('payment_address');
-            $table->string('note')->nullable();
             $table->enum('payment_status', [Status::PENDIDNG, Status::RECEIVED, Status::COMPLETED])->default(Status::PENDIDNG);
             $table->enum('status', [Status::PENDIDNG, Status::COMPLETED])->default(Status::PENDIDNG);
             $table->text('rejection_reason')->nullable();
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sell_orders');
+        Schema::dropIfExists('gift_card_transactions');
     }
 };
