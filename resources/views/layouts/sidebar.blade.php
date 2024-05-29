@@ -109,7 +109,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.home') }}" class=" waves-effect">
+                    <a href="{{ route('admin.profile.edit') }}" class=" waves-effect">
                         <i class="bx bx-user"></i>
                         <span key="t-dashboards">Update Profile</span>
                     </a>
