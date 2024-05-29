@@ -139,7 +139,7 @@
                                     <div class="col-3">
                                         <div class="mb-3 me-3">
                                             <label>Asset Name</label>
-                                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name">
+                                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
                                         </div>
                                     </div>
                                     <div class="col-3">
@@ -295,13 +295,13 @@
                     <div class="col-3">
                         <div class="mb-3 me-3">
                             <label>Asset Name</label>
-                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name">
+                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="mb-3 me-3">
                             <label>Wallet </label>
-                            <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address">
+                            <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address" required>
                         </div>
                     </div>
                     <div class="col-3 align-self-end">
@@ -334,13 +334,13 @@
                     <div class="col-3">
                         <div class="mb-3 me-3">
                             <label>Asset Name</label>
-                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name">
+                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="mb-3 me-3">
                             <label>Wallet </label>
-                            <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address">
+                            <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address" required>
                         </div>
                     </div>
                     <div class="col-3 align-self-end">

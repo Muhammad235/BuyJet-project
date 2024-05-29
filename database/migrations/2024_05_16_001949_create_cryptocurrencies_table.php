@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('symbol'); 
             $table->string('assets'); 
-            $table->string('charge'); 
+            $table->double('charge'); 
             $table->enum('status', [Status::ACTIVE, Status::INACTIVE])->default(Status::ACTIVE);
             $table->string('wallet_address')->nullable();
             $table->timestamps();

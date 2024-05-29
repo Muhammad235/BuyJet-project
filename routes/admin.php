@@ -25,7 +25,7 @@ Route::prefix('admin')->group(function (){
 
         Route::get('/cryptos', [CryptocurrencyController::class, 'index'])->name('admin.manage.cryptos.index');
         Route::get('/cryptos/{crypto}', [CryptocurrencyController::class, 'show'])->name('admin.manage.cryptos.show');
-        Route::post('/cryptos', [CryptocurrencyController::class, 'create'])->name('admin.manage.cryptos.store');
+        Route::post('/cryptos', [CryptocurrencyController::class, 'store'])->name('admin.manage.cryptos.store');
         // Route::patch('/cryptos/{crypto}', [ManageController::class, 'updateCrypto'])->name('admin.manage.cryptos.update');
     });
 
