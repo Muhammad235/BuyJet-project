@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
+use App\Traits\FileUploadTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateCryptoCurrencyRequest;
+use App\Http\Requests\Admin\UpdateCryptoCurrencyRequest;
 
 class CryptocurrencyController extends Controller
 {
+    use FileUploadTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -35,12 +39,12 @@ class CryptocurrencyController extends Controller
             ];
         }
 
-        // $symbolFileName = ;
+        $symbolFileName = $this->uploadImage($request, 'symbol', '/storage/crypto');
 
         $crypto = Cryptocurrency::create([
             'name' => $request->name,
             'charge' => $request->charge,
-            'symbol' => 'test.png',
+            'symbol' => $symbolFileName,
             'wallet_address' => $request->wallet_address,
             'assets' => json_encode($assets), // Save assets as JSON
         ]);
@@ -68,14 +72,19 @@ class CryptocurrencyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cryptocurrency $crypto)
+    public function update(UpdateCryptoCurrencyRequest $request, Cryptocurrency $crypto)
     {
-        $request->validate([
-            'name' => 'required', 
-            'wallet_address' => 'required',
-            'charge' => 'required',
-            'status' => 'required',
-        ]);
+
+        $request->validated();
+
+        $uploadSymbol = $this->uploadImage($request, 'symbol', '/storage/crypto');
+
+        $symbolFileName = isset($uploadSymbol) ? $uploadSymbol : $crypto->symbol;
+
+        // Remove the old image if a new one has been uploaded
+        if (isset($uploadSymbol)) {
+            $this->removeImage("storage/crypto/$crypto->symbol");
+        }
 
         if ($request->has('assetname') && $request->has('assetaddress')) {
             $assets = [];
@@ -90,6 +99,7 @@ class CryptocurrencyController extends Controller
             $crypto->update([
                 'name' => $request->name,
                 'wallet_address' => $request->wallet_address,
+                'symbol' => $symbolFileName,
                 'status' => $request->status,
                 'charge' => $request->charge,
                 'assets' => json_encode($assets)
@@ -98,28 +108,11 @@ class CryptocurrencyController extends Controller
             $crypto->update([
                 'name' => $request->name,
                 'wallet_address' => $request->wallet_address,
+                'symbol' => $symbolFileName,
                 'status' => $request->status,
                 'charge' => $request->charge,
             ]);
         }
-        
-        // if ($request->file('symbol') !== null) {
-        //     $oldPath = $crypto->symbol;
-        
-        //     $symbol = $request->file('symbol');
-        //     $newPath = $request->file('symbol')->store('crypto', 'public');
-        
-        //     $crypto->update([
-        //         'symbol' => '/' . $newPath
-        //     ]);
-        
-        //     if ($oldPath !== null) {
-        //         $oldPath = ltrim($oldPath, '/');
-        //         if (Storage::disk('public')->exists($oldPath) && $oldPath !== $newPath) {
-        //             Storage::disk('public')->delete($oldPath);
-        //         }
-        //     }
-        // }
         
         return redirect()->back()->with('success', 'Cryptocurrency updated');
     }

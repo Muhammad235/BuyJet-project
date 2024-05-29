@@ -66,13 +66,13 @@
                                                                 <td>{{ $key+1 }}</td>
                                                                 <td>{{ $coin->name }}</td>
                                                                 <td>
-                                                                    <img src="{{ asset($coin->symbol) }}" alt="" class="avatar-xs rounded-circle">
+                                                                    <img src="{{ asset('storage/crypto/' . $coin->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                                 </td>
                                                                
                                                                 <td>
-                                                                    @if ($coin->status == 'Active')
+                                                                    @if ($coin->status == 1)
                                                                         <span class="badge badge-soft-success font-size-11">Active</span>
-                                                                    @elseif ($coin->status == 'Inactive')
+                                                                    @elseif ($coin->status == 0)
                                                                         <span class="badge badge-soft-danger font-size-11">Inactive</span>
                                                                     @endif
                                                                 </td>
@@ -242,9 +242,9 @@
 
                         <div class="mb-3">
                             <label for="status">Select Status</label>
-                            <select name="status"   class="form-control">
-                                <option>Active</option>
-                                <option>Inactive</option>
+                            <select name="status" class="form-control">
+                                <option value="1">Active</option>
+                                <option value="2">Inactive</option>
                             </select>
                         </div>
 
