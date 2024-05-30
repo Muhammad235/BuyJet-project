@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('trx_hash');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('gift_card_id')->constrained();
+            $table->string('country');
+            $table->string('country');
             $table->double('amount');
             $table->enum('payment_status', [Status::PENDIDNG, Status::RECEIVED, Status::COMPLETED])->default(Status::PENDIDNG);
             $table->enum('status', [Status::PENDIDNG, Status::COMPLETED])->default(Status::PENDIDNG);

@@ -3,27 +3,18 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="{{ route('admin.home') }}" class="logo logo-dark">
-                    {{-- <span class="logo-sm">
-                        <img src="{{ asset('home/assets/images/logo/logo_round.png') }}" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="{{ asset('home/assets/images/logo/logo.png') }}" alt="" height="17">
-                    </span> --}}
-                    Buyjet
-                </a>
+                {{-- <a href="{{ route('admin.home') }}" class="logo logo-dark">
+                </a> --}}
 
                 <a href="{{ route('admin.home') }}" class="logo logo-light">
-                    {{-- <span class="logo-sm">
-                        <img src="{{ asset('home/assets/images/logo/logo_round_light.png') }}" alt="" height="40">
+                    <span class="logo-sm text-white">
+                        <img src="{{ asset('assets/images/Logo.png') }}" alt="">
                     </span>
-                    <span class="logo-lg">
-                        <img src="{{ asset('home/assets/images/logo/logo_light.png') }}" alt=" alt="" height="19">
-                    </span> --}}
-
+                    <span class="logo-lg text-white">
+                        <img src="{{ asset('assets/images/Logo.png') }}" alt="" height="">
+                        <span class="">Buyjet</span>
+                    </span>
                 </a>
-
-                <h2 class="text-white mt-4">Buyjet</h2>
             </div>
 
             <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
