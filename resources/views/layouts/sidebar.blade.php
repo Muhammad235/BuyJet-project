@@ -81,6 +81,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.manage.cryptos.index') }}" class=" waves-effect">
+                        <i class="bx bx-bitcoin"></i>
+                        <span key="t-dashboards">Manage Giftcards</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.users.index') }}" class=" waves-effect">
                         <i class="bx bx-user-circle"></i>
                         <span key="t-dashboards">Users</span>
