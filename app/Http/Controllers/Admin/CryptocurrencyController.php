@@ -16,7 +16,7 @@ class CryptocurrencyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() 
     {
         $crypto = Cryptocurrency::all();
         return view('admin.manage.crypto', compact('crypto'));
@@ -100,7 +100,7 @@ class CryptocurrencyController extends Controller
                 'name' => $request->name,
                 'wallet_address' => $request->wallet_address,
                 'symbol' => $symbolFileName,
-                'status' => $request->status,
+                'status' => $request->status ?? $crypto->status,
                 'charge' => $request->charge,
                 'assets' => json_encode($assets)
             ]);

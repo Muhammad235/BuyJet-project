@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('.edit-crypto').click(function () {
         
         var cryptoID = $(this).data('cryptoid');
-        var url = '/admin/manage/cryptos/' + cryptoID;
+        var url = '/admin/manage/crypto/' + cryptoID;
         console.log(cryptoID);
         $.ajax({
             method: "GET",
@@ -13,7 +13,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 $('#editCryptoModal').modal('show');
-                $("#editCryptoForm").attr("action", "/admin/manage/cryptos/" + data.id);
+                $("#editCryptoForm").attr("action", "/admin/manage/crypto/" + data.id);
                 $("#editCryptoForm input[name='wallet_address']").val(data.wallet_address);
                 $("#editCryptoForm input[name='id']").val(data.id);
                 $("#editCryptoForm input[name='name']").val(data.name);

@@ -116,23 +116,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" class="repeater" action="{{ route('admin.manage.cryptos.store') }}" enctype="multipart/form-data">
+                    <form method="POST" class="repeater" action="{{ route('admin.manage.crypto.store') }}" enctype="multipart/form-data">
                          @csrf
                          <div class="mb-3">
                              <label>Name :</label>
                              <input type="text" name="name" required  class="form-control" placeholder="Enter Name">
                          </div>
-{{-- 
-                         <div class="mb-3">
-                            <label>Buy Rate :</label>
-                            <input type="text" name="buy_rate" oninput="validateInput(this);" required  class="form-control" placeholder="Buy Rate">
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Sell Rate :</label>
-                            <input type="text" name="sell_rate" oninput="validateInput(this);" required  class="form-control" placeholder="Sell Rate">
-                        </div> --}}
-
                         <div id="repeater-list">
                             <div class="repeater-item">
                                 <div class="row">
@@ -205,15 +194,6 @@
                              <label>Name :</label>
                              <input type="text" name="name" required  class="form-control" placeholder="Enter Name">
                          </div>
-                         {{-- <div class="mb-3">
-                            <label>Buy Rate :</label>
-                            <input type="text" name="buy_rate" oninput="validateInput(this);" required  class="form-control" placeholder="Buy Rate">
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Sell Rate :</label>
-                            <input type="text" name="sell_rate" oninput="validateInput(this);" required  class="form-control" placeholder="Sell Rate">
-                        </div> --}}
                         <div id="update-repeater-list">
                             <div class="update-repeater-item">
                             </div>

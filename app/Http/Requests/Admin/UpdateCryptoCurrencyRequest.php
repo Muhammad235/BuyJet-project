@@ -25,7 +25,6 @@ class UpdateCryptoCurrencyRequest extends FormRequest
             'name' => 'required', 
             'wallet_address' => 'required',
             'charge' => 'required',
-            'status' => 'required',
         ];
     }
 }

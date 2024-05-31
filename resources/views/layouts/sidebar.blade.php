@@ -75,13 +75,13 @@
                     </a>
                 </li> 
                 <li>
-                    <a href="{{ route('admin.manage.cryptos.index') }}" class=" waves-effect">
+                    <a href="{{ route('admin.manage.crypto.index') }}" class=" waves-effect">
                         <i class="bx bx-bitcoin"></i>
                         <span key="t-dashboards">Manage Cryptocurrencies</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.manage.cryptos.index') }}" class=" waves-effect">
+                    <a href="{{ route('admin.manage.giftcard.index') }}" class=" waves-effect">
                         <i class="bx bx-bitcoin"></i>
                         <span key="t-dashboards">Manage Giftcards</span>
                     </a>
