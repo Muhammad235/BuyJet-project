@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GiftcardController;
 use App\Http\Controllers\Admin\CryptocurrencyController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
 
+
 Route::prefix('admin')->name('admin.')->group(function (){
     Route::get('/',[HomeController::class,'index'])->name('home');
 
