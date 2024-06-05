@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.ticket-body-section {
+  background: #110e22;
+  height: 100%;
+  padding: 20px 0 30px 0 !important;
+  border-radius: 10px;
+  margin-right: 20px !important;
+  margin-bottom: 30px !important;
+}
+.table-ticket-body-section {
+  background: #110e22;
+  height: 90vh;
+  padding: 20px 0 30px 0 !important;
+  border-radius: 10px;
+  margin-right: 20px !important;
+  margin-bottom: 30px !important;
+}
+.ticket-table-section {
+  padding: 20px;
+}
+.table-head {
+  background: #292737;
+}
+.table-row {
+  font-size: 12px;
+  color: white;
+  text-align: center;
+}
+.ticket-dot {
+  color: red;
+  font-size: 8px;
+  padding-right: 2px;
+}
+.ticket-dots {
+  color: green;
+  font-size: 8px;
+  padding-right: 2px;
+}
+.ticket-body {
+  text-align: center;
+  padding-top: 30px;
+  width: 100%;
+  display: block;
+  justify-content: center;
+}
+.ticket-body p {
+  font-size: 14px;
+  width: 35%;
+  margin: auto;
+}
+.box-container {
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  padding: 0 10px;
+  color: black;
+  line-height: 7px;
+  width: 100%;
+  align-items: center;
+}
+.box-inner {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.box-inner p {
+  font-size: 12px;
+}
+.accordion-item {
+  background: #31353f !important;
+}
+.accordion-button {
+  background: #31353f !important;
+  color: white !important;
+  border: none !important;
+  font-size: 14px;
+}
+.accordion-body {
+  font-size: 13px;
+}
+.accordion-button:focus {
+  box-shadow: none !important;
+}
+.ticket-body-text {
+  padding: 30px;
+}
+.input-button {
+  display: flex;
+  justify-content: end;
+  gap: 30px;
+  margin-top: 20px;
+  width: 100%;
+}
+.submit-button {
+  font-size: 15px !important;
+  width: 20%;
+}
+.create-button {
+  font-size: 15px !important;
+  width: 100%;
+}
+.ath-input {
+  background: #ffffff4d !important;
+  color: white !important;
+  padding-left: 50px !important;
+  border: 1px solid rgba(255, 253, 253, 0.144) !important;
+  margin-top: 5px !important;
+}
+.tick{
+  margin-top: 30px !important;
+}
+
+@media screen and (max-width: 576px) {
+  .ticket-body-section {
+    margin: 20px !important;
+    padding: 2 20px 20px 20px !important;
+  }
+  .ticket-body {
+    padding-top: 10px;
+  }
+  .ticket-body p {
+    font-size: 12px;
+    width: 95%;
+    margin: auto;
+    padding-top: 10px;
+  }
+  .box-container {
+    border-radius: 10px;
+    line-height: 7px;
+    width: 80%;
+    margin: auto !important;
+    margin-top: 20px !important;
+  }
+  .box-container div img {
+    width: 80% !important;
+  }
+  .box-inner h6 {
+    font-size: 12; 
+  }
+  .box-inner p {
+    font-size: 10px;
+  }
+  .tick{
+    margin-top: 10px !important;
+  }
+  .accordion-item{
+    width: 90%;
+    margin: auto;
+  }
+  .accordion-button{
+    font-size: 15px !important;
+  }
+  .accordion-body{
+    font-size: 13px !important;
+  }
+  .ticket-body-text {
+    padding: 0px 10px 10px 10px !important;
+  }
+  .ticket-body-text h3{
+    font-size: 13px;
+    text-align: center;
+  }
+  .input-button {
+    display: block;
+  } 
+  .submit-button {
+    font-size: 15px !important;
+    width: 100%;
+    height: 5vh;
+    margin-top: 20px;
+  }
+  .create-button {
+    font-size: 15px !important;
+    width: 100%;
+    height: 5vh;
+    margin-top: 30px;
+  }
+  .table-ticket-body-section {
+    padding: 20px 0 30px 0 !important;
+    border-radius: 10px;
+    margin: 20px !important;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+}

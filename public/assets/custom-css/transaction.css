@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.eth-transaction {
+  text-align: left !important;
+  display: flex;
+}
+.table-body {
+  color: white;
+  font-size: 13px;
+}
+.table-head th {
+  font-size: 15px;
+}
+.table-body td {
+  font-size: 14px;
+}
+.history-section {
+  height: 100% !important;
+  width: 100% !important;
+}
+ 
+
