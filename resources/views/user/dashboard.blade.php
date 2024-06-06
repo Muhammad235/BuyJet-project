@@ -1,7 +1,8 @@
 <x-app-layout>
 
-@section('title', 'User Dashboard')
+	@section('title', 'User Dashboard')
 
+	@section('content')
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- NAVBAR -->
@@ -334,9 +335,7 @@
 				</div>
 			</div>
 		</main>
-
 	</section>
+	@endsection
 
-
-@section('content')
 </x-app-layout>

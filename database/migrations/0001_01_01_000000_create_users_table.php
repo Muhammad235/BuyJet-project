@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->enum('role', [Status::USER, Status::ADMIN])->default(Status::USER);
             $table->string('avatar')->nullable();
-            $table->string('phone')->unique();
+            $table->string('phone_number')->unique();
             $table->date('dob')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('account_number')->nullable();

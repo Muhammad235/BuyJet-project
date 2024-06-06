@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ env('APP_NAME') }} - @yield('title')</title>
 
-    <link rel="icon" href="image/Logo.png">
+    {{-- App favicon --}}
+    <link rel="icon" href="{{ asset('assets/images/Logo.png') }}">
 
     <!-- Css -->
     <link rel="stylesheet" href="{{ asset('assets/custom-css/style.css') }}">
@@ -25,6 +26,23 @@
     }
 </style>
 <body>
+
+    <!--=============================
+        DISPLAY ANY ERROR START
+    ==============================-->
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        {{-- @php
+         toastr()->error("$error")
+        @endphp --}}
+        <h1 class="text-danger">{{$error}}</h1>
+        @endforeach
+    @endif
+    <!--=============================
+       DISPLAY ANY ERROR END
+    ==============================-->  
+
+
     <section class="login-section">
         <div class="container-fluid">
             <div class="row">
