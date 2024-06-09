@@ -1,7 +1,7 @@
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="dashboard.html" class="brand">
-			<i class='bx bxs-sile'><img src="image/Logo.png" alt=""></i>
+			<i class='bx bxs-sile'><img src="{{ asset('assets/images/Logo.png') }}" alt=""></i>
 			<span class="text">Buyjet</span>
 		</a>
 		<ul class="side-menu top">
@@ -38,7 +38,7 @@
 				</a>
 			</li>
 			<li class="nav-link">
-				<a href="login.html" class="logout">
+				<a href="{{ route('logout') }}" class="logout">
 					<i class='bx bxs-log-out-circle'></i>
 					<span class="text">Logout</span>
 				</a>

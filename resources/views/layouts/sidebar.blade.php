@@ -11,7 +11,7 @@
                         <img src="{{ asset('assets/images/Logo.png') }}" alt="">
                     </span>
                     <span class="logo-lg text-white">
-                        <img src="{{ asset('assets/images/Logo.png') }}" alt="" height="">
+                        <img src="{{ asset('assets/images/Logo.png') }}" alt="" >
                         <span class="">Buyjet</span>
                     </span>
                 </a>
@@ -26,14 +26,12 @@
 
         <div class="d-flex">
 
-
             <div class="dropdown d-none d-lg-inline-block ms-1">
                 <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
                     <i class="bx bx-fullscreen"></i>
                 </button>
             </div>
 
-           
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">

@@ -7,18 +7,18 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav class="navbar">
-			<p class="welcome-text">Welcome, <span>Exousia</span></p>
+			<p class="welcome-text">Welcome, <span>{{ $user->firstname }}</span></p>
 			<div class="contain">
-				<img src="image/notify.png" alt="">
+				<img src="{{ asset('assets/images/notify.png') }}" alt="">
 				<div class="profile">
-					<img src="image/people.png" width="30px">
-					<p class="text-white pt-2"><small>Exousia Matt</small></p>
+					<img src="{{ asset('assets/images/people.png') }}" width="30px">
+					<p class="text-white pt-2"><small>{{ $user->firstname }} {{ $user->lastname }}</small></p>
 				</div>
 			</div>
 			<div class="hamburger">
 				<a href="dashboard.html">
 					<div class="logo">
-						<img src="image/Logo.png" alt="">
+						<img src="{{ asset('assets/images/Logo.png') }}" alt="">
 						<span class="text-white">Buyjet</span>
 					</div>
 				</a>
@@ -37,19 +37,19 @@
 							</div>
 							<div class="rate-section-container">
 								<span>Total Tansactions</span>
-								<h5>$10,250.00</h5>
+								<h5>&#8358; 10,250.00</h5>
 							</div>
 						</div>
 						<div class="rate-section col-md-4 repo">
 							<div class="rate-section-container">
 								<span>Buying Rate</span>
-								<h5>$1,145</h5>
+								<h5>&#8358;  {{ number_format($general_setings->buy_rate, 2) }} </h5>
 							</div>
 						</div>
 						<div class="rate-section col-md-4 repo">
 							<div class="rate-section-container">
 								<span>Selling Rate</span>
-								<h5>$1,075</h5>
+								<h5>&#8358;  {{ number_format($general_setings->sell_rate, 2) }}</h5>
 							</div>
 						</div>
 					</div>
@@ -77,12 +77,13 @@
 							</div>
 						</div>
 						<div class="coin-container">
-							<form action="" method="post" class="buyCoin">
+							<form action="{{ route('buy.create') }}" method="post" class="buyCoin">
+								@csrf
 								<span><small>Coin</small></span>
-								<select class="eth-input">
-									<option class="text-light">Select Cryptocurrency</option>
-									<option class="text-light">Ethereum</option>
-									<option class="text-light">Bitcoin</option>
+								<select class="eth-input" name="cryptocurrency_id">
+									<option class="text-light" selected disabled>Select Cryptocurrency</option>
+									<option class="text-light" value="1">Ethereum</option>
+									<option class="text-light" value="1">Bitcoin</option>
 									<option class="text-light">USDT</option>
 									<option class="text-light">Notcoin</option>
 									<option class="text-light">Tron</option>
@@ -90,12 +91,12 @@
 								</select>
 								<span><small>Amount</small></span>
 								<div class="input-group mt-2">
-									<input type="text" class="form-control eth-input-group">
+									<input type="number" class="form-control eth-input-group" name="amount" value="{{ old('amount') }}">
 									<span class="input-group-text">USD</span>
 								</div>
 								<div class="total pt-3">
 									<p>Total</p>
-									<p>NGN 401,342</p>
+									<p class="total">NGN 34455</p>
 								</div>
 								<a href="buyingcoin.html"><input type="submit" class="btn btn-primary form-control"
 										value="Buy"></a>

@@ -26,12 +26,18 @@
 <body class="dashboard-body">
 
         {{-- begin page --}}
+        <x-error-display></x-error-display>
+
+        {{-- begin page --}}
         @include('layouts.navigation')
 
         <!-- Page Content -->
         @yield('content')
 
         {{-- end page --}}
+
+
+
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

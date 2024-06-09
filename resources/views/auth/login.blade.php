@@ -11,16 +11,16 @@
                 <h4 class="text-center">Welcome Back!</h4>
                 <p class="text-center">Sign in into your account</p>
 
-                <form action="" method="post">
+                <form action="{{ route('login') }}" method="post">
                     @csrf
                     <label for="Email Address" class="label-text">Email Address</label>
                     <div class="input">
-                        <input type="email" class="form-control" placeholder="Enter Your Email Address" value="{{ old('email') }}">
+                        <input type="email" class="form-control" placeholder="Enter Your Email Address" name="email" value="{{ old('email') }}">
                         <i class="fa fa-envelope text-secondary"></i>
                     </div>
                     <label for="Password" class="mt-3 label-text">Password</label>
                     <div class="input">
-                        <input type="password" class="form-control password"
+                        <input type="password" class="form-control password" name="password"
                             placeholder="Enter Your Password">
                         <i class="fa fa-lock text-secondary"></i>
 
@@ -36,7 +36,7 @@
 
                     </div>
                 </form>
-                <p class="text-center  text-secondary below-text">New to Buyjet? <a href="signup.html"><span class="create-account">Create An Account</span></a>
+                <p class="text-center  text-secondary below-text">New to Buyjet? <a href="{{ route('register') }}"><span class="create-account">Create An Account</span></a>
                 </p>
             </div> 
         </div>

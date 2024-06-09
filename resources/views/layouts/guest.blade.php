@@ -32,10 +32,9 @@
     ==============================-->
     @if ($errors->any())
         @foreach ($errors->all() as $error)
-        {{-- @php
+        @php
          toastr()->error("$error")
-        @endphp --}}
-        <h1 class="text-danger">{{$error}}</h1>
+        @endphp
         @endforeach
     @endif
     <!--=============================
