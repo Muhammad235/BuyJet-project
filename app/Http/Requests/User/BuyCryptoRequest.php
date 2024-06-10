@@ -25,7 +25,7 @@ class BuyCryptoRequest extends FormRequest
             'cryptocurrency_id' => ['required'],
             'amount' => ['required'],
             'wallet_address' => ['required'],
-            // 'agree' => ['required'],
+            'agree' => ['required'],
         ];
     }
 }

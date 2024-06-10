@@ -25,8 +25,9 @@
 
 <body class="dashboard-body">
 
-        {{-- begin page --}}
+        {{-- Error component --}}
         <x-error-display></x-error-display>
+
 
         {{-- begin page --}}
         @include('layouts.navigation')
@@ -42,6 +43,8 @@
     <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/user/dashboard.js')}}"></script>
+
+    @stack('script')
 
 </body>
 

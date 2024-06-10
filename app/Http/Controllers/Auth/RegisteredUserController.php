@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
         
-        toastr()->success("Registered successfully");
+        toastr()->success("Registeration successfull");
 
         return redirect(route('dashboard'));
     }

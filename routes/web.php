@@ -16,15 +16,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('buy')->group(function() {
-        Route::post('/',[BuyCryptoController::class,'create'])->name('buy.create');
-        Route::post('/buy-crypto',[BuyCryptoController::class,'store'])->name('buy.store');
-        Route::get('/{transaction}/confirm',[BuyCryptoController::class,'confirm'])->name('buy.confirm');
-        Route::patch('/confirm/{id}',[BuyCryptoController::class,'update'])->name('buy.update');
-        Route::get('/{id}',[BuyCryptoController::class,'show'])->name('buy.show');
+        Route::post('/',[BuyCryptoController::class, 'create'])->name('buy.create');
+        Route::post('/crypto',[BuyCryptoController::class, 'store'])->name('buy.store');
+        Route::get('/{transaction}/confirm',[BuyCryptoController::class, 'confirm'])->name('buy.confirm');
+        Route::patch('/confirm/{id}',[BuyCryptoController::class, 'update'])->name('buy.update');
+        // Route::get('/{id}',[BuyCryptoController::class, 'show'])->name('buy.show');
     });
 });
-
-
 
 
 require __DIR__.'/auth.php';
