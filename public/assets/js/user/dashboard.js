@@ -25,6 +25,7 @@
         sellCoin.removeClass('d-none')
 
         $('.buyCoinBtn').removeClass('active')
+        $('.giftCardBtn').removeClass('active')
         $('.sellCoinBtn').addClass('active')
     });
 

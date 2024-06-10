@@ -21,11 +21,22 @@ class BuyCryptoRequest extends FormRequest
      */
     public function rules(): array
     {
+            
+        // ];
+
         return [
             'cryptocurrency_id' => ['required'],
-            'amount' => ['required'],
+            'amount' => ['required', 'numeric', 'min:2'],
             'wallet_address' => ['required'],
             'agree' => ['required'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'cryptocurrency_id.required' => 'Select a cryptocurrency.',
+            'agree.required' => 'You must agree to the terms and conditions.'
         ];
     }
 }

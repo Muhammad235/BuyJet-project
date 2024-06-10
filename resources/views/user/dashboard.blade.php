@@ -5,26 +5,8 @@
 	@section('content')
 	<!-- CONTENT -->
 	<section id="content">
-		<!-- NAVBAR -->
-		<nav class="navbar">
-			<p class="welcome-text">Welcome, <span>{{ $user->firstname }}</span></p>
-			<div class="contain">
-				<img src="{{ asset('assets/images/notify.png') }}" alt="">
-				<div class="profile">
-					<img src="{{ asset('assets/images/people.png') }}" width="30px">
-					<p class="text-white pt-2"><small>{{ $user->firstname }} {{ $user->lastname }}</small></p>
-				</div>
-			</div>
-			<div class="hamburger">
-				<a href="dashboard.html">
-					<div class="logo">
-						<img src="{{ asset('assets/images/Logo.png') }}" alt="">
-						<span class="text-white">Buyjet</span>
-					</div>
-				</a>
-				<i class='bx bx-menu stripe text-white'></i>
-			</div>
-		</nav>
+		<!-- TOP NAVBAR -->
+        <x-top-navbar :user="$user" />
 
 		<main class="body">
 			<div class="body-top row">
@@ -37,7 +19,7 @@
 							</div>
 							<div class="rate-section-container">
 								<span>Total Tansactions</span>
-								<h5>&#8358; 10,250.00</h5>
+								<h5 >&#8358; 10,250.00</h5>
 							</div>
 						</div>
 						<div class="rate-section col-md-4 repo">
@@ -77,10 +59,9 @@
 							</div>
 						</div>
 						<div class="coin-container">
-							<form action="{{ route('buy.create') }}" method="post" class="buyCoin">
-								@csrf
+							<form action="{{ route('buy.create') }}" method="get" class="buyCoin">
 								<span><small>Coin</small></span>
-								<select class="eth-input" name="cryptocurrency_id">
+								<select class="eth-input" name="cryptocurrency" onchange="showAmountInNaira('buy')">
 									<option class="text-light" selected disabled>Select Cryptocurrency</option>
 									<option class="text-light" value="1">Ethereum</option>
 									<option class="text-light" value="1">Bitcoin</option>
@@ -90,13 +71,16 @@
 									<option class="text-light">Doge Coin</option>
 								</select>
 								<span><small>Amount</small></span>
+								<input type="number" hidden name="" id="buy-rate" value = {{ $general_setings->buy_rate }}>
+								<input type="number" hidden name="" id="sell-rate" value = {{ $general_setings->sell_rate }}>
+								
 								<div class="input-group mt-2">
-									<input type="number" class="form-control eth-input-group" name="amount" value="{{ old('amount') }}">
+									<input type="text" class="form-control eth-input-group" id="crypto-amount" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); showAmountInNaira('buy');">
 									<span class="input-group-text">USD</span>
 								</div>
 								<div class="total pt-3">
 									<p>Total</p>
-									<p class="total">NGN 34455</p>
+									<p id="sub-amount">NGN 0</p>
 								</div>
 								<a href="buyingcoin.html"><input type="submit" class="btn btn-primary form-control"
 										value="Buy"></a>
@@ -104,7 +88,7 @@
 
 							<form action="" method="post" class="sellCoin d-none">
 								<span><small>Coin</small></span>
-								<select class="eth-input">
+								<select class="eth-input" name="cryptocurrency" onchange="showAmountInNaira('buy')">
 									<option class="text-light">Select Cryptocurrency</option>
 									<option class="text-light">Ethereum</option>
 									<option class="text-light">Bitcoin</option>
@@ -135,6 +119,8 @@
 									<option class="text-light">Google Pay</option>
 								</select>
 								<span><small>Amount</small></span>
+								<input type="number" hidden name="" id="buy-rate" value = {{ $general_setings->buy_rate }}>
+								<input type="number" hidden name="" id="sell-rate" value = {{ $general_setings->sell_rate }}>
 								<div class="input-group mt-2">
 									<input type="text" class="form-control eth-input-group">
 									<span class="input-group-text">USD</span>
@@ -317,7 +303,7 @@
 								<p class="text-secondary"><small>Quick Actions</small>
 								<div class="mt-4">
 									<button class="btn btn-primary button"><i class="fa fa-square"></i>
-										<a href="buyingcoin.html"
+										<a href="{{ route('buy.create') }}"
 											class="text-white"><span>Buy-Crypto</span></a></button>
 								</div>
 								<div class="my-4">
@@ -338,5 +324,42 @@
 		</main>
 	</section>
 	@endsection
+
+	@push('script')
+        
+    <script>
+
+        function validateInput(input) {
+            // Remove any non-numeric characters and any multiple decimal points
+            input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        }
+
+        function showAmountInNaira(type) {
+            const cryptoValue = parseFloat(document.getElementById("crypto-amount").value);
+            const buyRate = parseFloat(document.getElementById("buy-rate").value);
+            const sellRate = parseFloat(document.getElementById("sell-rate").value);
+
+            if (!isNaN(cryptoValue)) {
+                if (cryptoValue < 2) {    
+                    $('.minmum-usd').removeClass('d-none')
+                }else{
+                    $('.minmum-usd').addClass('d-none')
+
+					let amountInNaira;
+
+					if (type == 'buy') {
+						 amountInNaira = cryptoValue * buyRate;
+					}else{
+						amountInNaira = cryptoValue * sellRate
+					}
+                    document.getElementById("sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
+                }
+            } else {
+                document.getElementById("sub-amount").innerText = "NGN 0";
+            }
+        }
+    </script>
+
+    @endpush
 
 </x-app-layout>

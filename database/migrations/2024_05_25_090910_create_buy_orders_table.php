@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId('cryptocurrency_id')->constrained();
             $table->string('asset_network');
             $table->double('amount');
-            $table->string('payment_receipt');
-            $table->string('payment_address');
+            $table->string('payment_receipt')->nullable();
+            $table->string('wallet_address');
             $table->string('note')->nullable();
             $table->enum('payment_status', [Status::PENDIDNG, Status::RECEIVED, Status::COMPLETED])->default(Status::PENDIDNG);
             $table->enum('status', [Status::PENDIDNG, Status::COMPLETED])->default(Status::PENDIDNG);

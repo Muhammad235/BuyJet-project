@@ -25,7 +25,7 @@
 
 <body class="dashboard-body">
 
-        {{-- Error component --}}
+        {{-- begin page --}}
         <x-error-display></x-error-display>
 
 
@@ -43,7 +43,9 @@
     <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/user/dashboard.js')}}"></script>
+    <script src="{{ asset('assets/js/user/upload.js')}}"></script>
 
+    @stack('script-lib')
     @stack('script')
 
 </body>

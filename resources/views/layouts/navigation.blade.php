@@ -1,12 +1,12 @@
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="dashboard.html" class="brand">
+		<a href="{{ route('dashboard') }}" class="brand">
 			<i class='bx bxs-sile'><img src="{{ asset('assets/images/Logo.png') }}" alt=""></i>
 			<span class="text">Buyjet</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="active nav-link">
-				<a href="dashboard.html">
+				<a href="{{ route('dashboard') }}">
 					<i class='bx bxs-dashboard'></i>
 					<span class="text">Overview</span>
 				</a>
