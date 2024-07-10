@@ -86,7 +86,7 @@ class BuyCryptoController extends Controller
                 'cryptocurrency_id' => $crypto->id,
                 'asset_network' => "ERC",
                 'amount' => $cryptoAmountInNaira,
-                'wallet_address' => "gggsgsgsgs",
+                'wallet_address' => $request->wallet_address,
             ]);
 
             return redirect()->route('buy.confirm', '3445334');
@@ -101,8 +101,8 @@ class BuyCryptoController extends Controller
 
     public function confirm($id){
         $user = auth()->user();
-        // $buyorder = BuyOrder::where('trx_hash', $id)->first();
-        $buyorder = '';
+        $buyorder = BuyOrder::where('trx_hash', $id)->first();
+        // $buyorder = '';
         $general_settings = GeneralSetting::first(); 
         return view('user.crypto.buy-confirm',compact('general_settings','buyorder','user'));
     }

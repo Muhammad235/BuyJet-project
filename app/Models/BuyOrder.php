@@ -17,6 +17,7 @@ class BuyOrder extends Model
         'payment_address',
         'asset_network',
         'payment_receipt',
+        'wallet_address',
         'note',
         'status',
         'payment_status',
