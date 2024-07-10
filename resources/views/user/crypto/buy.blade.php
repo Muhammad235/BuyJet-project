@@ -5,57 +5,40 @@
 	@section('content')
     <!-- CONTENT -->
 	<section id="content">
-		<!-- NAVBAR -->
-		<nav class="navbar">
-			<p class="welcome-text">Welcome, <span>Exousia</span></p>
-			<div class="contain">
-				<img src="image/notify.png" alt="" width="30px">
-				<div class="profile">
-					<img src="image/people.png" width="30px">
-					<p class="text-white pt-2"><small>Exousia Matt</small></p>
-				</div>
-			</div>
-			<div class="hamburger">
-				<a href="dashboard.html"><div class="logo">
-					<img src="image/Logo.png" alt="">
-					<span class="text-white">Buyjet</span>
-				</div></a>
-				<i class='bx bx-menu stripe text-white'></i>
-			</div>
-		</nav>
+		<!-- TOP NAVBAR -->
+        <x-top-navbar :user="$user" />
 
 		<div class="my-3"> 
             <div class="row justify-content-center">
                 <div class="col-md-7 buy-coin-card col-11">
                     <div class="buy-coin-inner-card"> 
                         <div class="buy-coin-price">
-                            Buying Eth at {{ $general_setings->buy_rate }}/$
+                            Buying {{ @$cryptocurrency->name }} at {{ $general_setings->buy_rate }}/$
                         </div>
                         <div class="coin-container">
                             <form method="POST" action="{{ route('buy.store') }}"  enctype="multipart/form-data">
                                 @csrf
                                 <div class="coin-top">
                                     <span><small>Coin</small></span>
-                                    <select class="eth-input" name="cryptocurrency_id" onchange="showAmountInNaira()">
+
+                                    <select class="eth-input" id="cryptocurrency_id" name="cryptocurrency_id" onchange="showAmountInNaira(); populateAssetNetworkOptions()">
 										<option class="text-light" selected disabled>Select Cryptocurrency</option>
-										<option class="text-light" value="1">Ethereum</option>
-										<option class="text-light" value="2">Bitcoin</option>
-										<option class="text-light">USDT</option>
-										<option class="text-light">Notcoin</option>
-										<option class="text-light">Tron</option>
-										<option class="text-light">Doge Coin</option>
+
+                                        @foreach ($cryptocurrencies as $cryptocurrency)
+										<option class="text-light" @selected($cryptocurrency->id == $data['cryptocurrency_id']) value="{{ old('cryptocurrency', $cryptocurrency->id) }}">{{ $cryptocurrency->name }}</option>
+									    @endforeach
 									</select>
 
-                                    {{-- <input type="text" name="" id="rates-value" data-buyRate = {{ $general_setings->buy_rate }} data-sellRate = {{ $general_setings->buy_rate }}> --}}
-                                    <input type="number" hidden name="" id="buy-rate" value = {{ $general_setings->buy_rate }}>
-                                    <input type="number" hidden name="" id="sell-rate" value = {{ $general_setings->sell_rate }}>
+                                    <input type="text" hidden name="" id="rates-value" data-buyRate = {{ $general_setings->buy_rate }} data-sellRate = {{ $general_setings->buy_rate }}>
+
+                                    
                                 </div>
                                 <div class="coin-top">
                                     <span><small>Select Network</small></span>
-									<select class=" eth-input">
-										<option class="text-light">ERC20</option>
-										<option class="text-light">TRC20</option>
-									</select>
+
+                                    <select name="asset_network" class="form-control" id="asset-network" disabled>
+                                        <option value='' selected disabled>Select Asset Network</option>
+                                    </select>
                                 </div>
                                 <div class="coin-top">
                                     <span><small>Wallet Address</small></span>
@@ -66,14 +49,22 @@
                                     <span><small>Amount in USD</small></span>
                                     <span class="text-danger d-none minmum-usd">You can purchase within $2 to $50,000</span>
                                     <div class="input-group mt-2">
-										<input type="text" class="form-control eth-input-group" id="crypto-amount" value="{{ $data['amount'] ?? '' }}" name="amount" oninput="validateInput(this); showAmountInNaira();">
+										<input type="text" class="form-control eth-input-group" id="crypto-amount" value="{{ @$data['amount'] ?? '' }}" name="amount" oninput="validateInput(this); showAmountInNaira();">
 										<span class="input-group-text">USD</span>
 									</div>
                                 </div>
+                                <div class="amount mt-5">
+
+                                <div class="charges">
+                                    <p class="text-secondary"><i>Amount</i></p>
+                                    <p class="text-secondary" id="amount"><i>0</i></p>
+                                </div>
                                 <div class="charges">
                                     <p class="text-secondary"><i>Charges</i></p>
-                                    <p class="text-secondary"><i>NGN 1,342</i></p>
+                                    <p class="text-secondary" id="charge"><i>0</i></p>
                                 </div>
+                                <input type="text" name="" id="charge-value" value="">
+                            </div>
                                 <div class="total">
                                     <p>Total</p>
                                     <p id="sub-amount">0</p>
@@ -83,8 +74,6 @@
                                     data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Buy
                                 </button>
-
-                                {{-- <button type="submit">Buy</button> --}}
 
                                 <!-- Modal -->
                                 <div class="modal fade modal-background" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -127,14 +116,17 @@
             </div>
         </div>
         
-    
-        
 	</section>
 
 
     @push('script')
         
     <script>
+
+        const Rate = document.getElementById("rates-value");
+        var buyRate = Rate.getAttribute('data-buyrate');
+        var sellRate = Rate.getAttribute('data-sellrate');
+
 
         function validateInput(input) {
             // Remove any non-numeric characters and any multiple decimal points
@@ -143,12 +135,6 @@
 
         function showAmountInNaira() {
             const cryptoValue = parseFloat(document.getElementById("crypto-amount").value);
-            // const Rate = parseFloat(document.getElementById("rates-value"));
-            const buyRate = parseFloat(document.getElementById("buy-rate").value);
-            const sellRate = parseFloat(document.getElementById("sell-rate").value);
-
-            // var buyRate = Rate.getAttribute('data-buyrate');
-            // var sellRate = Rate.getAttribute('data-sellrate');
 
             if (!isNaN(cryptoValue)) {
 
@@ -159,19 +145,66 @@
                     $('.minmum-usd').addClass('d-none')
 
                     const amountInNaira = cryptoValue * buyRate;
-                    document.getElementById("sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
+                    document.getElementById("amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
+
+                    const chargeValue = parseFloat(document.getElementById("charge-value").value);
+
+                    const Total = chargeValue + parseFloat(amountInNaira);
+                    document.getElementById("sub-amount").innerText = "NGN " + parseFloat(Total).toFixed(3);
                 }
 
             } else {
                 document.getElementById("sub-amount").innerText = "NGN 0";
             }
+
+            const assetList = document.getElementById('asset-network');
+            assetList.removeAttribute('disabled');
         }
 
         showAmountInNaira()
 
+
+        function populateAssetNetworkOptions() {
+
+            const assetList = document.getElementById('asset-network');
+            // assetList.removeAttribute('disabled');
+
+            const selectedCrypto = document.getElementById('cryptocurrency_id').value;
+
+            const assets = @json($cryptocurrencies);
+
+            // Find the selected cryptocurrency
+            const selectedCryptoObj = assets.find(crypto => crypto.id == selectedCrypto);
+
+
+            // Clear existing options
+            assetList.innerHTML = "<option value='' selected disabled>Select Asset Network</option>";
+
+            
+            if (selectedCryptoObj && selectedCryptoObj.assets !== null) {
+                // Parse the assets JSON string into an array
+                const assetArray = JSON.parse(selectedCryptoObj.assets);
+
+                const selectedCryptoCharge = selectedCryptoObj.charge * buyRate;
+
+                document.getElementById('charge').innerText = "NGN " + selectedCryptoCharge;
+                document.getElementById('charge-value').value = selectedCryptoCharge;
+
+                // Populate select options with asset networks
+                assetArray.forEach((asset) => {
+                    const option = document.createElement("option");
+                    option.value = asset.assetname;
+                    option.innerText = asset.assetname;
+                    assetList.appendChild(option);
+                });
+            }
+        }
+
+        populateAssetNetworkOptions()
+
     </script>
 
     @endpush
-
 @endsection
+
 </x-app-layout>

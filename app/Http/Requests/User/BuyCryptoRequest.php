@@ -25,7 +25,7 @@ class BuyCryptoRequest extends FormRequest
         // ];
 
         return [
-            'cryptocurrency_id' => ['required'],
+            'cryptocurrency_id' => ['required', 'exists:cryptocurrencies,id'],
             'amount' => ['required', 'numeric', 'min:2'],
             'wallet_address' => ['required'],
             'agree' => ['required'],
@@ -36,6 +36,7 @@ class BuyCryptoRequest extends FormRequest
     {
         return [
             'cryptocurrency_id.required' => 'Select a cryptocurrency.',
+            'cryptocurrency_id.exists' => 'Select a cryptocurrency.',
             'agree.required' => 'You must agree to the terms and conditions.'
         ];
     }

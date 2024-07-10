@@ -39,25 +39,24 @@ class BuyCryptoController extends Controller
         $data['amount'] = floatval($request->query('amount')) ?? '';
 
         $general_setings = GeneralSetting::first();
-        return view('user.crypto.buy', compact('data', 'general_setings', 'user'));
+
+        $cryptocurrencies = Cryptocurrency::all();
+        $cryptocurrency = Cryptocurrency::find($data['cryptocurrency_id']);
+
+        return view('user.crypto.buy', compact('data', 'general_setings', 'user', 'cryptocurrencies', 'cryptocurrency'));
 
 
-        // $cryptocurrency = Cryptocurrency::find($cryptocurrency_id);
+        // $cryptocurrency = Cryptocurrency::find($data['cryptocurrency_id']);
 
         // if($cryptocurrency){
             
-            // if(empty($data['amount'])) {
-            //     $general_setings = GeneralSetting::first();
-            //     return view('user.crypto.buy', compact('data', 'general_setings'));
-            // }else {
-            //     toastr()->warning('You can purchase within $2 to $50');
-            //     return back();
-            // }
+        //     $cryptocurrencies = Cryptocurrency::all();
+        //     return view('user.crypto.buy', compact('data', 'general_setings', 'user', 'cryptocurrencies'));
 
         // } 
         // else{
         //     toastr()->error('Select a valid cryptocurrency');
-        //     return back();
+        //     return redirect()->back();
         // }
     }
 
@@ -66,22 +65,34 @@ class BuyCryptoController extends Controller
      */
     public function store(BuyCryptoRequest $request)
     {
+
         $request->validated();
         $user = auth()->user();
+
+        // dd($request);
         
+        $general_setings = GeneralSetting::first();
+        $crypto = Cryptocurrency::findorFail($request->cryptocurrency_id);
+        $amount = floatval($request->amount);
+        $buy_rate = floatval($general_setings->buy_rate);
+        $cryptoAmountInNaira = floatval($amount * $buy_rate);
+
+        // dd($cryptoAmountInNaira);
+
         try {
-            // BuyOrder::create([
-            //     'trx_hash' => $this->generateTrxHash(6),
-            //     'user_id' => $user->id,
-            //     'cryptocurrency_id' => $user->id,
-            //     'asset_network' => $user->id,
-            //     'amount' => $request->amount,
-            //     'wallet_address' => $request->wallet_address,
-            // ]);
+            BuyOrder::create([
+                'trx_hash' => $this->generateTrxHash(6),
+                'user_id' => $user->id,
+                'cryptocurrency_id' => $crypto->id,
+                'asset_network' => "ERC",
+                'amount' => $cryptoAmountInNaira,
+                'wallet_address' => "gggsgsgsgs",
+            ]);
 
             return redirect()->route('buy.confirm', '3445334');
 
         } catch (\Exception $e) {
+            dd($e->getMessage());
             toastr()->error('An error occurred during the process');
             return back();
         }

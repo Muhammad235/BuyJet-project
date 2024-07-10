@@ -7,88 +7,176 @@
 	<section id="content">
 		<!-- TOP NAVBAR -->
         <x-top-navbar :user="$user" />
-
 		<main class="body">
 			<div class="body-top row">
-				<div class="col-md-9">
+				<div class="col-md-9 col-12">
 					<div class="rate-section-row row">
-						<p class="mobile-welcome-text">Welcome, <span>Exousia</span></p>
-						<div class="rate-section col-md-4 mobile">
-							<div class="dollar">
-								<i class="fa fa-dollar"></i>
+						<span class="mobile-welcome-text">Welcome, <span>Exousia</span></span>
+						<div class="col-md-4 col-12 aaa">
+							<div class="rate-section shadow">
+								<div class="dollar">
+									<i class="fa fa-dollar"></i>
+								</div>
+								<div class="rate-section-container rate-total">
+									<span class="text-white">Total Tansactions</span>
+									<h5>$10,250.00</h5>
+								</div>
 							</div>
-							<div class="rate-section-container">
-								<span>Total Tansactions</span>
-								<h5 >&#8358; 10,250.00</h5>
-							</div>
+							<div class="rate-sect"></div>
 						</div>
-						<div class="rate-section col-md-4 repo">
-							<div class="rate-section-container">
-								<span>Buying Rate</span>
-								<h5>&#8358;  {{ number_format($general_setings->buy_rate, 2) }} </h5>
+
+						<div class="col-md-8 col-12">
+							<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<h3>Image</h3>
+									</div>
+									<div class="carousel-item">
+										<h3>Picture</h3>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="rate-section col-md-4 repo">
-							<div class="rate-section-container">
-								<span>Selling Rate</span>
-								<h5>&#8358;  {{ number_format($general_setings->sell_rate, 2) }}</h5>
+							<div class="carousel-indicator">
+								<button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="0"
+									class="active" aria-current="true" aria-label="Slide 1"></button>
+								<button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="1"
+									aria-label="Slide 2" class=""></button>
 							</div>
 						</div>
 					</div>
-					<div class="rate-section-image">
-						<h3>Image</h3>
+
+					<div class="quick-action row">
+						<div class="col-md-3 text-center quick col-12">Quick Actions</div>
+						<div class="col-md-3 col-4">
+							<a href="{{ route('buy.create') }}"><img src="{{ asset('assets/images/buy.png') }}" alt="" class="d-none d-md-block"></a>
+							<a href="{{ route('buy.create') }}"><img src="{{ asset('assets/images/m-buy.png') }}" alt="" class="d-block d-md-none"></a>
+						</div>
+						<div class="col-md-3 col-4">
+							<a href="sellingcoin.html"><img src="{{ asset('assets/images/sell.png') }}" alt="" class="d-none d-md-block"></a>
+							<a href="sellingcoin.html"><img src="{{ asset('assets/images/m-sell.png') }}" alt="" class="d-block d-md-none"></a>
+						</div>
+						<div class="col-md-3 col-4">
+							<a href="giftcard.html"><img src="{{ asset('assets/images/gift.png') }}" alt="" class="d-none d-md-block"></a>
+							<a href="giftcard.html"><img src="{{ asset('assets/images/m-gift.png') }}" alt="" class="d-block d-md-none"></a>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-3 eth-mob">
+				<div class="col-md-3 mobile-rate">
+					<div class="rate-box d-none d-md-block">
+						<p><small>Crypto <br> Exchange Rate</small></p>
+					</div>
+					<div class="sell-box col-md-12 col-6">
+						<p><small><span>Selling Rate</span> <br> ₦ {{ number_format($general_setings->sell_rate, 2) }}</small></p>
+					</div>
+					<div class="buy-box col-md-12 col-6">
+						<p><small><span>Buying Rate</span> <br> ₦ {{ number_format($general_setings->buy_rate, 2) }}</small></p>
+					</div>
+				</div>
+			</div>
+			<div class="body-bottom row">
+				<div class="col-md-9 col-12 mobile-table">
+					<div class="history-section-row">
+						<div class="history-section">
+							<div class="header-history">
+								<div>
+									<span class="pt-2"><small>Recent Transactions</small></span>
+								</div>
+
+								<div>
+									<a href="transaction.html" class="view"><span class="pt-2 text-primary view"><small
+												class="view">View All</small>
+										</span></a>
+								</div>
+							</div>
+							<div class="table-section">
+								<div class="table-section-row">
+									<div class="table-section-wrapper">
+										<img src="{{ asset('assets/images/eth.png') }}" alt="">
+										<div class="date-wrap">
+											<p>Ethereum Purchased</p>
+											<span>February 21, 2021</span>
+										</div>
+									</div>
+									<div class="pending-div">
+										<p>$90</p>
+										<span>Pending</span>
+									</div>
+								</div>
+								<div class="table-section-row">
+									<div class="table-section-wrapper">
+										<img src="{{ asset('assets/images/eth.png') }}" alt="">
+										<div class="date-wrap">
+											<p>Ethereum Purchased</p>
+											<span>February 21, 2021</span>
+										</div>
+									</div>
+									<div class="success-div">
+										<p>$90</p>
+										<span>Success</span>
+									</div>
+								</div>
+								<div class="table-section-row">
+									<div class="table-section-wrapper">
+										<img src="{{ asset('assets/images/eth.png') }}" alt="">
+										<div class="date-wrap">
+											<p>Ethereum Purchased</p>
+											<span>February 21, 2021</span>
+										</div>
+									</div>
+									<div class="failed-div">
+										<p>$90</p>
+										<span>Failed</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 eth-mob col-12">
 					<div class="coin-section">
 						<div class="coin-section-row row">
-							<div class="col-md-4 col-4">
+							<div class="col-md-4 col-5">
 								<a href="">
-									<div class="buy active text-white buyCoinBtn">Buy</div>
+									<div class="active buy text-white buyCoinBtn">Buy</div>
 								</a>
 							</div>
-							<div class="col-md-4 col-4">
+							<div class="col-md-4 col-5">
 								<a href="">
 									<div class="buy text-white sellCoinBtn">Sell</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-4">
-								<a href="">
-									<div class="buy text-white giftCardBtn">Giftcards</div>
 								</a>
 							</div>
 						</div>
 						<div class="coin-container">
 							<form action="{{ route('buy.create') }}" method="get" class="buyCoin">
 								<span><small>Coin</small></span>
-								<select class="eth-input" name="cryptocurrency" onchange="showAmountInNaira('buy')">
+								<select class="eth-input mb-2" name="cryptocurrency" onchange="showAmountInNaira('buy')">
 									<option class="text-light" selected disabled>Select Cryptocurrency</option>
-									<option class="text-light" value="1">Ethereum</option>
-									<option class="text-light" value="1">Bitcoin</option>
-									<option class="text-light">USDT</option>
-									<option class="text-light">Notcoin</option>
-									<option class="text-light">Tron</option>
-									<option class="text-light">Doge Coin</option>
+		
+									@foreach ($cryptocurrencies as $cryptocurrency)
+										<option class="text-light" value="{{ old('cryptocurrency', $cryptocurrency->id) }}">{{ $cryptocurrency->name }}</option>
+									@endforeach
+									
 								</select>
+
 								<span><small>Amount</small></span>
 								<input type="number" hidden name="" id="buy-rate" value = {{ $general_setings->buy_rate }}>
 								<input type="number" hidden name="" id="sell-rate" value = {{ $general_setings->sell_rate }}>
 								
 								<div class="input-group mt-2">
-									<input type="text" class="form-control eth-input-group" id="crypto-amount" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); showAmountInNaira('buy');">
+									<input type="text" class="form-control eth-input-group" id="crypto-amount" placeholder="0" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); showAmountInNaira('buy');">
 									<span class="input-group-text">USD</span>
 								</div>
 								<div class="total pt-3">
 									<p>Total</p>
 									<p id="sub-amount">NGN 0</p>
 								</div>
-								<a href="buyingcoin.html"><input type="submit" class="btn btn-primary form-control"
-										value="Buy"></a>
+								<input type="submit" class="btn btn-primary form-control"
+										value="Buy">
 							</form>
-
+		
 							<form action="" method="post" class="sellCoin d-none">
 								<span><small>Coin</small></span>
-								<select class="eth-input" name="cryptocurrency" onchange="showAmountInNaira('buy')">
+								<select class="eth-input mb-2" name="cryptocurrency" onchange="showAmountInNaira('buy')">
 									<option class="text-light">Select Cryptocurrency</option>
 									<option class="text-light">Ethereum</option>
 									<option class="text-light">Bitcoin</option>
@@ -106,215 +194,30 @@
 									<p>Total</p>
 									<p>NGN 401,342</p>
 								</div>
-								<a href="sellingcoin.html"><input type="submit" class="btn btn-primary form-control"
-										value="Sell"></a>
+								<input type="submit" class="btn btn-primary form-control"
+										value="Sell">
 							</form>
-
-							<form action="" method="post" class="giftCard d-none">
-								<span><small>Coin</small></span>
-								<select class="eth-input" id="exampleFormControlSelect1">
-									<option class="text-light">Select Giftcard</option>
-									<option class="text-light">Apple Itunes</option>
-									<option class="text-light">Razor Gold</option>
-									<option class="text-light">Google Pay</option>
-								</select>
-								<span><small>Amount</small></span>
-								<input type="number" hidden name="" id="buy-rate" value = {{ $general_setings->buy_rate }}>
-								<input type="number" hidden name="" id="sell-rate" value = {{ $general_setings->sell_rate }}>
-								<div class="input-group mt-2">
-									<input type="text" class="form-control eth-input-group">
-									<span class="input-group-text">USD</span>
-								</div>
-								<div class="total pt-3">
-									<p>Total</p>
-									<p>NGN 401,342</p>
-								</div>
-								<a href="giftcard.html"><input type="submit" class="btn btn-primary form-control"
-										value="Sell Giftcards"></a>
-							</form>
+		
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="body-bottom row">
-				<div class="col-md-9">
-					<div class="history-section-row">
-						<div class="history-section">
-							<div class="header-history px-3">
-								<p class="pt-2">Transaction History</p>
-
-								<div class="more-container">
-									<a href="transaction.html" class="text-white"><span>More Activity <i
-												class="fa fa-angle-right"></i></span></a>
-								</div>
-							</div>
-							<div class="table-section">
-								<table class="table text-secondary table-borderless">
-									<thead>
-										<tr class="tr">
-											<th class="transact">Transactions</th>
-											<th>Amount</th>
-											<th>Total</th>
-											<th>Status</th>
-											<th>Date</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/eth.png" alt=""
-														width="50%"></span><span>Ethereum Purchased</span>
-											</td>
-											<td>0.0154ETH</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/btc.png" alt=""
-														width="50%"></span><span>Bitcoin Purchased</span>
-											</td>
-											<td>0.0154BTC</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/eth.png" alt=""
-														width="50%"></span><span>Ethereum Purchased</span>
-											</td>
-											<td>0.0154ETH</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/btc.png" alt=""
-														width="50%"></span><span>Bitcoin Purchased</span>
-											</td>
-											<td>0.0154BTC</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/eth.png" alt=""
-														width="50%"></span><span>Ethereum Purchased</span>
-											</td>
-											<td>0.0154ETH</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/btc.png" alt=""
-														width="50%"></span><span>Bitcoin Purchased</span>
-											</td>
-											<td>0.0154BTC</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/eth.png" alt=""
-														width="50%"></span><span>Ethereum Purchased</span>
-											</td>
-											<td>0.0154ETH</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/btc.png" alt=""
-														width="50%"></span><span>Bitcoin Purchased</span>
-											</td>
-											<td>0.0154BTC</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/eth.png" alt=""
-														width="50%"></span><span>Ethereum Purchased</span>
-											</td>
-											<td>0.0154ETH</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/eth.png" alt=""
-														width="50%"></span><span>Ethereum Purchased</span>
-											</td>
-											<td>0.0154ETH</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/btc.png" alt=""
-														width="50%"></span><span>Bitcoin Purchased</span>
-											</td>
-											<td>0.0154BTC</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-										<tr class="tr">
-											<td class="transact"><span><img src="image/eth.png" alt=""
-														width="50%"></span><span>Ethereum Purchased</span>
-											</td>
-											<td>0.0154ETH</td>
-											<td>$1000</td>
-											<td>Pending</td>
-											<td>February 21, 2021</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="quick-action-section-row">
+					<div class="quick-action-section-row d-none d-md-block">
 						<div class="quick-action-section">
 							<div class="spacing">
 								<div>
 									<h6>Download Our Mobile App</h6>
 								</div>
 								<div>
-									<p class="text-secondary small-text px-3">Download our mobile app to get
+									<p class="text-secondary small-text">Download our mobile app to get
 										instant
 										access to the best trading experience</p>
 								</div>
-								<div class="row mx-1">
+								<div class="row">
 									<div class="col-md-6 col-6">
-										<a href=""><img src="image/google-play.png" alt="" width="100%"></a>
+										<a href=""><img src="{{ asset('assets/images/google-play.png') }}" alt="" width="100%"></a>
 									</div>
 									<div class="col-md-6 col-6">
-										<a href=""><img src="image/app-store.png" alt="" width="100%"></a>
+										<a href=""><img src="{{ asset('assets/images/app-store.png') }}" alt="" width="100%"></a>
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="quick-section-row mt-4">
-						<div class="quick-section">
-							<div>
-								<p class="text-secondary"><small>Quick Actions</small>
-								<div class="mt-4">
-									<button class="btn btn-primary button"><i class="fa fa-square"></i>
-										<a href="{{ route('buy.create') }}"
-											class="text-white"><span>Buy-Crypto</span></a></button>
-								</div>
-								<div class="my-4">
-									<button class="btn btn-light button text-primary"><i class="fa fa-square"></i>
-										<a href="sellingcoin.html"
-											class="text-primary"><span>Sell-Crypto</span></a></button>
-								</div>
-								<div>
-									<button class="btn btn-success button"><i class="fa fa-square"></i>
-										<a href="giftcard.html"
-											class="text-white"><span>Trade-GiftCards</span></a></button>
 								</div>
 							</div>
 						</div>
@@ -336,9 +239,11 @@
 
         function showAmountInNaira(type) {
             const cryptoValue = parseFloat(document.getElementById("crypto-amount").value);
-            const buyRate = parseFloat(document.getElementById("buy-rate").value);
-            const sellRate = parseFloat(document.getElementById("sell-rate").value);
+            const Rate = document.getElementById("rates-value");
 
+            var buyRate = Rate.getAttribute('data-buyrate');
+            var sellRate = Rate.getAttribute('data-sellrate');
+			
             if (!isNaN(cryptoValue)) {
                 if (cryptoValue < 2) {    
                     $('.minmum-usd').removeClass('d-none')
