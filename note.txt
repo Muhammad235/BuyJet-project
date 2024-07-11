@@ -1,0 +1,2 @@
+//transaction amount column should be double with 4 decimal place
+//

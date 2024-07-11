@@ -10,13 +10,4 @@
 					<p class="text-white pt-2"><small>{{ $user->firstname }} {{ $user->lastname }}</small></p>
 				</div>
 			</div>
-			{{-- <div class="hamburger">
-				<a href="{{ route('dashboard') }}">
-					<div class="logo">
-						<img src="{{ asset('assets/images/Logo.png') }}" alt="">
-						<span class="text-white">Buyjet</span>
-					</div>
-				</a>
-				<i class='bx bx-menu stripe text-white'></i>
-			</div> --}}
 		</nav>

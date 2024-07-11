@@ -75,9 +75,9 @@ class BuyCryptoController extends Controller
         $crypto = Cryptocurrency::findorFail($request->cryptocurrency_id);
         $amount = floatval($request->amount);
         $buy_rate = floatval($general_setings->buy_rate);
-        $cryptoAmountInNaira = floatval($amount * $buy_rate);
+        $cryptoAmountInNaira = floatval($crypto->charge * $buy_rate) + floatval($amount * $buy_rate);
 
-        // dd($cryptoAmountInNaira);
+        dd($cryptoAmountInNaira);
 
         try {
             BuyOrder::create([

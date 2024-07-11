@@ -31,7 +31,6 @@
 
                                     <input type="text" hidden name="" id="rates-value" data-buyRate = {{ $general_setings->buy_rate }} data-sellRate = {{ $general_setings->buy_rate }}>
 
-                                    
                                 </div>
                                 <div class="coin-top">
                                     <span><small>Select Network</small></span>
