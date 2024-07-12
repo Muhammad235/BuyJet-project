@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BuyOrder extends Model
@@ -18,8 +19,15 @@ class BuyOrder extends Model
         'asset_network',
         'payment_receipt',
         'wallet_address',
-        'note',
-        'status',
-        'payment_status',
     ];
+
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function cryptocurrency() : BelongsTo
+    {
+        return $this->belongsTo(Cryptocurrency::class);
+    }
 }

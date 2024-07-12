@@ -11,7 +11,7 @@
         <div class="my-3">
             <div class="row justify-content-center">
                 <div class="col-md-6 gif col-10">
-                    <h2 class="text-center">Transaction Successful</h2>
+                    <h2 class="text-center">Transaction Completed</h2>
 
                     <div class="gif-image">
                         <img src="{{ asset('assets/images/gif.webp') }}" alt="">

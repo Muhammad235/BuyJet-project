@@ -13,10 +13,10 @@
                 <div class="col-md-7 buy-coin-card col-11">
                     <div class="buy-coin-inner-card"> 
                         <div class="buy-coin-price">
-                            Buying {{ @$cryptocurrency->name }} at {{ $general_setings->buy_rate }}/$
+                            Sellig {{ @$cryptocurrency->name }} at {{ $general_setings->buy_rate }}/$
                         </div>
                         <div class="coin-container">
-                            <form method="POST" action="{{ route('buy.store') }}"  enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('sell.store') }}"  enctype="multipart/form-data">
                                 @csrf
                                 <div class="coin-top">
                                     <span><small>Coin</small></span>
@@ -39,10 +39,48 @@
                                         <option value='' selected disabled>Select Asset Network</option>
                                     </select>
                                 </div>
-                                <div class="coin-top">
-                                    <span><small>Wallet Address</small></span>
-                                    <input placeholder="Enter Your Wallet Address"
-                                        class="form-control eth-input mt-2" name="wallet_address" value="{{ old('wallet_address') }}">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="coin-top">
+                                            <span><small>Account Number</small></span>
+                                            <div class="input-group mt-2">
+                                                <input placeholder="Account Number"
+                                                class="form-control eth-input" name="account_number" value="{{ old('account_number') }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="coin-top">
+                                            <span><small>Account Name</small></span>
+                                            <div class="input-group mt-2">
+                                                <input type="text" placeholder="Account Name"
+                                                class="form-control eth-input" name="account_name" value="{{ old('account_name') }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="coin-top">
+                                            <span><small>Bank Name</small></span>
+                                            <div class="input-group mt-2">
+                                                <input type="text" name="bank_name" placeholder="Bank Name" class="form-control eth-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="col-md-6">
+                                        <div class="coin-top">
+                                            <span><small>Wallet Address (BTC BEP20)</small></span>
+                                            <div class="input-group mt-2">
+                                                <input type="text" name="bank_name" placeholder="Bank Name" class="form-control eth-input">
+                                            </div>
+                                        </div>
+                                    </div> --}}
+                                </div>
+
+
                                 </div>
                                 <div class="coin-top">
                                     <span><small>Amount in USD</small></span>
@@ -69,13 +107,17 @@
                                     <p id="sub-amount">0</p>
                                 </div>
            
-                                <button type="button" class="btn btn-primary form-control"
+                                {{-- <button type="button" class="btn btn-primary form-control"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Buy
+                                    Sell
+                                </button> --}}
+
+                                <button type="submit" class="btn btn-primary form-control">
+                                    Sell
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade modal-background" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                {{-- <div class="modal fade modal-background" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
@@ -107,7 +149,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
                     </div>

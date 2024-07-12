@@ -4,7 +4,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BuyCryptoRequest extends FormRequest
+class SellCryptoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,15 +21,14 @@ class BuyCryptoRequest extends FormRequest
      */
     public function rules(): array
     {
-            
-        // ];
-
         return [
             'cryptocurrency_id' => ['required', 'exists:cryptocurrencies,id'],
             'amount' => ['required', 'numeric', 'min:2'],
-            'wallet_address' => ['required'],
+            'bank_name' => ['required', 'string'],
+            'account_number' => ['required', 'numeric'],
+            'account_name' => ['required'],
             'asset_network' => ['required'],
-            'agree' => ['required'],
+            // 'agree' => ['required'],
         ];
     }
 
@@ -38,7 +37,7 @@ class BuyCryptoRequest extends FormRequest
         return [
             'cryptocurrency_id.required' => 'Select a cryptocurrency.',
             'cryptocurrency_id.exists' => 'Select a cryptocurrency.',
-            'agree.required' => 'You must agree to the terms and conditions.'
+            // 'agree.required' => 'You must agree to the terms and conditions.'
         ];
     }
 }

@@ -12,27 +12,21 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 transfer-coin-card col-10">
 					<div class="transfer-coin-inner-card">
-						<p>Transfer NGN{{ number_format($order->amount, 2) }} to Buyjet</p>
+						<p>Send ${{ number_format($order->amount, 2) }} to Buyjet</p>
 					</div>
-					<div class="py-4 row">
+                    <div class="py-4 row">
 						<div class="col-md-6 col-6">
-							<span class="text-secondary"><small>Account Number</small><br></span>
+							<span class="text-secondary"><small>Wallet Address</small><br></span>
 							<span class="coin-info">
-								<h5 class="pt-2">{{ $general_settings->account_number }}</h5>
-							</span>
-						</div>
-						<div class="col-md-6 col-6">
-							<span class="text-secondary"><small>Bank Name</small><br></span>
-							<span class="coin-info">
-								<h5 class="pt-2">{{ $general_settings->bank_name }}</h5>
+								<h5 class="pt-2">{{ $assetAddress }}</h5>
 							</span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-6">
-							<span class="text-secondary"><small>Account Name</small><br></span>
+                        <div class="col-md-6 col-6">
+							<span class="text-secondary"><small>Network</small><br></span>
 							<span class="coin-info">
-								<h5 class="pt-2">{{ $general_settings->account_name }}</h5>
+								<h5 class="pt-2">{{ $selectedAssetNetwork }}</h5>
 							</span>
 						</div>
 						<div class="col-md-6 col-6">

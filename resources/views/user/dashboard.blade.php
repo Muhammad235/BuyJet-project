@@ -11,7 +11,7 @@
 			<div class="body-top row">
 				<div class="col-md-9 col-12">
 					<div class="rate-section-row row">
-						<span class="mobile-welcome-text">Welcome, <span>Exousia</span></span>
+						<span class="mobile-welcome-text">Welcome, <span>{{ $user->firstname }}</span></span>
 						<div class="col-md-4 col-12 aaa">
 							<div class="rate-section shadow">
 								<div class="dollar">
@@ -52,8 +52,8 @@
 							<a href="{{ route('buy.create') }}"><img src="{{ asset('assets/images/m-buy.png') }}" alt="" class="d-block d-md-none"></a>
 						</div>
 						<div class="col-md-3 col-4">
-							<a href="sellingcoin.html"><img src="{{ asset('assets/images/sell.png') }}" alt="" class="d-none d-md-block"></a>
-							<a href="sellingcoin.html"><img src="{{ asset('assets/images/m-sell.png') }}" alt="" class="d-block d-md-none"></a>
+							<a href="{{ route('sell.create') }}"><img src="{{ asset('assets/images/sell.png') }}" alt="" class="d-none d-md-block"></a>
+							<a href="{{ route('sell.create') }}"><img src="{{ asset('assets/images/m-sell.png') }}" alt="" class="d-block d-md-none"></a>
 						</div>
 						<div class="col-md-3 col-4">
 							<a href="giftcard.html"><img src="{{ asset('assets/images/gift.png') }}" alt="" class="d-none d-md-block"></a>
@@ -162,7 +162,7 @@
 						<div class="coin-container">
 							<form action="{{ route('buy.create') }}" method="get" class="buyCoin">
 								<span><small>Coin</small></span>
-								<select class="eth-input mb-2" name="cryptocurrency" onchange="showAmountInNaira('buy')">
+								<select class="eth-input mb-2" name="cryptocurrency" onchange="buyCryptoAmountInNaira()">
 									<option class="text-light" selected disabled>Select Cryptocurrency</option>
 		
 									@foreach ($cryptocurrencies as $cryptocurrency)
@@ -172,45 +172,46 @@
 								</select>
 
 								<span><small>Amount</small></span>
-								<input type="number" hidden name="" id="buy-rate" value = {{ $general_setings->buy_rate }}>
-								<input type="number" hidden name="" id="sell-rate" value = {{ $general_setings->sell_rate }}>
+
+								<input type="text" hidden name="" id="rates-value" data-buyRate = {{ $general_setings->buy_rate }} data-sellRate = {{ $general_setings->buy_rate }}>
 								
 								<div class="input-group mt-2">
-									<input type="text" class="form-control eth-input-group" id="crypto-amount" placeholder="0" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); showAmountInNaira('buy');">
+									<input type="text" class="form-control eth-input-group" id="buy_crypto_amount" placeholder="0" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); buyCryptoAmountInNaira();">
 									<span class="input-group-text">USD</span>
 								</div>
 								<div class="total pt-3">
 									<p>Total</p>
-									<p id="sub-amount">NGN 0</p>
+									<p id="buy-sub-amount">NGN 0</p>
 								</div>
 								<input type="submit" class="btn btn-primary form-control"
 										value="Buy">
 							</form>
-		
-							<form action="" method="post" class="sellCoin d-none">
+
+							<form action="{{ route('sell.create') }}" method="get" class="sellCoin d-none">
 								<span><small>Coin</small></span>
-								<select class="eth-input mb-2" name="cryptocurrency" onchange="showAmountInNaira('buy')">
-									<option class="text-light">Select Cryptocurrency</option>
-									<option class="text-light">Ethereum</option>
-									<option class="text-light">Bitcoin</option>
-									<option class="text-light">USDT</option>
-									<option class="text-light">Notcoin</option>
-									<option class="text-light">Tron</option>
-									<option class="text-light">Doge Coin</option>
+								<select class="eth-input mb-2" name="cryptocurrency" onchange="sellCryptoAmountInNaira()">
+									<option class="text-light" selected disabled>Select Cryptocurrency</option>
+		
+									@foreach ($cryptocurrencies as $cryptocurrency)
+										<option class="text-light" value="{{ old('cryptocurrency', $cryptocurrency->id) }}">{{ $cryptocurrency->name }}</option>
+									@endforeach
+									
 								</select>
+
 								<span><small>Amount</small></span>
+
 								<div class="input-group mt-2">
-									<input type="text" class="form-control eth-input-group">
+									<input type="text" class="form-control eth-input-group" id="sell_crypto_amount" placeholder="0" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); sellCryptoAmountInNaira();">
 									<span class="input-group-text">USD</span>
 								</div>
 								<div class="total pt-3">
 									<p>Total</p>
-									<p>NGN 401,342</p>
+									<p id="sell-sub-amount">NGN 0</p>
 								</div>
 								<input type="submit" class="btn btn-primary form-control"
 										value="Sell">
 							</form>
-		
+	
 						</div>
 					</div>
 					<div class="quick-action-section-row d-none d-md-block">
@@ -245,17 +246,19 @@
         
     <script>
 
+		const Rate = document.getElementById("rates-value");
+
+		var buyRate = Rate.getAttribute('data-buyrate');
+		var sellRate = Rate.getAttribute('data-sellrate');
+
+
         function validateInput(input) {
             // Remove any non-numeric characters and any multiple decimal points
             input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
         }
 
-        function showAmountInNaira(type) {
-            const cryptoValue = parseFloat(document.getElementById("crypto-amount").value);
-            const Rate = document.getElementById("rates-value");
-
-            var buyRate = Rate.getAttribute('data-buyrate');
-            var sellRate = Rate.getAttribute('data-sellrate');
+        function buyCryptoAmountInNaira() {
+            const cryptoValue = parseFloat(document.getElementById("buy_crypto_amount").value);
 			
             if (!isNaN(cryptoValue)) {
                 if (cryptoValue < 2) {    
@@ -264,18 +267,33 @@
                     $('.minmum-usd').addClass('d-none')
 
 					let amountInNaira;
-
-					if (type == 'buy') {
-						 amountInNaira = cryptoValue * buyRate;
-					}else{
-						amountInNaira = cryptoValue * sellRate
-					}
-                    document.getElementById("sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
+					amountInNaira = cryptoValue * buyRate;
+                    document.getElementById("buy-sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
                 }
             } else {
-                document.getElementById("sub-amount").innerText = "NGN 0";
+                document.getElementById("buy-sub-amount").innerText = "NGN 0";
             }
         }
+
+		function sellCryptoAmountInNaira() {
+            const cryptoValue = parseFloat(document.getElementById("sell_crypto_amount").value);
+			
+            if (!isNaN(cryptoValue)) {
+                if (cryptoValue < 2) {    
+                    $('.minmum-usd').removeClass('d-none')
+                }else{
+                    $('.minmum-usd').addClass('d-none')
+
+					let amountInNaira;
+					amountInNaira = cryptoValue * buyRate;
+                    document.getElementById("sell-sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
+                }
+            } else {
+                document.getElementById("sell-sub-amount").innerText = "NGN 0";
+            }
+        }
+
+
     </script>
 
     @endpush

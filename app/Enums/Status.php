@@ -13,8 +13,9 @@ enum Status: string
     const LOW = 'low';
     const MEDIUM = 'medium';
     const HIGH = 'high';
-    const PENDIDNG = 2;
+
     const SUCCESS = 1;
+    const PENDIDNG = 2;
     const PROCESSING = 3;
     const FAILED = 0;
 }

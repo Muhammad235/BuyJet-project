@@ -19,7 +19,7 @@ trait FileUploadTrait
 
             $image->move(public_path($path), $imageName);
 
-            return $imageName;
+            return $path . '/' .$imageName;
         }
 
         return null;
