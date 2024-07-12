@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Enums\Status;
 use App\Models\BuyOrder;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
@@ -77,34 +78,34 @@ class BuyCryptoController extends Controller
         $buy_rate = floatval($general_setings->buy_rate);
         $cryptoAmountInNaira = floatval($crypto->charge * $buy_rate) + floatval($amount * $buy_rate);
 
-        dd($cryptoAmountInNaira);
+        // dd($cryptoAmountInNaira);
 
         try {
-            BuyOrder::create([
+            $order = BuyOrder::create([
                 'trx_hash' => $this->generateTrxHash(6),
                 'user_id' => $user->id,
                 'cryptocurrency_id' => $crypto->id,
-                'asset_network' => "ERC",
+                'asset_network' => $request->asset_network,
                 'amount' => $cryptoAmountInNaira,
                 'wallet_address' => $request->wallet_address,
             ]);
 
-            return redirect()->route('buy.confirm', '3445334');
+            return redirect()->route('buy.confirm', $order->trx_hash);
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             toastr()->error('An error occurred during the process');
             return back();
         }
 
     }
 
-    public function confirm($id){
+    public function confirm(string $trx_hash){
         $user = auth()->user();
-        $buyorder = BuyOrder::where('trx_hash', $id)->first();
-        // $buyorder = '';
+        $order = BuyOrder::where('trx_hash', $trx_hash)->first();
         $general_settings = GeneralSetting::first(); 
-        return view('user.crypto.buy-confirm',compact('general_settings','buyorder','user'));
+        // dd($buyorder);
+        return view('user.crypto.buy-confirm',compact('general_settings','order','user'));
     }
 
 
@@ -120,22 +121,37 @@ class BuyCryptoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $trx_hash)
     {
-        // $request->validate([
-        //     'payment_proof' =>'required |mimes:jpg,jpeg,png,pdf,doc,docx |max:3072',
-        // ]);
+        $request->validate([
+            'payment_proof' =>'required |mimes:jpg,jpeg,png,pdf,doc,docx |max:3072',
+        ]);
 
+        $user = auth()->user();
 
-        dd($request);
+        try {
 
-        // $buyorder = BuyOrder::find($request->id);
-        // $fileName = $this->uploadImage($request, $request->payment_proof, 'storage/payment_receipt');
-        // $buyorder->update([
-        //     'payment_proof' => $fileName
-        // ]);
+            $buyorder = BuyOrder::where('trx_hash', $trx_hash)->first();
+            $fileName = $this->uploadImage($request, 'payment_proof', 'storage/payment_receipt');
 
-        // toastr()->success('Payment successfull');
+            // dd($request->payment_proof);
+            dd($fileName);
+
+            if($buyorder->status == Status::PENDIDNG){
+                $buyorder->update([
+                    'payment_proof' => $fileName,
+                    'status' => Status::SUCCESS,
+                ]);
+            }
+            toastr()->success('Transaction successful');
+            return view('user.transaction-success', compact('user'));
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            toastr()->error('Unable to proccess payment at the moment');
+            return back();
+        }
+
     }
 
     /**

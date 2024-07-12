@@ -18,8 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('buy')->group(function() {
         Route::get('/',[BuyCryptoController::class, 'create'])->name('buy.create');
         Route::post('/crypto',[BuyCryptoController::class, 'store'])->name('buy.store');
-        Route::get('/{transaction}/confirm',[BuyCryptoController::class, 'confirm'])->name('buy.confirm');
-        Route::put('/confirm/{id}',[BuyCryptoController::class, 'update'])->name('buy.update');
+        Route::get('/{trx_hash}/confirm',[BuyCryptoController::class, 'confirm'])->name('buy.confirm');
+        Route::put('/confirm/{trx_hash}',[BuyCryptoController::class, 'update'])->name('buy.update');
         // Route::get('/{id}',[BuyCryptoController::class, 'show'])->name('buy.show');
     });
 });

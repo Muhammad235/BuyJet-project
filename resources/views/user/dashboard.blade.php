@@ -123,6 +123,19 @@
 											<span>February 21, 2021</span>
 										</div>
 									</div>
+									<div class="success-div">
+										<p>$90</p>
+										<span class="bg-warning">Processing</span>
+									</div>
+								</div>
+								<div class="table-section-row">
+									<div class="table-section-wrapper">
+										<img src="{{ asset('assets/images/eth.png') }}" alt="">
+										<div class="date-wrap">
+											<p>Ethereum Purchased</p>
+											<span>February 21, 2021</span>
+										</div>
+									</div>
 									<div class="failed-div">
 										<p>$90</p>
 										<span>Failed</span>

@@ -12,7 +12,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 transfer-coin-card col-10">
 					<div class="transfer-coin-inner-card">
-						<p>Transfer NGN30,000 to Buyjet</p>
+						<p>Transfer NGN{{ number_format($order->amount, 2) }} to Buyjet</p>
 					</div>
 					<div class="py-4 row">
 						<div class="col-md-6 col-6">
@@ -38,11 +38,11 @@
 						<div class="col-md-6 col-6">
 							<span class="text-secondary"><small>Amount (NGN)</small><br></span>
 							<span class="coin-info">
-								<h5 class="pt-2">30,000</h5>
+								<h5 class="pt-2">{{ number_format($order->amount, 2) }}</h5>
 							</span>
 						</div>
 					</div>
-                    <form action="{{ route('buy.update', 1) }}" method="post">
+                    <form action="{{ route('buy.update', $order->trx_hash) }}" method="post"  enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="container-side">
@@ -56,9 +56,9 @@
                                     <div class="drop-here">Drop Here</div>
                                 </div>
                             </div>
-                            <div class="list-section">
+                            {{-- <div class="list-section">
                                 <div class="list">
-                                    <!-- <li class="in-prog">
+                                    <li class="in-prog">
                                         <div class="col">
                                             <img src="icons/image.png" alt="">
                                         </div>
@@ -85,14 +85,14 @@
                                                 <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
                                             </svg>
                                         </div>
-                                    </li> --> 
+                                    </li>
                                 </div>
-                            </div>
+                            </div> --}}
                             <button type="button" class="file-selector btn btn-secondary">Upload</button>
 
                             <input type="file" name="payment_proof" class="file-selector-input" multiple>
                         </div>
-                        <div>
+                        <div class="text-center">
                             <button type="submit" class="btn btn-primary px-5 mt-5" ><small>I have made my
                                         payment</small></button>
                         </div>

@@ -14,13 +14,12 @@ return new class extends Migration
     {
         Schema::create('gift_card_transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('trx_hash');
+            $table->string('trx_hash')->unique();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('gift_card_id')->constrained();
             $table->string('country');
             $table->double('amount');
-            $table->enum('payment_status', [Status::PENDIDNG, Status::RECEIVED, Status::COMPLETED])->default(Status::PENDIDNG);
-            $table->enum('status', [Status::PENDIDNG, Status::COMPLETED])->default(Status::PENDIDNG);
+            $table->enum('status', [Status::PENDIDNG, Status::SUCCESS, Status::FAILED])->default(Status::PENDIDNG);
             $table->text('rejection_reason')->nullable();
             $table->timestamps();
         });

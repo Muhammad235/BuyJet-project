@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'BITCOIN',
             'symbol' => 'bitcoin.png',
             'assets' => $assets,
-            'charge' => 1,
+            'charge' => 0.5,
             'wallet_address' => '0x74c06d0ae18523e35091f55983611910411d4b13'
         ]);
 
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'DOGECOIN',
             'symbol' => 'doge.png',
             'assets' => $assets,
-            'charge' => 1,
+            'charge' => 0.5,
             'wallet_address' => '0x74c06d0ae18523e35091f55983611910411d4b13'
         ]);
 
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'ETHEREUM',
             'symbol' => 'ethereum.png',
             'assets' => $assets,
-            'charge' => 1,
+            'charge' => 0.5,
             'wallet_address' => '0x74c06d0ae18523e35091f55983611910411d4b13'
         ]);
     }

@@ -13,7 +13,8 @@ enum Status: string
     const LOW = 'low';
     const MEDIUM = 'medium';
     const HIGH = 'high';
-    const PENDIDNG = 'pending';
-    const RECEIVED = 'received';
-    const COMPLETED = 'completed';
+    const PENDIDNG = 2;
+    const SUCCESS = 1;
+    const PROCESSING = 3;
+    const FAILED = 0;
 }

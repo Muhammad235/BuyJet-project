@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('sell_orders', function (Blueprint $table) {
             $table->id();
-            $table->string('trx_hash');
+            $table->string('trx_hash')->unique();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('cryptocurrency_id')->constrained();
             $table->string('asset_network');
@@ -22,8 +22,7 @@ return new class extends Migration
             $table->string('payment_receipt');
             $table->string('payment_address');
             $table->string('note')->nullable();
-            $table->enum('payment_status', [Status::PENDIDNG, Status::RECEIVED, Status::COMPLETED])->default(Status::PENDIDNG);
-            $table->enum('status', [Status::PENDIDNG, Status::COMPLETED])->default(Status::PENDIDNG);
+            $table->enum('status', [Status::PENDIDNG, Status::SUCCESS, Status::FAILED])->default(Status::PENDIDNG);
             $table->text('rejection_reason')->nullable();
             $table->timestamps();
         });
