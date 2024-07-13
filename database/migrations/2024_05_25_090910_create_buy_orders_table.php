@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('cryptocurrency_id')->constrained();
             $table->string('asset_network');
-            $table->decimal('amount', 8, 4);
+            $table->decimal('amount', 12, 4);
             $table->string('payment_receipt')->nullable();
             $table->string('wallet_address');
             $table->string('note')->nullable();

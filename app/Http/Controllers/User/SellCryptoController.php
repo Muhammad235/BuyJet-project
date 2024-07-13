@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Enums\Status;
 use App\Models\SellOrder;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
@@ -104,10 +105,9 @@ class SellCryptoController extends Controller
                 $assetAddress = $selectedAsset['assetaddress'];
             }
         }
-
-
         $general_settings = GeneralSetting::first(); 
-        return view('user.crypto.sell-confirm',compact('general_settings','order','user', 'selectedAssetNetwork','assetAddress'));
+        $amountToSend = $order->amount / $general_settings->sell_rate;
+        return view('user.crypto.sell-confirm',compact('general_settings','order','user', 'selectedAssetNetwork','assetAddress', 'amountToSend'));
     }
 
     /**
@@ -129,9 +129,33 @@ class SellCryptoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $trx_hash)
     {
-        //
+        $request->validate([
+            'payment_proof' =>'required |mimes:jpg,jpeg,png,pdf,doc,docx |max:3072',
+        ]);
+
+        $user = auth()->user();
+
+        try {
+
+            $sellorder = SellOrder::where('trx_hash', $trx_hash)->first();
+            $fileName = $this->uploadImage($request, 'payment_proof', 'storage/payment_receipt');
+
+            if($sellorder->status == Status::PENDIDNG){
+                $sellorder->update([
+                    'payment_receipt' => $fileName,
+                    'status' => Status::PROCESSING,
+                ]);
+            }
+            
+            toastr()->success('Transaction completed');
+            return view('user.transaction-success', compact('user'));
+
+        } catch (\Exception $e) {
+            toastr()->error('Unable to proccess payment at the moment');
+            return back();
+        }
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\BuyOrder;
+use App\Models\SellOrder;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
 use App\Models\GeneralSetting;
@@ -16,6 +18,16 @@ class DashboardController extends Controller
         $user = auth()->user();
         $general_setings = GeneralSetting::first();
         $cryptocurrencies = Cryptocurrency::all();
-        return view('user.dashboard', compact('user', 'general_setings', 'cryptocurrencies'));
+
+        $sellOrder = SellOrder::where('user_id', $user->id)->with('cryptocurrency')->latest()->take(10)->get();
+        $buyOrder = BuyOrder::where('user_id', $user->id)->with('cryptocurrency')->latest()->take(10)->get();
+
+        $transactions = collect()
+                ->merge($sellOrder)
+                ->merge($buyOrder);
+
+        // dd($transactions);
+
+        return view('user.dashboard', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
     }
 }

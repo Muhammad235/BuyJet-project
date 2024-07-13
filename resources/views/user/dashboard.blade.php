@@ -3,6 +3,7 @@
 	@section('title', 'User Dashboard')
 
 	@section('content')
+
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- TOP NAVBAR -->
@@ -89,7 +90,52 @@
 								</div>
 							</div>
 							<div class="table-section">
-								<div class="table-section-row">
+								@if (count($transactions) > 0)
+									@foreach ($transactions as $transaction)
+									<div class="table-section-row">
+										<div class="table-section-wrapper">
+											<img src="{{ asset('storage/crypto/'. $transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
+											<div class="date-wrap">
+												<p>{{ $transaction->cryptocurrency->name }}</p>
+												<span>February 21, 2021</span>
+											</div>
+										</div>
+
+										@php
+											if ($transaction->status == 1) {
+												$status = 'pending-div';
+											}elseif ($transaction->status == 2) {
+												$status = 'pending-div';
+											}elseif ($transaction->status == 3) {
+												$status = 'pending-div';	
+											}
+										@endphp
+
+										<div class="transac-status">
+											<p>{{  number_format($transaction->amount, 2) }}</p>
+
+											@if ($transaction->status == 1)
+												<span class="status-success">Success</span>
+												@elseif ($transaction->status == 2)
+												<span class="status-spending">Pening</span>
+												@elseif ($transaction->status == 3)
+												<span class="status-failed">Failed</span>
+											@endif
+											
+										</div>
+									</div>
+									@endforeach 
+								@else
+									<div class="table-section-ntp">
+										<img src="{{ asset('assets/images/mobile-ntp.png')}}" alt="" width="80%">
+									</div>
+									<div class="table-section-desktop-ntp">
+										<img src="{{ asset('assets/images/ntp.png')}}" alt="" width="50%">
+									</div>
+								@endif
+
+
+								{{-- <div class="table-section-row">
 									<div class="table-section-wrapper">
 										<img src="{{ asset('assets/images/eth.png') }}" alt="">
 										<div class="date-wrap">
@@ -101,7 +147,7 @@
 										<p>$90</p>
 										<span>Pending</span>
 									</div>
-								</div>
+								</div>transac-status
 								<div class="table-section-row">
 									<div class="table-section-wrapper">
 										<img src="{{ asset('assets/images/eth.png') }}" alt="">
@@ -140,7 +186,7 @@
 										<p>$90</p>
 										<span>Failed</span>
 									</div>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -173,7 +219,7 @@
 
 								<span><small>Amount</small></span>
 
-								<input type="text" hidden name="" id="rates-value" data-buyRate = {{ $general_setings->buy_rate }} data-sellRate = {{ $general_setings->buy_rate }}>
+								<input type="text" hidden name="" id="rates-value" data-buyRate = {{ $general_setings->buy_rate }} data-sellRate = {{ $general_setings->sell_rate }}>
 								
 								<div class="input-group mt-2">
 									<input type="text" class="form-control eth-input-group" id="buy_crypto_amount" placeholder="0" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); buyCryptoAmountInNaira();">
@@ -285,7 +331,7 @@
                     $('.minmum-usd').addClass('d-none')
 
 					let amountInNaira;
-					amountInNaira = cryptoValue * buyRate;
+					amountInNaira = cryptoValue * sellRate;
                     document.getElementById("sell-sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
                 }
             } else {

@@ -895,21 +895,33 @@ li {
   font-size: 12px;
   color: #ffffff80;
 }
-.pending-div {
+.transac-status {
   line-height: 5px;
 }
-.pending-div p {
+.transac-status p {
   font-size: 14px;
   text-align: right;
   padding-right: 5px;
 }
-.pending-div span {
-  background: #31353f;
+.transac-status span {
   font-size: 11px;
   padding: 2px 10px;
   border-radius: 100px;
 }
-.failed-div {
+
+.status-spending {
+  background: #31353f;
+}
+
+.status-success {
+  background: #3a6ff8;
+}
+
+.status-failed {
+  background: #e4050580;
+}
+
+/* .failed-div {
   line-height: 5px;
 }
 .failed-div p {
@@ -936,7 +948,7 @@ li {
   font-size: 11px;
   padding: 2px 10px;
   border-radius: 100px;
-}
+} */
 .rate-box {
   height: 15vh;
   border: 1px solid white;

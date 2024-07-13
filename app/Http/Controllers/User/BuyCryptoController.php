@@ -85,6 +85,7 @@ class BuyCryptoController extends Controller
         $user = auth()->user();
         $order = BuyOrder::where('trx_hash', $trx_hash)->first();
         $general_settings = GeneralSetting::first(); 
+        
         return view('user.crypto.buy-confirm',compact('general_settings','order','user'));
     }
 

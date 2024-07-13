@@ -12,7 +12,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 transfer-coin-card col-10">
 					<div class="transfer-coin-inner-card">
-						<p>Send ${{ number_format($order->amount, 2) }} to Buyjet</p>
+						<p>Send ${{ $amountToSend }} to Buyjet</p>
 					</div>
                     <div class="py-4 row">
 						<div class="col-md-6 col-6">
@@ -36,9 +36,10 @@
 							</span>
 						</div>
 					</div>
-                    <form action="{{ route('buy.update', $order->trx_hash) }}" method="post"  enctype="multipart/form-data">
+                    <form action="{{ route('sell.update', $order->trx_hash) }}" method="post"  enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+						{{-- <input type="text" name="test" id=""> --}}
                         <div class="container-side">
                             <div class="drop-section">
                                 <div class="col">
