@@ -19,15 +19,17 @@ class DashboardController extends Controller
         $general_setings = GeneralSetting::first();
         $cryptocurrencies = Cryptocurrency::all();
 
-        $sellOrder = SellOrder::where('user_id', $user->id)->with('cryptocurrency')->latest()->take(10)->get();
-        $buyOrder = BuyOrder::where('user_id', $user->id)->with('cryptocurrency')->latest()->take(10)->get();
+        $sellOrder = SellOrder::where('user_id', $user->id)->with('cryptocurrency')
+                                ->latest()
+                                ->get();
+        $buyOrder = BuyOrder::where('user_id', $user->id)->with('cryptocurrency')
+                              ->latest()
+                              ->get();
 
         $transactions = collect()
-                ->merge($sellOrder)
-                ->merge($buyOrder);
-
-        // dd($transactions);
-
+                        ->merge($sellOrder)
+                        ->merge($buyOrder);
+                        
         return view('user.dashboard', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
     }
 }
