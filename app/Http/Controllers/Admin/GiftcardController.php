@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\GiftCard;
 use Illuminate\Http\Request;
+use App\Models\Cryptocurrency;
+use App\Traits\FileUploadTrait;
+use App\Http\Controllers\Controller;
 
 class GiftcardController extends Controller
 {
+    use FileUploadTrait;
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $crypto = GiftCard::all();
-        return view('admin.manage.crypto', compact('crypto'));
+        $giftcards = GiftCard::all();
+        // $giftcard = Cryptocurrency::all();
+        return view('admin.manage.giftcard', compact('giftcards'));
     }
 
     /**
@@ -30,15 +35,33 @@ class GiftcardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'charge' => 'required',
+            'symbol' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+        ]);
+
+        $symbolFileName = $this->uploadImage($request, 'symbol', '/storage/giftcard');
+
+        $giftcard = GiftCard::create([
+            'name' => $request->name,
+            // 'charge' => $request->charge,
+            'symbol' => $symbolFileName,
+        ]);
+
+        if($giftcard){
+            return redirect()->back()->with('success', 'Gift card added');
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Giftcard $crypto)
     {
-        //
+        return response()->json($crypto);
     }
 
     /**

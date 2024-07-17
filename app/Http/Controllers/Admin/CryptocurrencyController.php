@@ -63,8 +63,6 @@ class CryptocurrencyController extends Controller
      */
     public function show(Cryptocurrency $crypto)
     {
-        // $crypto = Cryptocurrency::find($crypto);
-        // $crypto = Cryptocurrency::find($crypto);
         return response()->json($crypto);
     }
 

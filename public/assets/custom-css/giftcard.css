@@ -1,60 +1,725 @@
+/* ===== Google Font Import - Poppins ===== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.dashboard-body {
+  background: linear-gradient(187.45deg, #31353f 3.41%, #808ba5 94.21%);
+  height: 100% !important;
+  overflow-x: hidden;
+  color: white;
+}
+.select-btn img {
+  width: 15%;
+  margin-right: 10px;
+}
+.select-menu .select-btn {
+  display: flex;
+  height: 50px;
+  background: #fff;
+  padding: 25px 20px 30px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  align-items: center;
+  cursor: pointer;
+  color: black !important;
+  justify-content: space-between;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.select-btn i {
+  font-size: 25px;
+  transition: 0.3s;
+}
+.select-menu.active .select-btn i {
+  transform: rotate(-180deg);
+}
+input:focus {
+  box-shadow: none !important;
+  border-color: #000 !important;
+}
+input {
+  font-size: 12px !important;
+  height: 40px !important;
+  padding-left: 40px !important;
+}
+::placeholder {
+  color: #00000073 !important;
+  font-size: 12px !important;
+}
+.select-menu .options {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  display: none;
+  margin-top: 10px;
+}
+.pad {
+  margin: 20px 5px 0 20px;
+}
+.display {
+  display: flex;
+  width: 100% !important;
+}
+.select-menu.active .options {
+  display: block;
+}
+.option img {
+  width: 90%;
+  border-radius: 10px;
+}
+.options .option {
+  cursor: pointer;
+  width: 100%;
+}
+.option i {
+  font-size: 25px;
+  margin-right: 12px;
+}
+.option .option-text {
+  font-size: 10px;
+  color: #000;
+  padding-top: 5px;
+  text-align: center;
+}
+.active {
+  background: transparent !important;
+}
+.input-search {
+  position: relative;
+}
+.input-search i {
+  position: absolute;
+  top: 30%;
+  color: #00000073;
+  font-size: 17px;
+  left: 14px;
+}
+
+/* currency drop down style */
+.select-btn_currency img {
+  width: 15%;
+  margin-right: 10px;
+}
+.select-menu_currency .select-btn_currency {
+  display: flex;
+  height: 50px;
+  background: #fff;
+  padding: 25px 20px 30px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  align-items: center;
+  cursor: pointer;
+  color: black !important;
+  justify-content: space-between;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.select-btn_currency i {
+  font-size: 25px;
+  transition: 0.3s;
+}
+.check_currency {
+  width: 15px !important;
+}
+.check {
+  width: 15px !important;
+}
+.select-menu_currency.active .select-btn_currency i {
+  transform: rotate(-180deg);
+}
+input:focus {
+  box-shadow: none !important;
+  border-color: #000 !important;
+}
+input {
+  font-size: 12px !important;
+  height: 40px !important;
+  padding-left: 40px !important;
+}
+::placeholder {
+  color: #00000073 !important;
+  font-size: 12px !important;
+}
+.select-menu_currency .options_currency {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  display: none;
+  margin-top: 10px;
+}
+.pad {
+  margin: 20px 5px 0 20px;
+}
+.display {
+  display: flex;
+  width: 100% !important;
+}
+.select-menu_currency.active .options_currency {
+  display: block;
+}
+.option_currency img {
+  width: 90%;
+}
+.options_currency .option_currency {
+  cursor: pointer;
+  width: 100%;
+}
+.option_currency i {
+  font-size: 25px;
+  margin-right: 12px;
+}
+.option_currency .option-text_currency {
+  font-size: 10px !important;
+  color: #000;
+  padding-top: 5px;
+  text-align: center;
+}
+.active {
+  background: transparent !important;
+}
+.input-search_currency {
+  position: relative;
+}
+.input-search_currency i {
+  position: absolute;
+  top: 30%;
+  color: #00000073;
+  font-size: 17px;
+  left: 14px;
+}
+
+@media screen and (max-width: 576px) {
+  .option_currency img {
+    width: 100%;
+  }
+  .option img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  .pad {
+    margin: 10px 5px 0 10px;
+  }
+}
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 img {
-    cursor: pointer;
+  cursor: pointer;
+}
+.actives {
+  color: white !important;
+  background: #3a6ff8;
+  border-radius: 10px;
+  width: 100%;
+}
+.head-text {
+  text-align: center;
+}
+.sub-head-text {
+  text-align: center;
+  font-size: 12px;
+}
+/* .step-container {
+  width: 100%;
+  margin-top: 30px;
+  position: relative;
+} */
+.search-input input {
+  background: transparent;
+  border: 1px solid #ffffffb2 !important;
+  padding-left: 50px;
+}
+.search-input input:focus {
+  background: transparent;
+  border: 1px solid #ffffffb2 !important;
+  padding-left: 50px;
+  color: white;
+  box-shadow: none;
+}
+.fa-search {
+  color: #ffffffb2;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+::placeholder {
+  color: #ffffffb2 !important;
+}
+.search-input {
+  margin-top: 20px !important;
+  position: relative;
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+#next {
+  cursor: pointer;
+}
+.step-container img {
+  width: 40%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* .step-container .steps {
+  display: flex;
+  width: 35%;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: auto;
+}
+.step-container .progress-bar {
+  width: 35% !important;
+  background: transparent;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.steps .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 50%;
+  background: #918f8f;
+}
+.progress-bar .indicator {
+  height: 10px;
+  width: 100%;
+  color: black;
+  background: #918f8f;
+}
+.steps .active {
+  background: white !important;
+  color: black !important;
+  transition: 1s linear;
+}
+.progress-bar .active {
+  background: white !important;
+  transition: 0.5s linear;
+}
+.indicator_1 {
+  display: none !important;
+}
+.indicator_2 {
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  width: 15% !important;
+  z-index: -1;
+}
+.indicator_3 {
+  position: absolute;
+  top: 40%;
+  right: 35%;
+  width: 30% !important;
+  z-index: -1;
+} */
+.btn-next {
+  background: white !important;
+  width: 60%;
+  height: 40px !important;
+  color: blue !important;
+  font-size: 14px !important;
+  margin-top: 5px;
+}
+.form-check {
+  display: flex !important;
+  align-items: center !important;
+}
+.radio-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+}
+.radio {
+  margin-right: 10px;
+  width: 20px !important;
+}
+input[type="tel"] {
+  background: #687085;
+  border: 1px solid #969db2;
+  margin-top: 10px;
+  height: 30px !important;
+  padding-left: 10px !important;
+  width: 100%;
+  color: white !important;
+}
+input[type="tel"]::placeholder {
+  color: #ffffffbf !important;
+}
+
+/* counter css */
+.counter {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border: 1px solid #969db2;
+  margin-left: 20px;
+  padding: 0 10px;
+  height: 30px;
+}
+
+#increment-btn,
+#decrement-btn {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  border: none !important;
+  background: none !important;
+}
+
+#counter-value {
+  font-size: 12px;
+  border-left: 1px solid #969db2;
+  border-right: 1px solid #969db2;
+  padding: 0 12px;
+  height: 100%;
+  padding-top: 6px;
+}
+.count {
+  display: flex;
+  align-items: center !important;
+}
+/* counter css */
+
+.drop-section {
+  border: 1px dashed #b1bfd0 !important;
+  height: 27vh !important;
+  border-radius: 10px !important;
+  width: 95% !important;
+}
+.cloud-icon img {
+  width: 100% !important;
+  margin: auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  margin: auto !important;
+  align-items: center !important;
+}
+.gift-section {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 80px;
+  align-items: center;
+}
+.price-info {
+  background: #110e22;
+  height: 100%;
+  border-radius: 10px;
+  padding: 25px 20px;
+}
+.price-text span {
+  color: #ffffff99;
+  font-size: 14px !important;
+  font-weight: 100 !important;
+}
+.price-text h3 {
+  font-weight: bold !important;
+  font-size: 20px !important;
+  padding-top: 10px;
+}
+.price-text-status {
+  padding: 20px 0px 50px 0px;
+}
+.price-text-status span {
+  color: #ffffff99;
+  font-size: 14px !important;
+  font-weight: 100 !important;
+  padding: 20px 0px 40px 0px;
+}
+.price-text-status h3 {
+  font-weight: bold !important;
+  font-size: 20px !important;
+}
+.btn-gift {
+  background: white !important;
+  width: 70%;
+  height: 40px !important;
+  color: blue !important;
+  font-size: 14px !important;
+  margin-top: 70px;
+}
+.modal-check {
+  display: flex !important;
+  align-items: center !important;
+}
+.modal-check span {
+  font-size: 15px;
+  color: black !important;
+  text-align: left !important;
+}
+.btn-modal-button {
+  background: red !important;
+}
+.modalfooter {
+  display: flex;
+  justify-content: center;
+}
+.cont {
+  width: 60% !important;
+}
+.modal-body img {
+  width: 18%;
+}
+.modal-body h4,
+.modal-body p {
+  color: black;
+}
+/* input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+input[type="checkbox"] + label {
+  display: inline-block;
+  padding-left: 25px;
+  position: relative;
+}
+input[type="checkbox"] + label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+input[type="checkbox"]:checked + label::before {
+  background: #3a6ff8;
+  border-color: black;
+} */
+
+input[type="checkbox"] {
+  appearance: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked {
+  background: #007bff;
+  border-color: #007bff;
+}
+label {
+  display: inline-block;
+  margin-left: 10px;
+}
+.error {
+  border-radius: 10px !important;
+}
+
+@media screen and (max-width: 576px) {
+  .select-btn,
+  .select-menu_currency {
+    width: 100% !important;
   }
-  .actives {
+  .select-menu {
+    width: 100% !important;
+  }
+  .main {
+    padding: 0 10px;
+  }
+  .step-container .steps {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin: auto;
+  }
+  .step-container .progress-bar {
+    width: 35% !important;
+    background: transparent;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+  .steps .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    color: black;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 50%;
+    background: #918f8f;
+  }
+  .progress-bar .indicator {
+    height: 10px;
+    width: 100%;
+    color: black;
+    background: #918f8f;
+  }
+  .steps .active {
+    background: white !important;
+    color: black !important;
+    transition: 1s linear;
+  }
+  .progress-bar .active {
+    background: white !important;
+    transition: 0.5s linear;
+  }
+  .indicator_1 {
+    display: none !important;
+  }
+  .indicator_2 {
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    width: 15% !important;
+    z-index: -1;
+  }
+  .indicator_3 {
+    position: absolute;
+    top: 40%;
+    right: 5%;
+    width: 85% !important;
+    z-index: -1;
+  }
+  .radio-input {
+    width: 90%;
+    margin-top: 10px;
+  }
+  .radio-input label {
+    font-size: 15px !important;
+  }
+  .select-card {
+    font-size: 15px;
+  }
+  .card-type {
+    padding-top: 20px !important;
+  }
+  input[type="radio"] {
+    background: red !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+  input[type="tel"] {
+    background: #687085;
+    border: 1px solid #969db2;
+    margin-top: 10px;
+    height: 30px !important;
+    padding-left: 10px !important;
+    width: 70%;
     color: white !important;
-    background: #3a6ff8;
-    border-radius: 10px;
+  }
+  .counter {
+    width: 30%;
+    margin-left: 0 !important;
+  }
+  .btn-next {
     width: 100%;
   }
-  .head-text {
-    text-align: center;
+  .step img {
+    width: 80%;
   }
-  .sub-head-text {
-    text-align: center;
-    font-size: 12px;
+  .steps img {
+    width: 87%;
   }
-  /* .step-container {
+  .gift-section {
+    display: grid;
+    margin-top: 20px;
+  }
+  .price-info {
+    width: 100%;
+    order: 1 !important;
+  }
+  .btn-continue {
+    order: 2 !important;
+    margin-top: 20px;
+    width: 100%;
+  }
+  .btn-dashboard {
+    order: 2 !important;
+    margin-top: 20px;
+    width: 100%;
+  }
+  .price-text span {
+    color: #ffffff99;
+    font-size: 11px !important;
+    font-weight: 100 !important;
+  }
+  .price-text h3 {
+    font-weight: bold !important;
+    font-size: 14px !important;
+    padding-top: 10px;
+  }
+  .price-text-status {
+    padding: 15px 0px 40px 0px;
+  }
+  .price-text-status span {
+    color: #ffffff99;
+    font-size: 11px !important;
+    font-weight: 100 !important;
+    padding: 15px 0px 30px 0px;
+  }
+  .price-text-status h3 {
+    font-weight: bold !important;
+    font-size: 14px !important;
+  }
+  .btn-gift {
     width: 100%;
     margin-top: 30px;
-    position: relative;
+  }
+  .modal-body p {
+    font-size: 13px;
+    line-height: 15px !important;
+  }
+  br {
+    display: none;
+  }
+  .modal-check span {
+    font-size: 13px;
+    line-height: 15px !important;
+  }
+  .contd {
+    text-align: center;
+  }
+  .error {
+    background-color: white !important;
+    margin: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 95% !important;
+  }
+  .modal-title {
+    font-size: 17px;
+  }
+  /* input[type="checkbox"] {
+    width: 10px !important;
+    height: 10px !important;
   } */
-  .search-input input {
-    background: transparent;
-    border: 1px solid #ffffffb2 !important;
-    padding-left: 50px;
+  .modal-check span{
+    width: 95% !important;
   }
-  .search-input input:focus {
-    background: transparent;
-    border: 1px solid #ffffffb2 !important;
-    padding-left: 50px;
-    color: white;
-    box-shadow: none;
-  }
-  .fa-search {
-    color: #ffffffb2;
-    position: absolute;
-    top: 10px;
-    left: 20px;
-  }
-  ::placeholder {
-    color: #ffffffb2 !important;
-  }
-  .search-input {
-    margin-top: 20px !important;
-    position: relative;
-    width: 35%;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-  }
-  #next {
-    cursor: pointer;
-  }
-  .step-container img {
-    width: 40%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-  }
+}

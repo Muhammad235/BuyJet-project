@@ -15,13 +15,13 @@
             <p class="sub-head-text"><small>Select the card you will like to sell</small></p>
             <div class="step-container">
                 <div class="step">
-                    <img src="image/step1.png" alt="">
+                    <img src="{{ asset('assets/images/step1.png') }}" alt="">
                 </div>
                 <div style="display: none;" class="steps">
-                    <img src="image/step2.png" alt="">
+                    <img src="{{ asset('assets/images/step2.png') }}" alt="">
                 </div>
                 <div style="display: none;" class="stepss">
-                    <img src="image/step3.png" alt="">
+                    <img src="{{ asset('assets/images/step3.png') }}" alt="">
                 </div>
 
                 <!-- <div class="steps">
@@ -40,11 +40,11 @@
                         <div class="select-menu col-md-5">
                             <div class="select-btn">
                                 <div>
-                                    <img src="image/card.png" alt="">
+                                    <img src="{{ asset('assets/images/card.png') }}" alt="">
                                     <span class="sBtn-text">Select Card</span>
                                 </div>
                                 <i class="bx bx-chevron-down chevron"></i>
-                                <img src="image/check.png" alt="" class="check" style="display: none;">
+                                <img src="{{ asset('assets/images/check.png') }}" alt="" class="check" style="display: none;">
                             </div>
 
                             <div class="options">
@@ -61,66 +61,25 @@
                                     <div class="row justify-content-center" id="product-list">
                                         <div class="col-md-4 col-4">
                                             <div class="option">
-                                                <img src="image/amazon.png" alt="" class="shadow">
+                                                <img src="{{ asset('assets/images/amazon.png') }}" alt="" class="shadow">
                                                 <h6 class="option-text">Amazon</h6>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4 col-4">
                                             <div class="option">
-                                                <img src="image/steam.png" alt="" class="shadow">
+                                                <img src="{{ asset('assets/images/steam.png') }}" alt="" class="shadow">
                                                 <h6 class="option-text">Steam</h6>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4 col-4">
                                             <div class="option">
-                                                <img src="image/sephora.png" alt="" class="shadow">
+                                                <img src="{{ asset('assets/images/sephora.png') }}" alt="" class="shadow">
                                                 <h6 class="option-text">Sephora</h6>
                                             </div>
                                         </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="image/apple iTunes.png" alt="" class="shadow">
-                                                <h6 class="option-text">Apple iTunes</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="image/sephora.png" alt="" class="shadow">
-                                                <h6 class="option-text">Sephora</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="image/apple iTunes.png" alt="" class="shadow">
-                                                <h6 class="option-text">Apple iTunes</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="image/steam.png" alt="" class="shadow">
-                                                <h6 class="option-text">Steam</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="image/apple iTunes.png" alt="" class="shadow">
-                                                <h6 class="option-text">Apple iTunes</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="image/amazon.png" alt="" class="shadow">
-                                                <h6 class="option-text">Amazon</h6>
-                                            </div>
-                                        </div>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -131,11 +90,11 @@
                         <div class="select-menu_currency col-md-5">
                             <div class="select-btn_currency">
                                 <div>
-                                    <img src="image/currency.png" alt="">
+                                    <img src="{{ asset('assets/images/currency.png') }}" alt="">
                                     <span class="sBtn-text_currency">Select Currency</span>
                                 </div>
                                 <i class="bx bx-chevron-down chevron_currency"></i>
-                                <img src="image/check.png" alt="" class="check_currency" style="display: none;">
+                                <img src="{{ asset('assets/images/check.png') }}" alt="" class="check_currency" style="display: none;">
                             </div>
 
                             <div class="options_currency">
@@ -158,7 +117,7 @@
 
                                         <div class="col-md-4 col-4">
                                             <div class="option_currency">
-                                                <img src="image/cad.png" alt="" class="shadow">
+                                                <img src="{{ asset('assets/images/cad.png') }}" alt="" class="shadow">
                                                 <h5 class="option-text_currency">CAD</h5>
                                             </div>
                                         </div>
@@ -391,7 +350,6 @@
         </main>
 
 
-
         <!-- Modal -->
         <div class="modal fade modal-error" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -452,5 +410,3 @@
 @endsection
 
 </x-app-layout>
-
-{{ asset('assets/images/notify.png') }}

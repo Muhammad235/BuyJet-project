@@ -46,6 +46,26 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Cryptocurrency</p>
+                                            <h4 class="mb-0">{{ count($crypto) }}</h4>
+                                        </div>
+
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-secondary">
+                                                <span class="avatar-title">
+                                                    <i class="bx bx-money font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
                                             <p class="text-muted fw-medium">Users</p>
                                             <h4 class="mb-0">{{ count($users) }}</h4>
                                         </div>
@@ -187,7 +207,7 @@
                 </div>
             </div>
 
-             <!-- end row -->
+             <!-- start row -->
              <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
@@ -332,7 +352,7 @@
             </div>
             <!-- end row -->
 
-            <!-- end row -->
+            <!-- start row -->
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">

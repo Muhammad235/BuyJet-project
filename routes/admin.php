@@ -20,11 +20,9 @@ Route::prefix('admin')->name('admin.')->group(function (){
     Route::prefix('manage')->name('manage.')->group(function(){
         Route::get('/rates', [GeneralSettingsController::class, 'getRates'])->name('rates');
         Route::patch('/rates/{rate}', [GeneralSettingsController::class, 'updateRate'])->name('rates.update');
-
         Route::get('/banks', [ManageController::class, 'getBanks'])->name('banks');
         Route::patch('/banks/{bank}', [ManageController::class, 'updateBank'])->name('banks.update');
         Route::resource('/crypto', CryptocurrencyController::class);
-
         Route::resource('/giftcard', GiftcardController::class);
     });
 

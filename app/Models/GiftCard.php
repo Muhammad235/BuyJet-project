@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class GiftCard extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'charge',
+        'symbol',
+    ];
 }
