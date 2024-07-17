@@ -12,7 +12,7 @@
 				</a>
 			</li>
 			<li class="nav-link">
-				<a href="transaction.html">
+				<a href="{{ route('transactions.all') }}">
 					<i class='bx bxs-wallet'></i>
 					<span class="text">Transaction</span>
 				</a>

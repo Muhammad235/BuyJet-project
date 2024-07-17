@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/bottomnav.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/dashboard.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/giftcard.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/custom-css/transaction.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/tickets.css') }}">
 
     <!-- Fontawesome -->

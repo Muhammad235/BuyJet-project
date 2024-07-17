@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\TicketController;
+use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\User\BuyCryptoController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\SellCryptoController;
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
         // Route::put('/confirm/{trx_hash}',[SellCryptoController::class, 'update'])->name('sell.update');
     });
 
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
     Route::get('/transactions', [DashboardController::class, 'allTransactions'])->name('transactions.all');
     Route::resource('/tickets', TicketController::class);
 });

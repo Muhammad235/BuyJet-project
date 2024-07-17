@@ -50,7 +50,7 @@ class DashboardController extends Controller
                         ->merge($sellOrder)
                         ->merge($buyOrder);
                         
-        return view('user.transaction', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
+        return view('user.transaction.index', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
     }
 
 

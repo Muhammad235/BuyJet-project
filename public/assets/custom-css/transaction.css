@@ -7,6 +7,9 @@
   text-align: left !important;
   display: flex;
 }
+.eth-transaction span {
+  padding-left: 15px;
+}
 .table-body {
   color: white;
   font-size: 13px;
@@ -21,5 +24,45 @@
   height: 100% !important;
   width: 100% !important;
 }
- 
 
+@media screen and (max-width: 576px) {
+  /* Table responsiveness */
+  .table thead {
+    display: none !important;
+  }
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block !important;
+    width: 100% !important;
+  }
+  .tr {
+    font-size: 13px !important;
+    text-align: left !important;
+    color: #ffffff80 !important;
+  }
+  .table-section {
+    padding: 0 !important;
+  }
+  .table tr {
+    margin-top: 7px !important;
+    background: #363a4545 !important;
+    border-radius: 10px !important;
+    position: relative !important;
+    line-height: 5px !important;
+    padding: 0px !important;
+    width: 100% !important;
+  }
+  .data-date {
+    text-align: right !important;
+    position: absolute !important;
+    top: calc(50% + 10px) !important;
+  }
+  .data-amount {
+    text-align: right !important;
+    position: absolute !important;
+    top: 10px !important;
+  }
+  /* Table responsiveness */
+}

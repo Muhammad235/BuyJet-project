@@ -11,5 +11,3 @@
 @endsection
 
 </x-app-layout>
-
-{{ asset('assets/images/notify.png') }}
