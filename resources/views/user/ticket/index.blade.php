@@ -153,7 +153,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    {{-- </section> --}}
 @endsection
 
 </x-app-layout>

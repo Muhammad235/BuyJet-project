@@ -1,215 +1,3 @@
-/* ===== Google Font Import - Poppins ===== */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-.dashboard-body {
-  background: linear-gradient(187.45deg, #31353f 3.41%, #808ba5 94.21%);
-  height: 100% !important;
-  overflow-x: hidden;
-  color: white;
-}
-.select-btn img {
-  width: 15%;
-  margin-right: 10px;
-}
-.select-menu .select-btn {
-  display: flex;
-  height: 50px;
-  background: #fff;
-  padding: 25px 20px 30px 20px;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 8px;
-  align-items: center;
-  cursor: pointer;
-  color: black !important;
-  justify-content: space-between;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-.select-btn i {
-  font-size: 25px;
-  transition: 0.3s;
-}
-.select-menu.active .select-btn i {
-  transform: rotate(-180deg);
-}
-input:focus {
-  box-shadow: none !important;
-  border-color: #000 !important;
-}
-input {
-  font-size: 12px !important;
-  height: 40px !important;
-  padding-left: 40px !important;
-}
-::placeholder {
-  color: #00000073 !important;
-  font-size: 12px !important;
-}
-.select-menu .options {
-  padding: 10px;
-  border-radius: 8px;
-  background: #fff;
-  display: none;
-  margin-top: 10px;
-}
-.pad {
-  margin: 20px 5px 0 20px;
-}
-.display {
-  display: flex;
-  width: 100% !important;
-}
-.select-menu.active .options {
-  display: block;
-}
-.option img {
-  width: 90%;
-  border-radius: 10px;
-}
-.options .option {
-  cursor: pointer;
-  width: 100%;
-}
-.option i {
-  font-size: 25px;
-  margin-right: 12px;
-}
-.option .option-text {
-  font-size: 10px;
-  color: #000;
-  padding-top: 5px;
-  text-align: center;
-}
-.active {
-  background: transparent !important;
-}
-.input-search {
-  position: relative;
-}
-.input-search i {
-  position: absolute;
-  top: 30%;
-  color: #00000073;
-  font-size: 17px;
-  left: 14px;
-}
-
-/* currency drop down style */
-.select-btn_currency img {
-  width: 15%;
-  margin-right: 10px;
-}
-.select-menu_currency .select-btn_currency {
-  display: flex;
-  height: 50px;
-  background: #fff;
-  padding: 25px 20px 30px 20px;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 8px;
-  align-items: center;
-  cursor: pointer;
-  color: black !important;
-  justify-content: space-between;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-.select-btn_currency i {
-  font-size: 25px;
-  transition: 0.3s;
-}
-.check_currency {
-  width: 15px !important;
-}
-.check {
-  width: 15px !important;
-}
-.select-menu_currency.active .select-btn_currency i {
-  transform: rotate(-180deg);
-}
-input:focus {
-  box-shadow: none !important;
-  border-color: #000 !important;
-}
-input {
-  font-size: 12px !important;
-  height: 40px !important;
-  padding-left: 40px !important;
-}
-::placeholder {
-  color: #00000073 !important;
-  font-size: 12px !important;
-}
-.select-menu_currency .options_currency {
-  padding: 10px;
-  border-radius: 8px;
-  background: #fff;
-  display: none;
-  margin-top: 10px;
-}
-.pad {
-  margin: 20px 5px 0 20px;
-}
-.display {
-  display: flex;
-  width: 100% !important;
-}
-.select-menu_currency.active .options_currency {
-  display: block;
-}
-.option_currency img {
-  width: 90%;
-}
-.options_currency .option_currency {
-  cursor: pointer;
-  width: 100%;
-}
-.option_currency i {
-  font-size: 25px;
-  margin-right: 12px;
-}
-.option_currency .option-text_currency {
-  font-size: 10px !important;
-  color: #000;
-  padding-top: 5px;
-  text-align: center;
-}
-.active {
-  background: transparent !important;
-}
-.input-search_currency {
-  position: relative;
-}
-.input-search_currency i {
-  position: absolute;
-  top: 30%;
-  color: #00000073;
-  font-size: 17px;
-  left: 14px;
-}
-
-@media screen and (max-width: 576px) {
-  .option_currency img {
-    width: 100%;
-  }
-  .option img {
-    width: 100%;
-    border-radius: 5px;
-  }
-  .pad {
-    margin: 10px 5px 0 10px;
-  }
-}
-
-
-
-
-
 * {
   margin: 0;
   padding: 0;
@@ -721,5 +509,215 @@ label {
   } */
   .modal-check span{
     width: 95% !important;
+  }
+}
+
+
+
+/* ===== Google Font Import - Poppins ===== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.dashboard-body {
+  background: linear-gradient(187.45deg, #31353f 3.41%, #808ba5 94.21%);
+  height: 100% !important;
+  overflow-x: hidden;
+  color: white;
+}
+.select-btn img {
+  width: 15%;
+  margin-right: 10px;
+}
+.select-menu .select-btn {
+  display: flex;
+  height: 50px;
+  background: #fff;
+  padding: 25px 20px 30px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  align-items: center;
+  cursor: pointer;
+  color: black !important;
+  justify-content: space-between;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.select-btn i {
+  font-size: 25px;
+  transition: 0.3s;
+}
+.select-menu.active .select-btn i {
+  transform: rotate(-180deg);
+}
+input:focus {
+  box-shadow: none !important;
+  border-color: #000 !important;
+}
+input {
+  font-size: 12px !important;
+  height: 40px !important;
+  padding-left: 40px !important;
+}
+::placeholder {
+  color: #00000073 !important;
+  font-size: 12px !important;
+}
+.select-menu .options {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  display: none;
+  margin-top: 10px;
+}
+.pad {
+  margin: 20px 5px 0 20px;
+}
+.display {
+  display: flex;
+  width: 100% !important;
+}
+.select-menu.active .options {
+  display: block;
+}
+.option img {
+  width: 90%;
+  border-radius: 10px;
+}
+.options .option {
+  cursor: pointer;
+  width: 100%;
+}
+.option i {
+  font-size: 25px;
+  margin-right: 12px;
+}
+.option .option-text {
+  font-size: 10px;
+  color: #000;
+  padding-top: 5px;
+  text-align: center;
+}
+.active {
+  background: transparent !important;
+}
+.input-search {
+  position: relative;
+}
+.input-search i {
+  position: absolute;
+  top: 30%;
+  color: #00000073;
+  font-size: 17px;
+  left: 14px;
+}
+
+/* currency drop down style */
+.select-btn_currency img {
+  width: 15%;
+  margin-right: 10px;
+}
+.select-menu_currency .select-btn_currency {
+  display: flex;
+  height: 50px;
+  background: #fff;
+  padding: 25px 20px 30px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  align-items: center;
+  cursor: pointer;
+  color: black !important;
+  justify-content: space-between;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.select-btn_currency i {
+  font-size: 25px;
+  transition: 0.3s;
+}
+.check_currency {
+  width: 15px !important;
+}
+.check {
+  width: 15px !important;
+}
+.select-menu_currency.active .select-btn_currency i {
+  transform: rotate(-180deg);
+}
+input:focus {
+  box-shadow: none !important;
+  border-color: #000 !important;
+}
+input {
+  font-size: 12px !important;
+  height: 40px !important;
+  padding-left: 40px !important;
+}
+::placeholder {
+  color: #00000073 !important;
+  font-size: 12px !important;
+}
+.select-menu_currency .options_currency {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  display: none;
+  margin-top: 10px;
+}
+.pad {
+  margin: 20px 5px 0 20px;
+}
+.display {
+  display: flex;
+  width: 100% !important;
+}
+.select-menu_currency.active .options_currency {
+  display: block;
+}
+.option_currency img {
+  width: 90%;
+}
+.options_currency .option_currency {
+  cursor: pointer;
+  width: 100%;
+}
+.option_currency i {
+  font-size: 25px;
+  margin-right: 12px;
+}
+.option_currency .option-text_currency {
+  font-size: 10px !important;
+  color: #000;
+  padding-top: 5px;
+  text-align: center;
+}
+.active {
+  background: transparent !important;
+}
+.input-search_currency {
+  position: relative;
+}
+.input-search_currency i {
+  position: absolute;
+  top: 30%;
+  color: #00000073;
+  font-size: 17px;
+  left: 14px;
+}
+
+@media screen and (max-width: 576px) {
+  .option_currency img {
+    width: 100%;
+  }
+  .option img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  .pad {
+    margin: 10px 5px 0 10px;
   }
 }

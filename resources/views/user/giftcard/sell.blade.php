@@ -110,7 +110,7 @@
                                     <div class="row justify-content-center" id="product-list_currency">
                                         <div class="col-md-4 col-4">
                                             <div class="option_currency">
-                                                <img src="image/usd.png" alt="" class="shadow">
+                                                <img src="{{ asset('assets/images/usd.png') }}" alt="" class="shadow">
                                                 <h5 class="option-text_currency">USD</h5>
                                             </div>
                                         </div>
@@ -124,50 +124,8 @@
 
                                         <div class="col-md-4 col-4">
                                             <div class="option_currency">
-                                                <img src="image/gbp.png" alt="" class="shadow">
+                                                <img src="{{ asset('assets/images/gbp.png') }}" alt="" class="shadow">
                                                 <h5 class="option-text_currency">GBP</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="image/gbp.png" alt="" class="shadow">
-                                                <h5 class="option-text_currency">GBP</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="image/usd.png" alt="" class="shadow">
-                                                <h5 class="option-text_currency">USD</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="image/cad.png" alt="" class="shadow">
-                                                <h5 class="option-text_currency">CAD</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="image/cad.png" alt="" class="shadow">
-                                                <h5 class="option-text_currency">CAD</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="image/gbp.png" alt="" class="shadow">
-                                                <h5 class="option-text_currency">GBP</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="image/usd.png" alt="" class="shadow">
-                                                <h5 class="option-text_currency">USD</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -300,7 +258,7 @@
                                 </p>
                             </div>
                             <div>
-                                <a href="dashboard.html"><button type="button" class="btn btn-gift">Back to
+                                <a href="{{ route('dashboard') }}"><button type="button" class="btn btn-gift">Back to
                                         dashboard</button></a>
                             </div>
                         </div>
