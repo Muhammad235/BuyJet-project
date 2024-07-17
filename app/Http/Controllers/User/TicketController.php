@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use App\Traits\FileUploadTrait;
+use App\Traits\GenerateTrxHash;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\User\CreateTicketRequest;
 
 class TicketController extends Controller
 {
+
+    use GenerateTrxHash;
+    use FileUploadTrait;
+    
     /**
      * Display a listing of the resource.
      */
@@ -28,9 +36,21 @@ class TicketController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateTicketRequest $request)
     {
-        //
+        $user = auth()->user();
+
+        $requestData = $request->validated();
+
+        $requestData['ticket_id'] = rand(1000, 1000001);
+
+        $attachment = $this->uploadImage($request, 'attachment', '/storage/ticket_attachment');
+        $requestData['attachment'] = $attachment;
+
+        $user->tickets()->create($requestData);
+
+        toastr()->success('Ticket submitted');
+        return to_route('dashboard');
     }
 
     /**

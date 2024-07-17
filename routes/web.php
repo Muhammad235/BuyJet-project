@@ -10,7 +10,7 @@ use App\Http\Controllers\User\SellGiftCardController;
 
 
 
-Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -41,14 +41,8 @@ Route::middleware('auth')->group(function () {
         // Route::put('/confirm/{trx_hash}',[SellCryptoController::class, 'update'])->name('sell.update');
     });
 
-    Route::prefix('tickets')->group(function() {
-        Route::get('/',[TicketController::class,'index'])->name('ticket.index');
-        Route::get('/create',[TicketController::class,'create'])->name('ticket.create');
-        Route::post('/',[TicketController::class,'store'])->name('ticket.store');
-        Route::get('/{transaction}/confirm',[TicketController::class,'confirm'])->name('ticket.confirm');
-        Route::patch('/confirm/{id}',[TicketController::class,'update'])->name('ticket.update');
-        Route::get('/{id}',[TicketController::class,'show'])->name('ticket.show');
-    });
+    Route::get('/transactions', [DashboardController::class, 'allTransactions'])->name('transactions.all');
+    Route::resource('/tickets', TicketController::class);
 });
 
 

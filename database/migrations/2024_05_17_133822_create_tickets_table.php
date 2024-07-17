@@ -17,8 +17,9 @@ return new class extends Migration
             $table->bigInteger('ticket_id');
             $table->foreignId('user_id')->constrained();
             $table->string('title');
-            $table->string('message');
-            $table->enum('priority', [Status::LOW, Status::MEDIUM, Status::HIGH])->default(Status::MEDIUM);
+            $table->text('message');
+            $table->string('attachment')->nullable();
+            // $table->enum('priority', [Status::LOW, Status::MEDIUM, Status::HIGH])->default(Status::MEDIUM);
             $table->enum('status', [Status::OPEN, Status::CLOSED])->default(Status::OPEN);
             $table->timestamps();
         });

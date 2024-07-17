@@ -33,7 +33,7 @@ class DashboardController extends Controller
         return view('user.dashboard', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
     }
 
-    public function allTransaction() : View
+    public function allTransactions() : View
     {
         $user = auth()->user();
         $general_setings = GeneralSetting::first();
@@ -50,7 +50,7 @@ class DashboardController extends Controller
                         ->merge($sellOrder)
                         ->merge($buyOrder);
                         
-        return view('user.dashboard', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
+        return view('user.transaction', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
     }
 
 

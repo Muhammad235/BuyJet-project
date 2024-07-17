@@ -17,7 +17,7 @@
                 </div>
                 <div class="row justify-content-center tick">
                     <div class="col-md-4">
-                        <a href="{{ route('ticket.create') }}">
+                        <a href="{{ route('tickets.create') }}">
                             <div class="box-container">
                                 <div>
                                     <img src="{{ asset('assets/images/create.png') }}" alt="" width="90%">
@@ -30,7 +30,7 @@
                         </a> 
                     </div>
                     <div class="col-md-4">
-                        <a href="{{ route('ticket.create') }}">
+                        <a href="{{ route('tickets.create') }}">
                             <div class="box-container">
                                 <div>
                                     <img src="{{ asset('assets/images/create.png') }}" alt="" width="90%">
@@ -157,5 +157,3 @@
 @endsection
 
 </x-app-layout>
-
-{{ asset('assets/images/notify.png') }}

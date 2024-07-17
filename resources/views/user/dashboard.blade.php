@@ -84,7 +84,7 @@
 								</div>
 
 								<div>
-									<a href="transaction.html" class="view"><span class="pt-2 text-primary view"><small
+									<a href="{{ route('transactions.all') }}" class="view"><span class="pt-2 text-primary view"><small
 												class="view">View All</small>
 										</span></a>
 								</div>

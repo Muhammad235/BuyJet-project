@@ -12,27 +12,28 @@
             <div class="ticket-body-text">
                 <h3>Create Ticket for your problem</h3>
                 <div class="mt-4">
-                    <form action="">
+                    <form action="{{ route('tickets.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div>
                             <label><small>Your problem</small></label>
-                            <input Value="Apple Itunes Error" class="form-control eth-input mt-2" type="text">
+                            <input name="title" placeholder="state your issue" value="{{ old('title') }}" class="form-control eth-input mt-2" type="text">
                         </div>
                         <div class="my-5">
                             <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                             <textarea class="form-control form-control eth-input mt-1" id="exampleFormControlTextarea1"
                                 rows="10"
-                                placeholder="Explain the problem faced, to aid us in helping you better"></textarea>
+                                placeholder="Explain the problem faced, to aid us in helping you better" name="message" value="{{ old('message') }}"></textarea>
                         </div>
                         <div>
                             <label><small>Attachment</small></label>
-                            <input placeholder="Apple Itunes Error" class="form-control ath-input mt-2" type="file">
+                            <input type="file" name="attachment" class="form-control ath-input mt-2" >
                         </div>
 
                         <div class="input-button">
-                            <a href="ticketStatus.html" class="text-white">
-                                <input type="submi" class="btn btn-primary create-button" value="Create Ticket">
-                            </a>
-                            <input type="submi" class="btn btn-secondary submit-button" value="Cancel">
+                            {{-- <a href="ticketStatus.html" class="text-white"> --}}
+                                <input type="submit" class="btn btn-primary create-button" value="Create Ticket">
+                            {{-- </a> --}}
+                            {{-- <input type="submit" class="btn btn-secondary submit-button" value="Cancel"> --}}
                         </div>
                     </form>
                 </div>
@@ -42,5 +43,3 @@
 @endsection
 
 </x-app-layout>
-
-{{ asset('assets/images/notify.png') }}

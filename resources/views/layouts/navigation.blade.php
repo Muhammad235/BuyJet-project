@@ -24,7 +24,7 @@
 				</a>
 			</li>
 			<li class="nav-link">
-				<a href="{{ route('ticket.index') }}">
+				<a href="{{ route('tickets.index') }}">
 					<i class='bx bxs-message-dots'></i>
 					<span class="text">Tickets</span>
 				</a>
