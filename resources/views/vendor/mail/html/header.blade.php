@@ -3,7 +3,7 @@
 <td class="header">
 <a href="{{ $url }}" target="_blank"  style="display: inline-block;">
 {{-- @if (trim($slot) === 'Laravel') --}}
-<img src="{{ asset('assets/images/Logo.png')  }}" width="80%"  class="logo"  alt="{{ config('app.name') }} Logo">
+<img src="{{ asset('assets/images/buyJetLogo.png') }}" width="100"  class="logo"  alt="{{ config('app.name') }}">
 {{-- @else --}}
 {{ $slot }}
 {{-- @endif --}}

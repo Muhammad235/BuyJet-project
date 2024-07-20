@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\SendOtpMail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\PasswordController;
@@ -39,6 +40,12 @@ Route::middleware('guest')->group(function () {
 
 Route::post('verify-otp', OtpController::class)
 ->name('verify.otp');
+
+Route::get('/otp-mail', function(){
+
+    $mail  = new SendOtpMail('3456');
+    echo $mail->render();
+})->name('mail');
 
 Route::middleware('auth')->group(function () {
 
