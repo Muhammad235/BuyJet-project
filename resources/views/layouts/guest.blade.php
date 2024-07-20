@@ -11,6 +11,7 @@
 
     <!-- Css -->
     <link rel="stylesheet" href="{{ asset('assets/custom-css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/custom-css/otp.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/custom-css/register.css') }}"> --}}
 
     <!-- Fontawesome -->

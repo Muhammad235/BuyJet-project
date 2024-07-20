@@ -31,12 +31,18 @@
 
             <div class="profile-update">
                 <div class="update-input">
-                    <form action="">
+                    <form action="{{ route('settings.update') }}" method="post">
+                        @method('patch')
+						@csrf
                         <div class="update-input-email">
                             <label for="">Account Name</label>
-                            <input type="text" value="{{ $user->account_name }}" class="form-control">
+                            <input type="text" name="account_name" value="{{ $user->account_name }}" class="form-control">
                         </div>
                         <div class="update-input-email">
+                            <label for="">Bank Name</label>
+                            <input type="text" name="bank_name" value="{{ $user->bank_name }}" class="form-control">
+                        </div>
+                        {{-- <div class="update-input-email">
                             <label for="exampleFormControlSelect1">Bank Name</label>
                             <select class="" id="exampleFormControlSelect1">
                                 <option class="text-dark">Select Bank</option>
@@ -46,10 +52,10 @@
                                 <option class="text-dark">Wema Bank</option>
                                 <option class="text-dark">Keystone Bank</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="update-input-email">
                             <label for="">Account Number</label>
-                            <input type="text" value="{{ $user->account_number }}" class="form-control">
+                            <input type="text" name="account_number" value="{{ $user->account_number }}" class="form-control">
                         </div>
 
                         <div class="input-button">

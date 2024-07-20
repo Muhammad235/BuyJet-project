@@ -27,18 +27,20 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(RegisterUserRequest $request): RedirectResponse
+    public function store(RegisterUserRequest $request): RedirectResponse|View
     {
-        $userData = $request->validated();
+        // $userData = $request->validated();
 
-        $user = User::create($userData);
+        // $user = User::create($userData);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
         
-        toastr()->success("Registeration successfull");
+        // toastr()->success("Registeration successfull");
 
-        return redirect(route('dashboard'));
+        // return redirect(route('dashboard'));
+
+        return view('auth.verify-otp');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
@@ -17,21 +18,17 @@ class SettingsController extends Controller
         return view('user.settings.index', compact('user'));
     }
 
-    public function bankInfo()
-    {
-        $user = auth()->user();
-
-        return view('user.settings.bank-info', compact('user'));
-    }
-
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest $request)
     {
-        dd($request);
+        $user = auth()->user();
+
+        toastr()->success('Details updated successfully');
+        $user->update($request->all());
     }
+
 
     /**
      * Remove the specified resource from storage.

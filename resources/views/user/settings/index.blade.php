@@ -41,7 +41,6 @@
                 <div class="update-input">
                     <form action="{{ route('settings.update') }}" method="post">
 						@method('patch')
-
 						@csrf
                         <div class="update-input-email">
                             <label for="">Email</label>
@@ -61,7 +60,7 @@
                         </div>
                         <div class="update-input-email">
                             <label for="">Date of Birth</label>
-                            <input type="date" value="{{ $user->dob }}" class="form-control">
+                            <input type="date" name="dob" value="{{ $user->dob }}" class="form-control">
                         </div>
 
                         <div class="input-button">
@@ -75,6 +74,6 @@
             </div>
         </div>
     </section>
-@endsection
+    @endsection
 
 </x-app-layout>

@@ -18,7 +18,7 @@
 				</a>
 			</li>
 			<li class="nav-link">
-				<a href="bankInformation.html">
+				<a href="{{ route('settings.bank_info') }}">
 					<i class='bx bxs-shopping-bag'></i>
 					<span class="text">Payout Details</span>
 				</a>
