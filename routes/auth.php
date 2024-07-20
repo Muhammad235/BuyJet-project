@@ -36,10 +36,13 @@ Route::middleware('guest')->group(function () {
                 ->name('password.store');
 });
 
+
+Route::post('verify-otp', OtpController::class)
+->name('verify.otp');
+
 Route::middleware('auth')->group(function () {
 
-    Route::post('verify-otp', OtpController::class)
-                ->name('verify.otp');
+
     // Route::get('verify-otp', OtpController::class)
     //             ->name('verify.otp');
 

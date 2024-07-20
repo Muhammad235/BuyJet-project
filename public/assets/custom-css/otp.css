@@ -89,7 +89,7 @@
     font-weight: 600;
     border: none;
     border-radius: 6px;
-    pointer-events: none;
+    /* pointer-events: none; */
     cursor: pointer;
     transition: all 0.2s ease;
   }
