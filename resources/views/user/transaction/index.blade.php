@@ -25,7 +25,7 @@
 
                                 </div>
                             </div>
-                            <div class="table-section">
+                            <div class="table-section pb-2">
                                 @if (count($transactions) > 0)
 									@foreach ($transactions as $transaction)
 									<div class="table-section-row">

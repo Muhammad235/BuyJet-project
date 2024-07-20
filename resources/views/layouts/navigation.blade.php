@@ -32,7 +32,7 @@
 		</ul>
 		<ul class="side-menu bottom-side-menu">
 			<li class="nav-link">
-				<a href="settings.html">
+				<a href="{{ route('settings.index') }}">
 					<i class='bx bxs-cog'></i>
 					<span class="text">Settings</span>
 				</a>

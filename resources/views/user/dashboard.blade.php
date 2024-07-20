@@ -89,7 +89,7 @@
 										</span></a>
 								</div>
 							</div>
-							<div class="table-section">
+							<div class="table-section pb-2">
 								@if (count($transactions) > 0)
 									@foreach ($transactions as $transaction)
 									<div class="table-section-row">
@@ -196,12 +196,12 @@
 						<div class="coin-section-row row">
 							<div class="col-md-4 col-5">
 								<a href="">
-									<div class="active buy text-white buyCoinBtn">Buy</div>
+									<div class="active-type buy buyCoinBtn">Buy</div>
 								</a>
 							</div>
 							<div class="col-md-4 col-5">
 								<a href="">
-									<div class="buy text-white sellCoinBtn">Sell</div>
+									<div class="buy sellCoinBtn">Sell</div>
 								</a>
 							</div>
 						</div>

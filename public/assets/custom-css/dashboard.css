@@ -298,11 +298,14 @@ thead {
   text-align: center;
   border-radius: 10px;
   padding: 2px;
+  color: white;
 }
-.buy.active {
-  background: white;
+.active-type {
+  background-color: white;
   color: #110e22 !important;
 }
+
+
 .eth-input {
   background: #181628 !important;
   color: white !important;

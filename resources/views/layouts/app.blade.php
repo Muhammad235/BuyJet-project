@@ -9,11 +9,13 @@
 	<link rel="icon" href="{{ asset('assets/images/Logo.png') }}">
 
 	<!-- Css -->
-	<link rel="stylesheet" href="{{ asset('assets/custom-css/bottomnav.css') }}">
-	<link rel="stylesheet" href="{{ asset('assets/custom-css/dashboard.css') }}">
+
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/giftcard.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/transaction.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/tickets.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/custom-css/settings.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/custom-css/bottomnav.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/custom-css/dashboard.css') }}">
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />

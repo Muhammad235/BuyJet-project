@@ -42,7 +42,13 @@ Route::middleware('auth')->group(function () {
         // Route::put('/confirm/{trx_hash}',[SellCryptoController::class, 'update'])->name('sell.update');
     });
 
-    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::prefix('settings')->group(function() {
+        Route::patch('/', [SettingsController::class, 'update'])->name('settings.update');
+        Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
+        Route::get('/bank-info', [SettingsController::class, 'bankInfo'])->name('settings.bank_info');
+    });
+
+
     Route::get('/transactions', [DashboardController::class, 'allTransactions'])->name('transactions.all');
     Route::resource('/tickets', TicketController::class);
 });
