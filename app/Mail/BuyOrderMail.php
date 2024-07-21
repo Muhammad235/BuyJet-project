@@ -9,18 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendOtpMail extends Mailable
+class BuyOrderMail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    // public $otp;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(private string $otp)
+    public function __construct(private $order)
     {
-        $this->otp = $otp;
+        $this->order = $order;
     }
 
     /**
@@ -29,7 +27,7 @@ class SendOtpMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Otp Mail',
+            subject: 'Buy Order Mail',
         );
     }
 
@@ -39,9 +37,13 @@ class SendOtpMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.send-otp-mail',
+            markdown: 'mail.buy-order-mail',
             with: [
-                'otp' => $this->otp
+                // 'firstname' => $this->order->user->firstname,
+                // 'amoumt' => $this->order->user->amoumt,
+
+                'firstname' => $this->order->firstname,
+                'amoumt' => $this->order->amoumt,
             ],
         );
     }

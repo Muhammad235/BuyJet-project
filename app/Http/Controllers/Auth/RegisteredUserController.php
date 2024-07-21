@@ -33,34 +33,34 @@ class RegisteredUserController extends Controller
     //  : RedirectResponse|View
     public function store(RegisterUserRequest $request)
     {
-        // $userData = $request->validated();
+        $userData = $request->validated();
 
-        // $user = User::create($userData);
+        $user = User::create($userData);
 
-        // event(new Registered($user));
+        event(new Registered($user));
 
-        // Auth::login($user);
+        Auth::login($user);
         
-        // toastr()->success("Registeration successfull");
+        toastr()->success("Registeration successfull");
 
-        // return redirect(route('dashboard'));
+        return redirect(route('dashboard'));
 
         
         // $identifier = $request->email;
-        $identifier = "adelekeyahaya05@gmail.com";
-        $type = 'numeric';
-        $length = 4;
-        $validity = 10;
-        $otp = (new Otp)->generate($identifier, $type, $length, $validity);
+        // $identifier = "adelekeyahaya05@gmail.com";
+        // $type = 'numeric';
+        // $length = 4;
+        // $validity = 10;
+        // $otp = (new Otp)->generate($identifier, $type, $length, $validity);
 
-        if($otp->status){
+        // if($otp->status){
 
-            Mail::to($identifier)->send(new SendOtpMail($otp->token));
+        //     // Mail::to($identifier)->send(new SendOtpMail($otp->token));
 
-            session(['identifier' => $identifier]);
-            return view('auth.verify-otp');
+        //     session(['identifier' => $identifier]);
+        //     return view('auth.verify-otp');
 
-        }
+        // }
 
     }
 }

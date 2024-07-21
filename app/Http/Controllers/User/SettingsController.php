@@ -18,6 +18,13 @@ class SettingsController extends Controller
         return view('user.settings.index', compact('user'));
     }
 
+    public function bankInfo()
+    {
+        $user = auth()->user();
+
+        return view('user.settings.bank-info', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      */

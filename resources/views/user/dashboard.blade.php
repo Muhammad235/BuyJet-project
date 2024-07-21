@@ -20,7 +20,7 @@
 								</div>
 								<div class="rate-section-container rate-total">
 									<span class="text-white">Total Tansactions</span>
-									<h5>$10,250.00</h5>
+									<h5>NGN {{ number_format($totalAmount, 2) }}</h5>
 								</div>
 							</div>
 							<div class="rate-sect"></div>
@@ -67,10 +67,10 @@
 						<p><small>Crypto <br> Exchange Rate</small></p>
 					</div>
 					<div class="sell-box col-md-12 col-6">
-						<p><small><span>Selling Rate</span> <br> ₦ {{ number_format($general_setings->sell_rate, 2) }}</small></p>
+						<p><small><span>Selling Rate</span> <br> ₦ {{ number_format($general_settings->sell_rate, 2) }}</small></p>
 					</div>
 					<div class="buy-box col-md-12 col-6">
-						<p><small><span>Buying Rate</span> <br> ₦ {{ number_format($general_setings->buy_rate, 2) }}</small></p>
+						<p><small><span>Buying Rate</span> <br> ₦ {{ number_format($general_settings->buy_rate, 2) }}</small></p>
 					</div>
 				</div>
 			</div>
@@ -219,7 +219,7 @@
 
 								<span><small>Amount</small></span>
 
-								<input type="text" hidden name="" id="rates-value" data-buyRate = {{ $general_setings->buy_rate }} data-sellRate = {{ $general_setings->sell_rate }}>
+								<input type="text" hidden name="" id="rates-value" data-buyRate = {{ $general_settings->buy_rate }} data-sellRate = {{ $general_settings->sell_rate }}>
 								
 								<div class="input-group mt-2">
 									<input type="text" class="form-control eth-input-group" id="buy_crypto_amount" placeholder="0" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); buyCryptoAmountInNaira();">

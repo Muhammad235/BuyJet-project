@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\Status;
+use App\Mail\BuyOrderMail;
 use App\Models\BuyOrder;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
@@ -10,6 +11,7 @@ use App\Models\GeneralSetting;
 use App\Traits\FileUploadTrait;
 use App\Traits\GenerateTrxHash;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\User\BuyCryptoRequest;
 
 class BuyCryptoController extends Controller
@@ -70,6 +72,9 @@ class BuyCryptoController extends Controller
                 'amount' => $cryptoAmountInNaira,
                 'wallet_address' => $request->wallet_address,
             ]);
+
+
+            Mail::to($order->user->email)->send(new BuyOrderMail($order));
 
             return redirect()->route('buy.confirm', $order->trx_hash);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Enums\Status;
 use App\Models\BuyOrder;
 use App\Models\SellOrder;
 use Illuminate\Http\Request;
@@ -16,21 +17,29 @@ class DashboardController extends Controller
     public function index() : View
     {
         $user = auth()->user();
-        $general_setings = GeneralSetting::first();
+        $general_settings = GeneralSetting::first();
         $cryptocurrencies = Cryptocurrency::all();
-
-        $sellOrder = SellOrder::where('user_id', $user->id)->with('cryptocurrency')
-                                ->latest()
-                                ->get();
-        $buyOrder = BuyOrder::where('user_id', $user->id)->with('cryptocurrency')
+        
+        $sellOrder = SellOrder::where('user_id', $user->id)
+                              ->with('cryptocurrency')
                               ->latest()
                               ->get();
-
+        
+        $buyOrder = BuyOrder::where('user_id', $user->id)
+                            ->with('cryptocurrency')
+                            ->latest()
+                            ->get();
+        
         $transactions = collect()
                         ->merge($sellOrder)
                         ->merge($buyOrder);
-                        
-        return view('user.dashboard', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
+        
+        $totalAmount = $transactions->filter(function ($transaction) {
+            return $transaction->status == Status::SUCCESS;
+        })->sum('amount');
+        
+        return view('user.dashboard', compact('user', 'general_settings', 'cryptocurrencies', 'transactions', 'sellOrder', 'buyOrder', 'totalAmount'));
+                                
     }
 
     public function allTransactions() : View

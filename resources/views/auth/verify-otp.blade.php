@@ -30,7 +30,7 @@
                                     <input type="number" name="otp4" disabled />
                                 </div>
 
-                                <button type="submit" class="btn btn-primary text-light">Verify OTP</button>
+                                <button type="submit" disabled class="btn btn-primary text-light">Verify OTP</button>
                             </form>
 
                         </div>
