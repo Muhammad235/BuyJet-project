@@ -11,10 +11,27 @@ Route::get('/otp-mail', function(){
 Route::get('/buy-mail', function(){
 
     $order = [
+        'reference' => '334Td4',
         'firstname' => 'John',
-        'amoumt' => 1000,
+        'amount' => 1000,
+        'cryptoAmount' => 20,
+        'cryptocurrency' => 'BitCoin'
     ];
 
     $mail  = new BuyOrderMail($order);
+    echo $mail->render();
+})->name('mail');
+
+Route::get('/sell-mail', function(){
+
+    $order = [
+        'reference' => '334Td4',
+        'firstname' => 'John',
+        'amount' => 1000,
+        'cryptoAmount' => 20,
+        'cryptocurrency' => 'BitCoin'
+    ];
+
+    $mail  = new SellOrderMail($order);
     echo $mail->render();
 })->name('mail');

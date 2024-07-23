@@ -24,7 +24,7 @@ ul,
 ol,
 blockquote {
     line-height: 1.4;
-    text-align: left;
+    text-align: center;
 }
 
 a {
@@ -35,6 +35,10 @@ a img {
     border: none;
 }
 
+.center{
+    text-align: center;
+}
+
 /* Typography */
 
 h1 {
@@ -42,7 +46,7 @@ h1 {
     font-size: 18px;
     font-weight: bold;
     margin-top: 0;
-    text-align: left;
+    text-align: center;
 }
 
 h2 {

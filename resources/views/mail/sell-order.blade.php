@@ -7,10 +7,10 @@
 
 #### Hello, {{ $firstname }} your order has been received.
 
-### Reference: #{{ $reference }}
+### Reference: #334Td4
 
 ### Transaction type: 
-Buy crpyto
+Sell crpyto
 
 ### Cryptocurrency:
 {{ $cryptocurrency }} 

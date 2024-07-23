@@ -9,16 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class BuyOrderMail extends Mailable
+class SellOrderMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(private $order)
+    public function __construct()
     {
-        $this->order = $order;
+        //
     }
 
     /**
@@ -27,7 +27,7 @@ class BuyOrderMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Buy Order Mail',
+            subject: 'Sell Order Mail',
         );
     }
 
@@ -37,18 +37,7 @@ class BuyOrderMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.buy-order-mail',
-            with: [
-                // 'firstname' => $this->order->user->firstname,
-                // 'amoumt' => $this->order->user->amoumt,
-
-                'reference' => $this->order['reference'],
-                'firstname' => $this->order['firstname'],
-                'cryptoAmount' => $this->order['cryptoAmount'],
-                'cryptocurrency' => $this->order['cryptocurrency'],
-                'amount' => $this->order['amount'],
-
-            ],
+            markdown: 'mail.sell-order-mail',
         );
     }
 
