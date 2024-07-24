@@ -1,7 +1,11 @@
 @extends('layouts.admin')
 @section('title', 'Admin Dashboard')
+@use('App\Enums\Status')
 
 @section('content')
+
+
+{{-- @dd($transactions) --}}
 
 <div class="main-content">
 
@@ -126,8 +130,10 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Buy Orders</p>
-                                            {{-- <h4 class="mb-0">{{ count($buyorders) }}</h4> --}}
+                                            <a href="">
+                                                <p class="text-muted fw-medium">Buy Orders</p>
+                                                <h4 class="mb-0">{{ count($buyOrders) }}</h4>
+                                            </a>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -147,7 +153,7 @@
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
                                             <p class="text-muted fw-medium">Sell Orders</p>
-                                            {{-- <h4 class="mb-0">{{ count($sellorders) }}</h4> --}}
+                                            {{-- <h4 class="mb-0">{{ count($sellOrders) }}</h4> --}}
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -221,47 +227,47 @@
                                         <th>Cryptocurrency</th>
                                         <th>Amount</th> 
                                         <th>Asset Network</th>
-                                        <th>Payment Status</th>
+                                        {{-- <th>Payment Status</th> --}}
                                         <th>Transaction Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
 
-                                    {{-- <tbody>
-                                        @if (count($buyorders) > 0)
-                                            @foreach ($buyorders->take(10) as $key => $buyorder)
+                                    <tbody>
+                                        @if (count($buyOrders) > 0)
+                                            @foreach ($buyOrders->take(10) as $key => $buyOrder)
                                                 <tr>
                                                     <td>{{ $key+1 }}</td>
                                                     <td>
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0 me-3">
-                                                                <img src="{{ asset($buyorder->cryptocurrency->symbol) }}" alt="" class="avatar-xs rounded-circle">
+                                                                <img src="{{ asset($buyOrder->cryptocurrency->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                             </div>
                                                             <div class="flex-grow-1">
-                                                                <h5 class="fs-14 mb-1">{{ $buyorder->cryptocurrency->name }}</h5>
+                                                                <h5 class="fs-14 mb-1">{{ $buyOrder->cryptocurrency->name }}</h5>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{ number_format($buyorder->amount + $buyorder->charge, 2) }}</td>
-                                                    <td>{{ $buyorder->asset_network }}</td>
-                                                    <td>
-                                                        @if ($buyorder->payment_status == 'Completed')
+                                                    <td>{{ number_format($buyOrder->amount + $buyOrder->charge, 2) }}</td>
+                                                    <td>{{ $buyOrder->asset_network }}</td>
+                                                    {{-- <td>
+                                                        @if ($buyOrder->payment_status == 'Completed')
                                                             <span class="badge badge-soft-success font-size-11">Completed</span>
-                                                        @elseif ($buyorder->payment_status == 'Pending')
+                                                        @elseif ($buyOrder->payment_status == 'Pending')
                                                             <span class="badge badge-soft-danger font-size-11">Pending</span>
-                                                        @elseif ($buyorder->payment_status == 'Received')
+                                                        @elseif ($buyOrder->payment_status == 'Received')
                                                             <span class="badge badge-soft-info font-size-11">Payment Received</span>
                                                         @endif
-                                                    </td>
+                                                    </td> --}}
                                                     <td>
-                                                        @if ($buyorder->status == 'Completed')
+                                                        @if ($buyOrder->status == Status::SUCCESS)
                                                             <span class="badge badge-soft-success font-size-11">Completed</span>
-                                                        @else
+                                                        @else 
                                                             <span class="badge badge-soft-danger font-size-11">Pending</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin.buy.show', $buyorder->trx_hash) }}" class="btn btn-primary btn-sm">View</a>
+                                                        <a href="{{ route('admin.buy.show', $buyOrder->trx_hash) }}" class="btn btn-primary btn-sm">View</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -270,7 +276,7 @@
                                                 <td colspan="7" class="text-center">No transactions found.</td>
                                             </tr>
                                         @endif
-                                    </tbody> --}}
+                                    </tbody>
                                     
                                 </table>
                             </div>
@@ -291,48 +297,39 @@
                                         <th>Cryptocurrency</th>
                                         <th>Amount</th> 
                                         <th>Asset Network</th>
-                                        <th>Payment Status</th>
+                                        {{-- <th>Payment Status</th> --}}
                                         <th>Transaction Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
 
-                                    {{-- <tbody>
-                                        @if (count($sellorders) > 0)
-                                            @foreach ($sellorders->take(10) as $key => $sellorder)
+                                    <tbody>
+                                        @if (count($sellOrders) > 0)
+                                            @foreach ($sellOrders->take(10) as $key => $sellOrder)
                                                 <tr>
                                                     <td>{{ $key+1 }}</td>
                                                     <td>
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0 me-3">
-                                                                <img src="{{ asset($sellorder->cryptocurrency->symbol) }}" alt="" class="avatar-xs rounded-circle">
+                                                                <img src="{{ asset($sellOrder->cryptocurrency->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                             </div>
                                                             <div class="flex-grow-1">
-                                                                <h5 class="fs-14 mb-1">{{ $sellorder->cryptocurrency->name }}</h5>
+                                                                <h5 class="fs-14 mb-1">{{ $sellOrder->cryptocurrency->name }}</h5>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{ number_format($sellorder->amount, 2) }}</td>
-                                                    <td>{{ $sellorder->asset_network }}</td>
+                                                    <td>{{ number_format($sellOrder->amount, 2) }}</td>
+                                                    <td>{{ $sellOrder->asset_network }}</td>
 
                                                     <td>
-                                                        @if ($sellorder->payment_status == 'Completed')
+                                                        @if ($sellOrder->status == Status::SUCCESS)
                                                             <span class="badge badge-soft-success font-size-11">Completed</span>
-                                                        @elseif ($sellorder->payment_status == 'Pending')
-                                                            <span class="badge badge-soft-danger font-size-11">Pending</span>
-                                                        @elseif ($sellorder->payment_status == 'Received')
-                                                            <span class="badge badge-soft-info font-size-11">Payment Received</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($sellorder->status == 'Completed')
-                                                            <span class="badge badge-soft-success font-size-11">Completed</span>
-                                                        @else
+                                                        @else 
                                                             <span class="badge badge-soft-danger font-size-11">Pending</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin.sell.show', $sellorder->trx_hash) }}" class="btn btn-primary btn-sm">View</a>
+                                                        <a href="{{ route('admin.sell.show', $sellOrder->trx_hash) }}" class="btn btn-primary btn-sm">View</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -341,7 +338,7 @@
                                                 <td colspan="7" class="text-center">No transactions found.</td>
                                             </tr>
                                         @endif
-                                    </tbody> --}}
+                                    </tbody>
                                     
                                 </table>
                             </div>
@@ -366,7 +363,7 @@
                                         <th>Cryptocurrency</th>
                                         <th>Amount</th> 
                                         <th>Type</th> 
-                                        <th>Payment Status</th>
+                                        {{-- <th>Payment Status</th> --}}
                                         <th>Transaction Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -430,58 +427,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title mb-4">Latest User</h4>
-                            <div class="table-responsive">
-                                <table id="datatable" class="datatable table table-striped dt-responsive  w-100">
-                                    <thead>
-                                    <tr>
-                                        <td>#</td>
-                                        <th>Name</th>
-                                        <th>Email</th> 
-                                        <th>Phone</th> 
-                                        <th>Account Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        @if (count($users) > 0)
-                                            @foreach ($users->take(10) as $key => $user)
-                                                <tr>
-                                                    <td>{{ $key+1 }}</td>
-                                                    <td>{{ $user->surname .' '. $user->firstname }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->phone }}</td>
-                                                    <td>
-                                                        @if ($user->status == 'active')
-                                                            <span class="badge badge-soft-success font-size-11">Active</span>
-                                                        @elseif ($user->status == 'inactive')
-                                                            <span class="badge badge-soft-danger font-size-11">Inactive</span>
-                                                        @elseif ($user->status == 'pending')
-                                                            <span class="badge badge-soft-info font-size-11">Pending</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        {{-- <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary btn-sm">View</a> --}}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @else
-                                            <tr>
-                                                <td colspan="7" class="text-center">No transactions found.</td>
-                                            </tr>
-                                        @endif
-                                    </tbody>
-                                    
-                                </table>
-                            </div>
-                            <!-- end table-responsive -->
-                        </div>
-                    </div>
-                </div>
+              
             </div>
             <!-- end row -->
             

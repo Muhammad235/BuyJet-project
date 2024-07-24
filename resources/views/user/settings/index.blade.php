@@ -1,11 +1,11 @@
 <x-app-layout>
 
-	@section('title', 'Payment successful')
+    @section('title', 'Edit Profile')
 
-	@section('content')
+    @section('content')
     <!-- CONTENT -->
-	<section id="content">
-		<!-- TOP NAVBAR -->
+    <section id="content">
+        <!-- TOP NAVBAR -->
         <x-top-navbar :user="$user" />
 
         <div class="settings-body">
@@ -29,19 +29,19 @@
                 </div>
             </div>
 
-            <div class="profile-update">
-                <div class="profile-image">
-                    <img src="{{ asset('assets/images/image.png') }}" alt="profile image" width="150px">
-                    <button type="button" class="pencil-icon btn btn-primary" data-bs-toggle="tooltip"
-                        data-bs-placement="right" title="click to upload profile image">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                    <input type="file" class="pencil-icon-input" hidden>
-                </div>
-                <div class="update-input">
-                    <form action="{{ route('settings.update') }}" method="post">
-						@method('patch')
-						@csrf
+            <form action="{{ route('settings.update') }}" method="post" enctype="multipart/form-data">
+                @method('patch')
+                @csrf
+                <div class="profile-update">
+                    <div class="profile-image">
+                        <img id="profileImage" src="{{ asset('assets/images/image.png') }}"  alt="profile image" width="150px">
+                        <button type="button" class="pencil-icon btn btn-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="right" title="click to upload profile image">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <input type="file" name='avatar' class="pencil-icon-input" hidden>
+                    </div>
+                    <div class="update-input">
                         <div class="update-input-email">
                             <label for="">Email</label>
                             <input type="email" name="email" class="form-control" value="{{ $user->email }}">
@@ -69,11 +69,36 @@
                             <a href="{{ route('logout') }}"><input type="submit"
                                     class="btn btn-danger submit-button d-block d-md-none" value="Log Out"></a>
                         </div>
-                    </form>
+
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
+
+    <script>    
+        const pencilIcon = document.querySelector(".pencil-icon");
+        const pencilIconInput = document.querySelector(".pencil-icon-input");
+        const profileImage = document.getElementById("profileImage");
+
+        pencilIcon.onclick = () => pencilIconInput.click();
+
+        pencilIconInput.onchange = () => {
+            const file = pencilIconInput.files[0];
+            if (file && typeValidation(file.type)) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        const typeValidation = (type) => {
+            const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            return validTypes.includes(type);
+        };
+    </script>
     @endsection
 
 </x-app-layout>

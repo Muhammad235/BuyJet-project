@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
 
         Cryptocurrency::create([
             'name' => 'BITCOIN',
-            'symbol' => 'bitcoin.png',
+            'symbol' => 'storage/crypto/bitcoin.png',
             'assets' => $assets,
             'charge' => 0.5,
             'wallet_address' => '0x74c06d0ae18523e35091f55983611910411d4b13'
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         Cryptocurrency::create([
             'name' => 'DOGECOIN',
-            'symbol' => 'doge.png',
+            'symbol' => 'storage/crypto/doge.png',
             'assets' => $assets,
             'charge' => 0.5,
             'wallet_address' => '0x74c06d0ae18523e35091f55983611910411d4b13'
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         Cryptocurrency::create([
             'name' => 'ETHEREUM',
-            'symbol' => 'ethereum.png',
+            'symbol' => 'storage/crypto/ethereum.png',
             'assets' => $assets,
             'charge' => 0.5,
             'wallet_address' => '0x74c06d0ae18523e35091f55983611910411d4b13'

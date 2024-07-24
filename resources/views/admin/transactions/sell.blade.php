@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@use('App\Enums\Status')
 @section('title','Transaction Details')
 
 @section('content')
@@ -35,7 +35,7 @@
                                     <tbody>
                                         <tr>
                                             <th style="width: 70px;">Transaction ID</th>
-                                            <td class="text-end">{{ $transaction->trx_hash }}</td>
+                                            <td class="text-end"><b>#{{ $transaction->trx_hash }}</b></td>
                                         </tr>
                                         <tr>
                                             <th>Cryptocurrency</th>
@@ -69,7 +69,7 @@
 
                                         <tr>
                                             <th style="width: 70px;">Transaction Proof</th>
-                                            <td class=""><img src="{{ asset($transaction->proof) }}"  style="width: 300px !important; height: 300px !important;" alt=""> </td>
+                                            <td class=""><img src="{{ asset($transaction->payment_receipt) }}"  style="width: 300px !important; height: 300px !important;" alt=""> </td>
                                         </tr>
                                         @if ($transaction->rejection_reason)
                                             <tr>
@@ -89,7 +89,7 @@
                                             @method('PATCH')
                                             <input type="hidden" name="trx_hash" value="{{ $transaction->trx_hash }}">
 
-                                            <tr>
+                                            {{-- <tr>
                                                 <th style="width: 70px;">Payment Status</th>
                                                 <td class="text-end">
                                                     <select name="payment_status" class="form-select" id="">
@@ -98,14 +98,14 @@
                                                         <option value="Received" {{ $transaction->payment_status == 'Received' ? 'selected' : '' }}>Payment Recived</option>
                                                     </select>
                                                 </td>
-                                            </tr>
+                                            </tr> --}}
 
                                             <tr>
                                                 <th style="width: 70px;">Transaction Status</th>
                                                 <td class="text-end">
                                                     <select name="status" class="form-select" id="">
-                                                        <option value="Completed" {{ $transaction->status == 'Completed' ? 'selected' : '' }}>Completed</option>
-                                                        <option value="Pending" {{ $transaction->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                                        <option value="1" {{ $transaction->status == Status::SUCCESS ? 'selected' : '' }}>Completed</option>
+                                                        <option value="2" {{ $transaction->status == Status::PENDIDNG ? 'selected' : '' }}>Pending</option>
                                                     </select>
                                                 </td>
                                             </tr>

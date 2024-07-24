@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\GiftcardController;
+use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\CryptocurrencyController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
 
@@ -30,6 +31,16 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
         Route::patch('/{user}', [UserController::class, 'update'])->name('users.update');
+    });
+
+    Route::prefix('buy')->group(function(){
+        Route::get('/{trx_hash}',[TransactionController::class,'showBuy'])->name('buy.show');
+        Route::patch('/confirm/{trx_hash}',[TransactionController::class,'updateBuy'])->name('buy.update');
+    });
+
+    Route::prefix('sell')->group(function(){
+        Route::get('/{trx_hash}',[TransactionController::class,'showSell'])->name('sell.show');
+        Route::patch('/confirm/{trx_hash}',[TransactionController::class,'updateSell'])->name('sell.update'); 
     });
 
     Route::prefix('tickets')->group(function(){

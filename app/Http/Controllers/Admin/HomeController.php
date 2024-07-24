@@ -22,14 +22,32 @@ class HomeController extends Controller
         $users = User::where('role', Status::USER)->latest()->get();
         $tickets = Ticket::latest()->get();
         $crypto = Cryptocurrency::all();
-        // $transactions = Transactions::all();
-
-        // $crypto = 4;
-        // $buyorders = BuyOrder::where('status','pending')->latest()->get();
-        // $sellorders = SellOrder::where('status','pending')->latest()->get();
+        $giftcard = Cryptocurrency::all();
+ 
+        $buyOrders = BuyOrder::where('status', Status::PENDIDNG)->get();
+        $sellOrders = SellOrder::where('status', Status::PENDIDNG)->get();
         $general_settings = GeneralSetting::first();
-        
-        return view('admin.home', compact('users', 'tickets', 'crypto', 'general_settings'));
+
+        // Fetch all SellOrder records with the related cryptocurrency
+        $sellOrders = SellOrder::with('cryptocurrency')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+
+                        // dd($sellOrders);
+
+        // Fetch all BuyOrder records with the related cryptocurrency
+        $buyOrders = BuyOrder::with('cryptocurrency')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+
+        // Merge the two collections and sort them by created_at in descending order
+        // $transactions = $sellOrders->merge($buyOrders)->sortByDesc('created_at');
+
+        // Merge the two collections and sort them by created_at in descending order
+        $transactions = $sellOrders->merge($buyOrders)->sortByDesc('created_at');
+
+                    
+        return view('admin.home', compact('users', 'tickets', 'crypto', 'general_settings', 'buyOrders', 'sellOrders'));
     }
 
     public function edit()

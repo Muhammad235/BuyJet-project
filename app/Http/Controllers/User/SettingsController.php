@@ -32,6 +32,8 @@ class SettingsController extends Controller
     {
         $user = auth()->user();
 
+        dd($request->avatar);
+
         toastr()->success('Details updated successfully');
         $user->update($request->all());
     }

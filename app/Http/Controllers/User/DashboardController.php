@@ -25,8 +25,7 @@ class DashboardController extends Controller
                               ->latest()
                               ->get();
         
-        $buyOrder = BuyOrder::where('user_id', $user->id)
-                            ->with('cryptocurrency')
+        $buyOrder = BuyOrder::with('cryptocurrency')
                             ->latest()
                             ->get();
         

@@ -13,6 +13,7 @@ class BuyOrder extends Model
     protected $fillable = [
         'user_id',
         'trx_hash',
+        'status',
         'cryptocurrency_id',
         'amount',
         'payment_address',
