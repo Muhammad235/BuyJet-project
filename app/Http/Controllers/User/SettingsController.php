@@ -4,10 +4,13 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ProfileUpdateRequest;
+use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
+    use FileUploadTrait;
+    
     /**
      * Display a listing of the resource.
      */
@@ -30,12 +33,16 @@ class SettingsController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
+        $data = $request->validated();
+
         $user = auth()->user();
 
-        dd($request->avatar);
+        $data['avatar'] = $this->uploadImage($request, 'avatar', '/storage/avatar');
+        $user->update($data);
 
         toastr()->success('Details updated successfully');
-        $user->update($request->all());
+
+        return redirect()->back();
     }
 
 
