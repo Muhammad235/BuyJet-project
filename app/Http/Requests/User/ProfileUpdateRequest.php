@@ -18,7 +18,7 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'firstname' => ['sometimes', 'required', 'string', 'max:255'],
             'lastname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['sometimes','required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class,],
+            'email' => ['sometimes','required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore(auth()->user()->id),],
             'bank_name' => ['sometimes', 'nullable', 'string', 'max:255'],
             'account_number' => ['sometimes', 'nullable', 'string', 'numeric'],
             'account_name' => ['sometimes', 'nullable', 'string', 'max:255'],
