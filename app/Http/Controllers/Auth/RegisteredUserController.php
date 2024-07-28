@@ -30,37 +30,77 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
 
-    //  : RedirectResponse|View
+
     public function store(RegisterUserRequest $request)
     {
         $userData = $request->validated();
 
-        $user = User::create($userData);
+        // Check if the user already exists by email
+        $checkUser = User::where('email', $userData['email'])->first();
 
-        event(new Registered($user));
+        // If the user exists and their email is not verified
+        if ($checkUser && !$checkUser->email_verified_at) {
+            // Update the existing user data
+            $checkUser->update($userData);
 
-        Auth::login($user);
-        
-        toastr()->success("Registeration successfull");
+            Auth::login($checkUser);
+            toastr()->success('Registration successful');
+            return to_route('dashboard');
 
-        return redirect(route('dashboard'));
+            // Send OTP
+            // $sendOtp = $this->sendOtp($userData['email']);
 
-        
-        // $identifier = $request->email;
-        // $identifier = "adelekeyahaya05@gmail.com";
-        // $type = 'numeric';
-        // $length = 4;
-        // $validity = 10;
-        // $otp = (new Otp)->generate($identifier, $type, $length, $validity);
+            // if (!$sendOtp) {
+            //     toastr()->error('Failed to send OTP. Please try again.');
+            //     return back();
+            // }
 
-        // if($otp->status){
+            // session(['identifier' => $userData['email']]);
+            // return view('auth.verify-otp');
+        } else {
+            // Create a new user
+            $user = User::create($userData);
 
-        //     // Mail::to($identifier)->send(new SendOtpMail($otp->token));
+            Auth::login($user);
+            toastr()->success('Registration successful');
+            return to_route('dashboard');
 
-        //     session(['identifier' => $identifier]);
-        //     return view('auth.verify-otp');
+            // Fire the Registered event
+            // event(new Registered($user));
 
-        // }
+            // // Send OTP
+            // $sendOtp = $this->sendOtp($userData['email']);
 
+            // if (!$sendOtp) {
+            //     toastr()->error('Failed to send OTP. Please try again.');
+            //     return back();
+            // }
+
+            // session(['identifier' => $userData['email']]);
+            // return view('auth.verify-otp');
+        }
     }
+
+
+    public function sendOtp(string $identifier)
+    {
+        $type = 'numeric';
+        $length = 4;
+        $validity = 10;
+        $otp = (new Otp)->generate($identifier, $type, $length, $validity);
+
+        if ($otp->status) {
+            try {
+                Mail::to($identifier)->send(new SendOtpMail($otp->token));
+                return true;  
+            } catch (\Exception $e) {
+                return false;  
+            }
+        }
+
+        // OTP generation failed
+        return false;  
+    }
+
 }
+

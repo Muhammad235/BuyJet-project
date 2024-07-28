@@ -25,7 +25,8 @@ class DashboardController extends Controller
                               ->latest()
                               ->get();
         
-        $buyOrder = BuyOrder::with('cryptocurrency')
+        $buyOrder = BuyOrder::where('user_id', $user->id)
+                            ->with('cryptocurrency')
                             ->latest()
                             ->get();
         
@@ -47,13 +48,16 @@ class DashboardController extends Controller
         $general_setings = GeneralSetting::first();
         $cryptocurrencies = Cryptocurrency::all();
 
-        $sellOrder = SellOrder::where('user_id', $user->id)->with('cryptocurrency')
-                                ->latest()
-                                ->get();
-        $buyOrder = BuyOrder::where('user_id', $user->id)->with('cryptocurrency')
+        $sellOrder = SellOrder::where('user_id', $user->id)
+                              ->with('cryptocurrency')
                               ->latest()
                               ->get();
-
+        
+        $buyOrder = BuyOrder::where('user_id', $user->id)
+                            ->with('cryptocurrency')
+                            ->latest()
+                            ->get();
+        
         $transactions = collect()
                         ->merge($sellOrder)
                         ->merge($buyOrder);

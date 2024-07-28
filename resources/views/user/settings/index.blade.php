@@ -23,7 +23,7 @@
                     </a>
                 </div>
                 <div class="nav-bar-nav">
-                    <a href="changePassword.html">
+                    <a href="">
                         <p class="text-white">Change Password</p>
                     </a>
                 </div>

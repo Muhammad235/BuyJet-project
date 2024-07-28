@@ -24,10 +24,10 @@
                             <form action="{{ route('verify.otp') }}" method="post" class="form">
                                 @csrf
                                 <div class="input_field_box">
-                                    <input type="number" name="otp1" />
-                                    <input type="number" name="otp2" disabled />
-                                    <input type="number" name="otp3" disabled />
-                                    <input type="number" name="otp4" disabled />
+                                    <input type="number" class="otp-input" name="otp1" />
+                                    <input type="number" class="otp-input" name="otp2" disabled />
+                                    <input type="number" class="otp-input" name="otp3" disabled />
+                                    <input type="number" class="otp-input" name="otp4" disabled />
                                 </div>
 
                                 <button type="submit" disabled class="btn btn-primary text-light">Verify OTP</button>

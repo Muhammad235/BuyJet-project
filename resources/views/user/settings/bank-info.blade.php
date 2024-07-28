@@ -36,30 +36,20 @@
 						@csrf
                         <div class="update-input-email">
                             <label for="">Account Name</label>
-                            <input type="text" name="account_name" value="{{ $user->account_name }}" class="form-control">
+                            <input type="text" name="account_name" value="{{ $user->account_name }}" placeholder="Account Name" class="form-control">
                         </div>
                         <div class="update-input-email">
                             <label for="">Bank Name</label>
-                            <input type="text" name="bank_name" value="{{ $user->bank_name }}" class="form-control">
+                            <input type="text" name="bank_name" value="{{ $user->bank_name }}" placeholder="Bank Name" class="form-control">
                         </div>
-                        {{-- <div class="update-input-email">
-                            <label for="exampleFormControlSelect1">Bank Name</label>
-                            <select class="" id="exampleFormControlSelect1">
-                                <option class="text-dark">Select Bank</option>
-                                <option class="text-dark">Zenith Bank</option>
-                                <option class="text-dark">Kuda Bank</option>
-                                <option class="text-dark">Access Bnak</option>
-                                <option class="text-dark">Wema Bank</option>
-                                <option class="text-dark">Keystone Bank</option>
-                            </select>
-                        </div> --}}
+
                         <div class="update-input-email">
                             <label for="">Account Number</label>
-                            <input type="text" name="account_number" value="{{ $user->account_number }}" class="form-control">
+                            <input type="text" name="account_number" value="{{ $user->account_number }}" placeholder="Account Number" class="form-control">
                         </div>
 
                         <div class="input-button">
-                            <input type="submit" class="btn btn-secondary submit-button" value="Reset Information">
+                            {{-- <input type="submit" class="btn btn-secondary submit-button" value="Reset Information"> --}}
                             <input type="submit" class="btn btn-primary submit-button" value="Update Bank Infornation">
                         </div>
                     </form>

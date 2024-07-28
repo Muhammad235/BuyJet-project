@@ -20,7 +20,8 @@
                     <h4 class="text-center py-2">Welcome Back!</h4>
                     <p class="text-center signin-text">Sign in into your account</p>
 
-                    <form action="{{ route('login') }}">
+                    <form action="{{ route('login.authenticate') }}" method="POST">
+                        @csrf
                         <label for="Email Address" class="label-text">Email Address</label>
                         <div class="input">
                             <input type="email" name="email" class="form-control" placeholder="Enter Your Email Address" value="{{ old('email') }}">

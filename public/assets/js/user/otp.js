@@ -1,7 +1,7 @@
-const OTPinputs = document.querySelectorAll("input");
+const OTPinputs = document.querySelectorAll(".otp-input");
 const button = document.querySelector("button");
 
-window.addEventListener("load", () => OTPinputs[0].focus());
+window.addEventListener("load", () => OTPinputs[0].removeAttribute("disabled") && OTPinputs[0].focus());
 
 OTPinputs.forEach((input, index) => {
   input.addEventListener("input", () => {
@@ -12,7 +12,7 @@ OTPinputs.forEach((input, index) => {
       currentInput.value = "";
     }
 
-    if (nextInput !== null && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+    if (nextInput !== null && nextInput.classList.contains("otp-input") && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
       nextInput.removeAttribute("disabled");
       nextInput.focus();
     }
@@ -26,7 +26,7 @@ OTPinputs.forEach((input, index) => {
 
   input.addEventListener("keyup", (e) => {
     if (e.key === "Backspace") {
-      if (input.previousElementSibling !== null) {
+      if (input.previousElementSibling !== null && input.previousElementSibling.classList.contains("otp-input")) {
         e.target.value = "";
         e.target.setAttribute("disabled", true);
         input.previousElementSibling.focus();

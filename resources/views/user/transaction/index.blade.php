@@ -1,7 +1,6 @@
 <x-app-layout>
 
 	@section('title', 'Transactions')
-
 	@section('content')
     <!-- CONTENT -->
 	<section id="content">
@@ -30,7 +29,7 @@
 									@foreach ($transactions as $transaction)
 									<div class="table-section-row">
 										<div class="table-section-wrapper">
-											<img src="{{ asset('storage/crypto/'. $transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
+											<img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
 											<div class="date-wrap">
 												<p>{{ $transaction->cryptocurrency->name }}</p>
 												<span>February 21, 2021</span>

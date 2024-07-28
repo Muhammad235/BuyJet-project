@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Ichtrojan\Otp\Otp;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OtpController extends Controller
 {
@@ -17,7 +19,14 @@ class OtpController extends Controller
 
         $identifier = session('identifier');
         $validate = (new Otp)->validate($identifier, $token);
-        dd($validate);
+
+        if($validate->status){
+            $user = User::where('email', $identifier)->first();
+
+            Auth::login($user);
+            toastr()->success('Registration successful');
+            return to_route('dashboard');
+        }
     }
     
 }
