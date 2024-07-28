@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('trx_hash')->unique();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('gift_card_id')->constrained();
-            $table->string('country');
+            $table->foreignId('currency_id')->constrained();
             $table->double('amount');
+            $table->boolean('with_receipt');
+            $table->string('is_physical_card')->unique();
             $table->enum('status', [Status::PENDIDNG, Status::SUCCESS, Status::FAILED])->default(Status::PENDIDNG);
             $table->text('rejection_reason')->nullable();
             $table->timestamps();

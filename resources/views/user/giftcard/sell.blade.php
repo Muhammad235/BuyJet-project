@@ -1,6 +1,6 @@
 <x-app-layout>
 
-	@section('title', 'Payment successful')
+	@section('title', 'Sell Giftcard')
 
 	@section('content')
     <!-- CONTENT -->
@@ -59,27 +59,19 @@
 
                                 <div class="pad">
                                     <div class="row justify-content-center" id="product-list">
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="{{ asset('assets/images/amazon.png') }}" alt="" class="shadow">
-                                                <h6 class="option-text">Amazon</h6>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="{{ asset('assets/images/steam.png') }}" alt="" class="shadow">
-                                                <h6 class="option-text">Steam</h6>
+                                    @if (count($giftcards) > 0)
+                                        @foreach ($giftcards as $giftcard)
+                                            <div class="col-md-4 col-4">
+                                                <div class="option">
+                                                    <img src="{{ asset('assets/images/amazon.png') }}" alt="" class="shadow">
+                                                    <h6 class="option-text">{{ $giftcard->name }}</h6>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
+                                    @else
+                                    @endif
 
-                                        <div class="col-md-4 col-4">
-                                            <div class="option">
-                                                <img src="{{ asset('assets/images/sephora.png') }}" alt="" class="shadow">
-                                                <h6 class="option-text">Sephora</h6>
-                                            </div>
-                                        </div>
-                                    
                                     </div>
                                 </div>
                             </div>

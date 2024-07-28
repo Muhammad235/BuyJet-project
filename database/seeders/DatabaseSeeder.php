@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Cryptocurrency;
+use App\Models\Currency;
+use App\Models\GiftCard;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\GeneralSetting;
@@ -15,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
- 
+
         GeneralSetting::create([
             'account_name' => 'BuyJet LTD',
             'account_number' => '00000000',
@@ -50,6 +52,26 @@ class DatabaseSeeder extends Seeder
             'assets' => $assets,
             'charge' => 0.5,
             'wallet_address' => '0x74c06d0ae18523e35091f55983611910411d4b13'
+        ]);
+
+        GiftCard::create([
+            'name' => 'Amazon',
+            'symbol' => 'sybmol',
+        ]);
+
+        GiftCard::create([
+            'name' => 'steam',
+            'symbol' => 'sybmol',
+        ]);
+
+        Currency::create([
+            'name' => 'CAD',
+            'symbol' => 'sybmol',
+        ]);
+
+        Currency::create([
+            'name' => 'USD',
+            'symbol' => 'sybmol',
         ]);
     }
 }

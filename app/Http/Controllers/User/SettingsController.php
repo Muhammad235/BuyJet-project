@@ -41,7 +41,6 @@ class SettingsController extends Controller
         $user->update($data);
 
         toastr()->success('Details updated successfully');
-
         return redirect()->back();
     }
 

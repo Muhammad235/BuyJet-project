@@ -9,7 +9,6 @@
 	<link rel="icon" href="{{ asset('assets/images/Logo.png') }}">
 
 	<!-- Css -->
-
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/giftcard.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/transaction.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/tickets.css') }}">
@@ -50,7 +49,7 @@
                     <span class="nav__text">DashBoard</span>
                 </a>
                 <a href="{{ route('transactions.all') }}" class="nav__link">
-                    <i class="bx bxs-wallet nav__icon"></i> 
+                    <i class="bx bxs-wallet nav__icon"></i>
                     <span class="nav__text">Transaction</span>
                 </a>
                 <a href="{{ route('tickets.store') }}" class="nav__link">

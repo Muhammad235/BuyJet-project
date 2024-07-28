@@ -38,7 +38,7 @@
                         <a href="#">
                             <p class="FP-link">Forgot Password?</p>
                         </a>
-                        <div class="login-button">
+                        <div class="login-button text-center">
                             <input type="submit" class="form-control btn btn-primary"
                                     value="Login">
                         </div>

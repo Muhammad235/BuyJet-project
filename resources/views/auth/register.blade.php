@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuyJet Login</title>
-    <link rel="icon" href="image/Logo.png">
-	<link rel="stylesheet" href="styles/bottomnav.css">
-    <link rel="stylesheet" href="styles/sign.css">
+
+    {{-- App favicon --}}
+    <link rel="icon" href="{{ asset('assets/images/Logo.png') }}">
+	{{-- <link rel="stylesheet" href="styles/bottomnav.css">
+    <link rel="stylesheet" href="styles/sign.css"> --}}
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
@@ -26,28 +28,28 @@
   ::-webkit-scrollbar{
     width: 15px;
   }
-  
+
   ::-webkit-scrollbar-track{
     background-color: #E1E9FF;
   }
-  
+
   ::-webkit-scrollbar-thumb{
     background-color: #181628;
     border-radius: 10px;
     border: 4px solid transparent;
     background-clip: content-box;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover{
     background-color: #181628;
   }
-  
-  
+
+
   a {
     text-decoration: none !important;
     color: #000 !important;
   }
-  
+
   .login-section{
     height: 100%;
     position: relative !important;
@@ -170,7 +172,7 @@
   input:focus {
     box-shadow: none !important;
     border-color: #9e9e9e !important;
-  } 
+  }
   .below-text{
     font-size: 11px;
     padding-top: 5px;
@@ -186,11 +188,11 @@
   .login-img{
     display: none !important;
   }
-   
-  
-  
+
+
+
   /* Responsiveness */
-  
+
   @media (min-width: 280px) and (max-width: 575px) {
     .side-image{
       display: hidden !important;
@@ -222,7 +224,7 @@
       left: 0;
     }
   }
-  
+
    @media (min-width: 576px) and (max-width: 767px) {
     .image{
       display: hidden !important;
@@ -232,17 +234,10 @@
       display: block !important;
     }
   }
-  
-  /*@media (min-width: 768px) and (max-width: 992px) {
-  }
-  
-  @media (min-width: 993px) and (max-width: 1199px) {
-  } */
-  
 </style>
 <body>
     {{-- Error component --}}
-    <x-error-display></x-error-display> 
+    <x-error-display></x-error-display>
 
     <section class="login-section">
         <div class="d-none d-md-block">
@@ -257,7 +252,7 @@
             <div class="row login-row">
                 <div class="card shadow">
                     <div class="text-center">
-                        <img src="image/buyjetLogo.png" alt="" width="30%">
+                        <img src="{{ asset('assets/images/buyjetLogo.png') }}" alt="" width="30%">
                     </div>
                     <h4 class="text-center py-2">Sign Up</h4>
                     <p class="text-center signin-text">Create An Accont</p>
@@ -304,12 +299,12 @@
                         </div>
 
 
-                        <div class="signup-button">
-                            <input type="submit" class="form-control btn btn-primary"
+                        <div class="signup-button text-center">
+                            <input type="submit" class="  form-control btn btn-primary"
                                     value="Sign Up">
                         </div>
                     </form>
-                    <p class="text-center  text-secondary below-text">Have an Account? <a href="login.html"><span
+                    <p class="text-center  text-secondary below-text">Have an Account? <a href="{{ route('login') }}"><span
                                 class="create-account">Login</span></a>
                     </p>
                 </div>

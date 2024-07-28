@@ -39,15 +39,11 @@ class BuyOrderMail extends Mailable
         return new Content(
             markdown: 'mail.buy-order-mail',
             with: [
-                // 'firstname' => $this->order->user->firstname,
-                // 'amoumt' => $this->order->user->amoumt,
-
-                'reference' => $this->order['reference'],
-                'firstname' => $this->order['firstname'],
-                'cryptoAmount' => $this->order['cryptoAmount'],
-                'cryptocurrency' => $this->order['cryptocurrency'],
-                'amount' => $this->order['amount'],
-
+                'firstname' => $this->order->user->firstname,
+                'amount' => $this->order->amount,
+                'reference' => $this->order->trx_hash,
+                'cryptoAmount' => $this->order->amoumt,
+                'cryptocurrency' => $this->order->cryptocurrency->name,
             ],
         );
     }

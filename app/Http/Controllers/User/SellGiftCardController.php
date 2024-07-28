@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Enums\Status;
 use App\Models\GiftCard;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
@@ -16,9 +17,9 @@ class SellGiftCardController extends Controller
     {
         $user = auth()->user();
         $general_setings = GeneralSetting::first();
-        $giftcard = GiftCard::all();
+        $giftcards = GiftCard::where('status', Status::ACTIVE)->get();
 
-        return view('user.giftcard.sell', compact('user'));
+        return view('user.giftcard.sell', compact('user', 'giftcards'));
     }
 
     /**

@@ -18,4 +18,7 @@ enum Status: string
     const PENDIDNG = 2;
     const PROCESSING = 3;
     const FAILED = 0;
+
+    const YES = 1;
+    const No = 0;
 }

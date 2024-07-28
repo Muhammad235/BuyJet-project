@@ -1,5 +1,6 @@
 <?php
 use App\Mail\BuyOrderMail;
+use App\Mail\SellOrderMail;
 use App\Mail\SendOtpMail;
 
 Route::get('/otp-mail', function(){

@@ -93,7 +93,7 @@
 								@if (count($transactions) > 0)
 									@foreach ($transactions as $transaction)
 									<div class="table-section-row">
-										<div class="table-section-wrapper">
+										<div class="table-section-wrapper pb-2">
 											<img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
 											<div class="date-wrap">
 												<p>{{ $transaction->cryptocurrency->name }}</p>
@@ -107,7 +107,7 @@
 											}elseif ($transaction->status == 2) {
 												$status = 'pending-div';
 											}elseif ($transaction->status == 3) {
-												$status = 'pending-div';	
+												$status = 'pending-div';
 											}
 										@endphp
 
@@ -117,14 +117,14 @@
 											@if ($transaction->status == 1)
 												<span class="status-success">Success</span>
 												@elseif ($transaction->status == 2)
-												<span class="status-spending">Pening</span>
+												<span class="status-spending">Pending</span>
 												@elseif ($transaction->status == 3)
 												<span class="status-failed">Failed</span>
 											@endif
-											
+
 										</div>
 									</div>
-									@endforeach 
+									@endforeach
 								@else
 									<div class="table-section-ntp">
 										<img src="{{ asset('assets/images/mobile-ntp.png')}}" alt="" width="80%">
@@ -210,17 +210,17 @@
 								<span><small>Coin</small></span>
 								<select class="eth-input mb-2" name="cryptocurrency" onchange="buyCryptoAmountInNaira()">
 									<option class="text-light" selected disabled>Select Cryptocurrency</option>
-		
+
 									@foreach ($cryptocurrencies as $cryptocurrency)
 										<option class="text-light" value="{{ old('cryptocurrency', $cryptocurrency->id) }}">{{ $cryptocurrency->name }}</option>
 									@endforeach
-									
+
 								</select>
 
 								<span><small>Amount</small></span>
 
 								<input type="text" hidden name="" id="rates-value" data-buyRate = {{ $general_settings->buy_rate }} data-sellRate = {{ $general_settings->sell_rate }}>
-								
+
 								<div class="input-group mt-2">
 									<input type="text" class="form-control eth-input-group" id="buy_crypto_amount" placeholder="0" name="amount" value="{{ old('amount') }}" oninput="validateInput(this); buyCryptoAmountInNaira();">
 									<span class="input-group-text">USD</span>
@@ -237,11 +237,11 @@
 								<span><small>Coin</small></span>
 								<select class="eth-input mb-2" name="cryptocurrency" onchange="sellCryptoAmountInNaira()">
 									<option class="text-light" selected disabled>Select Cryptocurrency</option>
-		
+
 									@foreach ($cryptocurrencies as $cryptocurrency)
 										<option class="text-light" value="{{ old('cryptocurrency', $cryptocurrency->id) }}">{{ $cryptocurrency->name }}</option>
 									@endforeach
-									
+
 								</select>
 
 								<span><small>Amount</small></span>
@@ -257,7 +257,7 @@
 								<input type="submit" class="btn btn-primary form-control"
 										value="Sell">
 							</form>
-	
+
 						</div>
 					</div>
 					<div class="quick-action-section-row d-none d-md-block">
@@ -289,7 +289,7 @@
 	@endsection
 
 	@push('script')
-        
+
     <script>
 
 		const Rate = document.getElementById("rates-value");
@@ -305,9 +305,9 @@
 
         function buyCryptoAmountInNaira() {
             const cryptoValue = parseFloat(document.getElementById("buy_crypto_amount").value);
-			
+
             if (!isNaN(cryptoValue)) {
-                if (cryptoValue < 2) {    
+                if (cryptoValue < 2) {
                     $('.minmum-usd').removeClass('d-none')
                 }else{
                     $('.minmum-usd').addClass('d-none')
@@ -323,9 +323,9 @@
 
 		function sellCryptoAmountInNaira() {
             const cryptoValue = parseFloat(document.getElementById("sell_crypto_amount").value);
-			
+
             if (!isNaN(cryptoValue)) {
-                if (cryptoValue < 2) {    
+                if (cryptoValue < 2) {
                     $('.minmum-usd').removeClass('d-none')
                 }else{
                     $('.minmum-usd').addClass('d-none')

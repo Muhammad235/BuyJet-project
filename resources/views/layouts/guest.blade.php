@@ -30,7 +30,7 @@
 <body>
 
     {{-- Error component --}}
-    <x-error-display></x-error-display> 
+    <x-error-display></x-error-display>
 
 
     <section class="login-section">
@@ -39,7 +39,7 @@
                 {{ $slot }}
             </div>
         </div>
-    </section> 
+    </section>
 
 
     <script src="{{ asset('assets/js/user/otp.js') }}"></script>
