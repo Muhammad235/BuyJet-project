@@ -255,7 +255,7 @@
                         <img src="{{ asset('assets/images/buyjetLogo.png') }}" alt="" width="30%">
                     </div>
                     <h4 class="text-center py-2">Sign Up</h4>
-                    <p class="text-center signin-text">Create An Accont</p>
+                    <p class="text-center signin-text">Create an accont</p>
 
                     <form action="{{ route('register') }}" method="post" class="signup-form">
                         @csrf

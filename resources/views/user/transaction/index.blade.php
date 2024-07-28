@@ -29,7 +29,9 @@
 									@foreach ($transactions as $transaction)
 									<div class="table-section-row">
 										<div class="table-section-wrapper">
-											<img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
+											<img src="{{ asset('assets/images/btc.png') }}" style="width: 50px;" alt="">
+											
+                                            {{-- <img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt=""> --}}
 											<div class="date-wrap">
 												<p>{{ $transaction->cryptocurrency->name }}</p>
 												<span>February 21, 2021</span>
@@ -42,7 +44,7 @@
 											}elseif ($transaction->status == 2) {
 												$status = 'pending-div';
 											}elseif ($transaction->status == 3) {
-												$status = 'pending-div';	
+												$status = 'pending-div';
 											}
 										@endphp
 
@@ -56,10 +58,10 @@
 												@elseif ($transaction->status == 3)
 												<span class="status-failed">Failed</span>
 											@endif
-											
+
 										</div>
 									</div>
-									@endforeach 
+									@endforeach
 								@else
 									<div class="table-section-ntp">
 										<img src="{{ asset('assets/images/mobile-ntp.png')}}" alt="" width="80%">

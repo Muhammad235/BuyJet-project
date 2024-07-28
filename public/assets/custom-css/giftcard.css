@@ -145,7 +145,7 @@ img {
   margin-right: 10px;
   width: 20px !important;
 }
-input[type="tel"] {
+input[type="number"] {
   background: #687085;
   border: 1px solid #969db2;
   margin-top: 10px;

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('amount', 12, 4);
             $table->string('payment_receipt')->nullable();;
             $table->string('note')->nullable();
-            $table->enum('status', [Status::PENDIDNG, Status::SUCCESS, Status::PROCESSING, Status::FAILED])->default(Status::PENDIDNG);
+            $table->enum('status', [Status::PENDIDNG, Status::SUCCESS, Status::FAILED])->default(Status::PENDIDNG);
             $table->text('rejection_reason')->nullable();
             $table->timestamps();
         });

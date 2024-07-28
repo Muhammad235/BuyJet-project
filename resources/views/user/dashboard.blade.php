@@ -94,7 +94,8 @@
 									@foreach ($transactions as $transaction)
 									<div class="table-section-row">
 										<div class="table-section-wrapper pb-2">
-											<img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
+											{{-- <img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt=""> --}}
+											<img src="{{ asset('assets/images/btc.png') }}" style="width: 50px;" alt="">
 											<div class="date-wrap">
 												<p>{{ $transaction->cryptocurrency->name }}</p>
 												<span>February 21, 2021</span>

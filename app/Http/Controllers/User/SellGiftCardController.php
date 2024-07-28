@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\Status;
+use App\Models\Currency;
 use App\Models\GiftCard;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
@@ -18,8 +19,9 @@ class SellGiftCardController extends Controller
         $user = auth()->user();
         $general_setings = GeneralSetting::first();
         $giftcards = GiftCard::where('status', Status::ACTIVE)->get();
+        $currencies = Currency::where('status', Status::ACTIVE)->get();
 
-        return view('user.giftcard.sell', compact('user', 'giftcards'));
+        return view('user.giftcard.sell', compact('user', 'giftcards', 'currencies'));
     }
 
     /**

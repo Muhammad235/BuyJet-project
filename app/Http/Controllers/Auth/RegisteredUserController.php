@@ -92,14 +92,14 @@ class RegisteredUserController extends Controller
         if ($otp->status) {
             try {
                 Mail::to($identifier)->send(new SendOtpMail($otp->token));
-                return true;  
+                return true;
             } catch (\Exception $e) {
-                return false;  
+                return false;
             }
         }
 
         // OTP generation failed
-        return false;  
+        return false;
     }
 
 }

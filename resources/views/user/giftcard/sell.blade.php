@@ -100,26 +100,17 @@
 
                                 <div class="pad">
                                     <div class="row justify-content-center" id="product-list_currency">
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="{{ asset('assets/images/usd.png') }}" alt="" class="shadow">
-                                                <h5 class="option-text_currency">USD</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="{{ asset('assets/images/cad.png') }}" alt="" class="shadow">
-                                                <h5 class="option-text_currency">CAD</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-4">
-                                            <div class="option_currency">
-                                                <img src="{{ asset('assets/images/gbp.png') }}" alt="" class="shadow">
-                                                <h5 class="option-text_currency">GBP</h5>
-                                            </div>
-                                        </div>
+                                        @if (count($currencies) > 0)
+                                                @foreach ($currencies as $currency)
+                                                <div class="col-md-4 col-4">
+                                                    <div class="option_currency">
+                                                        <img src="{{ asset('assets/images/cad.png') }}" alt="" class="shadow">
+                                                        <h5 class="option-text_currency">{{ $currency->name }}</h5>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            @else
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -131,13 +122,13 @@
                             <span class="select-card"><small>Select Card Type</small></span>
                             <div class="radio-input">
                                 <div class="form-check">
-                                    <input class="radio" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                    <input class="radio" type="radio" name="is_physical_card" id="inlineRadio1"
                                         value="option1">
                                     <label class="form-check-label" for="inlineRadio1"><small>Physical
                                             Card</small></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="radio" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                    <input class="radio" type="radio" name="is_physical_card" id="inlineRadio2"
                                         value="option2">
                                     <label class="form-check-label" for="inlineRadio2"><small>E-code</small></label>
                                 </div>
@@ -150,12 +141,12 @@
                             <small>Select Receipt Status</small>
                             <div class="radio-input">
                                 <div class="form-check">
-                                    <input class="radio" type="radio" name="inlineRadioOption" id="inlineRadio3"
+                                    <input class="radio" type="radio" name="with_receipt" id="inlineRadio3"
                                         value="option3">
                                     <label class="form-check-label" for="inlineRadio3"><small>No Receipt</small></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="radio" type="radio" name="inlineRadioOption" id="inlineRadio4"
+                                    <input class="radio" type="radio" name="with_receipt" id="inlineRadio4"
                                         value="option4">
                                     <label class="form-check-label" for="inlineRadio4"><small>With
                                             Receipt</small></label>
@@ -169,7 +160,7 @@
                             <small>Enter Card Value</small>
                             <div class="count">
                                 <div>
-                                    <input type="tel" class="card-input" placeholder="Enter Value">
+                                    <input type="number" class="card-input" placeholder="Enter Value">
                                 </div>
                                 <div class="counter">
                                     <button id="decrement-btn">-</button>

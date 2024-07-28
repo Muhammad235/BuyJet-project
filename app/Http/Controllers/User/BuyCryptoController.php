@@ -89,8 +89,8 @@ class BuyCryptoController extends Controller
     public function confirm(string $trx_hash){
         $user = auth()->user();
         $order = BuyOrder::where('trx_hash', $trx_hash)->first();
-        $general_settings = GeneralSetting::first(); 
-        
+        $general_settings = GeneralSetting::first();
+
         return view('user.crypto.buy-confirm',compact('general_settings','order','user'));
     }
 
@@ -123,10 +123,10 @@ class BuyCryptoController extends Controller
             if($buyorder->status == Status::PENDIDNG){
                 $buyorder->update([
                     'payment_receipt' => $fileName,
-                    'status' => Status::PROCESSING,
+                    'status' => Status::PENDIDNG,
                 ]);
             }
-            
+
             toastr()->success('Transaction completed');
             return view('user.transaction-success', compact('user'));
 

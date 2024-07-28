@@ -16,7 +16,7 @@ class SellCryptoController extends Controller
 {
     use GenerateTrxHash;
     use FileUploadTrait;
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -94,18 +94,18 @@ class SellCryptoController extends Controller
         if ($cryptocurrency && $cryptocurrency->assets) {
             // Parse the assets JSON
             $assets = json_decode($cryptocurrency->assets, true);
-            
+
             // Find the asset with a matching asset network
             $selectedAsset = collect($assets)->first(function ($asset) use ($selectedAssetNetwork) {
                 return $asset['assetname'] === $selectedAssetNetwork;
             });
-            
+
             // Check if the selected asset is found
             if ($selectedAsset) {
                 $assetAddress = $selectedAsset['assetaddress'];
             }
         }
-        $general_settings = GeneralSetting::first(); 
+        $general_settings = GeneralSetting::first();
         $amountToSend = $order->amount / $general_settings->sell_rate;
         return view('user.crypto.sell-confirm',compact('general_settings','order','user', 'selectedAssetNetwork','assetAddress', 'amountToSend'));
     }
@@ -145,10 +145,10 @@ class SellCryptoController extends Controller
             if($sellorder->status == Status::PENDIDNG){
                 $sellorder->update([
                     'payment_receipt' => $fileName,
-                    'status' => Status::PROCESSING,
+                    'status' => Status::PENDIDNG,
                 ]);
             }
-            
+
             toastr()->success('Transaction completed');
             return view('user.transaction-success', compact('user'));
 
