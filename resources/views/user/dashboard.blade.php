@@ -4,6 +4,12 @@
 
 	@section('content')
 
+    <style>
+        a{
+            color: #ffff;
+        }
+    </style>
+
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- TOP NAVBAR -->
@@ -197,12 +203,12 @@
 						<div class="coin-section-row row">
 							<div class="col-md-4 col-5">
 								<a href="">
-									<div class="active-type buy buyCoinBtn">Buy</div>
+									<div class="active-type buy text-white buyCoinBtn">Buy</div>
 								</a>
 							</div>
 							<div class="col-md-4 col-5">
 								<a href="">
-									<div class="buy sellCoinBtn">Sell</div>
+									<div class="buy text-white sellCoinBtn">Sell</div>
 								</a>
 							</div>
 						</div>

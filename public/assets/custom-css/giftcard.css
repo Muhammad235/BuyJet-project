@@ -302,7 +302,7 @@ input[type="checkbox"]:checked + label::before {
   background: #3a6ff8;
   border-color: black;
 } */
-
+/*
 input[type="checkbox"] {
   appearance: none;
   border-radius: 50%;
@@ -315,7 +315,7 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   background: #007bff;
   border-color: #007bff;
-}
+} */
 label {
   display: inline-block;
   margin-left: 10px;

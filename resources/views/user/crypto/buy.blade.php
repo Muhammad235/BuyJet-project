@@ -1,6 +1,6 @@
 <x-app-layout>
 
-	@section('title', 'User Dashboard')
+	@section('title', 'Buy Crypto')
 
 	@section('content')
     <!-- CONTENT -->
@@ -8,10 +8,10 @@
 		<!-- TOP NAVBAR -->
         <x-top-navbar :user="$user" />
 
-		<div class="my-3"> 
+		<div class="my-3">
             <div class="row justify-content-center">
                 <div class="col-md-7 buy-coin-card col-11">
-                    <div class="buy-coin-inner-card"> 
+                    <div class="buy-coin-inner-card">
                         <div class="buy-coin-price">
                             Buying {{ @$cryptocurrency->name }} at {{ $general_setings->buy_rate }}/$
                         </div>
@@ -68,7 +68,7 @@
                                     <p>Total</p>
                                     <p id="sub-amount">0</p>
                                 </div>
-           
+
                                 <button type="button" class="btn btn-primary form-control"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Buy
@@ -76,37 +76,43 @@
 
                                 <!-- Modal -->
                                 <div class="modal fade modal-background" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-white" id="exampleModalLabel">Please read the instructions below</h5>
-                                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="paragraph">
-                                                <p>Please note that due to price fluctuations, there may be a slight difference between the
-                                                    amount you receive and the estimated amount.</p>
-                                
-                                                <p>Screenshot is compulsory and only Screenshots from payment app is accepted..</p>
-                                
-                                                <p>Opening orders without making payment is not allowed.
-                                                    Failure to comply with the above stated terms leads to limitation on your {{ config('app.name') }} account and
-                                                    total loss of paid amount.</p>
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content error">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-white" id="exampleModalLabel">Please read the instructions below
+                                                </h5>
+                                                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
-                                            <div>
-                                                <input type="checkbox" name="agree" value="true" required>
-                                                <span class="pr-5 text-white"><small>I agree to the instructions above and want to proceed to the payment window.</small></span>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <div class="modal-body">
+                                                <div class="paragraph">
+                                                    <p>Please note that due to price fluctuations, there may be a slight difference between the
+                                                        amount you receive and the estimated amount.</p>
 
-                                        <button type="submit" class="btn btn-primary">Continue to make payment</button>
+                                                    <p>Screenshot is compulsory and only Screenshots from payment app is accepted..</p>
+
+                                                    <p>Opening orders without making payment is not allowed.
+                                                        Failure to comply with the above stated terms leads to limitation on your Buyjet account
+                                                        and
+                                                        total loss of paid amount.</p>
+                                                </div>
+                                                <div>
+                                                    <div class="d-flex gap-2">
+                                                        <input type="checkbox" name="agree" value="true" class="pr-2" required>
+                                                        <span class="pr-5 text-white pt-1"><small>I agree to the instructions above and want to proceed
+                                                                to the payment window.</small></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Continue to make
+                                                        payment</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                             </form>
                         </div>
@@ -114,12 +120,12 @@
                 </div>
             </div>
         </div>
-        
+
 	</section>
 
 
     @push('script')
-        
+
     <script>
 
         const Rate = document.getElementById("rates-value");
@@ -138,7 +144,7 @@
             if (!isNaN(cryptoValue)) {
 
                 if (cryptoValue < 2) {
-                    
+
                     $('.minmum-usd').removeClass('d-none')
                 }else{
                     $('.minmum-usd').addClass('d-none')
@@ -179,7 +185,7 @@
             // Clear existing options
             assetList.innerHTML = "<option value='' selected disabled>Select Asset Network</option>";
 
-            
+
             if (selectedCryptoObj && selectedCryptoObj.assets !== null) {
                 // Parse the assets JSON string into an array
                 const assetArray = JSON.parse(selectedCryptoObj.assets);

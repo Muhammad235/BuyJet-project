@@ -74,7 +74,7 @@ class BuyCryptoController extends Controller
             ]);
 
 
-            Mail::to($order->user->email)->send(new BuyOrderMail($order));
+            // Mail::to($order->user->email)->send(new BuyOrderMail($order));
 
             return redirect()->route('buy.confirm', $order->trx_hash);
 
@@ -118,6 +118,10 @@ class BuyCryptoController extends Controller
         try {
 
             $buyorder = BuyOrder::where('trx_hash', $trx_hash)->first();
+            $amount = $buyorder->amount;
+            $reference = $buyorder->trx_hash;
+            $general_settings = GeneralSetting::first();
+
             $fileName = $this->uploadImage($request, 'payment_proof', 'storage/payment_receipt');
 
             if($buyorder->status == Status::PENDIDNG){
@@ -127,8 +131,8 @@ class BuyCryptoController extends Controller
                 ]);
             }
 
-            toastr()->success('Transaction completed');
-            return view('user.transaction-success', compact('user'));
+            toastr()->success('Order processing');
+            return view('user.transaction-success', compact('user', 'amount', 'reference'));
 
         } catch (\Exception $e) {
             toastr()->error('Unable to proccess payment at the moment');

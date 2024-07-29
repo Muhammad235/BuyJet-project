@@ -1,68 +1,159 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.eth-transaction {
-  text-align: left !important;
-  display: flex;
-}
-.eth-transaction span {
-  padding-left: 15px;
-}
-.table-body {
-  color: white;
-  font-size: 13px;
-}
-.table-head th {
-  font-size: 15px;
-}
-.table-body td {
-  font-size: 14px;
-}
-.history-section {
-  height: 100% !important;
-  width: 100% !important;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  img {
+    cursor: pointer;
+  }
+  .head-text {
+    text-align: center;
+  }
+  .sub-head-text {
+    text-align: center;
+    font-size: 12px;
+  }
+  .step-container {
+    width: 100%;
+    margin-top: 30px;
+    position: relative;
+  }
+  .search-input input {
+    background: transparent;
+    border: 1px solid #ffffffb2 !important;
+    padding-left: 50px;
+  }
+  .search-input input:focus {
+    background: transparent;
+    border: 1px solid #ffffffb2 !important;
+    padding-left: 50px;
+    color: white;
+    box-shadow: none;
+  }
+  .fa-search {
+    color: #ffffffb2;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+  }
+  ::placeholder {
+    color: #ffffffb2 !important;
+  }
+  .search-input {
+    margin-top: 20px !important;
+    position: relative;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+  #next {
+    cursor: pointer;
+  }
 
-@media screen and (max-width: 576px) {
-  /* Table responsiveness */
-  .table thead {
+  .step-container .steps {
+    display: flex;
+    width: 95%;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin: auto;
+  }
+  .step-container .progress-bar {
+    width: 100% !important;
+    background: transparent;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+  .steps .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    color: black;
+    font-size: 15px;
+    margin: 20px 20px 0 20px;
+    font-weight: 500;
+    border-radius: 50%;
+    background: #918f8f;
+  }
+  .progress-bar .indicator {
+    height: 10px;
+    width: 100%;
+    color: black;
+    background: #918f8f;
+  }
+  .steps .active {
+    background: white !important;
+    color: black !important;
+    transition: 1s linear;
+  }
+  .progress-bar .active {
+    background: white !important;
+    transition: .5s linear;
+  }
+  .indicator_1 {
     display: none !important;
   }
-  .table,
-  .table tbody,
-  .table tr,
-  .table td {
-    display: block !important;
-    width: 100% !important;
+  .indicator_2 {
+    position: absolute;
+    top: 33%;
+    left: 12%;
+    width: 34% !important;
+    /* z-index: -1; */
   }
-  .tr {
-    font-size: 13px !important;
-    text-align: left !important;
-    color: #ffffff80 !important;
+  .indicator_3 {
+    position: absolute;
+    top: 33%;
+    right: 17%;
+    width: 35% !important;
+    z-index: -1;
   }
-  .table-section {
-    padding: 0 !important;
+  .flow-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
   }
-  .table tr {
-    margin-top: 7px !important;
-    background: #363a4545 !important;
-    border-radius: 10px !important;
-    position: relative !important;
-    line-height: 5px !important;
-    padding: 0px !important;
-    width: 100% !important;
+  .flow-buttons button {
+    width: 200px !important;
   }
-  .data-date {
-    text-align: right !important;
-    position: absolute !important;
-    top: calc(50% + 10px) !important;
+  .circle_2,
+  .circle_3 {
+    margin-left: 30px !important;
   }
-  .data-amount {
-    text-align: right !important;
-    position: absolute !important;
-    top: 10px !important;
+  .transfer-coin-card {
+    z-index: 9999 !important;
   }
-  /* Table responsiveness */
-}
+  button:focus {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .steppers img{
+    width: 100%;
+    margin: 20px 0;
+  }
+  .stepper img{
+    width: 100%;
+    margin: 20px 0;
+  }
+  .dashboard-body{
+    height: 100vh !important;
+  }
+
+  @media screen and (max-width: 576px) {
+    .flow-buttons {
+      margin-top: 30px;
+      display: block;
+      justify-content: space-evenly;
+      width: 100% !important;
+    }
+    .flow-buttons button {
+      width: 100% !important;
+    }
+    .order-button,
+    .complete-button{
+      margin-top: 10px !important;
+    }
+  }

@@ -10,16 +10,28 @@
 
         <div class="my-3">
             <div class="row justify-content-center">
-                <div class="col-md-6 gif col-10">
-                    <h2 class="text-center">Transaction Completed</h2>
-
-                    <div class="gif-image">
-                        <img src="{{ asset('assets/images/gif.webp') }}" alt="">
+                <div class="col-md-6 transfer-coin-card col-11">
+                    <div class="transfer-coin-inner-card">
+                        <p>Buy Order #{{ $reference }} NGN {{ $amount }} </p>
+                    </div>
+                    <div class="step-container">
+                        <div class="steppers">
+                            <img src="{{ asset('assets/images/bit-flow.png') }}" alt="">
+                        </div>
+                        <div class="stepper" style="display: none;">
+                            <img src="{{ asset('assets/images/bit-flows.png') }}" alt="">
+                        </div>
                     </div>
 
-                    <div class="gif-button">
-                        <a href="{{ route('dashboard') }}"><button class="btn btn-secondary">Back to Dashboard</button></a>
-                        <a href="{{ route('dashboard') }}"><button class="btn btn-primary">View Order Details</button></a>
+                    <div class="flow-buttons">
+                        <a href="{{ route('dashboard') }}"><button class="btn btn-secondary"><small>Back to
+                                    Dashboard</small></button></a>
+
+                        <button class="btn btn-primary order-button"><small>Complete
+                                Order</small></button>
+
+                        <a href="{{ route('transactions.all') }}"><button class="btn btn-primary complete-button"
+                                style="display: none;"><small>View Order Details</small></button></a>
                     </div>
                 </div>
             </div>

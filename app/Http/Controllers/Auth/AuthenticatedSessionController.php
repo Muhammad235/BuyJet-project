@@ -26,13 +26,11 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
 
-        // dd($request);
-
         $request->validated();
 
         // Validate the request
         $credentials = $request->only('email', 'password');
-    
+
         // Attempt to authenticate the user
         if (!Auth::attempt($credentials)) {
             toastr()->error('Incorrect email or password');
@@ -41,9 +39,9 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
         $userRole = $user->role;
-    
+
         // If successful, redirect to the intended location
-        toastr()->success('Login successful');
+        toastr()->success("Welcome {$user->firstname}");
 
         // Redirect based on the user's role
         if ($userRole === Status::ADMIN) {
@@ -53,7 +51,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended('dashboard');
         }
     }
-    
+
     /**
      * Destroy an authenticated session.
      */

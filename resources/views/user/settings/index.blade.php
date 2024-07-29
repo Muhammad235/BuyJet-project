@@ -66,8 +66,7 @@
                         <div class="input-button">
                             {{-- <input type="submit" class="btn btn-secondary submit-button" value="Deactivate Profile"> --}}
                             <input type="submit" class="btn btn-primary submit-button" value="Update Profile">
-                            <a href="{{ route('logout') }}"><input type="submit"
-                                    class="btn btn-danger submit-button d-block d-md-none" value="Log Out"></a>
+                            <a href="{{ route('logout') }}" class="btn btn-danger text-white submit-button d-block d-md-none">Log out</a>
                         </div>
 
                     </div>
@@ -76,7 +75,7 @@
         </div>
     </section>
 
-    <script>    
+    <script>
         const pencilIcon = document.querySelector(".pencil-icon");
         const pencilIconInput = document.querySelector(".pencil-icon-input");
         const profileImage = document.getElementById("profileImage");
