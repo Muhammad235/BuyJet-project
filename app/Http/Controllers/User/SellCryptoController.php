@@ -140,7 +140,7 @@ class SellCryptoController extends Controller
         try {
 
             $sellorder = SellOrder::where('trx_hash', $trx_hash)->first();
-            $fileName = $this->uploadImage($request, 'payment_proof', 'storage/payment_receipt');
+            $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
 
             if($sellorder->status == Status::PENDIDNG){
                 $sellorder->update([

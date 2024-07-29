@@ -122,7 +122,7 @@ class BuyCryptoController extends Controller
             $reference = $buyorder->trx_hash;
             $general_settings = GeneralSetting::first();
 
-            $fileName = $this->uploadImage($request, 'payment_proof', 'storage/payment_receipt');
+            $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
 
             if($buyorder->status == Status::PENDIDNG){
                 $buyorder->update([

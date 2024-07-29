@@ -14,7 +14,7 @@ class TicketController extends Controller
 
     use GenerateTrxHash;
     use FileUploadTrait;
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -44,7 +44,7 @@ class TicketController extends Controller
 
         $requestData['ticket_id'] = rand(1000, 1000001);
 
-        $attachment = $this->uploadImage($request, 'attachment', '/storage/ticket_attachment');
+        $attachment = $this->uploadImage($request, 'attachment', '/upload/ticket_attachment');
         $requestData['attachment'] = $attachment;
 
         $user->tickets()->create($requestData);

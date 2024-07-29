@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                         
+
                             <h4 class="card-title mb-3">Manage Cryptocurrency</h4>
 
                             @if ($errors->any())
@@ -30,10 +30,10 @@
                                     Swal.fire({
                                     title: "Done",
                                     text: "{{ session('success') }}",
-                                    icon: "success", 
+                                    icon: "success",
                                     });
                                 </script>
-                            @endif 
+                            @endif
                             <div class="tab-content crypto-buy-sell-nav-content p-4">
                                 <div class="card">
                                     <div class="card-body">
@@ -58,7 +58,7 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                        
+
                                                 <tbody>
                                                     @if (count($crypto) > 0)
                                                         @foreach ($crypto->reverse() as $key => $coin)
@@ -66,9 +66,9 @@
                                                                 <td>{{ $key+1 }}</td>
                                                                 <td>{{ $coin->name }}</td>
                                                                 <td>
-                                                                    <img src="{{ asset('storage/crypto/' . $coin->symbol) }}" alt="" class="avatar-xs rounded-circle">
+                                                                    <img src="{{ asset('upload/crypto/' . $coin->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                                 </td>
-                                                               
+
                                                                 <td>
                                                                     @if ($coin->status == 1)
                                                                         <span class="badge badge-soft-success font-size-11">Active</span>
@@ -92,7 +92,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        
+
                                         <!-- end table-responsive -->
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
@@ -140,7 +140,7 @@
                                     <div class="col-3 align-self-end">
                                         <input type="button" class="delete-btn btn btn-danger" value="Delete"/>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -148,7 +148,7 @@
                         <div class="mb-3">
                             <input type="button" id="addBtn" class="add-btn btn btn-success" value="Add"/>
                         </div>
-                        
+
 
                         <div class="mb-3">
                             <label>Charge (In Dollars):</label>
@@ -238,8 +238,8 @@
     </div>
 
 
-    
-    
+
+
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -249,7 +249,7 @@
             </div>
         </div>
     </footer>
-</div> 
+</div>
 
 @endsection
 
@@ -260,7 +260,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-    
+
         const addBtn = document.getElementById('addBtn');
         const repeaterList = document.getElementById('repeater-list');
 

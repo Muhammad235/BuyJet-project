@@ -108,15 +108,6 @@
 											</div>
 										</div>
 
-										@php
-											if ($transaction->status == 1) {
-												$status = 'pending-div';
-											}elseif ($transaction->status == 2) {
-												$status = 'pending-div';
-											}elseif ($transaction->status == 3) {
-												$status = 'pending-div';
-											}
-										@endphp
 
 										<div class="transac-status">
 											<p>{{  number_format($transaction->amount, 2) }}</p>

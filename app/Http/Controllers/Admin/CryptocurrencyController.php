@@ -16,7 +16,7 @@ class CryptocurrencyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() 
+    public function index()
     {
         $crypto = Cryptocurrency::all();
         return view('admin.manage.crypto', compact('crypto'));
@@ -39,7 +39,7 @@ class CryptocurrencyController extends Controller
             ];
         }
 
-        $symbolFileName = $this->uploadImage($request, 'symbol', '/storage/crypto');
+        $symbolFileName = $this->uploadImage($request, 'symbol', '/upload/crypto');
 
         $crypto = Cryptocurrency::create([
             'name' => $request->name,
@@ -55,7 +55,7 @@ class CryptocurrencyController extends Controller
         }else{
             return redirect()->back();
         }
-        
+
     }
 
     /**
@@ -75,25 +75,25 @@ class CryptocurrencyController extends Controller
 
         $request->validated();
 
-        $uploadSymbol = $this->uploadImage($request, 'symbol', '/storage/crypto');
+        $uploadSymbol = $this->uploadImage($request, 'symbol', '/upload/crypto');
 
         $symbolFileName = isset($uploadSymbol) ? $uploadSymbol : $crypto->symbol;
 
         // Remove the old image if a new one has been uploaded
         if (isset($uploadSymbol)) {
-            $this->removeImage("storage/crypto/$crypto->symbol");
+            $this->removeImage("upload/crypto/$crypto->symbol");
         }
 
         if ($request->has('assetname') && $request->has('assetaddress')) {
             $assets = [];
-        
+
             foreach ($request->assetname as $key => $name) {
                 $assets[] = [
                     'assetname' => $name,
                     'assetaddress' => $request->assetaddress[$key]
                 ];
             }
-        
+
             $crypto->update([
                 'name' => $request->name,
                 'wallet_address' => $request->wallet_address,
@@ -111,7 +111,7 @@ class CryptocurrencyController extends Controller
                 'charge' => $request->charge,
             ]);
         }
-        
+
         return redirect()->back()->with('success', 'Cryptocurrency updated');
     }
 

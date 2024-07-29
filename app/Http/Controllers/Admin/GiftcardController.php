@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 class GiftcardController extends Controller
 {
     use FileUploadTrait;
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -41,7 +41,7 @@ class GiftcardController extends Controller
             'symbol' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
         ]);
 
-        $symbolFileName = $this->uploadImage($request, 'symbol', '/storage/giftcard');
+        $symbolFileName = $this->uploadImage($request, 'symbol', '/upload/giftcard');
 
         $giftcard = GiftCard::create([
             'name' => $request->name,

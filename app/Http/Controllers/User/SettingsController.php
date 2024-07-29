@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class SettingsController extends Controller
 {
     use FileUploadTrait;
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -37,7 +37,7 @@ class SettingsController extends Controller
 
         $user = auth()->user();
 
-        $data['avatar'] = $this->uploadImage($request, 'avatar', '/storage/avatar');
+        $data['avatar'] = $this->uploadImage($request, 'avatar', '/upload/avatar');
         $user->update($data);
 
         toastr()->success('Details updated successfully');

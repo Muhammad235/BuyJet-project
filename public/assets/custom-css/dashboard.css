@@ -896,48 +896,31 @@
     font-size: 12px;
     color: #ffffff80;
   }
-  .pending-div {
+  .transac-status {
     line-height: 5px;
   }
-  .pending-div p {
+  .transac-status p {
     font-size: 14px;
     text-align: right;
     padding-right: 5px;
   }
-  .pending-div span {
+  .transac-status span {
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 100px;
+  }
+  .status-spending {
     background: #31353f;
-    font-size: 11px;
-    padding: 2px 10px;
-    border-radius: 100px;
   }
-  .failed-div {
-    line-height: 5px;
-  }
-  .failed-div p {
-    font-size: 14px;
-    text-align: right;
-    padding-right: 5px;
-  }
-  .failed-div span {
-    background: #e4050580;
-    font-size: 11px;
-    padding: 2px 10px;
-    border-radius: 100px;
-  }
-  .success-div {
-    line-height: 5px;
-  }
-  .success-div p {
-    font-size: 14px;
-    text-align: right;
-    padding-right: 5px;
-  }
-  .success-div span {
+
+  .status-success {
     background: #3a6ff8;
-    font-size: 11px;
-    padding: 2px 10px;
-    border-radius: 100px;
   }
+
+  .status-failed {
+    background: #e4050580;
+  }
+
   .rate-box {
     height: 15vh;
     border: 1px solid white;
