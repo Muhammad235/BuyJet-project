@@ -4,12 +4,14 @@ namespace App\Http\Controllers\User;
 
 use App\Enums\Status;
 use App\Models\SellOrder;
+use App\Mail\SellOrderMail;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
 use App\Models\GeneralSetting;
 use App\Traits\FileUploadTrait;
 use App\Traits\GenerateTrxHash;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\User\SellCryptoRequest;
 
 class SellCryptoController extends Controller
@@ -50,18 +52,14 @@ class SellCryptoController extends Controller
      */
     public function store(SellCryptoRequest $request)
     {
-        // dd($request);
-
         $request->validated();
         $user = auth()->user();
 
         $general_setings = GeneralSetting::first();
         $crypto = Cryptocurrency::findorFail($request->cryptocurrency_id);
         $amount = floatval($request->amount);
-        $sell_rate = floatval($general_setings->buy_rate);
+        $sell_rate = floatval($general_setings->sell_rate);
         $cryptoAmountInNaira = floatval($crypto->charge * $sell_rate) + floatval($amount * $sell_rate);
-
-        // dd($cryptoAmountInNaira);
 
         try {
             $order = SellOrder::create([
@@ -71,6 +69,8 @@ class SellCryptoController extends Controller
                 'asset_network' => $request->asset_network,
                 'amount' => $cryptoAmountInNaira,
             ]);
+
+            Mail::to($order->user->email)->send(new SellOrderMail($order, $sell_rate));
 
             return redirect()->route('sell.confirm', $order->trx_hash);
 

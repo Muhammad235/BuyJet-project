@@ -16,9 +16,10 @@ class SellOrderMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(private $order, private $sell_rate)
     {
-        //
+        $this->order = $order;
+        $this->buy_rate = $sell_rate;
     }
 
     /**
@@ -38,6 +39,14 @@ class SellOrderMail extends Mailable
     {
         return new Content(
             markdown: 'mail.sell-order-mail',
+            with: [
+                'firstname' => $this->order->user->firstname,
+                'amount' => $this->order->amount,
+                'reference' => $this->order->trx_hash,
+                'cryptoAmount' => $this->order->amount / $this->sell_rate,
+                'cryptocurrency' => $this->order->cryptocurrency->name,
+                'date_of_order' => $this->order->created_at
+            ],
         );
     }
 

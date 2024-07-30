@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\GeneralSetting;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +17,10 @@ class BuyOrderMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(private $order)
+    public function __construct(private $order, private $buy_rate)
     {
         $this->order = $order;
+        $this->buy_rate = $buy_rate;
     }
 
     /**
@@ -36,14 +38,16 @@ class BuyOrderMail extends Mailable
      */
     public function content(): Content
     {
+
         return new Content(
             markdown: 'mail.buy-order-mail',
             with: [
                 'firstname' => $this->order->user->firstname,
                 'amount' => $this->order->amount,
                 'reference' => $this->order->trx_hash,
-                'cryptoAmount' => $this->order->amoumt,
+                'cryptoAmount' => $this->order->amount / $this->buy_rate,
                 'cryptocurrency' => $this->order->cryptocurrency->name,
+                'date_of_order' => $this->order->created_at
             ],
         );
     }

@@ -1,6 +1,6 @@
 <x-mail::message>
 
-# Thank you for your order 
+# Thank you for your order
 <p class="center">We've received your order and here is a summary of your order</p>
 
 <hr>
@@ -9,17 +9,17 @@
 
 ### Reference: #{{ $reference }}
 
-### Transaction type: 
+### Transaction type:
 Buy crpyto
 
 ### Cryptocurrency:
-{{ $cryptocurrency }} 
+{{ $cryptocurrency }}
 
 ### Crypto amount
 ${{ $cryptoAmount }}
 
 ### Date of order:
-5th July 2022
+{{ $date_of_order->format('F d, Y') }}
 
 <hr>
 

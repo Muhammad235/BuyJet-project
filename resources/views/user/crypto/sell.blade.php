@@ -13,7 +13,7 @@
                 <div class="col-md-7 buy-coin-card col-11">
                     <div class="buy-coin-inner-card">
                         <div class="buy-coin-price">
-                            Sellig {{ @$cryptocurrency->name }} at {{ $general_setings->buy_rate }}/$
+                            Sellig {{ @$cryptocurrency->name }} at {{ $general_setings->sell_rate }}/$
                         </div>
                         <div class="coin-container">
                             <form method="POST" action="{{ route('sell.store') }}"  enctype="multipart/form-data">
@@ -185,7 +185,7 @@
                 }else{
                     $('.minmum-usd').addClass('d-none')
 
-                    const amountInNaira = cryptoValue * buyRate;
+                    const amountInNaira = cryptoValue * sellRate;
                     document.getElementById("amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
 
                     const chargeValue = parseFloat(document.getElementById("charge-value").value);
@@ -226,7 +226,7 @@
                 // Parse the assets JSON string into an array
                 const assetArray = JSON.parse(selectedCryptoObj.assets);
 
-                const selectedCryptoCharge = selectedCryptoObj.charge * buyRate;
+                const selectedCryptoCharge = selectedCryptoObj.charge * sellRate;
 
                 document.getElementById('charge').innerText = "NGN " + selectedCryptoCharge;
                 document.getElementById('charge-value').value = selectedCryptoCharge;
