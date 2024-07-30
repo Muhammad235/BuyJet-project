@@ -182,13 +182,10 @@
                 <div class="step_2 pb-5" style="display: none;">
                     <div class="gift-section">
                         <div class="col-md-5 btn-continue col-12">
-                            <!-- <div class="giftcard-upload shadow">
-                                <img src="image/gift-image.png" alt="">
-                            </div> -->
                             <div class="drop-section shadow">
                                 <div class="col">
                                     <div class="cloud-icon">
-                                        <img src="image/gift-image.png" alt="cloud" class="file-selector">
+                                        <img src="{{ asset('assets/images/gift-image.png') }}" alt="cloud" class="file-selector">
                                         <input type="file" class="file-selector-input" multiple hidden>
                                     </div>
                                 </div>

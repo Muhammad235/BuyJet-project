@@ -11,6 +11,7 @@ use App\Http\Controllers\User\SellGiftCardController;
 
 
 
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 

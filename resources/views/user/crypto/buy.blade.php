@@ -52,7 +52,7 @@
 										<span class="input-group-text">USD</span>
 									</div>
                                 </div>
-                                <div class="amount mt-5">
+                                <div class="amount mt-3">
 
                                 <div class="charges">
                                     <p class="text-secondary"><i>Amount</i></p>
@@ -62,7 +62,7 @@
                                     <p class="text-secondary"><i>Charges</i></p>
                                     <p class="text-secondary" id="charge"><i>0</i></p>
                                 </div>
-                                <input type="text" hidden name="" id="charge-value" value="">
+                                <input type="text" hidden name="" id="charge-value" value="{{ $cryptocurrency->charge }}">
                             </div>
                                 <div class="total">
                                     <p>Total</p>
@@ -152,9 +152,10 @@
                     const amountInNaira = cryptoValue * buyRate;
                     document.getElementById("amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
 
-                    const chargeValue = parseFloat(document.getElementById("charge-value").value);
+                    const chargeValue = document.getElementById("charge-value").value;
 
-                    const Total = chargeValue + parseFloat(amountInNaira);
+                    const Total = parseFloat(chargeValue) + parseFloat(amountInNaira);
+
                     document.getElementById("sub-amount").innerText = "NGN " + parseFloat(Total).toFixed(3);
                 }
 

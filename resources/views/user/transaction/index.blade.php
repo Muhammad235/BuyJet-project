@@ -30,11 +30,11 @@
 									<div class="table-section-row">
 										<div class="table-section-wrapper">
 											<img src="{{ asset('assets/images/btc.png') }}" style="width: 50px;" alt="">
-											
+
                                             {{-- <img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt=""> --}}
 											<div class="date-wrap">
 												<p>{{ $transaction->cryptocurrency->name }}</p>
-												<span>February 21, 2021</span>
+												<span>{{ $transaction->created_at->format('F d, Y') }}</span>
 											</div>
 										</div>
 
@@ -49,12 +49,12 @@
 										@endphp
 
 										<div class="transac-status">
-											<p>{{  number_format($transaction->amount, 2) }}</p>
+											<p>₦ {{ number_format($transaction->amount, 2) }}</p>
 
 											@if ($transaction->status == 1)
 												<span class="status-success">Success</span>
 												@elseif ($transaction->status == 2)
-												<span class="status-spending">Pening</span>
+												<span class="status-spending">Processing</span>
 												@elseif ($transaction->status == 3)
 												<span class="status-failed">Failed</span>
 											@endif

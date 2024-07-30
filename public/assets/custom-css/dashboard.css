@@ -365,7 +365,7 @@
   .charges {
     display: flex;
     justify-content: space-between;
-    margin-top: 50px !important;
+    margin-top: 30px !important;
   }
   .total span {
     font-size: 12px;
@@ -1412,7 +1412,7 @@
       height: 4vh;
     }
     .charges {
-      margin-top: 50px !important;
+      margin-top: 10px !important;
     }
     .transfer-coin-inner-card p {
       font-size: 14px;

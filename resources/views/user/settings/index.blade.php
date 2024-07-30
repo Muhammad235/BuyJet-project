@@ -34,7 +34,7 @@
                 @csrf
                 <div class="profile-update">
                     <div class="profile-image">
-                        <img id="profileImage" src="{{ asset('assets/images/image.png') }}"  alt="profile image" width="150px">
+                        <img id="profileImage" src="{{  asset(auth()->user()->avatar) ?? asset('upload/avatar/default-avatar.png') }}" class="bg-danger"  alt="profile image" width="150px">
                         <button type="button" class="pencil-icon btn btn-primary" data-bs-toggle="tooltip"
                             data-bs-placement="right" title="click to upload profile image">
                             <i class="fa fa-pencil"></i>

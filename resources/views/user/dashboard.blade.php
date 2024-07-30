@@ -104,18 +104,19 @@
 											<img src="{{ asset('assets/images/btc.png') }}" style="width: 50px;" alt="">
 											<div class="date-wrap">
 												<p>{{ $transaction->cryptocurrency->name }}</p>
-												<span>February 21, 2021</span>
+
+												<span>{{ $transaction->created_at->format('F d, Y') }}</span>
 											</div>
 										</div>
 
 
 										<div class="transac-status">
-											<p>{{  number_format($transaction->amount, 2) }}</p>
+											<p>₦ {{ number_format($transaction->amount, 2) }}</p>
 
 											@if ($transaction->status == 1)
 												<span class="status-success">Success</span>
 												@elseif ($transaction->status == 2)
-												<span class="status-spending">Pending</span>
+												<span class="status-spending">Processing</span>
 												@elseif ($transaction->status == 3)
 												<span class="status-failed">Failed</span>
 											@endif

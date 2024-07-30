@@ -12,7 +12,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 transfer-coin-card col-11">
                     <div class="transfer-coin-inner-card">
-                        <p>Buy Order #{{ $reference }} NGN {{ $amount }} </p>
+                        <p>Order #{{ $reference }} NGN {{ number_format($amount, 2) }} </p>
                     </div>
                     <div class="step-container">
                         <div class="steppers">
@@ -27,8 +27,9 @@
                         <a href="{{ route('dashboard') }}"><button class="btn btn-secondary"><small>Back to
                                     Dashboard</small></button></a>
 
-                        <button class="btn btn-primary order-button"><small>Complete
-                                Order</small></button>
+                        <a href="{{ route('transactions.all') }}">
+                            <button class="btn btn-primary order-button"><small>View Order Details</small></button>
+                        </a>
 
                         <a href="{{ route('transactions.all') }}"><button class="btn btn-primary complete-button"
                                 style="display: none;"><small>View Order Details</small></button></a>

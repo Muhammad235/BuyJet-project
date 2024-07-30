@@ -8,10 +8,10 @@
 		<!-- TOP NAVBAR -->
         <x-top-navbar :user="$user" />
 
-		<div class="my-3"> 
+		<div class="my-3">
             <div class="row justify-content-center">
                 <div class="col-md-7 buy-coin-card col-11">
-                    <div class="buy-coin-inner-card"> 
+                    <div class="buy-coin-inner-card">
                         <div class="buy-coin-price">
                             Sellig {{ @$cryptocurrency->name }} at {{ $general_setings->buy_rate }}/$
                         </div>
@@ -100,13 +100,13 @@
                                     <p class="text-secondary"><i>Charges</i></p>
                                     <p class="text-secondary" id="charge"><i>0</i></p>
                                 </div>
-                                <input type="text" hidden name="" id="charge-value" value="">
+                                <input type="text" hidden name="" id="charge-value" value="{{ $cryptocurrency->charge }}">
                             </div>
                                 <div class="total">
                                     <p>Total</p>
                                     <p id="sub-amount">0</p>
                                 </div>
-           
+
                                 {{-- <button type="button" class="btn btn-primary form-control"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Sell
@@ -130,9 +130,9 @@
                                             <div class="paragraph">
                                                 <p>Please note that due to price fluctuations, there may be a slight difference between the
                                                     amount you receive and the estimated amount.</p>
-                                
+
                                                 <p>Screenshot is compulsory and only Screenshots from payment app is accepted..</p>
-                                
+
                                                 <p>Opening orders without making payment is not allowed.
                                                     Failure to comply with the above stated terms leads to limitation on your {{ config('app.name') }} account and
                                                     total loss of paid amount.</p>
@@ -156,12 +156,12 @@
                 </div>
             </div>
         </div>
-        
+
 	</section>
 
 
     @push('script')
-        
+
     <script>
 
         const Rate = document.getElementById("rates-value");
@@ -180,7 +180,7 @@
             if (!isNaN(cryptoValue)) {
 
                 if (cryptoValue < 2) {
-                    
+
                     $('.minmum-usd').removeClass('d-none')
                 }else{
                     $('.minmum-usd').addClass('d-none')
@@ -221,7 +221,7 @@
             // Clear existing options
             assetList.innerHTML = "<option value='' selected disabled>Select Asset Network</option>";
 
-            
+
             if (selectedCryptoObj && selectedCryptoObj.assets !== null) {
                 // Parse the assets JSON string into an array
                 const assetArray = JSON.parse(selectedCryptoObj.assets);
