@@ -1,6 +1,6 @@
 <x-app-layout>
 
-	@section('title', 'Payment successful')
+	@section('title', 'Change passowrd')
 
 	@section('content')
     <!-- CONTENT -->
@@ -8,7 +8,7 @@
 		<!-- TOP NAVBAR -->
         <x-top-navbar :user="$user" />
 
-        <main class="settings-body">
+        <div class="settings-body">
             <h5>Update Profile</h5>
 
             <div class="nav-bar">
@@ -17,12 +17,12 @@
                         <p class="text-primary">Edit Profile</p>
                     </a>
                 </div>
-                <div class="nav-bar-nav-active">
+                <div class="nav-bar-nav">
                     <a href="{{ route('settings.bank_info') }}">
                         <p class="text-white">Bank Information</p>
                     </a>
                 </div>
-                <div class="nav-bar-nav">
+                <div class="nav-bar-nav-active">
                     <a href="{{ route('settings.change_password') }}">
                         <p class="text-white">Change Password</p>
                     </a>
@@ -31,31 +31,29 @@
 
             <div class="profile-update">
                 <div class="update-input">
-                    <form action="{{ route('settings.update') }}" method="post">
-                        @method('patch')
-						@csrf
+                    <form action="{{ route('password.update') }}" method="post">
+                        @method('PUT')
+                        @csrf
                         <div class="update-input-email">
-                            <label for="">Account Name</label>
-                            <input type="text" name="account_name" value="{{ $user->account_name }}" placeholder="Account Name" class="form-control">
+                            <label for="">Old Password</label>
+                            <input type="password" placeholder="Old password" name="current_password" class="form-control">
                         </div>
                         <div class="update-input-email">
-                            <label for="">Bank Name</label>
-                            <input type="text" name="bank_name" value="{{ $user->bank_name }}" placeholder="Bank Name" class="form-control">
+                            <label for="">New Password</label>
+                            <input type="password" placeholder="New password" name="password" value="{{ old('new_password', "new_password") }}" class="form-control">
                         </div>
-
                         <div class="update-input-email">
-                            <label for="">Account Number</label>
-                            <input type="text" name="account_number" value="{{ $user->account_number }}" placeholder="Account Number" class="form-control">
+                            <label for="">Confirm Password</label>
+                            <input type="password" placeholder="Confirm password" name="password_confirmation"  value="new_password" class="form-control">
                         </div>
 
                         <div class="input-button">
-                            {{-- <input type="submit" class="btn btn-secondary submit-button" value="Reset Information"> --}}
-                            <input type="submit" class="btn btn-primary submit-button" value="Update Bank Infornation">
+                            <input type="submit" class="btn btn-primary submit-button" value="Update Password">
                         </div>
                     </form>
                 </div>
             </div>
-        </main>
+        </div>
     </section>
 @endsection
 

@@ -75,7 +75,6 @@ class SellCryptoController extends Controller
             return redirect()->route('sell.confirm', $order->trx_hash);
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
             toastr()->error('An error occurred during the process');
             return back();
         }

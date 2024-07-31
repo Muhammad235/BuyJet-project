@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\NewPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\TicketController;
@@ -47,6 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('/', [SettingsController::class, 'update'])->name('settings.update');
         Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
         Route::get('/bank-info', [SettingsController::class, 'bankInfo'])->name('settings.bank_info');
+        Route::get('/change-password', [NewPasswordController::class, 'create'])->name('settings.change_password');
     });
 
 

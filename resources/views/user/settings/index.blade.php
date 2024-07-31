@@ -23,7 +23,7 @@
                     </a>
                 </div>
                 <div class="nav-bar-nav">
-                    <a href="">
+                    <a href="{{ route('settings.change_password') }}">
                         <p class="text-white">Change Password</p>
                     </a>
                 </div>
