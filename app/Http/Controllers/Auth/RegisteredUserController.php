@@ -38,6 +38,13 @@ class RegisteredUserController extends Controller
         // Check if the user already exists by email
         $checkUser = User::where('email', $userData['email'])->first();
 
+
+        // $identifier = session('identifier');
+
+        // if ($identifier) {
+        //     # code...
+        // }
+
         // If the user exists and their email is not verified
         if ($checkUser && !$checkUser->email_verified_at) {
             // Update the existing user data
@@ -68,7 +75,7 @@ class RegisteredUserController extends Controller
             // Fire the Registered event
             // event(new Registered($user));
 
-            // // Send OTP
+            // Send OTP
             // $sendOtp = $this->sendOtp($userData['email']);
 
             // if (!$sendOtp) {
@@ -91,7 +98,7 @@ class RegisteredUserController extends Controller
 
         if ($otp->status) {
             try {
-                Mail::to($identifier)->send(new SendOtpMail($otp->token));
+                Mail::to($identifier)->queue(new SendOtpMail($otp->token));
                 return true;
             } catch (\Exception $e) {
                 return false;

@@ -9,30 +9,30 @@ Route::get('/otp-mail', function(){
     echo $mail->render();
 })->name('mail');
 
-Route::get('/buy-mail', function(){
+// Route::get('/buy-mail', function(){
 
-    $order = [
-        'reference' => '334Td4',
-        'firstname' => 'John',
-        'amount' => 1000,
-        'cryptoAmount' => 20,
-        'cryptocurrency' => 'BitCoin'
-    ];
+//     $order = [
+//         'reference' => '334Td4',
+//         'firstname' => 'John',
+//         'amount' => 1000,
+//         'cryptoAmount' => 20,
+//         'cryptocurrency' => 'BitCoin'
+//     ];
 
-    $mail  = new BuyOrderMail($order);
-    echo $mail->render();
-})->name('mail');
+//     $mail  = new BuyOrderMail($order);
+//     echo $mail->render();
+// })->name('mail');
 
-Route::get('/sell-mail', function(){
+// Route::get('/sell-mail', function(){
 
-    $order = [
-        'reference' => '334Td4',
-        'firstname' => 'John',
-        'amount' => 1000,
-        'cryptoAmount' => 20,
-        'cryptocurrency' => 'BitCoin'
-    ];
+//     $order = [
+//         'reference' => '334Td4',
+//         'firstname' => 'John',
+//         'amount' => 1000,
+//         'cryptoAmount' => 20,
+//         'cryptocurrency' => 'BitCoin'
+//     ];
 
-    $mail  = new SellOrderMail($order);
-    echo $mail->render();
-})->name('mail');
+//     $mail  = new SellOrderMail($order);
+//     echo $mail->render();
+// })->name('mail');

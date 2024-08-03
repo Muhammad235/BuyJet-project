@@ -66,8 +66,7 @@ next_step_1.addEventListener("click", function () {
   steps.style.display = "block";
   stepss.style.display = "none";
 
-  // indicator_3.classList.add("active");
-  // circle_3.classList.add("active");
+
 });
 
 
@@ -77,7 +76,7 @@ const optionMenu = document.querySelector(".select-menu"),
        options = optionMenu.querySelectorAll(".option"),
        sBtn_text = optionMenu.querySelector(".sBtn-text");
 
-selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));       
+selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
 
 options.forEach(option =>{
     option.addEventListener("click", ()=>{
@@ -86,7 +85,7 @@ options.forEach(option =>{
 
         optionMenu.classList.remove("active");
     })
-}) 
+})
 
 // Dropdown for currency
 const optionMenu_currency = document.querySelector(".select-menu_currency"),
@@ -94,7 +93,7 @@ const optionMenu_currency = document.querySelector(".select-menu_currency"),
        options_currency = optionMenu_currency.querySelectorAll(".option_currency"),
        sBtn_text_currency = optionMenu_currency.querySelector(".sBtn-text_currency");
 
-selectBtn_currency.addEventListener("click", () => optionMenu_currency.classList.toggle("active"));       
+selectBtn_currency.addEventListener("click", () => optionMenu_currency.classList.toggle("active"));
 
 options_currency.forEach(option_currency =>{
     option_currency.addEventListener("click", ()=>{

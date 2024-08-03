@@ -24,14 +24,6 @@
                     <img src="{{ asset('assets/images/step3.png') }}" alt="">
                 </div>
 
-                <!-- <div class="steps">
-                    <span class="circle activ">1</span>
-                    <span class="circle circle_3">2</span>
-                </div>
-                <div class="progress-bar">
-                    <span class="indicator active indicator_1"></span>
-                    <span class="indicator indicator_3"></span>
-                </div> -->
             </div>
 
             <div class="step_wrap">
@@ -63,7 +55,7 @@
                                     @if (count($giftcards) > 0)
                                         @foreach ($giftcards as $giftcard)
                                             <div class="col-md-4 col-4">
-                                                <div class="option">
+                                                <div class="option giftcard-option" data-giftcardid={{ $giftcard->id }}>
                                                     <img src="{{ asset('assets/images/amazon.png') }}" alt="" class="shadow">
                                                     <h6 class="option-text">{{ $giftcard->name }}</h6>
                                                 </div>
@@ -99,11 +91,11 @@
                                 </form>
 
                                 <div class="pad">
-                                    <div class="row justify-content-center" id="product-list_currency">
+                                    <div class="row justify-content-center list_currency" id="product-list_currency">
                                         @if (count($currencies) > 0)
                                                 @foreach ($currencies as $currency)
                                                 <div class="col-md-4 col-4">
-                                                    <div class="option_currency">
+                                                    <div class="option_currency" data-currency={{ $currency->id }}>
                                                         <img src="{{ asset('assets/images/cad.png') }}" alt="" class="shadow">
                                                         <h5 class="option-text_currency">{{ $currency->name }}</h5>
                                                     </div>
@@ -174,7 +166,7 @@
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-5 col-12 contd">
                             <small>Estimated Value: <b>₦90,4000 @814/$</b></small>
-                            <button type="button" class="btn btn-next btnext">Continue</button>
+                            <button type="button" class="btn btn-next btnext" onclick="calculate()">Continue</button>
                         </div>
                     </div>
                 </div>
@@ -193,44 +185,17 @@
                                     <div class="drop-here">Drop Here</div>
                                 </div>
                             </div>
-                            <div class="list-section">
+                            {{-- <div class="list-section">
                                 <div class="list">
-                                    <!-- <li class="in-prog">
-                                            <div class="col">
-                                                <img src="icons/image.png" alt="">
-                                            </div>
-                                            <div class="col">
-                                                <div class="file-name">
-                                                    <div class="name">File Name Here</div>
-                                                </div>
-                                                <div class="file-size"></div>
-                                                <div class="containers">
-                                                    <div class="file-progress">
-                                                        <span class="team"></span>
-                                                    </div>
-                                                    <span class="span-number">0%</span>
-                                                </div>
-                                            </div>
-                                            <div class="close">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="cross" viewBox="0 -960 960 960"
-                                                    fill="#e8eaed">
-                                                    <path
-                                                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="tick" viewBox="0 -960 960 960"
-                                                    fill="#e8eaed">
-                                                    <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
-                                                </svg>
-                                            </div>
-                                        </li> -->
+
                                 </div>
-                            </div>
+                            </div> --}}
                             <div>
                                 <button type="button" class="btn btn-gift" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">Continue</button>
                             </div>
                         </div>
-                        <div class="col-md-5 btn-dashboard col-12" style="display: none;">
+                        {{-- <div class="col-md-5 btn-dashboard col-12" style="display: none;">
                             <div>
                                 <p>
                                     Confirmation takes approximately 5-30 minutes. <br> You will be notified as soon as
@@ -241,7 +206,9 @@
                                 <a href="{{ route('dashboard') }}"><button type="button" class="btn btn-gift">Back to
                                         dashboard</button></a>
                             </div>
-                        </div>
+                        </div> --}}
+
+
                         <div class="col-md-6 price-info shadow col-12">
                             <div class="row">
                                 <div class="col-md-4 col-5">
@@ -333,7 +300,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content error bg-white">
                     <div class="modal-body text-center">
-                        <img src="image/green.png" alt="" class="py-4">
+                        <img src="{{ asset('assets/images/green.png') }}" alt="" class="py-4">
                         <h4 class="py-2">GiftCard Confirmed</h4>
                         <p>Payout takes approximately 2 -5 minutes. <br> Payout will be disbursed to default account</p>
                     </div>
@@ -345,6 +312,29 @@
             </div>
         </div>
     </section>
-@endsection
 
+    @push('script')
+    <script>
+        $(document).ready(function() {
+            $(".giftcard-option").on("click", function() {
+                var giftCardId = $(this).data('giftcardid');
+                calculate(giftCardId);
+            });
+
+            $(".list_currency").on("click", function() {
+                var currency = $(this).data('currency');
+                currency(currency);
+            });
+        });
+
+        function calculate(giftCardId) {
+            console.log('Gift card ID:', giftCardId);
+        }
+
+        function currency(currency) {
+            console.log('Gift card ID:', currency);
+        }
+    </script>
+@endpush
+@endsection
 </x-app-layout>

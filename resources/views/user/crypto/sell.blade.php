@@ -46,7 +46,7 @@
                                             <span><small>Account Number</small></span>
                                             <div class="input-group mt-2">
                                                 <input placeholder="Account Number"
-                                                class="form-control eth-input" name="account_number" value="{{ old('account_number') }}">
+                                                class="form-control eth-input" name="account_number" value="{{ old('account_number', auth()->user()->account_number) }}">
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                             <span><small>Account Name</small></span>
                                             <div class="input-group mt-2">
                                                 <input type="text" placeholder="Account Name"
-                                                class="form-control eth-input" name="account_name" value="{{ old('account_name') }}">
+                                                class="form-control eth-input" name="account_name" value="{{ old('account_name',  auth()->user()->account_name) }}">
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                         <div class="coin-top">
                                             <span><small>Bank Name</small></span>
                                             <div class="input-group mt-2">
-                                                <input type="text" name="bank_name" placeholder="Bank Name" class="form-control eth-input">
+                                                <input type="text" name="bank_name" placeholder="Bank Name" value="{{ old('bank_name',  auth()->user()->bank_name) }}" class="form-control eth-input">
                                             </div>
                                         </div>
                                     </div>

@@ -3,12 +3,12 @@
 	@section('title', 'User Dashboard')
 
 	@section('content')
-
+{{-- 
     <style>
         a{
             color: #ffff;
         }
-    </style>
+    </style> --}}
 
 	<!-- CONTENT -->
 	<section id="content">
@@ -73,10 +73,10 @@
 						<p><small>Crypto <br> Exchange Rate</small></p>
 					</div>
 					<div class="sell-box col-md-12 col-6">
-						<p><small><span>Selling Rate</span> <br> ₦ {{ number_format($general_settings->sell_rate, 2) }}</small></p>
+						<p><small><span>Selling Rate</span> <br> ₦ {{ $general_settings->sell_rate }}</small></p>
 					</div>
 					<div class="buy-box col-md-12 col-6">
-						<p><small><span>Buying Rate</span> <br> ₦ {{ number_format($general_settings->buy_rate, 2) }}</small></p>
+						<p><small><span>Buying Rate</span> <br> ₦ {{ $general_settings->buy_rate }}</small></p>
 					</div>
 				</div>
 			</div>

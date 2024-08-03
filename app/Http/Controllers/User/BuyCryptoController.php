@@ -74,7 +74,7 @@ class BuyCryptoController extends Controller
             ]);
 
 
-            Mail::to($order->user->email)->send(new BuyOrderMail($order, $buy_rate));
+            Mail::to($order->user->email)->queue(new BuyOrderMail($order, $buy_rate));
 
             return redirect()->route('buy.confirm', $order->trx_hash);
 

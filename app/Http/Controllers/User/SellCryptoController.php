@@ -70,7 +70,7 @@ class SellCryptoController extends Controller
                 'amount' => $cryptoAmountInNaira,
             ]);
 
-            Mail::to($order->user->email)->send(new SellOrderMail($order, $sell_rate));
+            Mail::to($order->user->email)->queue(new SellOrderMail($order, $sell_rate));
 
             return redirect()->route('sell.confirm', $order->trx_hash);
 

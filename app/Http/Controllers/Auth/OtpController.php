@@ -13,6 +13,8 @@ class OtpController extends Controller
     /**
      * Verify OTP.
     */
+
+
     public function __invoke(Request $request)
     {
         $token = $request->input('otp1') . $request->input('otp2') . $request->input('otp3') . $request->input('otp4');
@@ -27,6 +29,9 @@ class OtpController extends Controller
             toastr()->success('Registration successful');
             return to_route('dashboard');
         }
+
+        toastr()->error("Invalid otp");
+        return view('auth.verify-otp');
     }
-    
+
 }
