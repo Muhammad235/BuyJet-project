@@ -3,6 +3,15 @@
 	@section('title', 'Sell Giftcard')
 
 	@section('content')
+    <style>
+        .div.toast-message{
+            background-color: red !important;
+        }
+        .div.toast.toast-succes{
+            background-color: red !important;
+            color: green !important;
+        }
+    </style>
     <!-- CONTENT -->
 	<section id="content">
 		<!-- TOP NAVBAR -->
@@ -15,16 +24,12 @@
             <p class="sub-head-text"><small>Select the card you will like to sell</small></p>
             <div class="step-container">
                 <div class="step">
-                    <img src="{{ asset('assets/images/step1.png') }}" alt="">
-                </div>
-                <div style="display: none;" class="steps">
-                    <img src="{{ asset('assets/images/step2.png') }}" alt="">
-                </div>
-                <div style="display: none;" class="stepss">
                     <img src="{{ asset('assets/images/step3.png') }}" alt="">
-                </div>
 
+                </div>
             </div>
+
+            {{-- <input type="text" id="" data-sellRate="{{ $general_settings->sell_rate }}" hidden> --}}
 
             <div class="step_wrap">
                 <div class="step_1">
@@ -91,11 +96,11 @@
                                 </form>
 
                                 <div class="pad">
-                                    <div class="row justify-content-center list_currency" id="product-list_currency">
+                                    <div class="row justify-content-center" id="product-list_currency">
                                         @if (count($currencies) > 0)
                                                 @foreach ($currencies as $currency)
                                                 <div class="col-md-4 col-4">
-                                                    <div class="option_currency" data-currency={{ $currency->id }}>
+                                                    <div class="option_currency list_currency" data-currency={{ $currency->id }}>
                                                         <img src="{{ asset('assets/images/cad.png') }}" alt="" class="shadow">
                                                         <h5 class="option-text_currency">{{ $currency->name }}</h5>
                                                     </div>
@@ -115,13 +120,13 @@
                             <div class="radio-input">
                                 <div class="form-check">
                                     <input class="radio" type="radio" name="is_physical_card" id="inlineRadio1"
-                                        value="option1">
+                                        value="1">
                                     <label class="form-check-label" for="inlineRadio1"><small>Physical
                                             Card</small></label>
                                 </div>
                                 <div class="form-check">
                                     <input class="radio" type="radio" name="is_physical_card" id="inlineRadio2"
-                                        value="option2">
+                                        value="0">
                                     <label class="form-check-label" for="inlineRadio2"><small>E-code</small></label>
                                 </div>
                             </div>
@@ -134,12 +139,12 @@
                             <div class="radio-input">
                                 <div class="form-check">
                                     <input class="radio" type="radio" name="with_receipt" id="inlineRadio3"
-                                        value="option3">
+                                        value="1">
                                     <label class="form-check-label" for="inlineRadio3"><small>No Receipt</small></label>
                                 </div>
                                 <div class="form-check">
                                     <input class="radio" type="radio" name="with_receipt" id="inlineRadio4"
-                                        value="option4">
+                                        value="0">
                                     <label class="form-check-label" for="inlineRadio4"><small>With
                                             Receipt</small></label>
                                 </div>
@@ -152,21 +157,21 @@
                             <small>Enter Card Value</small>
                             <div class="count">
                                 <div>
-                                    <input type="number" class="card-input" placeholder="Enter Value">
+                                    <input type="text" class="card-input" id="card-value" oninput="validateInput(this); showAmountInNaira();" placeholder="Enter Value">
                                 </div>
-                                <div class="counter">
+                                {{-- <div class="counter">
                                     <button id="decrement-btn">-</button>
                                     <div id="counter-value">0</div>
                                     <button id="increment-btn">+</button>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
 
                     <div class="row justify-content-center mt-5">
-                        <div class="col-md-5 col-12 contd">
-                            <small>Estimated Value: <b>₦90,4000 @814/$</b></small>
-                            <button type="button" class="btn btn-next btnext" onclick="calculate()">Continue</button>
+                        <div class="col-md-5 col-12 contd" id="rate" data-sellrate="{{ $general_settings->sell_rate }}">
+                            <small>Estimated Value: <b>₦<span id="estimated-amount" >0</span> @ {{ $general_settings->sell_rate }}/$</b></small>
+                            <button type="button" class="btn btn-next btnext" id="continue-btn">Continue</button>
                         </div>
                     </div>
                 </div>
@@ -185,11 +190,7 @@
                                     <div class="drop-here">Drop Here</div>
                                 </div>
                             </div>
-                            {{-- <div class="list-section">
-                                <div class="list">
 
-                                </div>
-                            </div> --}}
                             <div>
                                 <button type="button" class="btn btn-gift" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">Continue</button>
@@ -314,27 +315,98 @@
     </section>
 
     @push('script')
+
     <script>
+
+        function validateInput(input) {
+            // Remove any non-numeric characters and any multiple decimal points
+            input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        }
+
+        function showAmountInNaira() {
+            const rateElement = document.getElementById('rate');
+            const sellRate = parseFloat(rateElement.getAttribute('data-sellrate'));
+
+            const amountInput = document.getElementById('card-value');
+            const amountValue = parseFloat(amountInput.value);
+
+            const estimatedAmountElement = document.getElementById('estimated-amount');
+
+            if (!isNaN(sellRate) && !isNaN(amountValue)) {
+                const estimatedAmount = sellRate * amountValue;
+                estimatedAmountElement.textContent = estimatedAmount.toFixed(2); // Displaying the estimated value with two decimal places
+            } else {
+                estimatedAmountElement.textContent = '0';
+            }
+        }
+
+
         $(document).ready(function() {
+            var selectedCurrency;
+            var selectedGiftCardId;
+            var isPhysicalCard;
+            var selectedReceiptStatus;
+            var cardValue;
+
             $(".giftcard-option").on("click", function() {
-                var giftCardId = $(this).data('giftcardid');
-                calculate(giftCardId);
+                selectedGiftCardId = $(this).data('giftcardid');
             });
 
             $(".list_currency").on("click", function() {
-                var currency = $(this).data('currency');
-                currency(currency);
+                selectedCurrency = $(this).data('currency');
+            });
+
+            $('input[name="is_physical_card"]').on("change", function() {
+                isPhysicalCard = $(this).val();
+            });
+
+            $('input[name="with_receipt"]').on("change", function() {
+                selectedReceiptStatus = $(this).val();
+            });
+
+
+            $("#continue-btn").on("click", function() {
+                var cardInputValue = $(".card-input").val();
+                var data = {
+                    selectedCurrency: selectedCurrency,
+                    selectedGiftCardId: selectedGiftCardId,
+                    isPhysicalCard: isPhysicalCard,
+                    withReceipt: selectedReceiptStatus,
+                    cardValue: cardInputValue || cardValue
+                };
+                processCollectedData(data);
             });
         });
 
-        function calculate(giftCardId) {
-            console.log('Gift card ID:', giftCardId);
+        function processCollectedData(data) {
+            console.log('Collected Data:', data);
+            // Add your processing logic here
         }
 
-        function currency(currency) {
-            console.log('Gift card ID:', currency);
-        }
+
+
+
+        // toastr.info('Are you the 6 fingered man?')
+        //     toastr.error('Are you the 6 fingered man?')
+        //     toastr.success('success?')
+            // $("#increment-btn").on("click", function() {
+            //     var counterValue = parseInt($("#counter-value").text());
+            //     counterValue++;
+            //     $("#counter-value").text(counterValue);
+            //     cardValue = counterValue;
+            // });
+
+            // $("#decrement-btn").on("click", function() {
+            //     var counterValue = parseInt($("#counter-value").text());
+            //     if (counterValue > 0) {
+            //         counterValue--;
+            //         $("#counter-value").text(counterValue);
+            //         cardValue = counterValue;
+            //     }
+            // });
     </script>
+
 @endpush
+
 @endsection
 </x-app-layout>

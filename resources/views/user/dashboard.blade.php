@@ -3,7 +3,7 @@
 	@section('title', 'User Dashboard')
 
 	@section('content')
-{{-- 
+{{--
     <style>
         a{
             color: #ffff;
@@ -73,10 +73,10 @@
 						<p><small>Crypto <br> Exchange Rate</small></p>
 					</div>
 					<div class="sell-box col-md-12 col-6">
-						<p><small><span>Selling Rate</span> <br> ₦ {{ $general_settings->sell_rate }}</small></p>
+						<p><small><span>Selling Rate</span> <br> ₦{{ $general_settings->sell_rate }}</small></p>
 					</div>
 					<div class="buy-box col-md-12 col-6">
-						<p><small><span>Buying Rate</span> <br> ₦ {{ $general_settings->buy_rate }}</small></p>
+						<p><small><span>Buying Rate</span> <br> ₦{{ $general_settings->buy_rate }}</small></p>
 					</div>
 				</div>
 			</div>
@@ -290,6 +290,10 @@
 	@push('script')
 
     <script>
+
+toastr.info('Are you the 6 fingered man?')
+            toastr.error('Are you the 6 fingered man?')
+            toastr.success('success?')
 
 		const Rate = document.getElementById("rates-value");
 

@@ -17,11 +17,11 @@ class SellGiftCardController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $general_setings = GeneralSetting::first();
+        $general_settings = GeneralSetting::first();
         $giftcards = GiftCard::where('status', Status::ACTIVE)->get();
         $currencies = Currency::where('status', Status::ACTIVE)->get();
 
-        return view('user.giftcard.sell', compact('user', 'giftcards', 'currencies'));
+        return view('user.giftcard.sell', compact('user', 'giftcards', 'currencies', 'general_settings'));
     }
 
     /**

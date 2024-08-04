@@ -30,7 +30,7 @@
     text-decoration: none !important;
     color: #000 !important;
   }
-  .dashboard-body {
+  /* .dashboard-body {
     background: linear-gradient(
       187.45deg,
       #31353f 3.41%,
@@ -40,7 +40,7 @@
     overflow-x: hidden;
     color: white;
     padding-bottom: 50px !important;
-  }
+  } */
   .coin-section-row {
     justify-content: center;
   }
@@ -52,11 +52,11 @@
     padding: 20px 30px 0 30px !important;
     position: fixed;
   }
-  .main-body {
+  /* .main-body {
     color: #fff;
     padding: 0px 30px 0 30px !important;
     margin-left: auto;
-  }
+  } */
   .image-div {
     display: flex;
     align-items: center;
