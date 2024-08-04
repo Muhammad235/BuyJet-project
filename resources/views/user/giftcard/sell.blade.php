@@ -60,7 +60,7 @@
                                     @if (count($giftcards) > 0)
                                         @foreach ($giftcards as $giftcard)
                                             <div class="col-md-4 col-4">
-                                                <div class="option giftcard-option" data-giftcardid={{ $giftcard->id }}>
+                                                <div class="option giftcard-option" data-giftcardid={{ $giftcard->id }} data-giftcardname={{ $giftcard->name }}>
                                                     <img src="{{ asset('assets/images/amazon.png') }}" alt="" class="shadow">
                                                     <h6 class="option-text">{{ $giftcard->name }}</h6>
                                                 </div>
@@ -100,7 +100,7 @@
                                         @if (count($currencies) > 0)
                                                 @foreach ($currencies as $currency)
                                                 <div class="col-md-4 col-4">
-                                                    <div class="option_currency list_currency" data-currency={{ $currency->id }}>
+                                                    <div class="option_currency list_currency" data-currency={{ $currency->id }} data-currencyname={{ $currency->name }}>
                                                         <img src="{{ asset('assets/images/cad.png') }}" alt="" class="shadow">
                                                         <h5 class="option-text_currency">{{ $currency->name }}</h5>
                                                     </div>
@@ -342,18 +342,25 @@
 
 
         $(document).ready(function() {
-            var selectedCurrency;
+            var selectedCurrencyId;
+            var selectedCurrencyName;
             var selectedGiftCardId;
+            var selectedGiftCardName;
             var isPhysicalCard;
             var selectedReceiptStatus;
             var cardValue;
 
+            var test;
+
             $(".giftcard-option").on("click", function() {
                 selectedGiftCardId = $(this).data('giftcardid');
+                selectedGiftCardName = $(this).data('giftcardname');
             });
 
             $(".list_currency").on("click", function() {
-                selectedCurrency = $(this).data('currency');
+                selectedCurrencyId = $(this).data('currency');
+                selectedCurrencyName = $(this).data('currencyname');
+
             });
 
             $('input[name="is_physical_card"]').on("change", function() {
@@ -368,7 +375,7 @@
             $("#continue-btn").on("click", function() {
                 var cardInputValue = $(".card-input").val();
                 var data = {
-                    selectedCurrency: selectedCurrency,
+                    selectedCurrencyId: selectedCurrencyId,
                     selectedGiftCardId: selectedGiftCardId,
                     isPhysicalCard: isPhysicalCard,
                     withReceipt: selectedReceiptStatus,
@@ -380,6 +387,7 @@
 
         function processCollectedData(data) {
             console.log('Collected Data:', data);
+
             // Add your processing logic here
         }
 
