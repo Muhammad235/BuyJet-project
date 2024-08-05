@@ -3,15 +3,7 @@
 	@section('title', 'Sell Giftcard')
 
 	@section('content')
-    <style>
-        .div.toast-message{
-            background-color: red !important;
-        }
-        .div.toast.toast-succes{
-            background-color: red !important;
-            color: green !important;
-        }
-    </style>
+
     <!-- CONTENT -->
 	<section id="content">
 		<!-- TOP NAVBAR -->
@@ -171,7 +163,7 @@
 
                     <div class="row justify-content-center mt-4">
                         <div class="col-md-5 col-12 contd" id="rate" data-sellrate="{{ $general_settings->sell_rate }}">
-                            <small>Estimated Value: <b>₦<span id="estimated-amount" >0</span> @ {{ $general_settings->sell_rate }}/$</b></small>
+                            <small>Estimated Value: <b>₦<span id="estimated-amount" >0</span> @ {{ $general_settings->sell_rate }}/$</b></small> <br>
                             <button type="button" class="btn btn-next btnext" id="continue-btn">Continue</button>
                         </div>
                     </div>
@@ -181,22 +173,27 @@
                     <p class="text-center">Summary of the giftcard you are about to sell</p>
                     <div class="gift-section">
                         <div class="col-md-5 btn-continue col-12">
-                            <div class="drop-section shadow">
-                                <div class="col">
-                                    <div class="cloud-icon">
-                                        <img src="{{ asset('assets/images/gift-image.png') }}" alt="cloud" class="file-selector">
-                                        <input type="file" class="file-selector-input" multiple hidden>
+
+                            {{-- <form action="" method="post"> --}}
+                                <div class="drop-section shadow">
+                                    <div class="col">
+                                        <div class="cloud-icon">
+                                            <img src="{{ asset('assets/images/gift-image.png') }}" alt="cloud" class="file-selector">
+                                            <input type="file" name="payment_proof" class="file-selector-input" multiple hidden>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="drop-here">Drop Here</div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="drop-here">Drop Here</div>
-                                </div>
-                            </div>
 
-                            <div>
-                                <button type="button" class="btn btn-gift" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Continue</button>
-                            </div>
+                                <div>
+                                    {{-- <button type="button" class="btn btn-gift" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" id="btn-giftcard">Continue</button> --}}
+
+                                    <button type="submit" class="btn btn-gift" id="btn-giftcard">Continue</button>
+                                </div>
+                            {{-- </form> --}}
                         </div>
                         {{-- <div class="col-md-5 btn-dashboard col-12" style="display: none;">
                             <div>
@@ -320,6 +317,16 @@
 
     <script>
 
+        // Swal.fire({
+        //     text: "Here's a basic example of SweetAlert!",
+        //     icon: "error",
+        //     buttonsStyling: false,
+        //     confirmButtonText: "Ok, got it!",
+        //     customClass: {
+        //         confirmButton: "btn btn-primary"
+        //     }
+        // });
+
         function validateInput(input) {
             // Remove any non-numeric characters and multiple decimal points
             input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
@@ -354,6 +361,10 @@
 
 
         $(document).ready(function() {
+
+            const next_step_1 = document.querySelector(".btnext");
+            const next_step_2 = document.querySelector(".next_step_2");
+
             var selectedCurrencyId;
             var selectedCurrencyName;
             var selectedGiftCardId;
@@ -382,7 +393,7 @@
 
 
             $("#continue-btn").on("click", function() {
-                var cardInputValue = $(".card-input").val();
+                // var cardInputValue = $(".card-input").val();
                 var data = {
                     selectedCurrencyId: selectedCurrencyId,
                     selectedGiftCardId: selectedGiftCardId,
@@ -391,7 +402,32 @@
                     selectedCurrencyName: selectedCurrencyName,
                     selectedGiftCardName: selectedGiftCardName,
                 };
-                processCollectedData(data);
+
+                // Check if any of the data values are empty
+
+                // if (!data.selectedCurrencyId || !data.selectedGiftCardId || data.isPhysicalCard === undefined || data.withReceipt === undefined || !data.selectedCurrencyName || !data.selectedGiftCardName) {
+                //     Swal.fire({
+                //         text: "You must fill all data about your giftcard, before you proceed!",
+                //         icon: "error",
+                //         buttonsStyling: false,
+                //         confirmButtonText: "Ok",
+                //         customClass: {
+                //             confirmButton: "btn btn-primary"
+                //         }
+                //     });
+
+                // } else {
+
+                    next_step_1.addEventListener("click", function () {
+                      step_1.style.display = "none";
+                      step_2.style.display = "block";
+
+                      step.style.display = "none";
+                    });
+
+                    processCollectedData(data);
+                // }
+
             });
 
 
@@ -418,26 +454,70 @@
                 }
             }
 
+            var fileName;
+            var maxFileSize = 4 * 1024 * 1024; // 4MB in bytes
+
+            $('input[name="payment_proof"]').on('change', function(event) {
+                let files = event.target.files;
+                for (let i = 0; i < files.length; i++) {
+                    let file = files[i];
+                    if (!file.type.startsWith('image/')) {
+                            Swal.fire({
+                                text: 'File ' + file.name + ' is not an image!',
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "Upload again!",
+                                customClass: {
+                                    confirmButton: "btn btn-primary"
+                                }
+                            });
+                        return;
+                    }
+                    if (file.size > maxFileSize) {
+                        Swal.fire({
+                                text: 'File ' + file.name + ' exceeds the 4MB size limit.!',
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "Upload again!",
+                                customClass: {
+                                    confirmButton: "btn btn-primary"
+                                }
+                            });
+                        return;
+                    }
+                    fileName = file.name;
+                }
+            });
+
+
+            $('#btn-giftcard').on('click', function() {
+
+                var data = {
+                    selectedCurrencyId: selectedCurrencyId,
+                    selectedGiftCardId: selectedGiftCardId,
+                    isPhysicalCard: isPhysicalCard,
+                    withReceipt: selectedReceiptStatus,
+                    proof_payment: fileName,
+                    '_token': '{{ csrf_token() }}'
+                }
+
+                $.ajax({
+                    url: "{{ route('giftcard.store') }}",
+                    type: 'POST',
+                    data: data,
+                    success: function(response) {
+                        console.log('Success:', response);
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+
+            });
+
+
         });
 
-
-        //     toastr.error('Are you the 6 fingered man?')
-        //     toastr.success('success?')
-            // $("#increment-btn").on("click", function() {
-            //     var counterValue = parseInt($("#counter-value").text());
-            //     counterValue++;
-            //     $("#counter-value").text(counterValue);
-            //     cardValue = counterValue;
-            // });
-
-            // $("#decrement-btn").on("click", function() {
-            //     var counterValue = parseInt($("#counter-value").text());
-            //     if (counterValue > 0) {
-            //         counterValue--;
-            //         $("#counter-value").text(counterValue);
-            //         cardValue = counterValue;
-            //     }
-            // });
     </script>
 
 @endpush

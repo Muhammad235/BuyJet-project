@@ -37,7 +37,11 @@ class SellGiftCardController extends Controller
      */
     public function store(Request $request)
     {
-        return "post";
+
+        // $data = json_decode($request->data, true);
+        return response()->json([
+          'test' => $request->all(),
+        ]);
     }
 
     /**

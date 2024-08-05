@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('giftcard')->group(function() {
         Route::get('/',[SellGiftCardController::class, 'create'])->name('giftcard.create');
-        Route::post('/giftcard',[SellCryptoController::class, 'store'])->name('giftcard.store');
+        Route::post('/giftcard',[SellGiftCardController::class, 'store'])->name('giftcard.store');
         // Route::get('/{trx_hash}/confirm',[SellCryptoController::class, 'confirm'])->name('sell.confirm');
         // Route::put('/confirm/{trx_hash}',[SellCryptoController::class, 'update'])->name('sell.update');
     });

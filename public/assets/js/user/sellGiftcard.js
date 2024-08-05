@@ -5,8 +5,6 @@ const circle_3 = document.querySelector(".circle_3");
 const circle_1 = document.querySelector(".circle_1");
 const indicator_1 = document.querySelector(".indicator_1");
 const indicator_3 = document.querySelector(".indicator_3");
-const next_step_1 = document.querySelector(".btnext");
-const next_step_2 = document.querySelector(".next_step_2");
 const product_currency = document.querySelector(".options_currency");
 const select_currency = document.querySelector(".select-btn_currency");
 const chevron_currency = document.querySelector(".chevron_currency");
@@ -53,13 +51,6 @@ product.addEventListener("click", function () {
 select.addEventListener("click", function () {
   chevron.style.display = "block";
   check.style.display = "none";
-});
-
-next_step_1.addEventListener("click", function () {
-  step_1.style.display = "none";
-  step_2.style.display = "block";
-
-  step.style.display = "none";
 });
 
 
