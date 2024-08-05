@@ -332,10 +332,10 @@
             // const amountInput = document.getElementById('card-value');
             const amountValue = parseFloat(document.getElementById('card-value').value);
 
-            if (!isNaN(amountValue)) {
+            const amountExpected = $("#amountExpected");
+            const estimatedAmountElement = document.getElementById('estimated-amount');
 
-                const estimatedAmountElement = document.getElementById('estimated-amount');
-                const amountExpected = $("#amountExpected");
+            if (!isNaN(amountValue)) {
 
                 if (!isNaN(sellRate) && !isNaN(amountValue)) {
                     const amountInNaira = sellRate * amountValue;
@@ -346,10 +346,10 @@
                 } else {
                     estimatedAmountElement.textContent = '0';
                 }
+
+                return;
             }
-
             amountExpected.text("0");
-
         }
 
 
@@ -360,7 +360,6 @@
             var selectedGiftCardName;
             var isPhysicalCard;
             var selectedReceiptStatus;
-            var cardValue;
 
 
             $(".giftcard-option").on("click", function() {
@@ -389,40 +388,37 @@
                     selectedGiftCardId: selectedGiftCardId,
                     isPhysicalCard: isPhysicalCard,
                     withReceipt: selectedReceiptStatus,
-                    cardValue: cardInputValue || cardValue,
                     selectedCurrencyName: selectedCurrencyName,
                     selectedGiftCardName: selectedGiftCardName,
                 };
                 processCollectedData(data);
             });
+
+
+            function processCollectedData(data) {
+                $("#giftCard").text(data.selectedGiftCardName);
+                $("#currency").text(data.selectedCurrencyName);
+
+                if(data.isPhysicalCard == 0){
+                    $("#cardType").text("E-code");
+                } else {
+                    $("#cardType").text("Physical");
+                }
+
+                if(data.withReceipt == 0){
+                    $("#receiptStatus").text("With Receipt");
+                } else {
+                    $("#receiptStatus").text("No Receipt");
+                }
+
+                var cardValue = parseFloat($("#card-value").val());
+
+                if(!isNaN(cardValue)){
+                    $("#amountIndollar").text(`$${cardValue}`);
+                }
+            }
+
         });
-
-        function processCollectedData(data) {
-
-            $("#giftCard").text(data.selectedGiftCardName);
-            $("#currency").text(data.selectedCurrencyName);
-
-            if(data.isPhysicalCard == 0){
-                $("#cardType").text("E-code");
-            } else {
-                $("#cardType").text("Physical");
-            }
-
-            if(data.withReceipt == 0){
-                $("#receiptStatus").text("With Receipt");
-            } else {
-                $("#receiptStatus").text("No Receipt");
-            }
-
-            var cardValue = parseFloat($("#card-value").val());
-
-            if(!isNaN){
-                $("#amountIndollar").text(`$${cardValue}`);
-            }
-
-        }
-
-
 
 
         //     toastr.error('Are you the 6 fingered man?')

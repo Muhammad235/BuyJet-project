@@ -1,8 +1,6 @@
 const step_1 = document.querySelector(".step_1");
 const step_2 = document.querySelector(".step_2");
 const step = document.querySelector(".step");
-const steps = document.querySelector(".steps");
-const stepss = document.querySelector(".stepss");
 const circle_3 = document.querySelector(".circle_3");
 const circle_1 = document.querySelector(".circle_1");
 const indicator_1 = document.querySelector(".indicator_1");
@@ -33,8 +31,8 @@ modalButton.addEventListener("click", function () {
   modalComplete.style.display = "block";
 
   step.style.display = "none";
-  steps.style.display = "none";
-  stepss.style.display = "block";
+//   steps.style.display = "none";
+//   stepss.style.display = "block";
 });
 
 product_currency.addEventListener("click", function () {
@@ -61,12 +59,7 @@ next_step_1.addEventListener("click", function () {
   step_1.style.display = "none";
   step_2.style.display = "block";
 
-
   step.style.display = "none";
-  steps.style.display = "block";
-  stepss.style.display = "none";
-
-
 });
 
 
