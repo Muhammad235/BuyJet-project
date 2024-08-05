@@ -21,7 +21,6 @@
             <h2 class="head-text">
                 Sell Giftcards With Buyjet
             </h2>
-            <p class="sub-head-text"><small>Select the card you will like to sell</small></p>
             <div class="step-container">
                 <div class="step">
                     <img src="{{ asset('assets/images/step3.png') }}" alt="">
@@ -29,11 +28,11 @@
                 </div>
             </div>
 
-            {{-- <input type="text" id="" data-sellRate="{{ $general_settings->sell_rate }}" hidden> --}}
-
             <div class="step_wrap">
                 <div class="step_1">
                     <div class="row justify-content-center mt-5">
+                    <p class="text-center pb-2">Select the card you will like to sell</p>
+
                         <div class="select-menu col-md-5">
                             <div class="select-btn">
                                 <div>
@@ -121,7 +120,7 @@
                                 <div class="form-check">
                                     <input class="radio" type="radio" name="is_physical_card" id="inlineRadio1"
                                         value="1">
-                                    <label class="form-check-label" for="inlineRadio1"><small>Physical
+                                    <label class="form-check-label" for="inlineRadio1"><small>
                                             Card</small></label>
                                 </div>
                                 <div class="form-check">
@@ -157,7 +156,9 @@
                             <small>Enter Card Value</small>
                             <div class="count">
                                 <div>
-                                    <input type="text" class="card-input" id="card-value" oninput="validateInput(this); showAmountInNaira();" placeholder="Enter Value">
+
+                                    <input type="text" class="card-input" id="card-value" value="{{ old('amount') }}" name="amount" oninput="validateInput(this); showAmountInNaira();" placeholder="Enter Value">
+
                                 </div>
                                 {{-- <div class="counter">
                                     <button id="decrement-btn">-</button>
@@ -168,7 +169,7 @@
                         </div>
                     </div>
 
-                    <div class="row justify-content-center mt-5">
+                    <div class="row justify-content-center mt-4">
                         <div class="col-md-5 col-12 contd" id="rate" data-sellrate="{{ $general_settings->sell_rate }}">
                             <small>Estimated Value: <b>₦<span id="estimated-amount" >0</span> @ {{ $general_settings->sell_rate }}/$</b></small>
                             <button type="button" class="btn btn-next btnext" id="continue-btn">Continue</button>
@@ -176,7 +177,8 @@
                     </div>
                 </div>
 
-                <div class="step_2 pb-5" style="display: none;">
+                <div class="step_2 pb-3" style="display: none;">
+                    <p class="text-center">Summary of the giftcard you are about to sell</p>
                     <div class="gift-section">
                         <div class="col-md-5 btn-continue col-12">
                             <div class="drop-section shadow">
@@ -215,36 +217,36 @@
                                 <div class="col-md-4 col-5">
                                     <div class="price-text">
                                         <span>Card</span>
-                                        <h3>Apple Itunes</h3>
+                                        <h3 id="giftCard"></h3>
                                     </div>
                                     <div class="price-text-status price-text">
                                         <span>Receipt Status</span>
-                                        <h3>With Receipt</h3>
+                                        <h3 id="receiptStatus"></h3>
                                     </div>
                                     <div class="price-text">
                                         <span>Total Amount Expected</span>
-                                        <h3>₦ 102,000</h3>
+                                        <h3 id="amountExpected">0</h3>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-7">
                                     <div class="row justify-content-center">
                                         <div class="col-md-4 price-text col-6">
                                             <span>Currency</span>
-                                            <h3>USA</h3>
+                                            <h3 id="currency"></h3>
                                         </div>
                                         <div class="col-md-4 price-text col-6">
                                             <span>Card Type</span>
-                                            <h3>Physical</h3>
+                                            <h3 id="cardType"></h3>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center price-text-status">
                                         <div class="col-md-4 price-text col-6">
                                             <span>Volume</span>
-                                            <h3>$10 <span><small>xl</small></span></h3>
+                                            <h3 id="amountIndollar">$0</h3>
                                         </div>
                                         <div class="col-md-4 price-text col-6">
                                             <span>Rate</span>
-                                            <h3>₦ 814/$</h3>
+                                            <h3>₦{{ $general_settings->sell_rate }}/$</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -319,25 +321,35 @@
     <script>
 
         function validateInput(input) {
-            // Remove any non-numeric characters and any multiple decimal points
-            input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+            // Remove any non-numeric characters and multiple decimal points
+            input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
         }
 
         function showAmountInNaira() {
             const rateElement = document.getElementById('rate');
             const sellRate = parseFloat(rateElement.getAttribute('data-sellrate'));
 
-            const amountInput = document.getElementById('card-value');
-            const amountValue = parseFloat(amountInput.value);
+            // const amountInput = document.getElementById('card-value');
+            const amountValue = parseFloat(document.getElementById('card-value').value);
 
-            const estimatedAmountElement = document.getElementById('estimated-amount');
+            if (!isNaN(amountValue)) {
 
-            if (!isNaN(sellRate) && !isNaN(amountValue)) {
-                const estimatedAmount = sellRate * amountValue;
-                estimatedAmountElement.textContent = estimatedAmount.toFixed(2); // Displaying the estimated value with two decimal places
-            } else {
-                estimatedAmountElement.textContent = '0';
+                const estimatedAmountElement = document.getElementById('estimated-amount');
+                const amountExpected = $("#amountExpected");
+
+                if (!isNaN(sellRate) && !isNaN(amountValue)) {
+                    const amountInNaira = sellRate * amountValue;
+
+                    estimatedAmountElement.textContent = amountInNaira.toFixed(2);
+                    amountExpected.text(`₦${amountInNaira.toFixed(2)}`);
+
+                } else {
+                    estimatedAmountElement.textContent = '0';
+                }
             }
+
+            amountExpected.text("0");
+
         }
 
 
@@ -350,7 +362,6 @@
             var selectedReceiptStatus;
             var cardValue;
 
-            var test;
 
             $(".giftcard-option").on("click", function() {
                 selectedGiftCardId = $(this).data('giftcardid');
@@ -379,22 +390,42 @@
                     selectedGiftCardId: selectedGiftCardId,
                     isPhysicalCard: isPhysicalCard,
                     withReceipt: selectedReceiptStatus,
-                    cardValue: cardInputValue || cardValue
+                    cardValue: cardInputValue || cardValue,
+                    selectedCurrencyName: selectedCurrencyName,
+                    selectedGiftCardName: selectedGiftCardName,
                 };
                 processCollectedData(data);
             });
         });
 
         function processCollectedData(data) {
-            console.log('Collected Data:', data);
 
-            // Add your processing logic here
+            $("#giftCard").text(data.selectedGiftCardName);
+            $("#currency").text(data.selectedCurrencyName);
+
+            if(data.isPhysicalCard == 0){
+                $("#cardType").text("E-code");
+            } else {
+                $("#cardType").text("Physical");
+            }
+
+            if(data.withReceipt == 0){
+                $("#receiptStatus").text("With Receipt");
+            } else {
+                $("#receiptStatus").text("No Receipt");
+            }
+
+            var cardValue = parseFloat($("#card-value").val());
+
+            if(!isNaN){
+                $("#amountIndollar").text(`$${cardValue}`);
+            }
+
         }
 
 
 
 
-        // toastr.info('Are you the 6 fingered man?')
         //     toastr.error('Are you the 6 fingered man?')
         //     toastr.success('success?')
             // $("#increment-btn").on("click", function() {
