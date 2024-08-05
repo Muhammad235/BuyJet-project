@@ -371,7 +371,6 @@
             $(".list_currency").on("click", function() {
                 selectedCurrencyId = $(this).data('currency');
                 selectedCurrencyName = $(this).data('currencyname');
-
             });
 
             $('input[name="is_physical_card"]').on("change", function() {

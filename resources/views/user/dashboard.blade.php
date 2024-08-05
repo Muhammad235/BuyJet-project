@@ -63,8 +63,8 @@
 							<a href="{{ route('sell.create') }}"><img src="{{ asset('assets/images/m-sell.png') }}" alt="" class="d-block d-md-none"></a>
 						</div>
 						<div class="col-md-3 col-4">
-							<a href="{{ route('sell.index') }}"><img src="{{ asset('assets/images/gift.png') }}" alt="" class="d-none d-md-block"></a>
-							<a href="{{ route('sell.index') }}"><img src="{{ asset('assets/images/m-gift.png') }}" alt="" class="d-block d-md-none"></a>
+							<a href="{{ route('giftcard.create') }}"><img src="{{ asset('assets/images/gift.png') }}" alt="" class="d-none d-md-block"></a>
+							<a href="{{ route('giftcard.create') }}"><img src="{{ asset('assets/images/m-gift.png') }}" alt="" class="d-block d-md-none"></a>
 						</div>
 					</div>
 				</div>
