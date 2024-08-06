@@ -371,7 +371,7 @@
             var selectedGiftCardName;
             var isPhysicalCard;
             var selectedReceiptStatus;
-
+            // var cardInputValue;
 
             $(".giftcard-option").on("click", function() {
                 selectedGiftCardId = $(this).data('giftcardid');
@@ -393,7 +393,9 @@
 
 
             $("#continue-btn").on("click", function() {
-                // var cardInputValue = $(".card-input").val();
+
+                var cardInputValue = parseFloat($("#card-value").val());
+
                 var data = {
                     selectedCurrencyId: selectedCurrencyId,
                     selectedGiftCardId: selectedGiftCardId,
@@ -401,11 +403,15 @@
                     withReceipt: selectedReceiptStatus,
                     selectedCurrencyName: selectedCurrencyName,
                     selectedGiftCardName: selectedGiftCardName,
+                    amount: cardInputValue
                 };
+
+                // console.log(data);
+
 
                 // Check if any of the data values are empty
 
-                // if (!data.selectedCurrencyId || !data.selectedGiftCardId || data.isPhysicalCard === undefined || data.withReceipt === undefined || !data.selectedCurrencyName || !data.selectedGiftCardName) {
+                // if (!data.selectedCurrencyId || !data.selectedGiftCardId || data.isPhysicalCard === undefined || data.withReceipt === undefined || !data.selectedCurrencyName || !data.selectedGiftCardName || isNaN(data.cardInputValue) || data.cardInputValue <= 0) {
                 //     Swal.fire({
                 //         text: "You must fill all data about your giftcard, before you proceed!",
                 //         icon: "error",
@@ -490,16 +496,37 @@
             });
 
 
+            // var amount = parseFloat($("#card-value").val());
+
             $('#btn-giftcard').on('click', function() {
 
+                if (!fileName || fileName === undefined) {
+                    Swal.fire({
+                        text: "Kindly upload the giftcard image to proceed!",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok",
+                        customClass: {
+                            confirmButton: "btn btn-primary"
+                        }
+                    });
+                }
+
+                console.log(amount);
+
+
                 var data = {
-                    selectedCurrencyId: selectedCurrencyId,
-                    selectedGiftCardId: selectedGiftCardId,
-                    isPhysicalCard: isPhysicalCard,
-                    withReceipt: selectedReceiptStatus,
-                    proof_payment: fileName,
+                    currency_id: selectedCurrencyId,
+                    giftcard_id: selectedGiftCardId,
+                    is_physical: isPhysicalCard,
+                    with_receipt: selectedReceiptStatus,
+                    payment_proof: fileName,
+                    // amount: cardValue
                     '_token': '{{ csrf_token() }}'
                 }
+
+                console.log(data);
+
 
                 $.ajax({
                     url: "{{ route('giftcard.store') }}",

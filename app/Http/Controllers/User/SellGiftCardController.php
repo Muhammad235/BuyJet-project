@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\Status;
+use App\Http\Requests\User\StoreGiftCardRequest;
 use App\Models\Currency;
 use App\Models\GiftCard;
+use App\Models\GiftCardTransaction;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Http\Controllers\Controller;
+use App\Traits\FileUploadTrait;
+use App\Traits\GenerateTrxHash;
 
 class SellGiftCardController extends Controller
 {
+
+    use GenerateTrxHash;
+    use FileUploadTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -35,14 +43,40 @@ class SellGiftCardController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreGiftCardRequest $request)
     {
 
-        // $data = json_decode($request->data, true);
-        return response()->json([
-          'test' => $request->all(),
-        ]);
+        $validate = $request->validated();
+
+        try {
+            $user = auth()->user();
+            $general_setings = GeneralSetting::first();
+
+            $order = GiftCardTransaction::create([
+                'trx_hash' => $this->generateTrxHash(6),
+            ]);
+
+            return response()->json([
+                'status' => 'true',
+                'data' => $request->all(),
+                'message' => "Request successful"
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'An error occured try again!',
+            ]);
+        }
+
     }
+
+         // if ($validate->fails()) {
+        //     return response()->json([
+        //         'status' => "false",
+        //          "message"=> $validate->errors()->first(),
+        //       ]);
+        // }
 
     /**
      * Display the specified resource.

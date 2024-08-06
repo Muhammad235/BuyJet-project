@@ -291,10 +291,6 @@
 
     <script>
 
-toastr.info('Are you the 6 fingered man?')
-            toastr.error('Are you the 6 fingered man?')
-            toastr.success('success?')
-
 		const Rate = document.getElementById("rates-value");
 
 		var buyRate = Rate.getAttribute('data-buyrate');

@@ -21,8 +21,6 @@ class BuyCryptoRequest extends FormRequest
      */
     public function rules(): array
     {
-            
-        // ];
 
         return [
             'cryptocurrency_id' => ['required', 'exists:cryptocurrencies,id'],
