@@ -497,6 +497,7 @@
 
 
             // var amount = parseFloat($("#card-value").val());
+            var amount = $("#card-value").val();
 
             $('#btn-giftcard').on('click', function() {
 
@@ -541,7 +542,6 @@
                 });
 
             });
-
 
         });
 

@@ -52,9 +52,9 @@ class SellGiftCardController extends Controller
             $user = auth()->user();
             $general_setings = GeneralSetting::first();
 
-            $order = GiftCardTransaction::create([
-                'trx_hash' => $this->generateTrxHash(6),
-            ]);
+            // $order = GiftCardTransaction::create([
+            //     'trx_hash' => $this->generateTrxHash(6),
+            // ]);
 
             return response()->json([
                 'status' => 'true',
