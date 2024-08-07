@@ -16,8 +16,7 @@ const check = document.querySelector(".check");
 const modalButton = document.querySelector(".modalfooter");
 const btnContinue = document.querySelector(".btn-continue");
 const btnDashboard = document.querySelector(".btn-dashboard");
-const modalComplete = document.querySelector(".modal-complete");
-const modalError = document.querySelector(".modal-error");
+
 
 
 
@@ -25,8 +24,8 @@ modalButton.addEventListener("click", function () {
   btnContinue.style.display = "none";
   btnDashboard.style.display = "block";
 
-  modalError.style.display = "none";
-  modalComplete.style.display = "block";
+//   modalError.style.display = "none";
+//   modalComplete.style.display = "block";
 
   step.style.display = "none";
 //   steps.style.display = "none";

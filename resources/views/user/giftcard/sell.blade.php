@@ -130,12 +130,12 @@
                             <div class="radio-input">
                                 <div class="form-check">
                                     <input class="radio" type="radio" name="with_receipt" id="inlineRadio3"
-                                        value="1">
+                                        value="0">
                                     <label class="form-check-label" for="inlineRadio3"><small>No Receipt</small></label>
                                 </div>
                                 <div class="form-check">
                                     <input class="radio" type="radio" name="with_receipt" id="inlineRadio4"
-                                        value="0">
+                                        value="1">
                                     <label class="form-check-label" for="inlineRadio4"><small>With
                                             Receipt</small></label>
                                 </div>
@@ -195,7 +195,7 @@
                                 </div>
                             {{-- </form> --}}
                         </div>
-                        {{-- <div class="col-md-5 btn-dashboard col-12" style="display: none;">
+                        <div class="col-md-5 btn-dashboard col-12" style="display: none;">
                             <div>
                                 <p>
                                     Confirmation takes approximately 5-30 minutes. <br> You will be notified as soon as
@@ -206,7 +206,7 @@
                                 <a href="{{ route('dashboard') }}"><button type="button" class="btn btn-gift">Back to
                                         dashboard</button></a>
                             </div>
-                        </div> --}}
+                        </div>
 
 
                         <div class="col-md-6 price-info shadow col-12">
@@ -256,7 +256,7 @@
 
 
         <!-- Modal -->
-        <div class="modal fade modal-error" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade giftCardModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content error bg-white">
@@ -448,9 +448,9 @@
                 }
 
                 if(data.withReceipt == 0){
-                    $("#receiptStatus").text("With Receipt");
-                } else {
                     $("#receiptStatus").text("No Receipt");
+                } else {
+                    $("#receiptStatus").text("With Receipt");
                 }
 
                 var cardValue = parseFloat($("#card-value").val());
@@ -496,11 +496,19 @@
             });
 
 
-            // var amount = parseFloat($("#card-value").val());
-            var amount = $("#card-value").val();
-
             $('#btn-giftcard').on('click', function() {
 
+                // const modalComplete = document.querySelector(".modal-complete");
+
+                var giftCardModal = $('.giftCardModal');
+                giftCardModal.modal('show');
+
+
+                // sellGiftCard();
+            });
+
+
+            function sellGiftCard(){
                 if (!fileName || fileName === undefined) {
                     Swal.fire({
                         text: "Kindly upload the giftcard image to proceed!",
@@ -513,8 +521,8 @@
                     });
                 }
 
-                console.log(amount);
-
+                var giftCardValue = parseFloat($("#card-value").val());
+                console.log('cardValue', giftCardValue);
 
                 var data = {
                     currency_id: selectedCurrencyId,
@@ -522,26 +530,29 @@
                     is_physical: isPhysicalCard,
                     with_receipt: selectedReceiptStatus,
                     payment_proof: fileName,
-                    // amount: cardValue
+                    amount: giftCardValue,
                     '_token': '{{ csrf_token() }}'
                 }
-
-                console.log(data);
-
 
                 $.ajax({
                     url: "{{ route('giftcard.store') }}",
                     type: 'POST',
                     data: data,
                     success: function(response) {
-                        console.log('Success:', response);
+
+                        if (response.status) {
+
+                            console.log('Success:', response);
+
+                        }
                     },
                     error: function(error) {
                         console.error('Error:', error);
                     }
                 });
+            }
 
-            });
+
 
         });
 

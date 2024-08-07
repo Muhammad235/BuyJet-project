@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\Status;
-use App\Http\Requests\User\StoreGiftCardRequest;
 use App\Models\Currency;
 use App\Models\GiftCard;
-use App\Models\GiftCardTransaction;
 use Illuminate\Http\Request;
+use App\Models\GiftCardOrder;
 use App\Models\GeneralSetting;
-use App\Http\Controllers\Controller;
 use App\Traits\FileUploadTrait;
 use App\Traits\GenerateTrxHash;
+use Illuminate\Support\Facades\DB;
+use App\Models\GiftCardTransaction;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\User\StoreGiftCardRequest;
 
 class SellGiftCardController extends Controller
 {
@@ -45,16 +47,25 @@ class SellGiftCardController extends Controller
      */
     public function store(StoreGiftCardRequest $request)
     {
-
         $validate = $request->validated();
+        $user = auth()->user();
+        // $general_setings = GeneralSetting::first();
 
         try {
-            $user = auth()->user();
-            $general_setings = GeneralSetting::first();
 
-            // $order = GiftCardTransaction::create([
-            //     'trx_hash' => $this->generateTrxHash(6),
-            // ]);
+            DB::beginTransaction();
+
+            $order = GiftCardOrder::create([
+                'trx_hash' => $this->generateTrxHash(6),
+                'user_id' => $user->id,
+                'gift_card_id' => $request->giftcard_id,
+                'currency_id' => $request->currency_id,
+                'amount' => floatval($request->amount),
+                'with_receipt' => $request->with_receipt,
+                'is_physical_card' => $request->is_physical,
+            ]);
+
+            DB::commit();
 
             return response()->json([
                 'status' => 'true',
@@ -62,10 +73,14 @@ class SellGiftCardController extends Controller
                 'message' => "Request successful"
             ]);
 
+
         } catch (\Exception $e) {
+            DB::rollBack();
+
             return response()->json([
                 'status' => 'false',
                 'message' => 'An error occured try again!',
+                "error" => $e->getMessage()
             ]);
         }
 
