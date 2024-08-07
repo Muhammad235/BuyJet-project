@@ -29,6 +29,11 @@ class GiftCardOrder extends Model
 
     public function giftcard() : BelongsTo
     {
-        return $this->belongsTo(GiftCard::class);
+        return $this->belongsTo(GiftCard::class, 'gift_card_id');
+    }
+
+    public function currency() : BelongsTo
+    {
+        return $this->belongsTo(Currency::class);
     }
 }

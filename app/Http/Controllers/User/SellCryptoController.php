@@ -10,6 +10,7 @@ use App\Models\Cryptocurrency;
 use App\Models\GeneralSetting;
 use App\Traits\FileUploadTrait;
 use App\Traits\GenerateTrxHash;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\User\SellCryptoRequest;
@@ -62,6 +63,8 @@ class SellCryptoController extends Controller
         $cryptoAmountInNaira = floatval($crypto->charge * $sell_rate) + floatval($amount * $sell_rate);
 
         try {
+
+            DB::beginTransaction();
             $order = SellOrder::create([
                 'trx_hash' => $this->generateTrxHash(6),
                 'user_id' => $user->id,
@@ -72,9 +75,13 @@ class SellCryptoController extends Controller
 
             Mail::to($order->user->email)->queue(new SellOrderMail($order, $sell_rate));
 
+            DB::commit();
+
             return redirect()->route('sell.confirm', $order->trx_hash);
 
         } catch (\Exception $e) {
+            DB::rollBack();
+
             toastr()->error('An error occurred during the process');
             return back();
         }

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\Status;
-use App\Mail\BuyOrderMail;
 use App\Models\BuyOrder;
+use App\Mail\BuyOrderMail;
 use Illuminate\Http\Request;
 use App\Models\Cryptocurrency;
 use App\Models\GeneralSetting;
 use App\Traits\FileUploadTrait;
 use App\Traits\GenerateTrxHash;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\User\BuyCryptoRequest;
@@ -64,6 +65,9 @@ class BuyCryptoController extends Controller
         $cryptoAmountInNaira = floatval($crypto->charge * $buy_rate) + floatval($amount * $buy_rate);
 
         try {
+
+            DB::beginTransaction();
+
             $order = BuyOrder::create([
                 'trx_hash' => $this->generateTrxHash(6),
                 'user_id' => $user->id,
@@ -73,13 +77,15 @@ class BuyCryptoController extends Controller
                 'wallet_address' => $request->wallet_address,
             ]);
 
-
             Mail::to($order->user->email)->queue(new BuyOrderMail($order, $buy_rate));
+
+            DB::commit();
 
             return redirect()->route('buy.confirm', $order->trx_hash);
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollBack();
+
             toastr()->error('An error occurred during the process');
             return back();
         }

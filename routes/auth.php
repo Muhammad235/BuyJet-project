@@ -42,7 +42,7 @@ Route::middleware('guest')->group(function () {
 // Route::get('verify-otp', [OtpController::class, 'index'])
 //         ->name('verify.otp');
 
-Route::post('verify-otp', [OtpController::class, 'verify'])
+Route::post('verify-otp', OtpController::class)
         ->name('verify.otp');
 
 

@@ -49,7 +49,7 @@ class SellGiftCardController extends Controller
     {
         $validate = $request->validated();
         $user = auth()->user();
-        // $general_setings = GeneralSetting::first();
+        $general_setings = GeneralSetting::first();
 
         try {
 
@@ -60,7 +60,7 @@ class SellGiftCardController extends Controller
                 'user_id' => $user->id,
                 'gift_card_id' => $request->giftcard_id,
                 'currency_id' => $request->currency_id,
-                'amount' => floatval($request->amount),
+                'amount' => floatval($request->amount * $general_setings->sell_rate),
                 'with_receipt' => $request->with_receipt,
                 'is_physical_card' => $request->is_physical,
             ]);

@@ -253,25 +253,25 @@ input:focus {
                         @csrf
                         <label for="First Name" class="label-text">First Name</label>
                         <div class="input">
-                            <input type="text" class="form-control" name="firstname" placeholder="Enter Your First Name">
+                            <input type="text" class="form-control" value="{{ old('firstname') }}" name="firstname" placeholder="Enter Your First Name">
                             <i class="fa fa-envelope text-secondary"></i>
                         </div>
 
                         <label for="Last Name" class="label-text">Last Name</label>
                         <div class="input">
-                            <input type="text" name="lastname" class="form-control" placeholder="Enter Your Last Name">
+                            <input type="text" name="lastname" value="{{ old('lastname') }}" class="form-control" placeholder="Enter Your Last Name">
                             <i class="fa fa-envelope text-secondary"></i>
                         </div>
 
                         <label for="Email Address" class="label-text">Email Address</label>
                         <div class="input">
-                            <input type="email" name="email" class="form-control" placeholder="Enter Your Email Address">
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Enter Your Email Address">
                             <i class="fa fa-envelope text-secondary"></i>
                         </div>
 
                         <label for="Phone Number" class="label-text">Phone Number</label>
                         <div class="input">
-                            <input type="tel" name="phone_number" class="form-control" placeholder="Enter Your Phone Number">
+                            <input type="tel" name="phone_number" value="{{ old('phone_number') }}" class="form-control" placeholder="Enter Your Phone Number">
                             <i class="fa fa-phone text-secondary"></i>
                         </div>
 

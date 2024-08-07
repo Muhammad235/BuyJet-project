@@ -288,8 +288,10 @@
                         <!-- <button type="button" class="btn btn-primary"
                             data-bs-dismiss="modal">Continue</button> -->
 
-                        <button type="button" class="btn btn-primary cont" data-bs-toggle="modal"
-                            data-bs-target="#exampleModall">Continue</button>
+                        {{-- <button type="button" class="btn btn-primary cont" data-bs-toggle="modal"
+                            data-bs-target="#exampleModall">Continue</button> --}}
+
+                        <button type="button" class="btn btn-primary cont" id="sellGiftcard" disabled>Continue</button>
                     </div>
                 </div>
             </div>
@@ -305,7 +307,7 @@
                         <p>Payout takes approximately 2 -5 minutes. <br> Payout will be disbursed to default account</p>
                     </div>
                     <div class="modalfooter mb-5">
-                        <a href="dashboard.html"><button type="button" class="btn btn-primary">Back to
+                        <a href="{{ route('dashboard') }}"><button type="button" class="btn btn-primary">Back to
                                 Dashboard</button></a>
                     </div>
                 </div>
@@ -316,16 +318,6 @@
     @push('script')
 
     <script>
-
-        // Swal.fire({
-        //     text: "Here's a basic example of SweetAlert!",
-        //     icon: "error",
-        //     buttonsStyling: false,
-        //     confirmButtonText: "Ok, got it!",
-        //     customClass: {
-        //         confirmButton: "btn btn-primary"
-        //     }
-        // });
 
         function validateInput(input) {
             // Remove any non-numeric characters and multiple decimal points
@@ -371,7 +363,6 @@
             var selectedGiftCardName;
             var isPhysicalCard;
             var selectedReceiptStatus;
-            // var cardInputValue;
 
             $(".giftcard-option").on("click", function() {
                 selectedGiftCardId = $(this).data('giftcardid');
@@ -406,23 +397,21 @@
                     amount: cardInputValue
                 };
 
-                // console.log(data);
-
 
                 // Check if any of the data values are empty
 
-                // if (!data.selectedCurrencyId || !data.selectedGiftCardId || data.isPhysicalCard === undefined || data.withReceipt === undefined || !data.selectedCurrencyName || !data.selectedGiftCardName || isNaN(data.cardInputValue) || data.cardInputValue <= 0) {
-                //     Swal.fire({
-                //         text: "You must fill all data about your giftcard, before you proceed!",
-                //         icon: "error",
-                //         buttonsStyling: false,
-                //         confirmButtonText: "Ok",
-                //         customClass: {
-                //             confirmButton: "btn btn-primary"
-                //         }
-                //     });
+                if (!data.selectedCurrencyId || !data.selectedGiftCardId || data.isPhysicalCard === undefined || data.withReceipt === undefined || !data.selectedCurrencyName || !data.selectedGiftCardName || isNaN(data.amount) || data.amount <= 0) {
+                    Swal.fire({
+                        text: "You must fill all data about your giftcard, before you proceed!",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok",
+                        customClass: {
+                            confirmButton: "btn btn-primary"
+                        }
+                    });
 
-                // } else {
+                } else {
 
                     next_step_1.addEventListener("click", function () {
                       step_1.style.display = "none";
@@ -432,7 +421,7 @@
                     });
 
                     processCollectedData(data);
-                // }
+                }
 
             });
 
@@ -498,17 +487,6 @@
 
             $('#btn-giftcard').on('click', function() {
 
-                // const modalComplete = document.querySelector(".modal-complete");
-
-                var giftCardModal = $('.giftCardModal');
-                giftCardModal.modal('show');
-
-
-                // sellGiftCard();
-            });
-
-
-            function sellGiftCard(){
                 if (!fileName || fileName === undefined) {
                     Swal.fire({
                         text: "Kindly upload the giftcard image to proceed!",
@@ -519,7 +497,32 @@
                             confirmButton: "btn btn-primary"
                         }
                     });
+                    return;
                 }
+
+                var giftCardModal = $('.giftCardModal');
+                giftCardModal.modal('show');
+            });
+
+            $('#checkbox').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#sellGiftcard').attr('disabled', false);
+                } else {
+                    $('#sellGiftcard').attr('disabled', true);
+                }
+            });
+
+            $('#sellGiftcard').on('click', function() {
+
+                var modalComplete = $('.modal-complete');
+                modalComplete.modal('show');
+
+                sellGiftCard();
+            });
+
+
+            function sellGiftCard(){
+
 
                 var giftCardValue = parseFloat($("#card-value").val());
                 console.log('cardValue', giftCardValue);
@@ -538,6 +541,11 @@
                     url: "{{ route('giftcard.store') }}",
                     type: 'POST',
                     data: data,
+                    beforeSend: function (){
+                        $('#sellGiftcard').attr('disabled', true)
+                        $('.purchaseBtn').
+                        html('<span class="spinner-border spinner-border-sm text-light" role="status"  aria-hidden="true"></span>Loading...')
+                    },
                     success: function(response) {
 
                         if (response.status) {
@@ -548,11 +556,13 @@
                     },
                     error: function(error) {
                         console.error('Error:', error);
+                    },
+                    complete: function() {
+                        $('#sellGiftcard').hide();
+                        $('#sellGiftcard').attr('disabled', false)
                     }
                 });
             }
-
-
 
         });
 
