@@ -17,9 +17,11 @@
                         <div class="containers shadow">
                             <div class="text-center">
                                 <img src="{{ asset('assets/images/buyjetLogo.png') }}" alt="" width="40%">
+
+                                <p>check your mail for your otp</p>
                             </div>
 
-                            <h4 class="text pt-4">Enter Your 4 Digit OTP</h4>
+                            <h4 class="text pt-2">Enter Your 4 Digit OTP</h4>
 
                             <form action="{{ route('verify.otp') }}" method="post" class="form">
                                 @csrf

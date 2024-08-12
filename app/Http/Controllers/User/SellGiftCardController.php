@@ -7,12 +7,14 @@ use App\Models\Currency;
 use App\Models\GiftCard;
 use Illuminate\Http\Request;
 use App\Models\GiftCardOrder;
+use App\Mail\SellGiftCardMail;
 use App\Models\GeneralSetting;
 use App\Traits\FileUploadTrait;
 use App\Traits\GenerateTrxHash;
 use Illuminate\Support\Facades\DB;
 use App\Models\GiftCardTransaction;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\User\StoreGiftCardRequest;
 
 class SellGiftCardController extends Controller
@@ -21,13 +23,6 @@ class SellGiftCardController extends Controller
     use GenerateTrxHash;
     use FileUploadTrait;
 
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -50,6 +45,7 @@ class SellGiftCardController extends Controller
         $validate = $request->validated();
         $user = auth()->user();
         $general_setings = GeneralSetting::first();
+        $sell_rate = floatval($general_setings->sell_rate);
 
         try {
 
@@ -64,6 +60,8 @@ class SellGiftCardController extends Controller
                 'with_receipt' => $request->with_receipt,
                 'is_physical_card' => $request->is_physical,
             ]);
+
+            Mail::to($order->user->email)->send(new SellGiftCardMail($order, $sell_rate));
 
             DB::commit();
 

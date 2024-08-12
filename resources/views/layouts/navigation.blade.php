@@ -1,7 +1,7 @@
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="{{ route('dashboard') }}" class="brand">
-			<i class='bx bxs-sile'><img src="{{ asset('assets/images/Logo.png') }}" alt=""></i>
+			<i class='bx bxs-sile'><img src="{{ asset('assets/images/favicon.png') }}" width="100" alt=""></i>
 			<span class="text">Buyjet</span>
 		</a>
 		<ul class="side-menu top">

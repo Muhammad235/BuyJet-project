@@ -15,7 +15,7 @@
             <div class="row login-row">
                 <div class="card m-auto shadow">
                     <div class="text-center">
-                        <img src="{{ asset('assets/images/buyjetLogo.png') }}" alt="" width="30%">
+                        <img src="{{ asset('assets/images/logo_dark.svg') }}" alt="" width="30%">
                     </div>
                     <h4 class="text-center py-2">Welcome Back!</h4>
                     <p class="text-center signin-text">Sign in into your account</p>

@@ -15,76 +15,94 @@ use Illuminate\Http\RedirectResponse;
 
 class DashboardController extends Controller
 {
-    public function index() : View
+    public function index(Request $request) : View
     {
-
         $user = auth()->user();
-
-        // $giftCardOrder = GiftCardOrder::where('user_id', $user->id)
-        // ->with('giftcard')
-        // ->with('currency')
-        // ->latest()
-        // ->get();
-
-
-        // dd($giftCardOrder->giftcard);
-
 
         $general_settings = GeneralSetting::first();
         $cryptocurrencies = Cryptocurrency::all();
 
-        $sellOrder = SellOrder::where('user_id', $user->id)
-                              ->with('cryptocurrency')
-                              ->latest()
-                              ->get();
+        $type = $request->get('type', 'buy');
 
-        $buyOrder = BuyOrder::where('user_id', $user->id)
-                            ->with('cryptocurrency')
-                            ->latest()
-                            ->get();
+        // Initialize an empty collection for transactions
+        $transactions = collect();
 
-        $giftCardOrder = GiftCardOrder::where('user_id', $user->id)
-                            ->with('giftcard', 'currency')
-                            ->latest()
-                            ->get();
+        // Initialize the totalAmount to 0
+        // $totalAmount = 0;
 
-        $transactions = collect()
-                        ->merge($sellOrder)
-                        ->merge($buyOrder)
-                        ->merge($giftCardOrder);
+        // Fetch transactions
+        switch ($type) {
+            case 'sell':
+                $transactions = SellOrder::where('user_id', $user->id)
+                    ->with('cryptocurrency')
+                    ->latest()
+                    ->get();
+                $type = "Sell";
+                break;
 
-        // dd($transactions);
+            case 'giftcard':
+                $transactions = GiftCardOrder::where('user_id', $user->id)
+                    ->with('giftcard', 'currency')
+                    ->latest()
+                    ->get();
+                $type = "Gift Card";
+                break;
 
+            default:
+                $transactions = BuyOrder::where('user_id', $user->id)
+                    ->with('cryptocurrency')
+                    ->latest()
+                    ->get();
+                $type = "Buy";
+                break;
+        }
 
-        $totalAmount = $transactions->filter(function ($transaction) {
-            return $transaction->status == Status::SUCCESS;
-        })->sum('amount');
+        // Calculate the totalAmount in one query
+        $totalAmount =
+            BuyOrder::where('user_id', $user->id)->where('status', Status::SUCCESS)->sum('amount') +
+            GiftCardOrder::where('user_id', $user->id)->where('status', Status::SUCCESS)->sum('amount') +
+            SellOrder::where('user_id', $user->id)->where('status', Status::SUCCESS)->sum('amount');
 
-        return view('user.dashboard', compact('user', 'general_settings', 'cryptocurrencies', 'transactions', 'sellOrder', 'buyOrder', 'totalAmount'));
-
+        return view('user.dashboard', compact('user', 'general_settings', 'cryptocurrencies', 'transactions', 'type', 'totalAmount'));
     }
 
-    public function allTransactions() : View
+
+    public function allTransactions(Request $request) : View
     {
         $user = auth()->user();
         $general_setings = GeneralSetting::first();
-        $cryptocurrencies = Cryptocurrency::all();
+        // $cryptocurrencies = Cryptocurrency::all();
 
-        $sellOrder = SellOrder::where('user_id', $user->id)
-                              ->with('cryptocurrency')
-                              ->latest()
-                              ->get();
+        $type = $request->get('type', 'buy');
 
-        $buyOrder = BuyOrder::where('user_id', $user->id)
-                            ->with('cryptocurrency')
-                            ->latest()
-                            ->get();
+              // Fetch transactions
+              switch ($type) {
+                case 'sell':
+                    $transactions = SellOrder::where('user_id', $user->id)
+                        ->with('cryptocurrency')
+                        ->latest()
+                        ->get();
+                    $type = "Sell";
+                    break;
 
-        $transactions = collect()
-                        ->merge($sellOrder)
-                        ->merge($buyOrder);
+                case 'giftcard':
+                    $transactions = GiftCardOrder::where('user_id', $user->id)
+                        ->with('giftcard', 'currency')
+                        ->latest()
+                        ->get();
+                    $type = "Gift Card";
+                    break;
 
-        return view('user.transaction.index', compact('user', 'general_setings', 'cryptocurrencies', 'transactions'));
+                default:
+                    $transactions = BuyOrder::where('user_id', $user->id)
+                        ->with('cryptocurrency')
+                        ->latest()
+                        ->get();
+                    $type = "Buy";
+                    break;
+            }
+
+        return view('user.transaction.index', compact('user', 'general_setings', 'type', 'transactions'));
     }
 
 

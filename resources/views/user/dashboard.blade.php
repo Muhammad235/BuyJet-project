@@ -3,12 +3,58 @@
 	@section('title', 'User Dashboard')
 
 	@section('content')
-{{--
+
     <style>
-        a{
-            color: #ffff;
-        }
-    </style> --}}
+
+    .dropdown {
+     position: relative;
+     display: inline-block;
+    }
+
+  .dropdown-button {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .dropdown-button:focus {
+    outline: none;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    min-width: 5rem;
+  }
+
+  .dropdown-menu li {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .dropdown-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-menu li a {
+    color: black;
+    padding: 10px;
+    /* width: 10%; */
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+  }
+
+    </style>
 
 	<!-- CONTENT -->
 	<section id="content">
@@ -79,6 +125,7 @@
 						<p><small><span>Buying Rate</span> <br> ₦{{ $general_settings->buy_rate }}</small></p>
 					</div>
 				</div>
+
 			</div>
 			<div class="body-bottom row">
 				<div class="col-md-9 col-12 mobile-table">
@@ -90,11 +137,25 @@
 								</div>
 
 								<div>
-									<a href="{{ route('transactions.all') }}" class="view"><span class="pt-2 text-primary view"><small
-												class="view">View All</small>
-										</span></a>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-button" id="dropdownButton">{{ $type }}
+                                            <i class="fas fa-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" id="dropdownMenu">
+                                            @if($type != "Buy")
+                                                <li><a href="{{ url('/dashboard?type=buy') }}">Buy</a></li>
+                                            @endif
+                                            @if($type != "Sell")
+                                                <li><a href="{{ url('/dashboard?type=sell') }}">Sell</a></li>
+                                            @endif
+                                            @if($type != "Gift Card")
+                                                <li><a href="{{ url('/dashboard?type=giftcard') }}">GiftCard</a></li>
+                                            @endif
+                                        </ul>
+                                    </div>
 								</div>
 							</div>
+
 							<div class="table-section pb-2">
 								@if (count($transactions) > 0)
 									@foreach ($transactions as $transaction)
@@ -111,11 +172,11 @@
 										</div>
 
 
-										<div class="transac-status">
+										<div class="transac-status text-center">
 											<p>₦ {{ number_format($transaction->amount, 2) }}</p>
 
 											@if ($transaction->status == 1)
-												<span class="status-success">Success</span>
+												<span class="status-success ">Success</span>
 												@elseif ($transaction->status == 2)
 												<span class="status-spending">Processing</span>
 												@elseif ($transaction->status == 3)
@@ -134,59 +195,6 @@
 									</div>
 								@endif
 
-
-								{{-- <div class="table-section-row">
-									<div class="table-section-wrapper">
-										<img src="{{ asset('assets/images/eth.png') }}" alt="">
-										<div class="date-wrap">
-											<p>Ethereum Purchased</p>
-											<span>February 21, 2021</span>
-										</div>
-									</div>
-									<div class="pending-div">
-										<p>$90</p>
-										<span>Pending</span>
-									</div>
-								</div>transac-status
-								<div class="table-section-row">
-									<div class="table-section-wrapper">
-										<img src="{{ asset('assets/images/eth.png') }}" alt="">
-										<div class="date-wrap">
-											<p>Ethereum Purchased</p>
-											<span>February 21, 2021</span>
-										</div>
-									</div>
-									<div class="success-div">
-										<p>$90</p>
-										<span>Success</span>
-									</div>
-								</div>
-								<div class="table-section-row">
-									<div class="table-section-wrapper">
-										<img src="{{ asset('assets/images/eth.png') }}" alt="">
-										<div class="date-wrap">
-											<p>Ethereum Purchased</p>
-											<span>February 21, 2021</span>
-										</div>
-									</div>
-									<div class="success-div">
-										<p>$90</p>
-										<span class="bg-warning">Processing</span>
-									</div>
-								</div>
-								<div class="table-section-row">
-									<div class="table-section-wrapper">
-										<img src="{{ asset('assets/images/eth.png') }}" alt="">
-										<div class="date-wrap">
-											<p>Ethereum Purchased</p>
-											<span>February 21, 2021</span>
-										</div>
-									</div>
-									<div class="failed-div">
-										<p>$90</p>
-										<span>Failed</span>
-									</div>
-								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -196,12 +204,12 @@
 						<div class="coin-section-row row">
 							<div class="col-md-4 col-5">
 								<a href="">
-									<div class="active-type buy text-white buyCoinBtn">Buy</div>
+									<div class="active-type buy buyCoinBtn">Buy</div>
 								</a>
 							</div>
 							<div class="col-md-4 col-5">
 								<a href="">
-									<div class="buy text-white sellCoinBtn">Sell</div>
+									<div class="buy sellCoinBtn">Sell</div>
 								</a>
 							</div>
 						</div>
@@ -229,8 +237,8 @@
 									<p>Total</p>
 									<p id="buy-sub-amount">NGN 0</p>
 								</div>
-								<input type="submit" class="btn btn-primary form-control"
-										value="Buy">
+
+                                <button class="btn text-center btn-primary form-control">Buy</button>
 							</form>
 
 							<form action="{{ route('sell.create') }}" method="get" class="sellCoin d-none">
@@ -254,8 +262,8 @@
 									<p>Total</p>
 									<p id="sell-sub-amount">NGN 0</p>
 								</div>
-								<input type="submit" class="btn btn-primary form-control"
-										value="Sell">
+                                <button class="btn text-center btn-primary form-control">Sell</button>
+
 							</form>
 
 						</div>

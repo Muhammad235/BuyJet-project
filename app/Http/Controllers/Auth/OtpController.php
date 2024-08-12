@@ -34,4 +34,8 @@ class OtpController extends Controller
         return view('auth.verify-otp');
     }
 
+    // public function index(){
+    //     return view('auth.verify-otp');
+
+    // }
 }

@@ -49,7 +49,7 @@
                                     <span class="text-danger d-none minmum-usd">You can purchase within $2 to $50,000</span>
                                     <div class="input-group mt-2">
 										<input type="text" class="form-control eth-input-group" id="crypto-amount" value="{{ $data['amount'] ?? '' }}" name="amount" oninput="validateInput(this); showAmountInNaira();">
-										<span class="input-group-text">USD</span>`
+										<span class="input-group-text">USD</span>
 									</div>
                                 </div>
                                 <div class="amount mt-3">

@@ -244,10 +244,10 @@ input:focus {
             <div class="row login-row">
                 <div class="card shadow">
                     <div class="text-center">
-                        <img src="{{ asset('assets/images/buyjetLogo.png') }}" alt="" width="30%">
+                        <img src="{{ asset('assets/images/logo_dark.svg') }}" alt="" width="30%">
                     </div>
                     <h4 class="text-center py-2">Sign Up</h4>
-                    <p class="text-center signin-text">Create an accont</p>
+                    <p class="text-center signin-text">Create an account</p>
 
                     <form action="{{ route('register') }}" method="post" class="signup-form">
                         @csrf
@@ -304,6 +304,27 @@ input:focus {
             </div>
         </div>
     </section>
+
+    <script>
+        function showPassword() {
+            var x = document.querySelector(".password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function showPassword2() {
+            var x = document.querySelector(".confPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+    </script>
 
 </body>
 

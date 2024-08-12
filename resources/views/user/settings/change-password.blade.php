@@ -40,11 +40,11 @@
                         </div>
                         <div class="update-input-email">
                             <label for="">New Password</label>
-                            <input type="password" placeholder="New password" name="password" value="{{ old('new_password', "new_password") }}" class="form-control">
+                            <input type="password" placeholder="New password" name="password" value="{{ old('new_password') }}" class="form-control">
                         </div>
                         <div class="update-input-email">
                             <label for="">Confirm Password</label>
-                            <input type="password" placeholder="Confirm password" name="password_confirmation"  value="new_password" class="form-control">
+                            <input type="password" placeholder="Confirm password" name="password_confirmation"   class="form-control">
                         </div>
 
                         <div class="input-button">

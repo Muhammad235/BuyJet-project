@@ -33,17 +33,11 @@
     <x-error-display></x-error-display>
 
 
-    <section class="login-section">
-        <div class="container-fluid">
-            <div class="row">
-                {{ $slot }}
-            </div>
-        </div>
-    </section>
+    {{ $slot }}
 
 
+    <script src="{{ asset('assets/js/user/guest.js') }}"></script>
     <script src="{{ asset('assets/js/user/otp.js') }}"></script>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

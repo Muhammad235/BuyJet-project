@@ -38,15 +38,6 @@
 
 <body class="dashboard-body">
 
-    {{-- <script>
-        Swal.fire({
-        title: "Done",
-        text: "helloo",
-        icon: "success",
-        });
-    </script> --}}
-
-
         {{-- begin page --}}
         <x-error-display></x-error-display>
 
@@ -86,6 +77,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
     <script src="{{ asset('assets/js/user/dashboard.js')}}"></script>
     <script src="{{ asset('assets/js/user/upload.js')}}"></script>
     <script src="{{ asset('assets/js/user/sellGiftcard.js')}}"></script>
