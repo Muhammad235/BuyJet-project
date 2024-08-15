@@ -1,18 +1,17 @@
-<header id="page-topbar">
+<header id="page-topbar" style="background-color: #110e22;">
     <div class="navbar-header">
-        <div class="d-flex">
+        <div class="d-flex" >
             <!-- LOGO -->
-            <div class="navbar-brand-box">
-                {{-- <a href="{{ route('admin.home') }}" class="logo logo-dark">
-                </a> --}}
-
+            <div class="navbar-brand-box" style="background-color: #110e22;">
+            <a href="{{ route('admin.home') }}" class="logo logo-dark">
+                <img src="{{ asset('assets/images/logo_light.svg') }}" alt="" width="30%">
+            </a>
                 <a href="{{ route('admin.home') }}" class="logo logo-light">
                     <span class="logo-sm text-white">
-                        <img src="{{ asset('assets/images/Logo.png') }}" alt="">
+                        <img src="{{ asset('assets/images/logo_light.svg') }}" alt="" width="30%">
                     </span>
                     <span class="logo-lg text-white">
-                        <img src="{{ asset('assets/images/Logo.png') }}" alt="" >
-                        <span class="">Buyjet</span>
+                        <img src="{{ asset('assets/images/logo_light.svg') }}" alt="" width="50%">
                     </span>
                 </a>
             </div>
@@ -21,7 +20,7 @@
                 <i class="fa fa-fw fa-bars"></i>
             </button>
 
-            
+
         </div>
 
         <div class="d-flex">
@@ -44,7 +43,7 @@
 </header>
 
 <!-- ========== Left Sidebar Start ========== -->
-<div class="vertical-menu">
+<div class="vertical-menu" style="background-color: #110e22;">
 
     <div data-simplebar class="h-100">
 
@@ -65,13 +64,13 @@
                         <i class="bx bx-purchase-tag"></i>
                         <span key="t-dashboards">Rates</span>
                     </a>
-                </li> 
+                </li>
                 <li>
                     <a href="{{ route('admin.manage.banks') }}" class=" waves-effect">
                         <i class="bx bx-money"></i>
                         <span key="t-dashboards">Bank Account</span>
                     </a>
-                </li> 
+                </li>
                 <li>
                     <a href="{{ route('admin.manage.crypto.index') }}" class=" waves-effect">
                         <i class="bx bx-bitcoin"></i>
@@ -98,7 +97,7 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.tickets.index') }}" class=" waves-effect">
-                        
+
                         <i class="bx bx-chat"></i>
                         <span key="t-dashboards">Tickets</span>
                     </a>

@@ -42,18 +42,16 @@
                                     @foreach ($transactions as $transaction)
                                     <div class="table-section-row">
                                         <div class="table-section-wrapper pb-2">
-                                            {{-- <img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt=""> --}}
-                                            <img src="{{ asset('assets/images/btc.png') }}" style="width: 50px;" alt="">
+                                            <img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
                                             <div class="date-wrap">
                                                 <p>{{ @$transaction->cryptocurrency->name }}</p>
                                                 <p>{{ @$transaction->giftcard->name }} <span>{{ @$transaction->currency->name }}</span></p>
 
-                                                <span>{{ $transaction->created_at->format('F d, Y') }}</span>
+                                                <span>{{ $transaction->created_at->format('F d Y, h:i:sa') }}</span>
                                             </div>
                                         </div>
 
-
-                                        <div class="transac-status">
+                                        <div class="transac-status text-center">
                                             <p>₦ {{ number_format($transaction->amount, 2) }}</p>
 
                                             @if ($transaction->status == 1)

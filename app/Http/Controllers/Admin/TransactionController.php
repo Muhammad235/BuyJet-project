@@ -15,8 +15,8 @@ class TransactionController extends Controller
     }
 
     public function updateBuy(Request $request, $trx_hash){
-        
-        $buy = BuyOrder::where('trx_hash', $request->trx_hash)->first(); 
+
+        $buy = BuyOrder::where('trx_hash', $request->trx_hash)->first();
 
         $buy->update([
             'status' => $request->status,
@@ -31,4 +31,6 @@ class TransactionController extends Controller
         $transaction = SellOrder::where('trx_hash', $trx_hash)->firstOrFail();
         return view('admin.transactions.sell', compact('transaction'));
     }
+
+    
 }

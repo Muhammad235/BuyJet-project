@@ -7,7 +7,7 @@
     <title>BuyJet Login</title>
 
     {{-- App favicon --}}
-    <link rel="icon" href="{{ asset('assets/images/Logo.png') }}">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
 	{{-- <link rel="stylesheet" href="styles/bottomnav.css">
     <link rel="stylesheet" href="styles/sign.css"> --}}
 
@@ -71,6 +71,7 @@ a {
 }
 .signin-text{
   color: #9E9E9E;
+  mar
 }
 .card{
   border: none !important;
@@ -81,7 +82,7 @@ a {
   margin-bottom: 50px !important;
 }
 form{
-  margin-top: 20px;
+  margin-top: 0px;
 }
 .label-text {
   color: #110e22;
@@ -246,7 +247,7 @@ input:focus {
                     <div class="text-center">
                         <img src="{{ asset('assets/images/logo_dark.svg') }}" alt="" width="30%">
                     </div>
-                    <h4 class="text-center py-2">Sign Up</h4>
+                    <h4 class="text-center mt-1 py-2">Sign Up</h4>
                     <p class="text-center signin-text">Create an account</p>
 
                     <form action="{{ route('register') }}" method="post" class="signup-form">

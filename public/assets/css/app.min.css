@@ -956,7 +956,7 @@ body[data-sidebar="colored"].vertical-collpsed .vertical-menu #sidebar-menu ul l
 }
 .topnav .navbar-nav .dropdown.active > a {
     background: #40196D;
-    color: white; 
+    color: white;
     padding-left: 15px;
 }
 @media (min-width: 1200px) {
@@ -1187,10 +1187,10 @@ body[data-layout="horizontal"][data-layout-size="boxed"] .navbar-header {
     }
 } /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
     position: relative;
@@ -4046,7 +4046,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
 .message-list .checkbox-wrapper-mail input {
     opacity: 0;
     cursor: pointer;
-    
+
 }
 .message-list .checkbox-wrapper-mail input:checked ~ label {
     opacity: 1;

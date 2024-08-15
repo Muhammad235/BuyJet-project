@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h3 class="h1 mb-3 text-center">Sell crypto transaction</h3>{{-- <h1 class="h1 mb-3">Confirm Transaction</h1> --}}
+                            <h3 class="h1 mb-3 text-center">Gift card transaction</h3>
 
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -38,37 +38,43 @@
                                             <td class="text-end"><b>#{{ $transaction->trx_hash }}</b></td>
                                         </tr>
                                         <tr>
-                                            <th>Cryptocurrency</th>
+                                            <th>Gift Card</th>
                                             <td class="text-end">
                                                 {{-- <div class="float-end"> --}}
                                                     <div class="flex-shrink-0 me-3">
-                                                        <img src="{{ asset($transaction->cryptocurrency->symbol) }}" alt="" class="avatar-xs rounded-circle">
+                                                        <img src="{{ asset($transaction->giftcard->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                     </div>
                                                     <div class="flex-grow-1">
-                                                        <h5 class="fs-14 mb-1">{{ $transaction->cryptocurrency->name }}</h5>
+                                                        <h5 class="fs-14 mb-1">{{ $transaction->giftcard->name }}</h5>
                                                     </div>
                                                 {{-- </div> --}}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>Asset Network</th>
-                                            <td class="text-end">{{ $transaction->asset_network }}</td>
+                                            <th>Currency</th>
+                                            <td class="text-end">{{ $transaction->currency->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Is physical card</th>
+                                            <td class="text-end">
+                                                {{ $transaction->is_physical_card  ? "Yes" : "No" }}
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th style="width: 70px;">Bank Name</th>
-                                            <td class="text-end">{{ $transaction->bank_name }}</td>
+                                            <td class="text-end">{{ $transaction->user->bank_name }}</td>
                                         </tr>
                                         <tr>
                                             <th style="width: 70px;">Account  Name</th>
-                                            <td class="text-end">{{ $transaction->account_name }}</td>
+                                            <td class="text-end">{{ $transaction->user->account_name }}</td>
                                         </tr>
                                         <tr>
                                             <th style="width: 70px;">Account  Number</th>
-                                            <td class="text-end">{{ $transaction->account_number }}</td>
+                                            <td class="text-end">{{ $transaction->user->account_number }}</td>
                                         </tr>
 
                                         <tr>
-                                            <th style="width: 70px;">Transaction Proof</th>
+                                            <th style="width: 70px;">Receipt</th>
                                             <td class=""><img src="{{ asset($transaction->payment_receipt) }}"  style="width: 300px !important; height: 300px !important;" alt=""> </td>
                                         </tr>
                                         @if ($transaction->rejection_reason)

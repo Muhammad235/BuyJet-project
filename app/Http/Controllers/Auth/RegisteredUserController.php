@@ -38,7 +38,6 @@ class RegisteredUserController extends Controller
         // Check if the user already exists by email
         $checkUser = User::where('email', $userData['email'])->first();
 
-
         // If the user exists and their email is not verified
         if ($checkUser && !$checkUser->email_verified_at) {
             // Update the existing user data

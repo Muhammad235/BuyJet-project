@@ -6,7 +6,7 @@
     <title>{{ env('APP_NAME') }} - @yield('title')</title>
 
 	{{-- App favicon --}}
-	<link rel="icon" href="{{ asset('assets/images/Logo.png') }}">
+	<link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
 
 	<!-- Css -->
 	<link rel="stylesheet" href="{{ asset('assets/custom-css/giftcard.css') }}">
@@ -21,9 +21,6 @@
 
     <!-- Toastr library -->
     <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Box icons -->

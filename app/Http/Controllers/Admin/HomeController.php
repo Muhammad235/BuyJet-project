@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Enums\Status;
-use App\Models\GeneralSetting;
 use App\Models\Ticket;
 use App\Models\BuyOrder;
 use App\Models\SellOrder;
 use Illuminate\Http\Request;
+use App\Models\GiftCardOrder;
 use App\Models\Cryptocurrency;
+use App\Models\GeneralSetting;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -20,34 +21,26 @@ class HomeController extends Controller
     public function index(){
 
         $users = User::where('role', Status::USER)->latest()->get();
+
         $tickets = Ticket::latest()->get();
-        $crypto = Cryptocurrency::all();
-        $giftcard = Cryptocurrency::all();
- 
+
         $buyOrders = BuyOrder::where('status', Status::PENDIDNG)->get();
         $sellOrders = SellOrder::where('status', Status::PENDIDNG)->get();
+        $giftCardOrders = GiftCardOrder::where('status', Status::PENDIDNG)->get();
         $general_settings = GeneralSetting::first();
 
-        // Fetch all SellOrder records with the related cryptocurrency
-        $sellOrders = SellOrder::with('cryptocurrency')
-                        ->orderBy('created_at', 'desc')
-                        ->get();
 
-                        // dd($sellOrders);
+        $completedTransaction = BuyOrder::where('status', Status::SUCCESS)->sum('amount') +
+        GiftCardOrder::where('status', Status::SUCCESS)->sum('amount') +
+        SellOrder::where('status', Status::SUCCESS)->sum('amount');
 
-        // Fetch all BuyOrder records with the related cryptocurrency
-        $buyOrders = BuyOrder::with('cryptocurrency')
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+        $pendingTransaction = BuyOrder::where('status', Status::PENDIDNG)->sum('amount') +
+        GiftCardOrder::where('status', Status::PENDIDNG)->sum('amount') +
+        SellOrder::where('status', Status::PENDIDNG)->sum('amount');
 
-        // Merge the two collections and sort them by created_at in descending order
-        // $transactions = $sellOrders->merge($buyOrders)->sortByDesc('created_at');
 
-        // Merge the two collections and sort them by created_at in descending order
-        $transactions = $sellOrders->merge($buyOrders)->sortByDesc('created_at');
 
-                    
-        return view('admin.home', compact('users', 'tickets', 'crypto', 'general_settings', 'buyOrders', 'sellOrders'));
+        return view('admin.home', compact('users', 'tickets', 'general_settings', 'buyOrders', 'sellOrders', 'completedTransaction', 'pendingTransaction', 'giftCardOrders'));
     }
 
     public function edit()
@@ -62,7 +55,7 @@ class HomeController extends Controller
             'new_password' => ['required','min:8'],
             'confirm_password' => ['required','min:8', 'same:new_password'],
         ]);
-        
+
          // Check if the current password matches the authenticated user's password
          if (!Hash::check($request->old_password, Auth::user()->password)) {
             return redirect()->back()->with('error', 'The current password is incorrect.');

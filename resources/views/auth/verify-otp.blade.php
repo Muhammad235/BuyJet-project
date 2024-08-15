@@ -16,7 +16,7 @@
                     <div class="wrapper">
                         <div class="containers shadow">
                             <div class="text-center">
-                                <img src="{{ asset('assets/images/buyjetLogo.png') }}" alt="" width="40%">
+                                <img src="{{ asset('assets/images/logo_dark.svg') }}" class="mb-1" alt="" width="40%">
 
                                 <p>check your mail for your otp</p>
                             </div>
@@ -37,7 +37,6 @@
 
                         </div>
                     </div>
-                    <!-- <div class="col-md-6 side-image"></div> -->
                 </div>
             </div>
         </section>

@@ -26,13 +26,13 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
 
+        // Validate the request
         $request->validated();
 
-        // Validate the request
         $credentials = $request->only('email', 'password');
 
         // Attempt to authenticate the user
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::attempt($credentials, $request->remember_me)) {
             toastr()->error('Incorrect email or password');
             return redirect()->back()->withInput($request->only('email'));
         }

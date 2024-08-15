@@ -13,7 +13,7 @@
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 ">
                     <div class="card">
                         <div class="card-body">
-                         
+
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -22,12 +22,12 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            @endif 
+                            @endif
                             <div class="invoice-title">
-                                <h1 class="text-center h1 text-primary fs-1">&#8358; {{ number_format($transaction->amount,2) }}</h1> 
-                                
+                                <h1 class="text-center h1 text-primary fs-1">&#8358; {{ number_format($transaction->amount,2) }}</h1>
+
                             </div>
-                            
+
                             <div class="table-responsive">
                                 <table class="table table-striped dt-responsive  w-100">
                                     <tbody>
@@ -44,16 +44,14 @@
                                         <tr>
                                             <th>Cryptocurrency</th>
                                             <td class="text-end">
-                                                {{-- <div class="float-end"> --}}
                                                     <div class="flex-shrink-0 me-3">
                                                         <img src="{{ asset($transaction->cryptocurrency->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                     </div>
                                                     <div class="flex-grow-1">
                                                         <h5 class="fs-14 mb-1">{{ $transaction->cryptocurrency->name }}</h5>
                                                     </div>
-                                                {{-- </div> --}}
                                             </td>
-                                        </tr> 
+                                        </tr>
                                         <tr>
                                             <th style="width: 70px;">Payment Status</th>
                                             <td class="text-end">
@@ -82,8 +80,8 @@
                                                 <th style="width: 70px;">Rejection Reason</th>
                                                 <td class="text-end">{{ $transaction->rejection_reason }}</td>
                                             </tr>
-                                            
-                                        @endif  
+
+                                        @endif
 
                                         <tr>
                                             <th style="width: 70px;">Payment Date</th>
@@ -92,18 +90,18 @@
 
                                     </tbody>
                                 </table>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 
-    
-    
+
+
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">

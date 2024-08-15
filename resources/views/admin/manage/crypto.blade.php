@@ -66,7 +66,8 @@
                                                                 <td>{{ $key+1 }}</td>
                                                                 <td>{{ $coin->name }}</td>
                                                                 <td>
-                                                                    <img src="{{ asset('upload/crypto/' . $coin->symbol) }}" alt="" class="avatar-xs rounded-circle">
+                                                                    {{-- <img src="{{ asset('upload/crypto/' . $coin->symbol) }}" alt="" class="avatar-xs rounded-circle"> --}}
+                                                                    <img src="{{ asset($coin->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                                 </td>
 
                                                                 <td>

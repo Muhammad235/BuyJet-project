@@ -14,8 +14,8 @@
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 ">
                     <div class="card">
                         <div class="card-body">
-                         
-                            {{-- <h1 class="h1 mb-3">Confirm Transaction</h1> --}}
+
+                            <h3 class="h1 mb-3 text-center">Buy crypto transaction</h3>
 
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -25,14 +25,14 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            @endif 
+                            @endif
                             <div class="invoice-title">
-                                <h1 class="text-center h1 text-primary fs-1">&#8358; {{ number_format($transaction->amount,2) }}</h1> 
+                                <h1 class="text-center h1 text-primary fs-1">&#8358; {{ number_format($transaction->amount,2) }}</h1>
                                 <h5 class="text-center">Charge Fee: ₦ {{ number_format($transaction->cryptocurrency->charge, 2) }}</h5>
 
-                                
+
                             </div>
-                            
+
                             <div class="table-responsive">
                                 <table class="table table-striped dt-responsive  w-100">
                                     <tbody>
@@ -40,7 +40,7 @@
                                             <th style="width: 70px;">Transaction ID</th>
                                             <td class="text-end"><b>#{{ $transaction->trx_hash }}</b></td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <th>Cryptocurrency</th>
                                             <td class="text-end">
@@ -60,9 +60,9 @@
                                         </tr>
                                         <tr>
                                             <th style="width: 70px;">Wallet Address</th>
-                                            <td class="text-end">{{ $transaction->payment_address }}</td>
+                                            <td class="text-end">{{ $transaction->wallet_address }}</td>
                                         </tr>
-                                       
+
                                         <tr>
                                             <th style="width: 70px;">Transaction Proof</th>
                                             <td class=""><img src="{{ asset($transaction->payment_receipt) }}" style="width: 300px !important; height: 300px !important;" alt=""> </td>
@@ -72,29 +72,18 @@
                                                 <th style="width: 70px;">Rejection Reason</th>
                                                 <td class="text-end">{{ $transaction->rejection_reason }}</td>
                                             </tr>
-                                            
-                                        @endif  
+
+                                        @endif
 
                                         <tr>
                                             <th style="width: 70px;">Payment Date</th>
-                                            <td class="text-end">{{ explode(' ', $transaction->created_at)[0] }}</td>
+                                            <td class="text-end">{{ $transaction->created_at->format('F d Y, h:i:sa') }}</td>
                                         </tr>
 
                                         <form method="POST" action="{{ route('admin.buy.update', $transaction->trx_hash) }}">
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="trx_hash" value="{{ $transaction->trx_hash }}">
-
-                                            {{-- <tr>
-                                                <th style="width: 70px;">Payment Status</th>
-                                                <td class="text-end">
-                                                    <select name="payment_status" class="form-select" id="">
-                                                        <option value="Completed" {{ $transaction->payment_status == 'Completed' ? 'selected' : '' }}>Completed</option>
-                                                        <option value="Pending" {{ $transaction->payment_status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                                        <option value="Received" {{ $transaction->payment_status == 'Received' ? 'selected' : '' }}>Payment Recived</option>
-                                                    </select>
-                                                </td>
-                                            </tr> --}}
 
                                             <tr>
                                                 <th style="width: 70px;">Transaction Status</th>
@@ -114,18 +103,18 @@
                                         </form>
                                     </tbody>
                                 </table>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 
-    
-    
+
+
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">

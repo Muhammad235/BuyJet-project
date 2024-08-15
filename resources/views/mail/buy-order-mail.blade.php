@@ -27,7 +27,7 @@ ${{ $cryptoAmount }}
     Total amount paid <b style="color: green">₦{{ number_format($amount, 2) }}</b>
 </h1>
 
-<x-mail::button :url="'/transactions'">
+<x-mail::button :url="url('/transactions')">
 View Transaction
 </x-mail::button>
 

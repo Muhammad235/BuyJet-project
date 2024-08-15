@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\GiftcardController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\GiftCardOrderController;
 use App\Http\Controllers\Admin\CryptocurrencyController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
 
@@ -13,9 +14,9 @@ use App\Http\Controllers\Admin\GeneralSettingsController;
 Route::prefix('admin')->name('admin.')->group(function (){
     Route::get('/',[HomeController::class,'index'])->name('home');
 
-    Route::prefix('profile')->group(function (){ 
+    Route::prefix('profile')->group(function (){
         Route::get('/', [HomeController::class, 'edit'])->name('profile.edit');
-        Route::patch('/password',[HomeController::class,'password'])->name('profile.password');  
+        Route::patch('/password',[HomeController::class,'password'])->name('profile.password');
     });
 
     Route::prefix('manage')->name('manage.')->group(function(){
@@ -39,13 +40,27 @@ Route::prefix('admin')->name('admin.')->group(function (){
     });
 
     Route::prefix('sell')->group(function(){
-        Route::get('/{trx_hash}',[TransactionController::class,'showSell'])->name('sell.show');
-        Route::patch('/confirm/{trx_hash}',[TransactionController::class,'updateSell'])->name('sell.update'); 
+        Route::get('/{trx_hash}', [TransactionController::class,'showSell'])->name('sell.show');
+        Route::patch('/confirm/{trx_hash}',[TransactionController::class,'updateSell'])->name('sell.update');
+    });
+
+    Route::prefix('giftcard')->group(function(){
+
+
+        // Route::get('/{trx_hash}', [TransactionController::class,'showSell'])->name('sell.show');
+
+
+        // Route::get('/', function(){
+        //     return 'gift';
+        // });
+
+        Route::get('/{trx_hash}', [GiftCardOrderController::class, 'show'])->name('giftcard.show');
+        // Route::patch('/confirm/{trx_hash}',[TransactionController::class,'updateSell'])->name('sell.update');
     });
 
     Route::prefix('tickets')->group(function(){
         Route::get('/', [TicketController::class, 'index'])->name('tickets.index');
-        Route::get('/{id}', [TicketController::class, 'show'])->name('tickets.show'); 
+        Route::get('/{id}', [TicketController::class, 'show'])->name('tickets.show');
         Route::patch('/confirm/{id}',[TicketController::class,'update'])->name('tickets.update');
     });
 });

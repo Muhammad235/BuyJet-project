@@ -30,8 +30,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Cryptocurrency</p>
-                                            <h4 class="mb-0">{{ count($crypto) }}</h4>
+                                            <p class="text-muted fw-medium">Completed Transactions</p>
+                                            <h4 class="mb-0">{{ number_format($completedTransaction, 2) }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -50,10 +50,9 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Cryptocurrency</p>
-                                            <h4 class="mb-0">{{ count($crypto) }}</h4>
+                                            <p class="text-muted fw-medium">Pending Transactions</p>
+                                            <h4 class="mb-0">{{ number_format($pendingTransaction, 2) }}</h4>
                                         </div>
-
                                         <div class="flex-shrink-0 align-self-center">
                                             <div class="mini-stat-icon avatar-sm rounded-circle bg-secondary">
                                                 <span class="avatar-title">
@@ -70,70 +69,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Users</p>
-                                            <h4 class="mb-0">{{ count($users) }}</h4>
-                                        </div>
-
-                                        <div class="flex-shrink-0 align-self-center">
-                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-success">
-                                                <span class="avatar-title">
-                                                    <i class="bx bx-user-circle font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card mini-stats-wid">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Tickets</p>
-                                            <h4 class="mb-0">{{ count($tickets) }}</h4>
-                                        </div>
-
-                                        <div class="flex-shrink-0 align-self-center">
-                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-success">
-                                                <span class="avatar-title">
-                                                    <i class="bx bx-chat font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card mini-stats-wid">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Transactions</p>
-                                            {{-- <h4 class="mb-0">{{ count($transactions) }}</h4> --}}
-                                        </div>
-
-                                        <div class="flex-shrink-0 align-self-center">
-                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
-                                                <span class="avatar-title">
-                                                    <i class="bx bx-copy-alt font-size-24"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card mini-stats-wid">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <div class="flex-grow-1">
-                                            <a href="">
-                                                <p class="text-muted fw-medium">Buy Orders</p>
-                                                <h4 class="mb-0">{{ count($buyOrders) }}</h4>
-                                            </a>
+                                            <p class="text-muted fw-medium">Pending Buy Orders</p>
+                                            <h4 class="mb-0">{{ count($buyOrders) }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -152,18 +89,81 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Sell Orders</p>
-                                            {{-- <h4 class="mb-0">{{ count($sellOrders) }}</h4> --}}
+                                            <p class="text-muted fw-medium">Pending Sell Orders</p>
+                                            <h4 class="mb-0">{{ count($sellOrders) }}</h4>
                                         </div>
-
                                         <div class="flex-shrink-0 align-self-center">
-                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-secondary">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-success">
                                                 <span class="avatar-title">
-                                                    <i class="bx bx-chevrons-right font-size-24"></i>
+                                                    <i class="bx bx-chevrons-left font-size-24"></i>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Pending Giftcard Orders</p>
+                                            <h4 class="mb-0">{{ count($giftCardOrders) }}</h4>
+                                        </div>
+
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                                <span class="avatar-title">
+                                                    {{-- <i class="bx bx-copy-alt font-size-24"></i> --}}
+                                                    <i class="bx bx-chevrons-left font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <a href="{{ route('admin.tickets.index') }}">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Tickets</p>
+                                            <h4 class="mb-0">{{ count($tickets) }}</h4>
+                                        </div>
+
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-success">
+                                                <span class="avatar-title">
+                                                    <i class="bx bx-chat font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <a href="{{ route('admin.users.index') }}">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Total users</p>
+                                            <h4 class="mb-0">{{ count($users) }}</h4>
+                                        </div>
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-secondary">
+                                                <span class="avatar-title">
+                                                    <i class="bx bx-user-circle font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -207,9 +207,9 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -218,14 +218,14 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Latest Pending Buy Orders</h4>
+                            <h4 class="card-title mb-4">Pending Buy Orders</h4>
                             <div class="table-responsive">
                                 <table id="datatable" class="table table-striped dt-responsive  w-100">
                                     <thead>
                                     <tr>
                                         <td>#</td>
                                         <th>Cryptocurrency</th>
-                                        <th>Amount</th> 
+                                        <th>Amount</th>
                                         <th>Asset Network</th>
                                         {{-- <th>Payment Status</th> --}}
                                         <th>Transaction Status</th>
@@ -262,7 +262,7 @@
                                                     <td>
                                                         @if ($buyOrder->status == Status::SUCCESS)
                                                             <span class="badge badge-soft-success font-size-11">Completed</span>
-                                                        @else 
+                                                        @else
                                                             <span class="badge badge-soft-danger font-size-11">Pending</span>
                                                         @endif
                                                     </td>
@@ -277,7 +277,7 @@
                                             </tr>
                                         @endif
                                     </tbody>
-                                    
+
                                 </table>
                             </div>
                             <!-- end table-responsive -->
@@ -288,14 +288,14 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Latest Pending Sell Orders</h4>
+                            <h4 class="card-title mb-4">Pending Sell Orders</h4>
                             <div class="table-responsive">
                                 <table id="datatable" class="datatable table table-striped dt-responsive  w-100">
                                     <thead>
                                     <tr>
                                         <td>#</td>
                                         <th>Cryptocurrency</th>
-                                        <th>Amount</th> 
+                                        <th>Amount</th>
                                         <th>Asset Network</th>
                                         {{-- <th>Payment Status</th> --}}
                                         <th>Transaction Status</th>
@@ -324,7 +324,7 @@
                                                     <td>
                                                         @if ($sellOrder->status == Status::SUCCESS)
                                                             <span class="badge badge-soft-success font-size-11">Completed</span>
-                                                        @else 
+                                                        @else
                                                             <span class="badge badge-soft-danger font-size-11">Pending</span>
                                                         @endif
                                                     </td>
@@ -339,7 +339,7 @@
                                             </tr>
                                         @endif
                                     </tbody>
-                                    
+
                                 </table>
                             </div>
                             <!-- end table-responsive -->
@@ -354,62 +354,48 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Latest Transaction</h4>
+                            <h4 class="card-title mb-4">Pending Gift Card Orders</h4>
                             <div class="table-responsive">
                                 <table id="datatable" class="datatable table table-striped dt-responsive  w-100">
                                     <thead>
                                     <tr>
                                         <td>#</td>
-                                        <th>Cryptocurrency</th>
-                                        <th>Amount</th> 
-                                        <th>Type</th> 
-                                        {{-- <th>Payment Status</th> --}}
+                                        <th>Gift Card</th>
+                                        <th>Currency</th>
+                                        <th>Amount</th>
                                         <th>Transaction Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
 
-                                    {{-- <tbody>
-                                        @if (count($transactions) > 0)
-                                            @foreach ($transactions->take(10) as $key => $transaction)
+                                    <tbody>
+                                        @if (count($giftCardOrders) > 0)
+                                            @foreach ($giftCardOrders->take(10) as $key => $giftCardOrder)
                                                 <tr>
                                                     <td>{{ $key+1 }}</td>
                                                     <td>
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0 me-3">
-                                                                <img src="{{ asset($transaction->cryptocurrency->symbol) }}" alt="" class="avatar-xs rounded-circle">
+                                                                <img src="{{ asset($giftCardOrder->giftcard->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                             </div>
                                                             <div class="flex-grow-1">
-                                                                <h5 class="fs-14 mb-1">{{ $transaction->cryptocurrency->name }}</h5>
+                                                                <h5 class="fs-14 mb-1">{{ $giftCardOrder->giftcard->name }}</h5>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{ number_format($transaction->amount, 2) }}</td>
+                                                    <td>{{ $giftCardOrder->currency->name }}</td>
+
+                                                    <td>{{ number_format($giftCardOrder->amount, 2) }}</td>
+
                                                     <td>
-                                                        @if ($transaction->type == 'buy')
-                                                            <span class="badge badge-soft-success font-size-11">Buy</span>
-                                                        @else
-                                                            <span class="badge badge-soft-danger font-size-11">Sell</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($transaction->payment_status == 'Completed')
-                                                            <span class="badge badge-soft-success font-size-11">Completed</span>
-                                                        @elseif ($transaction->payment_status == 'Pending')
-                                                            <span class="badge badge-soft-danger font-size-11">Pending</span>
-                                                        @elseif ($transaction->payment_status == 'Received')
-                                                            <span class="badge badge-soft-info font-size-11">Payment Received</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($transaction->status == 'Completed')
+                                                        @if ($giftCardOrder->status == Status::SUCCESS)
                                                             <span class="badge badge-soft-success font-size-11">Completed</span>
                                                         @else
                                                             <span class="badge badge-soft-danger font-size-11">Pending</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin.transactions.show', $transaction->id) }}" class="btn btn-primary btn-sm">View</a>
+                                                        <a href="{{ route('admin.giftcard.show', $giftCardOrder->trx_hash) }}" class="btn btn-primary btn-sm">View</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -418,8 +404,8 @@
                                                 <td colspan="7" class="text-center">No transactions found.</td>
                                             </tr>
                                         @endif
-                                    </tbody> --}}
-                                    
+                                    </tbody>
+
                                 </table>
                             </div>
                             <!-- end table-responsive -->
@@ -427,21 +413,21 @@
                     </div>
                 </div>
 
-              
+
             </div>
             <!-- end row -->
-            
+
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 
     <!-- Modal -->
-    
+
     <!-- end modal -->
 
-   
+
     <!-- end modal -->
-    
+
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">

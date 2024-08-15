@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+
 class OtpController extends Controller
 {
     /**
@@ -15,27 +16,26 @@ class OtpController extends Controller
     */
 
 
-    public function __invoke(Request $request)
-    {
-        $token = $request->input('otp1') . $request->input('otp2') . $request->input('otp3') . $request->input('otp4');
+    // public function __invoke(Request $request)
+    // {
+    //     $token = $request->input('otp1') . $request->input('otp2') . $request->input('otp3') . $request->input('otp4');
 
-        $identifier = session('identifier');
-        $validate = (new Otp)->validate($identifier, $token);
+    //     $identifier = session('identifier');
+    //     $validate = (new Otp)->validate($identifier, $token);
 
-        if($validate->status){
-            $user = User::where('email', $identifier)->first();
+    //     if($validate->status){
+    //         $user = User::where('email', $identifier)->first();
 
-            Auth::login($user);
-            toastr()->success('Registration successful');
-            return to_route('dashboard');
-        }
+    //         Auth::login($user);
+    //         toastr()->success('Registration successful');
+    //         return to_route('dashboard');
+    //     }
 
-        toastr()->error("Invalid otp");
+    //     toastr()->error("Invalid otp");
+    //     return view('auth.verify-otp');
+    // }
+
+    public function index(){
         return view('auth.verify-otp');
     }
-
-    // public function index(){
-    //     return view('auth.verify-otp');
-
-    // }
 }
