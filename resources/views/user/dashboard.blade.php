@@ -45,7 +45,6 @@
   .dropdown-menu li a {
     color: black;
     padding: 10px;
-    /* width: 10%; */
     text-decoration: none;
     display: block;
   }
@@ -54,7 +53,10 @@
     background-color: #f1f1f1;
   }
 
-    </style>
+  .dashboard-body {
+    height: 100% !important;
+  }
+</style>
 
 	<!-- CONTENT -->
 	<section id="content">
@@ -127,13 +129,13 @@
 				</div>
 
 			</div>
-			<div class="body-bottom row">
+			<div class="body-bottom row mb-4">
 				<div class="col-md-9 col-12 mobile-table">
 					<div class="history-section-row">
 						<div class="history-section">
 							<div class="header-history">
 								<div>
-									<span class="pt-2"><small>Recent Transactions</small></span>
+									<span class="pt-2">Recent Transactions</span>
 								</div>
 
 								<div>
@@ -161,7 +163,7 @@
 									@foreach ($transactions as $transaction)
 									<div class="table-section-row">
 										<div class="table-section-wrapper pb-2">
-											<img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
+											<img src="{{ asset($transaction->cryptocurrency->symbol) }}" class="rounded-circle" style="width: 3rem; height: 3rem;" alt="{{ $transaction->cryptocurrency->name }}">
 											<div class="date-wrap">
 												<p>{{ @$transaction->cryptocurrency->name }}</p>
 												<p>{{ @$transaction->giftcard->name }} <span>{{ @$transaction->currency->name }}</span></p>

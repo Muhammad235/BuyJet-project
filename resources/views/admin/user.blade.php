@@ -8,8 +8,8 @@
                     <tr>
                         <td>#</td>
                         <th>Name</th>
-                        <th>Email</th> 
-                        <th>Phone</th> 
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Account Status</th>
                         <th>Action</th>
                     </tr>
@@ -20,16 +20,14 @@
                             @foreach ($users->take(10) as $key => $user)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
-                                    <td>{{ $user->surname .' '. $user->firstname }}</td>
+                                    <td>{{ $user->firstname .' '. $user->lastname }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
                                     <td>
-                                        @if ($user->status == 'active')
+                                        @if ($user->status == 1)
                                             <span class="badge badge-soft-success font-size-11">Active</span>
-                                        @elseif ($user->status == 'inactive')
+                                        @else ()
                                             <span class="badge badge-soft-danger font-size-11">Inactive</span>
-                                        @elseif ($user->status == 'pending')
-                                            <span class="badge badge-soft-info font-size-11">Pending</span>
                                         @endif
                                     </td>
                                     <td>
@@ -39,11 +37,11 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="7" class="text-center">No transactions found.</td>
+                                <td colspan="7" class="text-center">No user found.</td>
                             </tr>
                         @endif
                     </tbody>
-                    
+
                 </table>
             </div>
             <!-- end table-responsive -->

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('gift_card_id')->constrained();
             $table->foreignId('currency_id')->constrained();
             $table->decimal('amount', 12, 4);
+            $table->string('payment_receipt')->nullable();
             $table->boolean('with_receipt');
             $table->boolean('is_physical_card');
             $table->enum('status', [Status::PENDIDNG, Status::SUCCESS, Status::FAILED])->default(Status::PENDIDNG);

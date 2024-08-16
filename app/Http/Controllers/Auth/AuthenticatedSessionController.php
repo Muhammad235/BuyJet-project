@@ -40,13 +40,14 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
         $userRole = $user->role;
 
+
         // If successful, redirect to the intended location
         toastr()->success("Welcome {$user->firstname}");
 
         // Redirect based on the user's role
-        if ($userRole === Status::ADMIN) {
+        if($userRole === Status::ADMIN) {
 
-            return redirect()->intended('admin.home');
+            return redirect()->intended('admin');
         } else {
             return redirect()->intended('dashboard');
         }

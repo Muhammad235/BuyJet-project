@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\CryptocurrencyController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
 
 
-Route::prefix('admin')->name('admin.')->group(function (){
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (){
     Route::get('/',[HomeController::class,'index'])->name('home');
 
     Route::prefix('profile')->group(function (){

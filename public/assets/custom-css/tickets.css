@@ -20,16 +20,11 @@
 .history-section {
   padding: 0 17px !important;
 }
+
 .dashboard-body {
-  background: linear-gradient(
-    187.45deg,
-    #31353f 3.41%,
-    #808ba5 94.21%
-  ) !important;
-  height: 120vh !important;
-  overflow-x: hidden;
-  color: white !important;
+    height: 100vh !important;
 }
+
 .table-ticket-body-section {
   background: #110e22;
   height: 100%;
@@ -176,7 +171,7 @@
     width: 80% !important;
   }
   .box-inner h6 {
-    font-size: 12; 
+    font-size: 12;
   }
   .box-inner p {
     font-size: 10px;
@@ -203,7 +198,7 @@
   }
   .input-button {
     display: block;
-  } 
+  }
   .submit-button {
     font-size: 15px !important;
     width: 100%;
@@ -225,4 +220,10 @@
 }
 
 @media screen and (max-width: 768px) {
+
+    .dashboard-body {
+        height: 100% !important;
+        overflow-x: hidden;
+        color: white !important;
+    }
 }

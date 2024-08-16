@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                         
+
                             <h4 class="card-title mb-3">Manage Users</h4>
 
                             @if ($errors->any())
@@ -30,42 +30,40 @@
                                     Swal.fire({
                                     title: "Done",
                                     text: "{{ session('success') }}",
-                                    icon: "success", 
+                                    icon: "success",
                                     });
                                 </script>
-                            @endif 
+                            @endif
                             <div class="tab-content crypto-buy-sell-nav-content p-4">
                                 <div class="card">
                                     <div class="card-body">
-                                       
+
                                         <div class="table-responsive">
                                             <table id="datatable" class="table table-striped dt-responsive  w-100">
                                                 <thead>
                                                 <tr>
                                                     <td>#</td>
                                                     <th>Fullname</th>
-                                                    <th>Phone</th> 
+                                                    <th>Phone</th>
                                                     <th>Email</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
-            
+
                                                 <tbody>
                                                     @if (count($users) > 0)
                                                         @foreach ($users as $key => $user)
                                                             <tr>
                                                                 <td>{{ $key+1 }}</td>
-                                                                <td>{{ $user->surname }} {{ $user->firstname }}</td>
-                                                                <td>{{ $user->phone }}</td>
+                                                                <td>{{ $user->firstname }} {{ $user->lastname }}</td>
+                                                                <td>{{ $user->phone_number  }}</td>
                                                                 <td>{{ $user->email }}</td>
                                                                 <td>
-                                                                    @if ($user->status == 'active')
+                                                                    @if ($user->status == 1)
                                                                         <span class="badge badge-soft-success font-size-11">Active</span>
-                                                                    @elseif ($user->status == 'inactive')
+                                                                    @else()
                                                                         <span class="badge badge-soft-primary font-size-11">Inactive</span>
-                                                                        @elseif ($user->status == 'pending')
-                                                                        <span class="badge badge-soft-danger font-size-11">Pending</span>
                                                                     @endif
                                                                 </td>
                                                                 <td>
@@ -74,7 +72,7 @@
                                                                         Update
                                                                     </a>
                                                                 </td>
-                                                                
+
                                                             </tr>
                                                         @endforeach
                                                     @else
@@ -83,7 +81,7 @@
                                                         </tr>
                                                     @endif
                                                 </tbody>
-                                                
+
                                             </table>
                                         </div>
                                         <!-- end table-responsive -->
@@ -95,15 +93,15 @@
                     </div>
                 </div>
             </div>
-            
+
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 
-    
 
-    
-    
+
+
+
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -113,6 +111,6 @@
             </div>
         </div>
     </footer>
-</div> 
+</div>
 
 @endsection

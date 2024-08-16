@@ -2,13 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cryptocurrency;
+use App\Models\User;
+use App\Enums\Status;
 use App\Models\Currency;
 use App\Models\GiftCard;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Cryptocurrency;
 use App\Models\GeneralSetting;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        User::create([
+            'firstname' => 'Bujet',
+            'lastname' => 'Admin',
+            'email' => 'support@buyjet.ng',
+            'role' => Status::ADMIN,
+            'phone_number' => '0000000001',
+            'email_verified_at' => now(),
+            'password' => Hash::make('buyjet')
+        ]);
+
+        User::create([
+            'firstname' => 'Test',
+            'lastname' => 'User',
+            'email' => 'test@buyjet.ng',
+            'role' => Status::USER,
+            'phone_number' => '0000000002',
+            'email_verified_at' => now(),
+            'password' => Hash::make('test')
+        ]);
 
         GeneralSetting::create([
             'account_name' => 'BuyJet LTD',

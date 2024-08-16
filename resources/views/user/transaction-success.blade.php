@@ -38,6 +38,6 @@
             </div>
         </div>
     </section>
-@endsection
+    @endsection
 
 </x-app-layout>

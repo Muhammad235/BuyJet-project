@@ -3,6 +3,11 @@
 	@section('title', 'Ticket')
 
 	@section('content')
+
+    <style>
+  
+    </style>
+
     <!-- CONTENT -->
 	<section id="content">
 		<!-- TOP NAVBAR -->
@@ -27,7 +32,7 @@
                                     <p class="text-dark">Write about your complaint</p>
                                 </div>
                             </div>
-                        </a> 
+                        </a>
                     </div>
                     <div class="col-md-4">
                         <a href="{{ route('tickets.create') }}">
@@ -63,22 +68,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item mt-3">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                            Lorem ipsum lorem ipsum ipsum ?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            Ut enim ad minim veniam quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat aute irure dolor
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="accordion-item mt-3">
                                     <h2 class="accordion-header" id="headingThree">
                                         <button class="accordion-button collapsed" type="button"

@@ -2,6 +2,12 @@
 
 	@section('title', 'Transactions')
 	@section('content')
+
+    <style>
+        .dashboard-body{
+        height: 100vh !important;
+    }
+    </style>
     <!-- CONTENT -->
 	<section id="content">
 		<!-- TOP NAVBAR -->
@@ -10,7 +16,6 @@
         <main>
             <div class="body-bottom row">
                 <div class="col-12">
-                    {{-- <h6 class="text-center d-block d-md-none"> Recent Transactions</h6> --}}
                     <div class="history-section-row">
                         <div class="history-section mt-3">
                             <div class="header-history d-md-block">
@@ -42,7 +47,7 @@
                                     @foreach ($transactions as $transaction)
                                     <div class="table-section-row">
                                         <div class="table-section-wrapper pb-2">
-                                            <img src="{{ asset($transaction->cryptocurrency->symbol) }}" style="width: 50px;" alt="">
+                                            <img src="{{ asset($transaction->cryptocurrency->symbol) }}" class="rounded-circle" style="width: 3rem; height: 3rem;" alt="{{ $transaction->cryptocurrency->name }}">
                                             <div class="date-wrap">
                                                 <p>{{ @$transaction->cryptocurrency->name }}</p>
                                                 <p>{{ @$transaction->giftcard->name }} <span>{{ @$transaction->currency->name }}</span></p>
@@ -84,6 +89,6 @@
             </div>
         </main>
     </section>
-@endsection
+    @endsection
 
 </x-app-layout>

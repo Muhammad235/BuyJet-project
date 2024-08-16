@@ -16,9 +16,12 @@ class CryptoOrderMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(private $order, private $type, private $buy_rate, private $sell_rate)
     {
-        //
+        $this->order = $order;
+        $this->type = $type;
+        $this->buy_rate = $buy_rate;
+        $this->sell_rate = $sell_rate;
     }
 
     /**
@@ -38,14 +41,15 @@ class CryptoOrderMail extends Mailable
     {
         return new Content(
             markdown: 'mail.admin.crypto-order-mail',
-            // with: [
-            //     'firstname' => $this->order->user->firstname,
-            //     'amount' => $this->order->amount,
-            //     'reference' => $this->order->trx_hash,
-            //     'cryptoAmount' => $this->order->amount / $this->buy_rate,
-            //     'cryptocurrency' => $this->order->cryptocurrency->name,
-            //     'date_of_order' => $this->order->created_at
-            // ],
+            with: [
+                'firstname' => $this->order->user->firstname,
+                'amount' => $this->order->amount,
+                'type' => $this->type,
+                'reference' => $this->order->trx_hash,
+                'cryptoAmount' => $this->order->amount / $this->buy_rate,
+                'cryptocurrency' => $this->order->cryptocurrency->name,
+                'date_of_order' => $this->order->created_at
+            ],
         );
     }
 

@@ -13,7 +13,7 @@ class PasswordOtpController extends Controller
 {
     public function create()
     {
-        return view("auth.reset-password");
+        return view("auth.forget-password");
     }
 
     public function store(Request $request)

@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                         
+
                             <h4 class="card-title mb-3">Manage Users</h4>
 
                             @if ($errors->any())
@@ -30,63 +30,43 @@
                                     Swal.fire({
                                     title: "Done",
                                     text: "{{ session('success') }}",
-                                    icon: "success", 
+                                    icon: "success",
                                     });
                                 </script>
-                            @endif 
+                            @endif
                             <div class="tab-content crypto-buy-sell-nav-content p-4">
                                 <div class="card">
                                     <div class="card-body">
-                                       
+
                                         <div class="table-responsive">
                                             <table id="datatable" class="table table-striped dt-responsive  w-100">
-                                                 
-            
+
+
                                                 <tbody>
                                                     <tr>
                                                         <th>Profile Picture</th>
                                                         <td>
-                                                            <img src="{{ $user->avatar }}" alt="Profile Picture" width="100" height="100">
+                                                            <img src="{{ asset($user->avatar) }}" alt="Profile Picture" width="100" height="100">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Fullname</th>
-                                                        <td>{{ $user->surname }} {{ $user->firstname }}</td>
+                                                        <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Phone</th>
-                                                        <td>{{ $user->phone }}</td>
+                                                        <th>phone_number </th>
+                                                        <td>{{ $user->phone_number  }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Email</th>
                                                         <td>
-                                                            {{ $user->email }} 
+                                                            {{ $user->email }}
                                                             @if ($user->email_verified_at != null)
                                                                 <span class="badge badge-soft-success font-size-16">Verified</span>
                                                             @else
                                                                 <span class="badge badge-soft-danger font-size-16">Not Verified</span>
                                                             @endif
                                                         </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Username</th>
-                                                        <td>{{ $user->username }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Referral Code</th>
-                                                        <td>{{ $user->referral_code }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Referred Users</th>
-                                                        <td>{{ $user->referral_count }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Total Balance</th>
-                                                        <td>{{ $user->referral_code }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Available Balance</th>
-                                                        <td>{{ $user->available_balance }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>DOB</th>
@@ -119,10 +99,10 @@
                                                     </form>
 
 
-                                                            
-                                                       
+
+
                                                 </tbody>
-                                                
+
                                             </table>
                                         </div>
                                         <!-- end table-responsive -->
@@ -134,15 +114,15 @@
                     </div>
                 </div>
             </div>
-            
+
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 
-    
 
-    
-    
+
+
+
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -152,6 +132,6 @@
             </div>
         </div>
     </footer>
-</div> 
+</div>
 
 @endsection

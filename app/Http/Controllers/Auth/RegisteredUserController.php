@@ -43,10 +43,6 @@ class RegisteredUserController extends Controller
             // Update the existing user data
             $checkUser->update($userData);
 
-            // Auth::login($checkUser);
-            // toastr()->success('Registration successful');
-            // return to_route('dashboard');
-
             // Send OTP
             $sendOtp = $this->sendOtp($userData['email']);
 
@@ -60,10 +56,6 @@ class RegisteredUserController extends Controller
         } else {
             // Create a new user
             $user = User::create($userData);
-
-            // Auth::login($user);
-            // toastr()->success('Registration successful');
-            // return to_route('dashboard');
 
             // Fire the Registered event
             event(new Registered($user));
@@ -98,10 +90,8 @@ class RegisteredUserController extends Controller
                 return false;
             }
         }
-
         // OTP generation failed
         return false;
     }
-
 }
 

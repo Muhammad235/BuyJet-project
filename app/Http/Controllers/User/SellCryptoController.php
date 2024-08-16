@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\User;
 use App\Enums\Status;
 use App\Models\SellOrder;
 use App\Mail\SellOrderMail;
@@ -11,6 +12,7 @@ use App\Models\GeneralSetting;
 use App\Traits\FileUploadTrait;
 use App\Traits\GenerateTrxHash;
 use Illuminate\Support\Facades\DB;
+use App\Mail\Admin\CryptoOrderMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\User\SellCryptoRequest;
@@ -146,9 +148,12 @@ class SellCryptoController extends Controller
         try {
 
             $sellorder = SellOrder::where('trx_hash', $trx_hash)->first();
+            $general_setings = GeneralSetting::first();
+            $admin = User::where('role', Status::ADMIN)->first();
             $amount = $sellorder->amount;
             $reference = $sellorder->trx_hash;
             $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
+            $type = 'sell';
 
             if($sellorder->status == Status::PENDIDNG){
                 $sellorder->update([
@@ -156,6 +161,9 @@ class SellCryptoController extends Controller
                     'status' => Status::PENDIDNG,
                 ]);
             }
+
+            // Mail::to($admin->email)->send(new CryptoOrderMail($sellorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+            Mail::to('adelekeyahaya05@gmail.com')->send(new CryptoOrderMail($sellorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
 
             toastr()->success('Order processing');
             return view('user.transaction-success', compact('user', 'amount', 'reference'));

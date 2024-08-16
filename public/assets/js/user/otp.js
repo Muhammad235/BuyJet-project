@@ -1,36 +1,41 @@
-const OTPinputs = document.querySelectorAll(".otp-input");
+const OTPinputs = document.querySelectorAll("input");
 const button = document.querySelector("button");
 
-window.addEventListener("load", () => OTPinputs[0].removeAttribute("disabled") && OTPinputs[0].focus());
+window.addEventListener("load", () => OTPinputs[0].focus());
 
-OTPinputs.forEach((input, index) => {
+OTPinputs.forEach((input) => {
   input.addEventListener("input", () => {
     const currentInput = input;
     const nextInput = input.nextElementSibling;
 
-    if (currentInput.value.length > 1 && currentInput.value.length == 2) {
+    if (currentInput.value.length > 1 && currentInput.value.length == 2 ) {
       currentInput.value = "";
     }
 
-    if (nextInput !== null && nextInput.classList.contains("otp-input") && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+    if (nextInput !== null && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
       nextInput.removeAttribute("disabled");
       nextInput.focus();
     }
 
-    if (Array.from(OTPinputs).every(input => input.value !== "")) {
-      button.removeAttribute("disabled");
-    } else {
-      button.setAttribute("disabled", true);
+    if (!OTPinputs[3].disabled && OTPinputs[3].value !== "") {
+      button.classList.add("active");
+    }else{
+      button.classList.remove("active");
     }
+
   });
 
+
   input.addEventListener("keyup", (e) => {
-    if (e.key === "Backspace") {
-      if (input.previousElementSibling !== null && input.previousElementSibling.classList.contains("otp-input")) {
-        e.target.value = "";
-        e.target.setAttribute("disabled", true);
-        input.previousElementSibling.focus();
+      if (e.key === "Backspace") {
+        if(input.previousElementSibling !== null){
+          e.target.value = "";
+          e.target.setAttribute("disabled", true);
+          input.previousElementSibling.focus();
+        }
       }
-    }
-  });
+  })
+
 });
+
+

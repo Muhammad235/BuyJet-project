@@ -28,9 +28,16 @@
 
                     <form action="{{ route('reset.password') }}" method="POST">
                         @csrf
-                        <label for="Email Address" class="label-text">Email Address</label>
+                        @method('PUT')
+                        <label for="New Password" class="label-text">New Password</label>
                         <div class="input">
-                            <input type="email" name="email" class="form-control" placeholder="Enter Your Email Address" value="{{ old('email') }}">
+                            <input type="password" name="password" class="form-control" placeholder="Enter Your New Password" value="{{ old('password') }}">
+                            <i class="fa fa-envelope text-secondary"></i>
+                        </div>
+
+                        <label for="Confirm Password" class="label-text">Confirm Password</label>
+                        <div class="input">
+                            <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Your Password" value="{{ old('password_confirmation') }}">
                             <i class="fa fa-envelope text-secondary"></i>
                         </div>
 
@@ -39,15 +46,8 @@
                                     value="Submit">
                         </div>
                     </form>
-                    <p class="text-center text-secondary below-text mt-2">New to Buyjet? <a href="{{ route('register') }}"><span
-                                class="create-account">Create An Account</span></a>
 
-                    <p class="text-center  text-secondary below-text">Have an Account? <a href="{{ route('login') }}"><span
-                                    class="create-account">Login</span></a>
-
-                    </p>
                 </div>
-                <!-- <div class="col-md-6 side-image"></div> -->
             </div>
         </div>
     </section>

@@ -1,37 +1,48 @@
 <x-mail::message>
 
-# You have a new order from Muhammad
+# You have a new order from {{ $firstname }}
 <p class="center">You've received a new order and here is a summary of the order</p>
 
 <hr>
 
 #### Hello, Admin a new order has been placed by Muhammad.
 
-### Reference: # $reference
+### Reference:
+{{ $reference }}
 
 ### Transaction type:
-Buy crpyto
+{{ $type }} crpyto
 
 ### Cryptocurrency:
-{{-- {{ $cryptocurrency }} --}}
-BITCOIN
+{{ $cryptocurrency }}
 
 ### Crypto amount
-{{-- ${{ $cryptoAmount }} --}}
-$10
+${{ $cryptoAmount }}
 
 ### Date of order:
-{{-- {{ $date_of_order->format('F d, Y') }} --}}
+{{ $date_of_order->format('F d, Y') }}
 
 <hr>
 
+@if ($type == 'sell')
 <h1 style="padding: 5px; background-color: rgba(243, 243, 243, 0.856);">
-    {{-- Total amount paid <b style="color: green">₦{{ number_format($amount, 2) }}</b> --}}
+Total amount to be paid <b style="color: green">₦{{ number_format($amount, 2) }}</b>
 </h1>
 
-<x-mail::button :url="url('admin/transactions')">
+<x-mail::button :url="url('admin/sell/{{ $reference }}')">
 View Transaction
 </x-mail::button>
+@else
+<h1 style="padding: 5px; background-color: rgba(243, 243, 243, 0.856);">
+Total amount to be paid <b style="color: green">$ {{ $cryptoAmount }} worth of {{ $cryptocurrency }}</b>
+</h1>
+
+<x-mail::button :url="url('admin/buy/{{ $reference }}')">
+View Transaction
+</x-mail::button>
+@endif
+
+
 
 Thanks,<br>
 {{ config('app.name') }}

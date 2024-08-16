@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\User;
 use App\Enums\Status;
 use App\Models\BuyOrder;
 use App\Mail\BuyOrderMail;
@@ -11,6 +12,7 @@ use App\Models\GeneralSetting;
 use App\Traits\FileUploadTrait;
 use App\Traits\GenerateTrxHash;
 use Illuminate\Support\Facades\DB;
+use App\Mail\Admin\CryptoOrderMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\User\BuyCryptoRequest;
@@ -124,9 +126,12 @@ class BuyCryptoController extends Controller
         try {
 
             $buyorder = BuyOrder::where('trx_hash', $trx_hash)->first();
+            $general_setings = GeneralSetting::first();
+            $admin = User::where('role', Status::ADMIN)->first();
             $amount = $buyorder->amount;
             $reference = $buyorder->trx_hash;
             $general_settings = GeneralSetting::first();
+            $type = 'buy';
 
             $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
 
@@ -136,6 +141,10 @@ class BuyCryptoController extends Controller
                     'status' => Status::PENDIDNG,
                 ]);
             }
+
+            // Mail::to($admin->email)->send(new CryptoOrderMail($buyorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+            Mail::to('adelekeyahaya05@gmail.com')->send(new CryptoOrderMail($buyorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+
 
             toastr()->success('Order processing');
             return view('user.transaction-success', compact('user', 'amount', 'reference'));

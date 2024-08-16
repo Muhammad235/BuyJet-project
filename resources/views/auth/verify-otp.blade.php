@@ -12,7 +12,7 @@
                 <img src="{{ asset('assets/images/login-down.png') }}" alt="" class="login-left">
             </div>
             <div class="container-fluid">
-                <div class="row login-row">
+                <div class="row otp-row">
                     <div class="wrapper">
                         <div class="containers shadow">
                             <div class="text-center">

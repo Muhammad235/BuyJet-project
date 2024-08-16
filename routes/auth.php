@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordOtpController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -22,19 +23,20 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthenticatedSessionController::class, 'store'])
                 ->name('login.authenticate');
 
-    Route::get('reset-password', [PasswordOtpController::class, 'create'])
+    Route::get('forget-password', [PasswordOtpController::class, 'create'])
+                ->name('forget.password');
+
+    Route::post('forget-password', [PasswordOtpController::class, 'store']);
+
+    Route::put('reset-password', [ResetPasswordController::class, 'update'])
                 ->name('reset.password');
-    Route::post('reset-password', [PasswordOtpController::class, 'store']);
-                // ->name('reset-password');
+
+    Route::post('verify-otp', OtpController::class)
+                ->name('verify.otp');
 
 });
 
-
-Route::get('otp', [OtpController::class, 'index'])
-        ->name('verify.otp');
-
-// Route::post('verify-otp', OtpController::class)
-//         ->name('verify.otp');
+// Route::get('otp', [OtpController::class, 'index']);
 
 
 Route::middleware('auth')->group(function () {

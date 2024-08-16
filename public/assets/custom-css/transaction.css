@@ -138,9 +138,7 @@
     width: 100%;
     margin: 20px 0;
   }
-  .dashboard-body{
-    height: 100vh !important;
-  }
+
 
   @media screen and (max-width: 576px) {
     .flow-buttons {
