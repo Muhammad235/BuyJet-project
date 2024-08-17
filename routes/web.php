@@ -11,10 +11,18 @@ use App\Http\Controllers\User\SellCryptoController;
 use App\Http\Controllers\User\SellGiftCardController;
 
 
+Route::get('/optimize-clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('optimize');
+
+    return 'Application optimized and cache cleared successfully';
+});
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
