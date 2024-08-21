@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h3 class="h1 mb-3 text-center">Sell crypto transaction</h3>{{-- <h1 class="h1 mb-3">Confirm Transaction</h1> --}}
+                            <h3 class="h1 mb-3 text-center">Sell crypto transaction</h3>
 
                             @if ($errors->any())
                                 <div class="alert alert-danger">
