@@ -31,12 +31,12 @@ Route::middleware('guest')->group(function () {
     Route::put('reset-password', [ResetPasswordController::class, 'update'])
                 ->name('reset.password');
 
-    Route::post('verify-otp', OtpController::class)
-                ->name('verify.otp');
+    // Route::post('verify-otp', OtpController::class)
+    //             ->name('verify.otp');
 
 });
 
-// Route::get('otp', [OtpController::class, 'index']);
+Route::get('otp', [OtpController::class, 'index']);
 
 
 Route::middleware('auth')->group(function () {

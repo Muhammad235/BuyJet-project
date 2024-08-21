@@ -26,7 +26,7 @@ class StoreGiftCardRequest extends FormRequest
             'giftcard_id' => ['required', 'exists:gift_cards,id'],
             // 'amount' => ['required', 'numeric', 'min:2'],
             // 'is_physical' => ['required', 'boolean'],
-            // 'payment_proof' => ['required', 'mimes:jpg,jpeg,png,pdf,doc,docx', 'max:4072'],
+            // 'payment_proof' => ['required', 'mimes:jpg,jpeg,png,pdf,doc,docx', 'max:5072'],
         ];
     }
 

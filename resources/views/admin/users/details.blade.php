@@ -46,7 +46,7 @@
                                                     <tr>
                                                         <th>Profile Picture</th>
                                                         <td>
-                                                            <img src="{{ asset($user->avatar) }}" alt="Profile Picture" width="100" height="100">
+                                                            <img src="{{ asset($user->avatar ?? 'upload/avatar/default-avatar.png') }}" alt="Profile Picture" width="100" height="100">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -54,7 +54,7 @@
                                                         <td>{{ $user->firstname }} {{ $user->lastname }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>phone_number </th>
+                                                        <th>Phone number </th>
                                                         <td>{{ $user->phone_number  }}</td>
                                                     </tr>
                                                     <tr>
@@ -73,7 +73,7 @@
                                                         <td>{{ $user->dob }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Date Join</th>
+                                                        <th>Date Joined</th>
                                                         <td>{{ $user->created_at }}</td>
                                                     </tr>
 

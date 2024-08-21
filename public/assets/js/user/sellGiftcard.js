@@ -20,18 +20,6 @@ const btnDashboard = document.querySelector(".btn-dashboard");
 
 
 
-// modalButton.addEventListener("click", function () {
-//   btnContinue.style.display = "none";
-//   btnDashboard.style.display = "block";
-
-// //   modalError.style.display = "none";
-// //   modalComplete.style.display = "block";
-
-//   step.style.display = "none";
-// //   steps.style.display = "none";
-// //   stepss.style.display = "block";
-// });
-
 product_currency.addEventListener("click", function () {
   chevron_currency.style.display = "none";
   check_currency.style.display = "block";
@@ -130,6 +118,9 @@ const search_currency = () =>{
         }
     }
 }
+
+
+
 
 // counter
 // let counter = 0;

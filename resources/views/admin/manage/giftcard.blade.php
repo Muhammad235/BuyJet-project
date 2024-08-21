@@ -12,7 +12,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                         
+
                             <h4 class="card-title mb-3">Manage Gift Cards</h4>
 
                             @if ($errors->any())
@@ -29,10 +29,10 @@
                                     Swal.fire({
                                     title: "Done",
                                     text: "{{ session('success') }}",
-                                    icon: "success", 
+                                    icon: "success",
                                     });
                                 </script>
-                            @endif 
+                            @endif
                             <div class="tab-content giftcard-buy-sell-nav-content p-4">
                                 <div class="card">
                                     <div class="card-body">
@@ -57,7 +57,7 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                        
+
                                                 <tbody>
                                                     @if (count($giftcards) > 0)
                                                         @foreach ($giftcards->reverse() as $key => $giftcard)
@@ -67,7 +67,7 @@
                                                                 <td>
                                                                     <img src="{{ asset($giftcard->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                                 </td>
-                                                               
+
                                                                 <td>
                                                                     @if ($giftcard->status == 1)
                                                                         <span class="badge badge-soft-success font-size-11">Active</span>
@@ -91,7 +91,6 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        
                                         <!-- end table-responsive -->
                                     </div>
                                 </div>
@@ -101,12 +100,12 @@
                     </div>
                 </div>
             </div>
-            
+
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 
-    {{-- add modal   --}}
+    {{-- add modal  --}}
     <div class="modal fade" id="addCryptoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -121,39 +120,6 @@
                              <label>Name :</label>
                              <input type="text" name="name" required  class="form-control" placeholder="Enter Name">
                          </div>
-                        <div id="repeater-list">
-                            <div class="repeater-item">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="mb-3 me-3">
-                                            <label>Asset Name</label>
-                                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="mb-3 me-3">
-                                            <label>Wallet Address</label>
-                                            <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address">
-                                        </div>
-                                    </div>
-                                    <div class="col-3 align-self-end">
-                                        <input type="button" class="delete-btn btn btn-danger" value="Delete"/>
-                                    </div>
-                                    
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="button" id="addBtn" class="add-btn btn btn-success" value="Add"/>
-                        </div>
-                        
-
-                        <div class="mb-3">
-                            <label>Charge (In Dollars):</label>
-                            <input type="text" name="charge" oninput="validateInput(this);" required  class="form-control" placeholder="Enter Charge">
-                        </div>
-
                          <div class="mb-3 row">
                             <img src="" style="width: 200px" alt="image"  id="selected-img" class="img-fluid rounded">
                         </div>
@@ -189,17 +155,6 @@
                              <label>Name :</label>
                              <input type="text" name="name" required  class="form-control" placeholder="Enter Name">
                          </div>
-                        <div id="update-repeater-list">
-                            <div class="update-repeater-item">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="button" id="updateBtn" class="btn btn-success" value="Add Asset"/>
-                        </div>
-                        <div class="mb-3">
-                            <label>Charge (In Dollars):</label>
-                            <input type="text" name="charge" oninput="validateInput(this);" required  class="form-control" placeholder="Enter Charge">
-                        </div>
                          <input type="hidden" name="id" id="">
                          <div class="mb-3 row">
                             <img src="" style="width: 200px" alt="image"  id="selected-img" class="img-fluid rounded">
@@ -210,16 +165,12 @@
                                 <input type="file" value="0" onchange="displaySelectedImage()" name="symbol" class="form-control" id="selectedimage">
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label>Wallet Address :</label>
-                            <input type="text" name="wallet_address" required  class="form-control" placeholder="Enter Wallet Address">
-                        </div>
 
                         <div class="mb-3">
                             <label for="status">Select Status</label>
                             <select name="status" class="form-control">
                                 <option value="1">Active</option>
-                                <option value="2">Inactive</option>
+                                <option value="0">Inactive</option>
                             </select>
                         </div>
 
@@ -233,8 +184,8 @@
     </div>
 
 
-    
-    
+
+
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -244,7 +195,7 @@
             </div>
         </div>
     </footer>
-</div> 
+</div>
 
 @endsection
 
@@ -254,83 +205,83 @@
         input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-    
-        const addBtn = document.getElementById('addBtn');
-        const repeaterList = document.getElementById('repeater-list');
+    // document.addEventListener("DOMContentLoaded", function() {
 
-        addBtn.addEventListener('click', function() {
-            const template = document.querySelector('.repeater-item');
-            const newItem = template.cloneNode(true);
-            newItem.classList.add('repeater-item');
+    //     const addBtn = document.getElementById('addBtn');
+    //     const repeaterList = document.getElementById('repeater-list');
 
-            // Removing the existing content
-            newItem.innerHTML = `
-                <div class="row">
-                    <div class="col-3">
-                        <div class="mb-3 me-3">
-                            <label>Asset Name</label>
-                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="mb-3 me-3">
-                            <label>Wallet </label>
-                            <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address" required>
-                        </div>
-                    </div>
-                    <div class="col-3 align-self-end">
-                        <input type="button" class="delete-btn btn btn-danger" value="Delete"/>
-                    </div>
-                </div>
-            `;
+    //     addBtn.addEventListener('click', function() {
+    //         const template = document.querySelector('.repeater-item');
+    //         const newItem = template.cloneNode(true);
+    //         newItem.classList.add('repeater-item');
 
-            repeaterList.appendChild(newItem);
+    //         // Removing the existing content
+    //         newItem.innerHTML = `
+    //             <div class="row">
+    //                 <div class="col-3">
+    //                     <div class="mb-3 me-3">
+    //                         <label>Asset Name</label>
+    //                         <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
+    //                     </div>
+    //                 </div>
+    //                 <div class="col-3">
+    //                     <div class="mb-3 me-3">
+    //                         <label>Wallet </label>
+    //                         <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address" required>
+    //                     </div>
+    //                 </div>
+    //                 <div class="col-3 align-self-end">
+    //                     <input type="button" class="delete-btn btn btn-danger" value="Delete"/>
+    //                 </div>
+    //             </div>
+    //         `;
 
-            const deleteBtns = newItem.querySelectorAll('.delete-btn');
-            deleteBtns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    this.closest('.repeater-item').remove();
-                });
-            });
-        });
+    //         repeaterList.appendChild(newItem);
 
-        const updateBtn = document.getElementById('updateBtn');
-        const updateRepeaterList = document.getElementById('update-repeater-list');
+    //         const deleteBtns = newItem.querySelectorAll('.delete-btn');
+    //         deleteBtns.forEach(function(btn) {
+    //             btn.addEventListener('click', function() {
+    //                 this.closest('.repeater-item').remove();
+    //             });
+    //         });
+    //     });
 
-        updateBtn.addEventListener('click', function() {
-            const template = document.querySelector('.update-repeater-item');
-            const newItem = template.cloneNode(true);
-            newItem.classList.add('update-repeater-item');
+    //     const updateBtn = document.getElementById('updateBtn');
+    //     const updateRepeaterList = document.getElementById('update-repeater-list');
 
-            // Removing the existing content
-            newItem.innerHTML = `
-                <div class="row">
-                    <div class="col-3">
-                        <div class="mb-3 me-3">
-                            <label>Asset Name</label>
-                            <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="mb-3 me-3">
-                            <label>Wallet </label>
-                            <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address" required>
-                        </div>
-                    </div>
-                    <div class="col-3 align-self-end">
-                        <input type="button" class="update-delete-btn btn btn-danger" value="Delete"/>
-                    </div>
-                </div>
-            `;
-            updateRepeaterList.appendChild(newItem);
-            const deleteBtns = newItem.querySelectorAll('.update-delete-btn');
-            deleteBtns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    this.closest('.update-repeater-item').remove();
-                });
-            });
-        });
-    });
+    //     updateBtn.addEventListener('click', function() {
+    //         const template = document.querySelector('.update-repeater-item');
+    //         const newItem = template.cloneNode(true);
+    //         newItem.classList.add('update-repeater-item');
+
+    //         // Removing the existing content
+    //         newItem.innerHTML = `
+    //             <div class="row">
+    //                 <div class="col-3">
+    //                     <div class="mb-3 me-3">
+    //                         <label>Asset Name</label>
+    //                         <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
+    //                     </div>
+    //                 </div>
+    //                 <div class="col-3">
+    //                     <div class="mb-3 me-3">
+    //                         <label>Wallet </label>
+    //                         <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address" required>
+    //                     </div>
+    //                 </div>
+    //                 <div class="col-3 align-self-end">
+    //                     <input type="button" class="update-delete-btn btn btn-danger" value="Delete"/>
+    //                 </div>
+    //             </div>
+    //         `;
+    //         updateRepeaterList.appendChild(newItem);
+    //         const deleteBtns = newItem.querySelectorAll('.update-delete-btn');
+    //         deleteBtns.forEach(function(btn) {
+    //             btn.addEventListener('click', function() {
+    //                 this.closest('.update-repeater-item').remove();
+    //             });
+    //         });
+    //     });
+    // });
 
 </script>

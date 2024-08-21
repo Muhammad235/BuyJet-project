@@ -80,7 +80,13 @@
                 <li>
                     <a href="{{ route('admin.manage.giftcard.index') }}" class=" waves-effect">
                         <i class="bx bx-bitcoin"></i>
-                        <span key="t-dashboards">Manage Giftcards</span>
+                        <span key="t-dashboards">Manage Gift Cards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.manage.currency.index') }}" class=" waves-effect">
+                        <i class="bx bx-dollar"></i>
+                        <span key="t-dashboards">Manage Currency</span>
                     </a>
                 </li>
                 <li>

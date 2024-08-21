@@ -20,6 +20,7 @@ class GiftCardOrder extends Model
         'amount',
         'with_receipt',
         'is_physical_card',
+        'payment_receipt',
     ];
 
     public function user() : BelongsTo

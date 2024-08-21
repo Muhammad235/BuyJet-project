@@ -3,10 +3,9 @@ $(document).ready(function() {
     $("#selected-img").hide();
 
     $('.edit-crypto').click(function () {
-        
+
         var cryptoID = $(this).data('cryptoid');
         var url = '/admin/manage/crypto/' + cryptoID;
-        console.log(cryptoID);
         $.ajax({
             method: "GET",
             url: url,
@@ -55,7 +54,53 @@ $(document).ready(function() {
                 $('.update-delete-btn').click(function () {
                     $(this).closest('.update-repeater-item').remove();
                 });
-            
+
+            }
+        });
+    });
+
+    $('.edit-giftcard').click(function () {
+
+        var giftcardID = $(this).data('giftcardid');
+        var url = '/admin/manage/giftcard/' + giftcardID;
+
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "json",
+            success: function(data) {
+
+                $('#editCryptoModal').modal('show');
+                $("#editCryptoForm").attr("action", "/admin/manage/giftcard/" + data.id);
+                $("#editCryptoForm input[name='id']").val(data.id);
+                $("#editCryptoForm input[name='name']").val(data.name);
+
+                $("#editCryptoForm #selected-img").attr("src", data.symbol);
+                $("#editCryptoForm select[name='status']").val(data.status);
+            }
+        });
+    });
+
+    $('.edit-currency').click(function () {
+
+        var currencyId = $(this).data('currencyid');
+        var url = '/admin/manage/currency/' + currencyId;
+
+        // console.log(currencyId);
+
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "json",
+            success: function(data) {
+
+                $('#editCryptoModal').modal('show');
+                $("#editCryptoForm").attr("action", "/admin/manage/currency/" + data.id);
+                $("#editCryptoForm input[name='id']").val(data.id);
+                $("#editCryptoForm input[name='name']").val(data.name);
+
+                $("#editCryptoForm #selected-img").attr("src", data.symbol);
+                $("#editCryptoForm select[name='status']").val(data.status);
             }
         });
     });
@@ -66,7 +111,7 @@ function displaySelectedImage() {
     // Get the selected file input element
 
     var fileInput = document.getElementById('selectedimage');
-   
+
 
     // Get the selected file
     var selectedFile = fileInput.files[0];
@@ -92,7 +137,7 @@ function displayBannerImage(){
     // Get the selected file input element
     var fileInput = document.getElementById('bannerimage');
 
-    // Get the selected file 
+    // Get the selected file
     var selectedFile = fileInput.files[0];
 
     // Get the img element

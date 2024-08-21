@@ -3956,6 +3956,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
     -webkit-transition-duration: 50ms;
     transition-duration: 50ms;
 }
+/*
+
 .message-list li .col-mail {
     float: left;
     position: relative;
@@ -3998,7 +4000,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
 .message-list li .col-mail-2 {
     position: absolute;
     top: 0;
-    left: 320px;
+    left: 120px;
     right: 0;
     bottom: 0;
 }
@@ -4009,7 +4011,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
 }
 .message-list li .col-mail-2 .subject {
     left: 0;
-    right: 200px;
+    right: 100px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -4018,7 +4020,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
     right: 0;
     width: 170px;
     padding-left: 80px;
-}
+} */
 .message-list li.active,
 .message-list li.active:hover {
     -webkit-box-shadow: inset 3px 0 0 #40196D;

@@ -52,7 +52,7 @@
                                         @foreach ($giftcards as $giftcard)
                                             <div class="col-md-4 col-4">
                                                 <div class="option giftcard-option" data-giftcardid={{ $giftcard->id }} data-giftcardname={{ $giftcard->name }}>
-                                                    <img src="{{ asset('assets/images/amazon.png') }}" alt="" class="shadow">
+                                                    <img src="{{ asset($giftcard->symbol) }}" alt="" class="shadow">
                                                     <h6 class="option-text">{{ $giftcard->name }}</h6>
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@
                                                 @foreach ($currencies as $currency)
                                                 <div class="col-md-4 col-4">
                                                     <div class="option_currency list_currency" data-currency={{ $currency->id }} data-currencyname={{ $currency->name }}>
-                                                        <img src="{{ asset('assets/images/cad.png') }}" alt="" class="shadow">
+                                                        <img src="{{ asset($currency->symbol) }}" alt="" class="shadow">
                                                         <h5 class="option-text_currency">{{ $currency->name }}</h5>
                                                     </div>
                                                 </div>
@@ -178,13 +178,18 @@
                                 <div class="drop-section shadow">
                                     <div class="col">
                                         <div class="cloud-icon">
-                                            <img src="{{ asset('assets/images/gift-image.png') }}" alt="cloud" class="file-selector">
-                                            <input type="file" name="payment_proof" class="file-selector-input" multiple hidden>
+                                            <img src="{{ asset('assets/images/gift-image.png') }}" alt="cloud" id="selected-img"  class="file-selector" >
+                                            <input type="file" name="payment_proof" id="selectedimage"  class="file-selector-input" multiple hidden>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="drop-here">Drop Here</div>
                                     </div>
+                                    {{-- <div class="list-section">
+                                        <div class="list">
+
+                                        </div>
+                                    </div> --}}
                                 </div>
 
                                 <div>
@@ -319,10 +324,39 @@
 
     <script>
 
+
+
         function validateInput(input) {
             // Remove any non-numeric characters and multiple decimal points
             input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
         }
+
+
+        function displaySelectedImage() {
+
+            console.log('hiii');
+
+
+             var fileInput = document.getElementById('selectedimage');
+            var selectedFile = fileInput.files[0];
+
+            // Get the img element
+            var imgElement = document.getElementById('selected-img');
+            imgElement.style.display = "block";
+
+            // Create a FileReader to read the selected file
+            var reader = new FileReader();
+
+            // Define a function to run when the FileReader has successfully loaded the image
+            reader.onload = function(e) {
+                // Set the src attribute of the img element to the data URL of the selected image
+                imgElement.src = e.target.result;
+            };
+
+            // Read the selected file as a data URL (this will trigger the onload function)
+            reader.readAsDataURL(selectedFile);
+        }
+
 
         function showAmountInNaira() {
             const rateElement = document.getElementById('rate');
@@ -523,9 +557,7 @@
 
             function sellGiftCard(){
 
-
                 var giftCardValue = parseFloat($("#card-value").val());
-                console.log('cardValue', giftCardValue);
 
                 var data = {
                     currency_id: selectedCurrencyId,
@@ -536,6 +568,8 @@
                     amount: giftCardValue,
                     '_token': '{{ csrf_token() }}'
                 }
+
+                // console.log(data);
 
                 $.ajax({
                     url: "{{ route('giftcard.store') }}",
@@ -549,9 +583,7 @@
                     success: function(response) {
 
                         if (response.status) {
-
                             console.log('Success:', response);
-
                         }
                     },
                     error: function(error) {

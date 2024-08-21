@@ -12,13 +12,16 @@ class TicketController extends Controller
         $tickets = $tickets = Ticket::orderBy('updated_at', 'desc')
         ->orderByRaw("FIELD(status, 'open', 'close')")
         ->paginate();
-    
+
         return view('admin.tickets.index', compact('tickets'));
     }
 
     public function show($id)
     {
-        $ticket = Ticket::where('id',$id)->with('user')->with('subTickets')->first();
+       $ticket = Ticket::where('id',$id)->with('user')->with('subTickets')->first();
+
+        // $ticket = $ticket->with('user')->with('subTickets');
+
         return view('admin.tickets.details', compact('ticket'));
     }
 }

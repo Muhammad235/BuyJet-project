@@ -7,8 +7,7 @@
 
 #### Hello, Admin a new order has been placed by Muhammad.
 
-### Reference:
-{{ $reference }}
+### Reference: # {{ $reference }}
 
 ### Transaction type:
 {{ $type }} crpyto
@@ -41,7 +40,6 @@ Total amount to be paid <b style="color: green">$ {{ $cryptoAmount }} worth of {
 View Transaction
 </x-mail::button>
 @endif
-
 
 
 Thanks,<br>

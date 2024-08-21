@@ -47,7 +47,11 @@
                                     @foreach ($transactions as $transaction)
                                     <div class="table-section-row">
                                         <div class="table-section-wrapper pb-2">
-                                            <img src="{{ asset($transaction->cryptocurrency->symbol) }}" class="rounded-circle" style="width: 3rem; height: 3rem;" alt="{{ $transaction->cryptocurrency->name }}">
+                                            <img src="{{ asset(@$transaction->cryptocurrency->symbol ?? @$transaction->giftcard->symbol) }}"
+                                                class="rounded-circle"
+                                                style="width: 3rem; height: 3rem;"
+                                                alt="{{ @$transaction->cryptocurrency->name ?? @$transaction->giftcard->name }}">
+
                                             <div class="date-wrap">
                                                 <p>{{ @$transaction->cryptocurrency->name }}</p>
                                                 <p>{{ @$transaction->giftcard->name }} <span>{{ @$transaction->currency->name }}</span></p>

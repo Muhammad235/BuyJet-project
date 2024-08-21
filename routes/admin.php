@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\SubTicketController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\TicketController;
@@ -26,6 +28,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (){
         Route::patch('/banks/{bank}', [ManageController::class, 'updateBank'])->name('banks.update');
         Route::resource('/crypto', CryptocurrencyController::class);
         Route::resource('/giftcard', GiftcardController::class);
+        Route::resource('/currency', CurrencyController::class);
     });
 
     Route::prefix('users')->group(function(){
@@ -61,6 +64,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (){
     Route::prefix('tickets')->group(function(){
         Route::get('/', [TicketController::class, 'index'])->name('tickets.index');
         Route::get('/{id}', [TicketController::class, 'show'])->name('tickets.show');
+        Route::get('/sub-ticket', [SubTicketController::class, 'store'])->name('tickets.store');
         Route::patch('/confirm/{id}',[TicketController::class,'update'])->name('tickets.update');
     });
 });

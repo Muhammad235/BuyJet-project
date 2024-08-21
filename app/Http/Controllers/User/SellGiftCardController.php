@@ -51,6 +51,9 @@ class SellGiftCardController extends Controller
 
             DB::beginTransaction();
 
+
+            // $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
+
             $order = GiftCardOrder::create([
                 'trx_hash' => $this->generateTrxHash(6),
                 'user_id' => $user->id,
@@ -59,6 +62,7 @@ class SellGiftCardController extends Controller
                 'amount' => floatval($request->amount * $general_setings->sell_rate),
                 'with_receipt' => $request->with_receipt,
                 'is_physical_card' => $request->is_physical,
+                // 'payment_receipt' => $fileName,
             ]);
 
             Mail::to($order->user->email)->send(new SellGiftCardMail($order, $sell_rate));

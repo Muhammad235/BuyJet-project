@@ -23,7 +23,7 @@ class Ticket extends Model
         return $this->belongsTo(User::class);
     }
 
-    // public function subTickets(){
-    //     return $this->hasMany(SubTickets::class);
-    // }
+    public function subTickets(){
+        return $this->hasMany(SubTicket::class);
+    }
 }

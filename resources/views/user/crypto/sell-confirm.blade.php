@@ -3,6 +3,11 @@
 	@section('title', 'Buy Crypto')
 
 	@section('content')
+    <style>
+        .dashboard-body {
+         height: 100vh !important;
+       }
+    </style>
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- TOP NAVBAR -->
