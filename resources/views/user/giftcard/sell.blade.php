@@ -113,7 +113,7 @@
                                     <input class="radio" type="radio" name="is_physical_card" id="inlineRadio1"
                                         value="1">
                                     <label class="form-check-label" for="inlineRadio1"><small>
-                                            Card</small></label>
+                                        Physical</small></label>
                                 </div>
                                 <div class="form-check">
                                     <input class="radio" type="radio" name="is_physical_card" id="inlineRadio2"
@@ -218,7 +218,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-5">
                                     <div class="price-text">
-                                        <span>Card</span>
+                                        <span>Physical</span>
                                         <h3 id="giftCard"></h3>
                                     </div>
                                     <div class="price-text-status price-text">

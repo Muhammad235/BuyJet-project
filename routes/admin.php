@@ -31,6 +31,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (){
         Route::resource('/currency', CurrencyController::class);
     });
 
+
+    Route::prefix('transactions')->group(function(){
+        Route::get('/', [TransactionController::class, 'index'])->name('transactions.index');
+        Route::get('/{id}', [TransactionController::class, 'show'])->name('transactions.show');
+    });
+
     Route::prefix('users')->group(function(){
         Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
