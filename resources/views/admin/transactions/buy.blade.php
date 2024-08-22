@@ -29,8 +29,6 @@
                             <div class="invoice-title">
                                 <h1 class="text-center h1 text-primary fs-1">&#8358; {{ number_format($transaction->amount,2) }}</h1>
                                 <h5 class="text-center">Charge Fee: ₦ {{ number_format($transaction->cryptocurrency->charge, 2) }}</h5>
-
-
                             </div>
 
                             <div class="table-responsive">

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-
 @section('title','Transactions')
+@use('App\Enums\Status')
 
 @section('content')
 
@@ -40,7 +40,7 @@
                             <div class="tab-content p-3">
                                 <div class="tab-pane" id="giftcard-order" role="tabpanel">
                                     <div class="table-responsive">
-                                        <table   class="table datatable table-striped dt-responsive  w-100">
+                                        <table class="table datatable table-striped dt-responsive  w-100">
                                             <thead>
                                             <tr>
                                                 <td>#</td>
@@ -72,16 +72,9 @@
                                                             <td> <p>{{ $transaction->currency->name }}</p></td>
 
                                                             <td>{{ number_format($transaction->amount,2) }}</td>
-                                                            {{-- <td>
-                                                                @if ($transaction->type == 'buy')
-                                                                    <span class="badge badge-soft-success font-size-11">Buy</span>
-                                                                @else
-                                                                    <span class="badge badge-soft-danger font-size-11">Sell</span>
-                                                                @endif
-                                                            </td> --}}
 
                                                             <td>
-                                                                @if ($transaction->status == 'Completed')
+                                                                @if ($transaction->status == Status::SUCCESS)
                                                                     <span class="badge badge-soft-success font-size-11">Completed</span>
                                                                 @else
                                                                     <span class="badge badge-soft-danger font-size-11">Pending</span>
@@ -108,7 +101,6 @@
                                                 <td>#</td>
                                                 <th>Cryptocurrency</th>
                                                 <th>Amount</th>
-
                                                 <th>Transaction Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -131,7 +123,7 @@
                                                             </td>
                                                             <td>{{ number_format($transaction->amount, 2) }}</td>
                                                             <td>
-                                                                @if ($transaction->status == 'Completed')
+                                                                @if ($transaction->status == Status::SUCCESS)
                                                                     <span class="badge badge-soft-success font-size-11">Completed</span>
                                                                 @else
                                                                     <span class="badge badge-soft-danger font-size-11">Pending</span>
@@ -158,7 +150,6 @@
                                                 <td>#</td>
                                                 <th>Cryptocurrency</th>
                                                 <th>Amount</th>
-
                                                 <th>Transaction Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -180,9 +171,8 @@
                                                                 </div>
                                                             </td>
                                                             <td>{{ number_format($transaction->amount,2) }}</td>
-
                                                             <td>
-                                                                @if ($transaction->status == 'Completed')
+                                                                @if ($transaction->status == Status::SUCCESS)
                                                                     <span class="badge badge-soft-success font-size-11">Completed</span>
                                                                 @else
                                                                     <span class="badge badge-soft-danger font-size-11">Pending</span>

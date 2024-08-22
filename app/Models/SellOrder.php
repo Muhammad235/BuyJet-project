@@ -16,6 +16,8 @@ class SellOrder extends Model
         'cryptocurrency_id',
         'amount',
         'asset_network',
+        'payment_receipt',
+        'status'
     ];
 
     public function user() : BelongsTo

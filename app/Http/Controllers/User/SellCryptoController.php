@@ -75,8 +75,6 @@ class SellCryptoController extends Controller
                 'amount' => $cryptoAmountInNaira,
             ]);
 
-            Mail::to($order->user->email)->send(new SellOrderMail($order, $sell_rate));
-
             DB::commit();
 
             return redirect()->route('sell.confirm', $order->trx_hash);
@@ -126,13 +124,6 @@ class SellCryptoController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -140,7 +131,7 @@ class SellCryptoController extends Controller
     public function update(Request $request, string $trx_hash)
     {
         $request->validate([
-            'payment_proof' =>'required |mimes:jpg,jpeg,png,pdf,doc,docx |max:3072',
+            'payment_proof' =>'required|mimes:jpg,jpeg,png,pdf,doc,docx|max:3072',
         ]);
 
         $user = auth()->user();
@@ -149,6 +140,7 @@ class SellCryptoController extends Controller
 
             $sellorder = SellOrder::where('trx_hash', $trx_hash)->first();
             $general_setings = GeneralSetting::first();
+            $sell_rate = $general_setings->sell_rate;
             $admin = User::where('role', Status::ADMIN)->first();
             $amount = $sellorder->amount;
             $reference = $sellorder->trx_hash;
@@ -162,8 +154,9 @@ class SellCryptoController extends Controller
                 ]);
             }
 
-            // Mail::to($admin->email)->send(new CryptoOrderMail($sellorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
-            Mail::to('adelekeyahaya05@gmail.com')->send(new CryptoOrderMail($sellorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+            Mail::to($admin->email)->send(new CryptoOrderMail($sellorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+            // Mail::to('adelekeyahaya05@gmail.com')->send(new CryptoOrderMail($sellorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+            Mail::to($sellorder->user->email)->send(new SellOrderMail($sellorder, $sell_rate));
 
             toastr()->success('Order processing');
             return view('user.transaction-success', compact('user', 'amount', 'reference'));

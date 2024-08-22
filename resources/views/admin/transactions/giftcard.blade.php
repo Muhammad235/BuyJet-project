@@ -90,22 +90,10 @@
                                             <td class="text-end">{{ explode(' ', $transaction->created_at)[0] }}</td>
                                         </tr>
 
-                                        <form method="POST" action="{{ route('admin.sell.update', $transaction->trx_hash) }}">
+                                        <form method="POST" action="{{ route('admin.giftcard.update', $transaction->trx_hash) }}">
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="trx_hash" value="{{ $transaction->trx_hash }}">
-
-                                            {{-- <tr>
-                                                <th style="width: 70px;">Payment Status</th>
-                                                <td class="text-end">
-                                                    <select name="payment_status" class="form-select" id="">
-                                                        <option value="Completed" {{ $transaction->payment_status == 'Completed' ? 'selected' : '' }}>Completed</option>
-                                                        <option value="Pending" {{ $transaction->payment_status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                                        <option value="Received" {{ $transaction->payment_status == 'Received' ? 'selected' : '' }}>Payment Recived</option>
-                                                    </select>
-                                                </td>
-                                            </tr> --}}
-
                                             <tr>
                                                 <th style="width: 70px;">Transaction Status</th>
                                                 <td class="text-end">

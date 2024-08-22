@@ -49,22 +49,14 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (){
     });
 
     Route::prefix('sell')->group(function(){
-        Route::get('/{trx_hash}', [TransactionController::class,'showSell'])->name('sell.show');
-        Route::patch('/confirm/{trx_hash}',[TransactionController::class,'updateSell'])->name('sell.update');
+        Route::get('/{trx_hash}', [TransactionController::class, 'showSell'])->name('sell.show');
+        Route::patch('/confirm/{trx_hash}',[TransactionController::class, 'updateSell'])->name('sell.update');
     });
 
     Route::prefix('giftcard')->group(function(){
 
-
-        // Route::get('/{trx_hash}', [TransactionController::class,'showSell'])->name('sell.show');
-
-
-        // Route::get('/', function(){
-        //     return 'gift';
-        // });
-
-        Route::get('/{trx_hash}', [GiftCardOrderController::class, 'show'])->name('giftcard.show');
-        // Route::patch('/confirm/{trx_hash}',[TransactionController::class,'updateSell'])->name('sell.update');
+        Route::get('/{trx_hash}', [TransactionController::class, 'showGiftCard'])->name('giftcard.show');
+        Route::patch('/confirm/{trx_hash}',[TransactionController::class, 'updateGiftCard'])->name('giftcard.update');
     });
 
     Route::prefix('tickets')->group(function(){

@@ -61,9 +61,9 @@ class BuyCryptoController extends Controller
         $user = auth()->user();
 
         $general_setings = GeneralSetting::first();
+        $buy_rate = $general_setings->buy_rate;
         $crypto = Cryptocurrency::findorFail($request->cryptocurrency_id);
         $amount = floatval($request->amount);
-        $buy_rate = floatval($general_setings->buy_rate);
         $cryptoAmountInNaira = floatval($crypto->charge * $buy_rate) + floatval($amount * $buy_rate);
 
         try {
@@ -78,8 +78,6 @@ class BuyCryptoController extends Controller
                 'amount' => $cryptoAmountInNaira,
                 'wallet_address' => $request->wallet_address,
             ]);
-
-            Mail::to($order->user->email)->send(new BuyOrderMail($order, $buy_rate));
 
             DB::commit();
 
@@ -118,7 +116,7 @@ class BuyCryptoController extends Controller
     public function update(Request $request, string $trx_hash)
     {
         $request->validate([
-            'payment_proof' =>'required |mimes:jpg,jpeg,png,pdf,doc,docx |max:3072',
+            'payment_proof' =>'required|mimes:jpg,jpeg,png,pdf,doc,docx|max:3072',
         ]);
 
         $user = auth()->user();
@@ -127,6 +125,7 @@ class BuyCryptoController extends Controller
 
             $buyorder = BuyOrder::where('trx_hash', $trx_hash)->first();
             $general_setings = GeneralSetting::first();
+            $buy_rate = $general_setings->buy_rate;
             $admin = User::where('role', Status::ADMIN)->first();
             $amount = $buyorder->amount;
             $reference = $buyorder->trx_hash;
@@ -142,8 +141,9 @@ class BuyCryptoController extends Controller
                 ]);
             }
 
-            // Mail::to($admin->email)->send(new CryptoOrderMail($buyorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
-            Mail::to('adelekeyahaya05@gmail.com')->send(new CryptoOrderMail($buyorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+            Mail::to($admin->email)->send(new CryptoOrderMail($buyorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+            // Mail::to('adelekeyahaya05@gmail.com')->send(new CryptoOrderMail($buyorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
+            Mail::to($buyorder->user->email)->send(new BuyOrderMail($buyorder, $buy_rate));
 
 
             toastr()->success('Order processing');

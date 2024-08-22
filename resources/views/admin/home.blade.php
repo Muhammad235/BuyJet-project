@@ -5,8 +5,6 @@
 @section('content')
 
 
-{{-- @dd($transactions) --}}
-
 <div class="main-content">
 
     <div class="page-content">
@@ -250,15 +248,6 @@
                                                     </td>
                                                     <td>{{ number_format($buyOrder->amount + $buyOrder->charge, 2) }}</td>
                                                     <td>{{ $buyOrder->asset_network }}</td>
-                                                    {{-- <td>
-                                                        @if ($buyOrder->payment_status == 'Completed')
-                                                            <span class="badge badge-soft-success font-size-11">Completed</span>
-                                                        @elseif ($buyOrder->payment_status == 'Pending')
-                                                            <span class="badge badge-soft-danger font-size-11">Pending</span>
-                                                        @elseif ($buyOrder->payment_status == 'Received')
-                                                            <span class="badge badge-soft-info font-size-11">Payment Received</span>
-                                                        @endif
-                                                    </td> --}}
                                                     <td>
                                                         @if ($buyOrder->status == Status::SUCCESS)
                                                             <span class="badge badge-soft-success font-size-11">Completed</span>
@@ -273,7 +262,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="7" class="text-center">No transactions found.</td>
+                                                <td colspan="7" class="text-center">No transaction found.</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -335,7 +324,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="7" class="text-center">No transactions found.</td>
+                                                <td colspan="7" class="text-center">No transaction found.</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -401,7 +390,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="7" class="text-center">No transactions found.</td>
+                                                <td colspan="7" class="text-center">No transaction found.</td>
                                             </tr>
                                         @endif
                                     </tbody>

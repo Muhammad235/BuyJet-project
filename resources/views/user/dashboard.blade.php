@@ -135,11 +135,11 @@
 						<div class="history-section">
 							<div class="header-history">
 								<div>
-									<span class="pt-2">Recent Transactions</span>
+									<span class="">Recent Transactions</span>
 								</div>
 
 								<div>
-                                    <div class="dropdown">
+                                    <div class="dropdown pt-4">
                                         <button class="btn btn-secondary dropdown-button" id="dropdownButton">{{ $type }}
                                             <i class="fas fa-caret-down"></i>
                                         </button>

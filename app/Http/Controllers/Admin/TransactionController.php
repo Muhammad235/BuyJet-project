@@ -38,9 +38,20 @@ class TransactionController extends Controller
         return view('admin.transactions.buy', compact('transaction'));
     }
 
+    public function showSell($trx_hash){
+        $transaction = SellOrder::where('trx_hash', $trx_hash)->firstOrFail();
+        return view('admin.transactions.sell', compact('transaction'));
+    }
+
+    public function showGiftCard($trx_hash){
+        $transaction = GiftCardOrder::where('trx_hash', $trx_hash)->firstOrFail();
+        return view('admin.transactions.giftcard', compact('transaction'));
+    }
+
+
     public function updateBuy(Request $request, $trx_hash){
 
-        $buy = BuyOrder::where('trx_hash', $request->trx_hash)->first();
+        $buy = BuyOrder::where('trx_hash', $trx_hash)->first();
 
         $buy->update([
             'status' => $request->status,
@@ -51,10 +62,32 @@ class TransactionController extends Controller
         return redirect()->back();
     }
 
-    public function showSell($trx_hash){
-        $transaction = SellOrder::where('trx_hash', $trx_hash)->firstOrFail();
-        return view('admin.transactions.sell', compact('transaction'));
+    public function updateSell(Request $request, $trx_hash){
+
+        $buy = SellOrder::where('trx_hash', $trx_hash)->first();
+
+        $buy->update([
+            'status' => $request->status,
+            'updated_at' => now(),
+        ]);
+
+        toastr()->success('Transaction updated successfully');
+        return redirect()->back();
     }
+
+    public function updateGiftCard(Request $request, $trx_hash){
+
+        $buy = GiftCardOrder::where('trx_hash', $trx_hash)->first();
+
+        $buy->update([
+            'status' => $request->status,
+            'updated_at' => now(),
+        ]);
+
+        toastr()->success('Transaction updated successfully');
+        return redirect()->back();
+    }
+
 
 
 }
