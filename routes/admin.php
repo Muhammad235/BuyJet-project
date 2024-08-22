@@ -64,7 +64,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (){
     Route::prefix('tickets')->group(function(){
         Route::get('/', [TicketController::class, 'index'])->name('tickets.index');
         Route::get('/{id}', [TicketController::class, 'show'])->name('tickets.show');
-        Route::get('/sub-ticket', [SubTicketController::class, 'store'])->name('tickets.store');
+        Route::post('/sub-ticket', [SubTicketController::class, 'store'])->name('sub.tickets.store');
         Route::patch('/confirm/{id}',[TicketController::class,'update'])->name('tickets.update');
     });
 });

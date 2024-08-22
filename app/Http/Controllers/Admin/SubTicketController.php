@@ -12,8 +12,8 @@ class SubTicketController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'message' => ['required, max:500'],
-            'ticket_id' => ['required']
+            'message' => 'required|max:500',
+            'ticket_id' => 'required'
         ]);
 
         SubTicket::create([
@@ -21,5 +21,7 @@ class SubTicketController extends Controller
             'message' => $request->message,
             'is_admin' => Status::YES
         ]);
+
+        return back()->with('success', 'Reply sent successfully');
     }
 }

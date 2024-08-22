@@ -58,23 +58,30 @@
             @if (count($ticket->subTickets) >0)
                 <div class="row bg-white shadow p-5">
                     <p class="lead fw-bold">Replies</p>
-                    @foreach ($ticket->subTickets->reverse() as $tickets)
+                    @foreach ($ticket->subTickets as $subTicket)
                         <div class="card-body bg-light m-2 fw-bold rounded shadow p-2">
 
+                        <div class="d-flex">
+                            @if ($ticket->user->avatar)
+                                <img class="rounded-circle avatar-sm" src="{{ asset($ticket->user->avatar) }}" alt="User Profile">
+                            @else
+                                <img class="rounded-circle avatar-sm" src="{{ asset('upload/avatar/default-avatar.png') }}" alt="User Profile">
+                            @endif
 
-                            <h4 class="font-size-16">
-                                @if ($tickets->is_admin ==1 )
+                            <h4 class="font-size-16 align-middle pt-3">
+                                @if ($subTicket->is_admin ==1 )
                                     Admin Reply
                                 @else
-                                    {{ $ticket->user->firstname .' '. $ticket->user->surname }}
+                                    {{ $ticket->user->firstname .' '. $ticket->user->lastname }}
                                 @endif
                             </h4>
+                        </div>
 
-                            <p{!! $tickets->content !!}</p>
+                            <p{!! $subTicket->message !!}</p>
                             <hr/>
                             <div class="d-flex mb-4">
                                 <div class="flex-grow-1">
-                                    <h5 class="font-size-14  mt-1">{{ explode(' ',$tickets->created_at) [0] }} {{ explode(' ',$tickets->created_at) [1] }}</h5>
+                                    <h5 class="font-size-14  mt-1">{{ explode(' ',$subTicket->created_at) [0] }} {{ explode(' ',$subTicket->created_at) [1] }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -87,14 +94,12 @@
                     Add Reply
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.tickets.update', $ticket->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.sub.tickets.store') }}" enctype="multipart/form-data">
                         @csrf
-                        @method('PATCH')
-                        <input type="hidden" name="ticket_id" value="{{ $ticket->ticket_id }}">
+                        <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
                         <div class="mb-3 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">Message</label>
                             <div class="col-md-10">
-                                <textarea name="message" class="form-control" id="editor" cols="30" rows="10"></textarea>
+                                <textarea name="message" class="form-control" id="editor" cols="30" rows="20"></textarea>
                             </div>
                         </div>
                         <div class="text-left mt-4">

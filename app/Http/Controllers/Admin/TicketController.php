@@ -18,9 +18,7 @@ class TicketController extends Controller
 
     public function show($id)
     {
-       $ticket = Ticket::where('id',$id)->with('user')->with('subTickets')->first();
-
-        // $ticket = $ticket->with('user')->with('subTickets');
+       $ticket = Ticket::where('id', $id)->with('user')->with('subTickets')->first();
 
         return view('admin.tickets.details', compact('ticket'));
     }
