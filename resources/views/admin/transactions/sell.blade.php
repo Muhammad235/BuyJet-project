@@ -40,14 +40,12 @@
                                         <tr>
                                             <th>Cryptocurrency</th>
                                             <td class="text-end">
-                                                {{-- <div class="float-end"> --}}
                                                     <div class="flex-shrink-0 me-3">
                                                         <img src="{{ asset($transaction->cryptocurrency->symbol) }}" alt="" class="avatar-xs rounded-circle">
                                                     </div>
                                                     <div class="flex-grow-1">
                                                         <h5 class="fs-14 mb-1">{{ $transaction->cryptocurrency->name }}</h5>
                                                     </div>
-                                                {{-- </div> --}}
                                             </td>
                                         </tr>
                                         <tr>
