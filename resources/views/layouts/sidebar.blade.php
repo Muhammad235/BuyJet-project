@@ -62,7 +62,7 @@
                 <li>
                     <a href="{{ route('admin.manage.rates') }}" class=" waves-effect">
                         <i class="bx bx-purchase-tag"></i>
-                        <span key="t-dashboards">Rates</span>
+                        <span key="t-dashboards">Rates & Charges</span>
                     </a>
                 </li>
                 <li>

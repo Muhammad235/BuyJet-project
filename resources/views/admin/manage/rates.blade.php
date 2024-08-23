@@ -10,11 +10,12 @@
     <div class="page-content">
         <div class="container-fluid">
 
+            {{-- Rate --}}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                         
+
                             <h4 class="card-title mb-3">Update Rates</h4>
 
                             @if ($errors->any())
@@ -31,10 +32,10 @@
                                         Swal.fire({
                                         title: "Done",
                                         text: "{{ session('success') }}",
-                                        icon: "success", 
+                                        icon: "success",
                                         });
                                     </script>
-                                @endif 
+                                @endif
                             <div class="tab-content crypto-buy-sell-nav-content p-4">
 
                                 <div class="tab-pane active" id="buy" role="tabpanel">
@@ -56,22 +57,65 @@
                                         </div>
                                     </form>
                                 </div>
-
-                               
-                                
                             </div>
 
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+            {{-- Charges --}}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title mb-3">Update receipt status charge and card type charge</h4>
+
+                            <div class="tab-content crypto-buy-sell-nav-content p-4">
+
+                                <div class="tab-pane active" id="buy" role="tabpanel">
+                                    <form method="POST" action="{{ route('admin.manage.charges.update', $rate->id) }}" enctype="multipart/form-data">
+                                       @method('PATCH')
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label>Gift card with receipt charge :</label>
+                                            <input type="text" name="with_receipt_charge" required value="{{ $rate->with_receipt_charge }}" class="form-control" placeholder="Enter amount">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Gift card with no receipt charge:</label>
+                                            <input type="text" name="with_no_receipt_charge" required value="{{ $rate->with_no_receipt_charge }}" class="form-control" placeholder="Enter amount">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Physical card charge:</label>
+                                            <input type="text" name="physical_card_charge" required value="{{ $rate->physical_card_charge }}" class="form-control" placeholder="Enter amount">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>E-code card charge:</label>
+                                            <input type="text" name="e_code_card_charge" required value="{{ $rate->e_code_card_charge }}" class="form-control" placeholder="Enter amount">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 
-    
-    
+
+
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -81,6 +125,6 @@
             </div>
         </div>
     </footer>
-</div> 
+</div>
 
 @endsection

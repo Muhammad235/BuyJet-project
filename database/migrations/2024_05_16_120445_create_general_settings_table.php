@@ -16,8 +16,12 @@ return new class extends Migration
             $table->string('account_name');
             $table->string('account_number');
             $table->string('bank_name');
-            $table->integer('buy_rate')->default(0);
-            $table->integer('sell_rate')->default(0);
+            $table->decimal('buy_rate', 8, 4)->default(0);
+            $table->decimal('sell_rate', 8, 4)->default(0);
+            $table->decimal('with_receipt_charge', 8, 2)->default(0);
+            $table->decimal('with_no_receipt_charge', 8, 2)->default(0);
+            $table->decimal('physical_card_charge', 8, 2)->default(0);
+            $table->decimal('e_code_card_charge', 8, 2)->default(0);
             $table->timestamps();
         });
     }

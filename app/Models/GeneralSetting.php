@@ -15,6 +15,10 @@ class GeneralSetting extends Model
         'bank_name',
         'buy_rate',
         'sell_rate',
+        'with_receipt_charge',
+        'with_no_receipt_charge',
+        'physical_card_charge',
+        'e_code_card_charge',
     ];
 
 }

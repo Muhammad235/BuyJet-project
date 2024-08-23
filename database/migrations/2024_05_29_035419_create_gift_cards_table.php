@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('symbol');
+            $table->double('charge'); 
             $table->enum('status', [Status::ACTIVE, Status::INACTIVE])->default(Status::ACTIVE);
             $table->timestamps();
         });

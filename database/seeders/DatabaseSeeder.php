@@ -79,21 +79,25 @@ class DatabaseSeeder extends Seeder
         GiftCard::create([
             'name' => 'Amazon',
             'symbol' => 'sybmol',
+            'charge' => 0.5,
         ]);
 
         GiftCard::create([
             'name' => 'steam',
             'symbol' => 'sybmol',
+            'charge' => 0.5,
         ]);
 
         Currency::create([
             'name' => 'CAD',
             'symbol' => 'sybmol',
+            'charge' => 0.5,
         ]);
 
         Currency::create([
             'name' => 'USD',
             'symbol' => 'sybmol',
+            'charge' => 0.5,
         ]);
     }
 }

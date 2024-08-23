@@ -24,6 +24,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (){
     Route::prefix('manage')->name('manage.')->group(function(){
         Route::get('/rates', [GeneralSettingsController::class, 'getRates'])->name('rates');
         Route::patch('/rates/{rate}', [GeneralSettingsController::class, 'updateRate'])->name('rates.update');
+        Route::patch('/charges/{charge}', [GeneralSettingsController::class, 'updateCharges'])->name('charges.update');
         Route::get('/banks', [ManageController::class, 'getBanks'])->name('banks');
         Route::patch('/banks/{bank}', [ManageController::class, 'updateBank'])->name('banks.update');
         Route::resource('/crypto', CryptocurrencyController::class);
@@ -54,7 +55,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (){
     });
 
     Route::prefix('giftcard')->group(function(){
-
         Route::get('/{trx_hash}', [TransactionController::class, 'showGiftCard'])->name('giftcard.show');
         Route::patch('/confirm/{trx_hash}',[TransactionController::class, 'updateGiftCard'])->name('giftcard.update');
     });
