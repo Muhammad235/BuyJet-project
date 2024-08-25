@@ -47,10 +47,14 @@ class SellGiftCardController extends Controller
         $general_setings = GeneralSetting::first();
         $sell_rate = floatval($general_setings->sell_rate);
 
+        $card_type_charge = $request->is_physical ? $general_setings->physical_card_charge	: $general_setings->e_code_card_charge;
+        $receipt_status_charge = $request->with_receipt ? $general_setings->with_receipt_charge : $general_setings->with_no_receipt_charge;
+
+        $amount = $request->amount * $general_setings->sell_rate + $card_type_charge + $receipt_status_charge;
+
         try {
 
             DB::beginTransaction();
-
 
             // $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
 
@@ -59,13 +63,13 @@ class SellGiftCardController extends Controller
                 'user_id' => $user->id,
                 'gift_card_id' => $request->giftcard_id,
                 'currency_id' => $request->currency_id,
-                'amount' => floatval($request->amount * $general_setings->sell_rate),
+                'amount' => $amount,
                 'with_receipt' => $request->with_receipt,
                 'is_physical_card' => $request->is_physical,
                 // 'payment_receipt' => $fileName,
             ]);
 
-            Mail::to($order->user->email)->send(new SellGiftCardMail($order, $sell_rate));
+            // Mail::to($order->user->email)->send(new SellGiftCardMail($order, $sell_rate));
 
             DB::commit();
 

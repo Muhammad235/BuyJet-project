@@ -109,7 +109,7 @@
                         <div class="col-md-5 card-type">
                             <span class="select-card"><small>Select Card Type</small></span>
                             <div class="radio-input">
-                                <div class="form-check">  {{ $general_settings->physical_card_charge }}
+                                <div class="form-check">
                                     <input class="radio" data-cardCharge={{ $general_settings->physical_card_charge }}  type="radio" name="is_physical_card" id="inlineRadio1"
                                         value="1" onchange="showAmountInNaira()">
                                     <label class="form-check-label" for="inlineRadio1"><small>
@@ -148,18 +148,18 @@
                             <small>Enter Card Value</small>
                             <div class="count">
                                 <div>
-
                                     <input type="text" class="card-input" id="card-value" value="{{ old('amount') }}" name="amount" oninput="validateInput(this); showAmountInNaira();" placeholder="Enter Value">
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
 
                     <div class="row justify-content-center mt-4">
-                        <div class="col-md-5 col-12 contd" id="rate" data-sellrate="{{ $general_settings->sell_rate }}">
-                            <small>Estimated Value: <b>₦<span id="estimated-amount" >0</span> @ {{ $general_settings->sell_rate }}/$</b></small> <br>
+                        <div class="col-md-5 contd" id="rate" data-sellrate="{{ $general_settings->sell_rate }}">
+                            <div>Card type charge: <b>₦<span id="card-type-charge" >0</span></b></div> <br>
+                            <div>Receipt status charge: <b>₦<span id="receipt-status-charge" >0</span></b></div> <br>
+                            <div>Estimated card value: <b>₦<span id="estimated-amount" >0</span> @ {{ $general_settings->sell_rate }}/$</b></div> <br>
+                            <div>Total amount: <b>₦<span id="total-amount" >0</span></b></div> <br>
                             <button type="button" class="btn btn-next btnext" id="continue-btn">Continue</button>
                         </div>
                     </div>

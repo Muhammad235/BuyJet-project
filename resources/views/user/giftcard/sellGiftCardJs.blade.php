@@ -45,6 +45,13 @@ function showAmountInNaira() {
 
     const amountExpected = $("#amountExpected");
     const estimatedAmountElement = document.getElementById('estimated-amount');
+    let cardTypeChargeAmount = document.getElementById('card-type-charge');
+    let receiptStatusChargeAmount = document.getElementById('receipt-status-charge');
+    let totalAmount = document.getElementById('total-amount');
+
+
+    cardTypeChargeAmount.textContent = cardCharge;
+    receiptStatusChargeAmount.textContent = receiptStatusCharge;
 
     if (!isNaN(amountValue)) {
 
@@ -54,9 +61,12 @@ function showAmountInNaira() {
             estimatedAmountElement.textContent = amountInNaira.toFixed(2);
             amountExpected.text(`₦${amountInNaira.toFixed(2)}`);
 
-            const Total = parseFloat(amountInNaira) + parseFloat(cardCharge) + parseFloat(receiptStatusCharge);
-            console.log('Total ' + Total.toFixed(2));
+            const total = parseFloat(amountInNaira) + parseFloat(cardCharge) + parseFloat(receiptStatusCharge);
+            console.log('Total ' + total.toFixed(2));
 
+            // cardTypeChargeAmount.text(`₦${Total.toFixed(2)}`);
+
+            totalAmount.textContent = total.toFixed(2);
 
         } else {
             estimatedAmountElement.textContent = '0';
