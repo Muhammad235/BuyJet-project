@@ -644,8 +644,7 @@
   }
   .drop-section {
     border: 2px dashed #f7faff33;
-    /* height: 50vh; */
-    height: 300px !important;
+    height: 30vh;
     width: 100%;
     border-radius: 7px;
     position: relative;
@@ -691,11 +690,11 @@
     transform: scale(1);
   }
   .drop-section .cloud-icon {
-    margin-top: 20px;
-    width: 100%;
+    margin-top: 35px;
+    margin-bottom: 20px;
   }
   .drop-section .cloud-icon img {
-    width: 85% !important;
+    width: 100%;
   }
   .container-side button {
     display: block;
@@ -1115,7 +1114,7 @@
 
   @media screen and (max-width: 576px) {
     .cloud-icon img {
-      width: 100% !important;
+      width: 70% !important;
       margin: auto !important;
       display: flex;
       justify-content: center;

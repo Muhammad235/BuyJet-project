@@ -26,7 +26,6 @@ fileSelectorInput.onchange = () => {
     reader.onload = function(e) {
         // Set the src attribute of the img element to the data URL of the selected image
         imgElement.src = e.target.result;
-        imgElement.style.width = "600px";
     };
 
     // Read the selected file as a data URL (this will trigger the onload function)

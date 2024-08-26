@@ -172,7 +172,7 @@
 
                             {{-- <form action="" method="post"> --}}
                                 <div class="drop-section shadow">
-                                    <div class="">
+                                    <div class="col">
                                         <div class="cloud-icon">
                                             <img src="{{ asset('assets/images/gift-image.png') }}" alt="cloud" id="selected-img"  class="file-selector" >
                                             <input type="file" name="payment_proof" id="selectedimage"  class="file-selector-input" multiple hidden>

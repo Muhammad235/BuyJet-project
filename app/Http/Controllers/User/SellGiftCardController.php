@@ -42,26 +42,6 @@ class SellGiftCardController extends Controller
      */
     public function store(StoreGiftCardRequest $request)
     {
-
-        // if ($request->hasFile('payment_proof')) {
-        //     $file = $request->file('payment_proof');
-        //     $fileName = $file->getClientOriginalName(); // Get the original file name
-        //     $filePath = $file->storeAs('upload', $fileName, 'public'); // Save the file to a directory
-
-        // }
-
-        // $file = $request->file('payment_proof');
-
-        // $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
-
-        //     return response()->json([
-        //         'status' => 'true',
-        //         'fileName' => $fileName = $file->getClientOriginalName(),
-        //         'data' => $request->all(),
-        //         'message' => "Request successful"
-        //     ]);
-
-
         $validate = $request->validated();
         $user = auth()->user();
         $general_setings = GeneralSetting::first();
@@ -76,7 +56,7 @@ class SellGiftCardController extends Controller
 
             DB::beginTransaction();
 
-            $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
+            // $fileName = $this->uploadImage($request, 'payment_proof', 'upload/payment_receipt');
 
             $order = GiftCardOrder::create([
                 'trx_hash' => $this->generateTrxHash(6),

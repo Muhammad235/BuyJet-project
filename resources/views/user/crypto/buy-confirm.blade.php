@@ -53,17 +53,18 @@
                         @method('PUT')
                         <div class="container-side">
                             <div class="drop-section">
-                                <div class="">
+                                <div class="col">
                                     <div class="cloud-icon">
-                                        <img src="{{ asset('assets/icons/upload.png')}}" alt="cloud" id="selected-img"  class="file-selector" >
+                                        <img src="{{ asset('assets/icons/upload.png')}}" alt="cloud">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="drop-here">Drop Here</div>
                                 </div>
                             </div>
+                            <button type="button" class="file-selector btn btn-secondary">Upload</button>
 
-                            <input type="file" name="payment_proof" id="selectedimage" class="file-selector-input" multiple>
+                            <input type="file" name="payment_proof" class="file-selector-input" multiple>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary px-5 mt-5" ><small>I have made my
