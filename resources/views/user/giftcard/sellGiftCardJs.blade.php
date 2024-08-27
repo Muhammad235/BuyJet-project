@@ -5,28 +5,27 @@ function validateInput(input) {
     input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
 }
 
-function displaySelectedImage() {
+// function displaySelectedImage() {
 
+//     var fileInput = document.getElementById('selectedimage');
+//     var selectedFile = fileInput.files[0];
 
-    var fileInput = document.getElementById('selectedimage');
-    var selectedFile = fileInput.files[0];
+//     // Get the img element
+//     var imgElement = document.getElementById('selected-img');
+//     imgElement.style.display = "block";
 
-    // Get the img element
-    var imgElement = document.getElementById('selected-img');
-    imgElement.style.display = "block";
+//     // Create a FileReader to read the selected file
+//     var reader = new FileReader();
 
-    // Create a FileReader to read the selected file
-    var reader = new FileReader();
+//     // Define a function to run when the FileReader has successfully loaded the image
+//     reader.onload = function(e) {
+//         // Set the src attribute of the img element to the data URL of the selected image
+//         imgElement.src = e.target.result;
+//     };
 
-    // Define a function to run when the FileReader has successfully loaded the image
-    reader.onload = function(e) {
-        // Set the src attribute of the img element to the data URL of the selected image
-        imgElement.src = e.target.result;
-    };
-
-    // Read the selected file as a data URL (this will trigger the onload function)
-    reader.readAsDataURL(selectedFile);
-}
+//     // Read the selected file as a data URL (this will trigger the onload function)
+//     reader.readAsDataURL(selectedFile);
+// }
 
 function showAmountInNaira() {
     const rateElement = document.getElementById('rate');
@@ -58,13 +57,11 @@ function showAmountInNaira() {
         if (!isNaN(sellRate) && !isNaN(amountValue)) {
             const amountInNaira = sellRate * amountValue;
 
-            estimatedAmountElement.textContent = amountInNaira.toFixed(2);
-            amountExpected.text(`₦${amountInNaira.toFixed(2)}`);
-
             const total = parseFloat(amountInNaira) + parseFloat(cardCharge) + parseFloat(receiptStatusCharge);
             console.log('Total ' + total.toFixed(2));
 
-            // cardTypeChargeAmount.text(`₦${Total.toFixed(2)}`);
+            estimatedAmountElement.textContent = amountInNaira.toFixed(2);
+            amountExpected.text(`₦${total.toFixed(2)}`);
 
             totalAmount.textContent = total.toFixed(2);
 
@@ -175,56 +172,64 @@ $(document).ready(function() {
         }
     }
 
-    var fileName;
+
+    var selectedFile;
     var maxFileSize = 4 * 1024 * 1024; // 4MB in bytes
 
     $('input[name="payment_proof"]').on('change', function(event) {
         let files = event.target.files;
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
+
+            // Check if the file is an image
             if (!file.type.startsWith('image/')) {
-                    Swal.fire({
-                        text: 'File ' + file.name + ' is not an image!',
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Upload again!",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    });
+                Swal.fire({
+                    text: 'File ' + file.name + ' is not an image!',
+                    icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Upload again!",
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                });
+                selectedFile = null; // Clear any previously selected file
                 return;
             }
+
+            // Check the file size
             if (file.size > maxFileSize) {
                 Swal.fire({
-                        text: 'File ' + file.name + ' exceeds the 4MB size limit.!',
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Upload again!",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    });
+                    text: 'File ' + file.name + ' exceeds the 4MB size limit!',
+                    icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Upload again!",
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                });
+                selectedFile = null; // Clear any previously selected file
                 return;
             }
-            fileName = file.name;
+
+            // Save the file object for later use
+            selectedFile = file;
         }
     });
 
-
     $('#btn-giftcard').on('click', function() {
 
-        if (!fileName || fileName === undefined) {
-            Swal.fire({
-                text: "Kindly upload the giftcard image to proceed!",
-                icon: "error",
-                buttonsStyling: false,
-                confirmButtonText: "Ok",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            });
-            return;
-        }
+        // if (!fileName || fileName === undefined) {
+        //     Swal.fire({
+        //         text: "Kindly upload the giftcard image to proceed!",
+        //         icon: "error",
+        //         buttonsStyling: false,
+        //         confirmButtonText: "Ok",
+        //         customClass: {
+        //             confirmButton: "btn btn-primary"
+        //         }
+        //     });
+        //     return;
+        // }
 
         var giftCardModal = $('.giftCardModal');
         giftCardModal.modal('show');
@@ -247,33 +252,34 @@ $(document).ready(function() {
     });
 
 
-    function sellGiftCard(){
-
+    function sellGiftCard() {
         var giftCardValue = parseFloat($("#card-value").val());
 
-        var data = {
-            currency_id: selectedCurrencyId,
-            giftcard_id: selectedGiftCardId,
-            is_physical: isPhysicalCard,
-            with_receipt: selectedReceiptStatus,
-            payment_proof: fileName,
-            amount: giftCardValue,
-            '_token': '{{ csrf_token() }}'
-        }
+        // Create a FormData object to handle text and file data
+        var formData = new FormData();
+        formData.append('currency_id', selectedCurrencyId);
+        formData.append('giftcard_id', selectedGiftCardId);
+        formData.append('is_physical', isPhysicalCard);
+        formData.append('with_receipt', selectedReceiptStatus);
+        formData.append('amount', giftCardValue);
+        formData.append('_token', '{{ csrf_token() }}');
 
-        // console.log(data);
+        // Append the file if it's selected
+        if (selectedFile) {
+            formData.append('payment_proof', selectedFile); // Add the file to FormData
+        }
 
         $.ajax({
             url: "{{ route('giftcard.store') }}",
             type: 'POST',
-            data: data,
-            beforeSend: function (){
-                $('#sellGiftcard').attr('disabled', true)
-                $('.purchaseBtn').
-                html('<span class="spinner-border spinner-border-sm text-light" role="status"  aria-hidden="true"></span>Loading...')
+            data: formData,
+            processData: false,  // Prevent jQuery from processing the data
+            contentType: false,  // Set content type to false, letting the browser set it
+            beforeSend: function () {
+                $('#sellGiftcard').attr('disabled', true);
+                $('.purchaseBtn').html('<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>Loading...');
             },
             success: function(response) {
-
                 if (response.status) {
                     console.log('Success:', response);
                 }
@@ -283,11 +289,10 @@ $(document).ready(function() {
             },
             complete: function() {
                 $('#sellGiftcard').hide();
-                $('#sellGiftcard').attr('disabled', false)
+                $('#sellGiftcard').attr('disabled', false);
             }
         });
     }
-
 });
 
 </script>
