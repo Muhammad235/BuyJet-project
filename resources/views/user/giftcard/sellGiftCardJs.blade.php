@@ -245,6 +245,9 @@
 
         $('#sellGiftcard').on('click', function() {
 
+            var giftCardModal = $('.giftCardModal');
+            giftCardModal.modal('hide');
+
             var modalComplete = $('.modal-complete');
             modalComplete.modal('show');
 
