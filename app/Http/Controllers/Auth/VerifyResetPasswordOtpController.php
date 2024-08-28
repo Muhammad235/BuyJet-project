@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use Ichtrojan\Otp\Otp;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
-
-class VerifyEmailController extends Controller
+class VerifyResetPasswordOtpController extends Controller
 {
-    /**
-     * Verify OTP.
-    */
-
-
     public function __invoke(Request $request)
     {
         $token = $request->input('otp1') . $request->input('otp2') . $request->input('otp3') . $request->input('otp4');
@@ -28,15 +22,11 @@ class VerifyEmailController extends Controller
             $user = User::where('email', $identifier)->first();
             $user->markEmailAsVerified();
             Auth::login($user);
-            toastr()->success('Registration successful');
-            return to_route('dashboard');
+            toastr()->success('Verification successful, login now');
+            return to_route('login');
         }
 
         toastr()->error("Invalid otp");
         return back();
     }
-
-    // public function index(){
-    //     return view('auth.verify-otp');
-    // }
 }

@@ -174,7 +174,8 @@
 												<p>{{ @$transaction->cryptocurrency->name }}</p>
 												<p>{{ @$transaction->giftcard->name }} <span>{{ @$transaction->currency->name }}</span></p>
 
-												<span>{{ $transaction->created_at->format('F d Y, h:i:sa') }}</span>
+												{{-- <span>{{ @$transaction->created_at->format('F d Y, h:i:sa') }}</span> --}}
+												<span>{{ $transaction->created_at }}</span>
 											</div>
 										</div>
 

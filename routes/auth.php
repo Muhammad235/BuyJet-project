@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordOtpController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -31,12 +32,12 @@ Route::middleware('guest')->group(function () {
     Route::put('reset-password', [ResetPasswordController::class, 'update'])
                 ->name('reset.password');
 
-    // Route::post('verify-otp', OtpController::class)
-    //             ->name('verify.otp');
+    Route::post('verify-otp', VerifyEmailController::class)
+                ->name('verify.otp');
 
 });
 
-Route::get('otp', [OtpController::class, 'index']);
+// Route::get('otp', [OtpController::class, 'index']);
 
 
 Route::middleware('auth')->group(function () {

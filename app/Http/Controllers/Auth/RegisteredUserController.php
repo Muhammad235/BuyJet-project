@@ -44,19 +44,20 @@ class RegisteredUserController extends Controller
             $checkUser->update($userData);
 
 
-            toastr()->success('Registration successful');
-            return redirect()->route('dashboard');
+            // toastr()->success('Registration successful');
+            // return redirect()->route('dashboard');
 
             // Send OTP
-            // $sendOtp = $this->sendOtp($userData['email']);
+            $sendOtp = $this->sendOtp($userData['email']);
 
-            // if (!$sendOtp) {
-            //     toastr()->error('Failed to send OTP. Please try again.');
-            //     return back();
-            // }
+            if (!$sendOtp) {
+                toastr()->error('Failed to send OTP. Please try again.');
+                return back();
+            }
 
-            // session(['identifier' => $userData['email']]);
-            // return view('auth.verify-otp');
+            session(['identifier' => $userData['email']]);
+            return view('auth.register-otp');
+
         } else {
             // Create a new user
             $user = User::create($userData);
@@ -64,19 +65,19 @@ class RegisteredUserController extends Controller
             // Fire the Registered event
             event(new Registered($user));
 
-            toastr()->success('Registration successful');
-            return redirect()->route('dashboard');
+            // toastr()->success('Registration successful');
+            // return redirect()->route('dashboard');
 
             // Send OTP
-            // $sendOtp = $this->sendOtp($userData['email']);
+            $sendOtp = $this->sendOtp($userData['email']);
 
-            // if (!$sendOtp) {
-            //     toastr()->error('Failed to send OTP. Please try again.');
-            //     return back();
-            // }
+            if (!$sendOtp) {
+                toastr()->error('Failed to send OTP. Please try again.');
+                return back();
+            }
 
-            // session(['identifier' => $userData['email']]);
-            // return view('auth.verify-otp');
+            session(['identifier' => $userData['email']]);
+            return view('auth.register-otp');
         }
     }
 
