@@ -30,7 +30,7 @@ class PasswordOtpController extends Controller
         }
 
         session(['identifier' => $request->email]);
-        // return view('auth.verify-otp');
+        return view('auth.reset-password-otp');
     }
 
     public function sendOtp(string $identifier)

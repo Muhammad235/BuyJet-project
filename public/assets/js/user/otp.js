@@ -1,4 +1,4 @@
-const OTPinputs = document.querySelectorAll("otp-input");
+const OTPinputs = document.querySelectorAll(".otp-input");
 const button = document.querySelector("button");
 
 window.addEventListener("load", () => OTPinputs[0].focus());

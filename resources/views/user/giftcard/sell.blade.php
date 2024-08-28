@@ -286,12 +286,6 @@
                         </div>
                     </div>
                     <div class="modalfooter my-4">
-                        <!-- <button type="button" class="btn btn-primary"
-                            data-bs-dismiss="modal">Continue</button> -->
-
-                        {{-- <button type="button" class="btn btn-primary cont" data-bs-toggle="modal"
-                            data-bs-target="#exampleModall">Continue</button> --}}
-
                         <button type="button" class="btn btn-primary cont" id="sellGiftcard" disabled>Continue</button>
                     </div>
                 </div>

@@ -47,7 +47,6 @@
 
                     </p>
                 </div>
-                <!-- <div class="col-md-6 side-image"></div> -->
             </div>
         </div>
     </section>

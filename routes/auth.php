@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\VerifyResetPasswordOtpController;
 
 
 Route::middleware('guest')->group(function () {
@@ -35,9 +36,9 @@ Route::middleware('guest')->group(function () {
     Route::post('verify-otp', VerifyEmailController::class)
                 ->name('verify.otp');
 
+    Route::post('verify-reset-mail-otp', VerifyResetPasswordOtpController::class)
+                ->name('verify.reset.mail.otp');
 });
-
-// Route::get('otp', [OtpController::class, 'index']);
 
 
 Route::middleware('auth')->group(function () {

@@ -69,7 +69,7 @@ class SellGiftCardController extends Controller
                 // 'payment_receipt' => $fileName,
             ]);
 
-            // Mail::to($order->user->email)->send(new SellGiftCardMail($order, $sell_rate));
+            Mail::to($order->user->email)->send(new SellGiftCardMail($order, $sell_rate));
 
             DB::commit();
 
@@ -89,15 +89,7 @@ class SellGiftCardController extends Controller
                 "error" => $e->getMessage()
             ]);
         }
-
     }
-
-         // if ($validate->fails()) {
-        //     return response()->json([
-        //         'status' => "false",
-        //          "message"=> $validate->errors()->first(),
-        //       ]);
-        // }
 
     /**
      * Display the specified resource.

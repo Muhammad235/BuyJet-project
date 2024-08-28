@@ -250,6 +250,10 @@
 
             var modalComplete = $('.modal-complete');
             modalComplete.modal('show');
+            modalComplete.modal({
+                backdrop: 'static',
+                keyboard: false
+            });
 
             sellGiftCard();
         });

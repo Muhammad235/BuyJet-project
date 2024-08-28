@@ -152,7 +152,7 @@
 
                             <h4 class="text pt-2">Enter Your 4 Digit OTP</h4>
 
-                            <form action="{{ route('verify.otp') }}" method="post" class="form">
+                            <form action="{{ route('verify.reset.mail.otp') }}" method="post" class="form">
                                 @csrf
                                 <div class="input_field_box">
                                     <input type="number" class="otp-input" name="otp1" />
@@ -161,7 +161,7 @@
                                     <input type="number" class="otp-input" name="otp4" disabled />
                                 </div>
 
-                                <button type="submit" disabled class="btn btn-primary text-light">Verify OTP</button>
+                                <button type="submit" class="btn btn-primary text-light">Verify OTP</button>
                             </form>
 
                         </div>
