@@ -15,6 +15,9 @@ class SellOrder extends Model
         'trx_hash',
         'cryptocurrency_id',
         'amount',
+        'account_number',
+        'account_name',
+        'bank_name',
         'asset_network',
         'payment_receipt',
         'status'

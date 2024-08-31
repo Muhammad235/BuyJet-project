@@ -19,6 +19,9 @@ return new class extends Migration
             $table->foreignId('cryptocurrency_id')->constrained();
             $table->string('asset_network');
             $table->decimal('amount', 12, 4);
+            $table->string('account_name');
+            $table->string('account_number');
+            $table->string('bank_name');
             $table->string('payment_receipt')->nullable();;
             $table->string('note')->nullable();
             $table->enum('status', [Status::PENDIDNG, Status::SUCCESS, Status::FAILED])->default(Status::PENDIDNG);

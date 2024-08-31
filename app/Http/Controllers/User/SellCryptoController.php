@@ -70,6 +70,9 @@ class SellCryptoController extends Controller
             $order = SellOrder::create([
                 'trx_hash' => $this->generateTrxHash(6),
                 'user_id' => $user->id,
+                'account_number' => $request->account_number,
+                'account_name' => $request->account_name,
+                'bank_name' => $request->bank_name,
                 'cryptocurrency_id' => $crypto->id,
                 'asset_network' => $request->asset_network,
                 'amount' => $cryptoAmountInNaira,
