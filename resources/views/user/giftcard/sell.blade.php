@@ -156,10 +156,10 @@
 
                     <div class="row justify-content-center mt-4">
                         <div class="col-md-5 contd" id="rate" data-sellrate="{{ $general_settings->sell_rate }}">
-                            <div>Card type charge: <b>₦<span id="card-type-charge" >0</span></b></div> <br>
-                            <div>Receipt status charge: <b>₦<span id="receipt-status-charge" >0</span></b></div> <br>
-                            <div>Estimated card value: <b>₦<span id="estimated-amount" >0</span> @ {{ $general_settings->sell_rate }}/$</b></div> <br>
-                            <div>Total amount: <b>₦<span id="total-amount" >0</span></b></div> <br>
+                            {{-- <div>Card type charge: <b>₦<span id="card-type-charge" >0</span></b></div> <br>
+                            <div>Receipt status charge: <b>₦<span id="receipt-status-charge" >0</span></b></div> <br> --}}
+                            <div class="d-none">Estimated card value: <b>₦<span id="estimated-amount d-none" >0</span> @ {{ $general_settings->sell_rate }}/$</b></div> <br>
+                            <div>Estimated card value: <b>₦<span id="total-amount" >0</span></b></div> <br>
                             <button type="button" class="btn btn-next btnext" id="continue-btn">Continue</button>
                         </div>
                     </div>

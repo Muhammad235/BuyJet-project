@@ -330,7 +330,7 @@
 
 					let amountInNaira;
 					amountInNaira = cryptoValue * buyRate;
-                    document.getElementById("buy-sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
+                    document.getElementById("buy-sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toLocaleString();
                 }
             } else {
                 document.getElementById("buy-sub-amount").innerText = "NGN 0";
@@ -348,7 +348,7 @@
 
 					let amountInNaira;
 					amountInNaira = cryptoValue * sellRate;
-                    document.getElementById("sell-sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
+                    document.getElementById("sell-sub-amount").innerText = "NGN " + parseFloat(amountInNaira).toLocaleString();
                 }
             } else {
                 document.getElementById("sell-sub-amount").innerText = "NGN 0";

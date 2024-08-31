@@ -12,6 +12,7 @@ class GiftCard extends Model
     protected $fillable = [
         'name',
         'symbol',
+        'charge',
         'status',
     ];
 }

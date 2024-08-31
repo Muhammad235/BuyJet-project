@@ -191,7 +191,7 @@
                     const chargeValue = parseFloat(document.getElementById("charge-value").value);
 
                     const Total = chargeValue + parseFloat(amountInNaira);
-                    document.getElementById("sub-amount").innerText = "NGN " + parseFloat(Total).toFixed(3);
+                    document.getElementById("sub-amount").innerText = "NGN " + parseFloat(Total).toLocaleString();
                 }
 
             } else {

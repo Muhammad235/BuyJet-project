@@ -43,14 +43,14 @@
         const receiptStatusCharge = receiptStatus.length ? receiptStatus.data('receiptstatuscharge') : 0;
 
         const amountExpected = $("#amountExpected");
-        const estimatedAmountElement = document.getElementById('estimated-amount');
-        let cardTypeChargeAmount = document.getElementById('card-type-charge');
-        let receiptStatusChargeAmount = document.getElementById('receipt-status-charge');
+        // const estimatedAmountElement = document.getElementById('estimated-amount');
+        // let cardTypeChargeAmount = document.getElementById('card-type-charge');
+        // let receiptStatusChargeAmount = document.getElementById('receipt-status-charge');
         let totalAmount = document.getElementById('total-amount');
 
 
-        cardTypeChargeAmount.textContent = cardCharge;
-        receiptStatusChargeAmount.textContent = receiptStatusCharge;
+        // cardTypeChargeAmount.textContent = cardCharge;
+        // receiptStatusChargeAmount.textContent = receiptStatusCharge;
 
         if (!isNaN(amountValue)) {
 
@@ -60,8 +60,8 @@
                 const total = parseFloat(amountInNaira) + parseFloat(cardCharge) + parseFloat(receiptStatusCharge);
                 console.log('Total ' + total.toFixed(2));
 
-                estimatedAmountElement.textContent = amountInNaira.toFixed(2);
-                amountExpected.text(`₦${total.toFixed(2)}`);
+                // estimatedAmountElement.textContent = amountInNaira.toFixed(2);
+                // amountExpected.text(`₦${total.toFixed(2)}`);
 
                 totalAmount.textContent = total.toFixed(2);
 

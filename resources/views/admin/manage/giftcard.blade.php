@@ -120,6 +120,10 @@
                              <label>Name :</label>
                              <input type="text" name="name" required  class="form-control" placeholder="Enter Name">
                          </div>
+                         <div class="mb-3">
+                            <label>Charge :</label>
+                            <input type="number" name="charge" required  class="form-control" placeholder="Enter Charge">
+                        </div>
                          <div class="mb-3 row">
                             <img src="" style="width: 200px" alt="image"  id="selected-img" class="img-fluid rounded">
                         </div>
@@ -155,6 +159,10 @@
                              <label>Name :</label>
                              <input type="text" name="name" required  class="form-control" placeholder="Enter Name">
                          </div>
+                         <div class="mb-3">
+                            <label>Charge :</label>
+                            <input type="text" name="charge" required  class="form-control" placeholder="Enter Charge">
+                        </div>
                          <input type="hidden" name="id" id="">
                          <div class="mb-3 row">
                             <img src="" style="width: 200px" alt="image"  id="selected-img" class="img-fluid rounded">
@@ -184,8 +192,6 @@
     </div>
 
 
-
-
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -204,84 +210,4 @@
     // Remove any non-numeric characters and any multiple decimal points
         input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
     }
-
-    // document.addEventListener("DOMContentLoaded", function() {
-
-    //     const addBtn = document.getElementById('addBtn');
-    //     const repeaterList = document.getElementById('repeater-list');
-
-    //     addBtn.addEventListener('click', function() {
-    //         const template = document.querySelector('.repeater-item');
-    //         const newItem = template.cloneNode(true);
-    //         newItem.classList.add('repeater-item');
-
-    //         // Removing the existing content
-    //         newItem.innerHTML = `
-    //             <div class="row">
-    //                 <div class="col-3">
-    //                     <div class="mb-3 me-3">
-    //                         <label>Asset Name</label>
-    //                         <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
-    //                     </div>
-    //                 </div>
-    //                 <div class="col-3">
-    //                     <div class="mb-3 me-3">
-    //                         <label>Wallet </label>
-    //                         <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address" required>
-    //                     </div>
-    //                 </div>
-    //                 <div class="col-3 align-self-end">
-    //                     <input type="button" class="delete-btn btn btn-danger" value="Delete"/>
-    //                 </div>
-    //             </div>
-    //         `;
-
-    //         repeaterList.appendChild(newItem);
-
-    //         const deleteBtns = newItem.querySelectorAll('.delete-btn');
-    //         deleteBtns.forEach(function(btn) {
-    //             btn.addEventListener('click', function() {
-    //                 this.closest('.repeater-item').remove();
-    //             });
-    //         });
-    //     });
-
-    //     const updateBtn = document.getElementById('updateBtn');
-    //     const updateRepeaterList = document.getElementById('update-repeater-list');
-
-    //     updateBtn.addEventListener('click', function() {
-    //         const template = document.querySelector('.update-repeater-item');
-    //         const newItem = template.cloneNode(true);
-    //         newItem.classList.add('update-repeater-item');
-
-    //         // Removing the existing content
-    //         newItem.innerHTML = `
-    //             <div class="row">
-    //                 <div class="col-3">
-    //                     <div class="mb-3 me-3">
-    //                         <label>Asset Name</label>
-    //                         <input type="text" class="form-control" name="assetname[]" placeholder="Enter Asset Name" required>
-    //                     </div>
-    //                 </div>
-    //                 <div class="col-3">
-    //                     <div class="mb-3 me-3">
-    //                         <label>Wallet </label>
-    //                         <input type="text" class="form-control" name="assetaddress[]" placeholder="Enter Wallet Address" required>
-    //                     </div>
-    //                 </div>
-    //                 <div class="col-3 align-self-end">
-    //                     <input type="button" class="update-delete-btn btn btn-danger" value="Delete"/>
-    //                 </div>
-    //             </div>
-    //         `;
-    //         updateRepeaterList.appendChild(newItem);
-    //         const deleteBtns = newItem.querySelectorAll('.update-delete-btn');
-    //         deleteBtns.forEach(function(btn) {
-    //             btn.addEventListener('click', function() {
-    //                 this.closest('.update-repeater-item').remove();
-    //             });
-    //         });
-    //     });
-    // });
-
 </script>

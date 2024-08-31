@@ -29,6 +29,7 @@ class GiftcardController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'charge' => 'required|numeric',
             'symbol' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
         ]);
 
@@ -36,6 +37,7 @@ class GiftcardController extends Controller
 
         $giftcard = GiftCard::create([
             'name' => $request->name,
+            'charge' => $request->charge,
             'symbol' => $symbolFileName,
         ]);
 
