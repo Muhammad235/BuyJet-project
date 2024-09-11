@@ -5,27 +5,6 @@
         input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
     }
 
-    // function displaySelectedImage() {
-
-    //     var fileInput = document.getElementById('selectedimage');
-    //     var selectedFile = fileInput.files[0];
-
-    //     // Get the img element
-    //     var imgElement = document.getElementById('selected-img');
-    //     imgElement.style.display = "block";
-
-    //     // Create a FileReader to read the selected file
-    //     var reader = new FileReader();
-
-    //     // Define a function to run when the FileReader has successfully loaded the image
-    //     reader.onload = function(e) {
-    //         // Set the src attribute of the img element to the data URL of the selected image
-    //         imgElement.src = e.target.result;
-    //     };
-
-    //     // Read the selected file as a data URL (this will trigger the onload function)
-    //     reader.readAsDataURL(selectedFile);
-    // }
 
     function showAmountInNaira() {
         const rateElement = document.getElementById('rate');
@@ -58,12 +37,11 @@
                 const amountInNaira = sellRate * amountValue;
 
                 const total = parseFloat(amountInNaira) + parseFloat(cardCharge) + parseFloat(receiptStatusCharge);
-                console.log('Total ' + total.toFixed(2));
 
                 // estimatedAmountElement.textContent = amountInNaira.toFixed(2);
                 // amountExpected.text(`₦${total.toFixed(2)}`);
 
-                totalAmount.textContent = total.toFixed(2);
+                totalAmount.textContent = total.toLocaleString();
 
             } else {
                 estimatedAmountElement.textContent = '0';
