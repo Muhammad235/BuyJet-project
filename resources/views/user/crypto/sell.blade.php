@@ -188,9 +188,17 @@
                     const amountInNaira = cryptoValue * sellRate;
                     document.getElementById("amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
 
-                    const chargeValue = parseFloat(document.getElementById("charge-value").value);
+                    const cryptocurrencies = @json($cryptocurrencies);
+                    const selectedCrypto = document.getElementById('cryptocurrency_id').value;
 
-                    const Total = chargeValue + parseFloat(amountInNaira);
+                    // Find the selected cryptocurrency
+                    const selectedCryptoObj = cryptocurrencies.find(crypto => crypto.id == selectedCrypto);
+                    const selectedCryptoCharge = selectedCryptoObj.charge * sellRate;
+
+                    document.getElementById('charge').innerText = "NGN " + selectedCryptoCharge;
+
+                    const Total = parseFloat(selectedCryptoCharge) + parseFloat(amountInNaira);
+
                     document.getElementById("sub-amount").innerText = "NGN " + parseFloat(Total).toLocaleString();
                 }
 
@@ -203,7 +211,6 @@
         }
 
         showAmountInNaira()
-
 
         function populateAssetNetworkOptions() {
 
@@ -226,10 +233,10 @@
                 // Parse the assets JSON string into an array
                 const assetArray = JSON.parse(selectedCryptoObj.assets);
 
-                const selectedCryptoCharge = selectedCryptoObj.charge * sellRate;
+                // const selectedCryptoCharge = selectedCryptoObj.charge * sellRate;
 
-                document.getElementById('charge').innerText = "NGN " + selectedCryptoCharge;
-                document.getElementById('charge-value').value = selectedCryptoCharge;
+                // document.getElementById('charge').innerText = "NGN " + selectedCryptoCharge;
+                // document.getElementById('charge-value').value = selectedCryptoCharge;
 
                 // Populate select options with asset networks
                 assetArray.forEach((asset) => {

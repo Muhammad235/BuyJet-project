@@ -62,7 +62,6 @@
                                     <p class="text-secondary"><i>Charges</i></p>
                                     <p class="text-secondary" id="charge"><i>0</i></p>
                                 </div>
-                                <input type="text" hidden name="" id="charge-value" value="{{ $cryptocurrency->charge }}">
                             </div>
                                 <div class="total">
                                     <p>Total</p>
@@ -152,9 +151,16 @@
                     const amountInNaira = cryptoValue * buyRate;
                     document.getElementById("amount").innerText = "NGN " + parseFloat(amountInNaira).toFixed(2);
 
-                    const chargeValue = document.getElementById("charge-value").value;
+                   const cryptocurrencies = @json($cryptocurrencies);
+                   const selectedCrypto = document.getElementById('cryptocurrency_id').value;
 
-                    const Total = parseFloat(chargeValue) + parseFloat(amountInNaira);
+                    // Find the selected cryptocurrency
+                    const selectedCryptoObj = cryptocurrencies.find(crypto => crypto.id == selectedCrypto);
+                    const selectedCryptoCharge = selectedCryptoObj.charge * buyRate;
+
+                    document.getElementById('charge').innerText = "NGN " + selectedCryptoCharge;
+
+                    const Total = parseFloat(selectedCryptoCharge) + parseFloat(amountInNaira);
 
                     document.getElementById("sub-amount").innerText = "NGN " + parseFloat(Total).toLocaleString();
                 }
@@ -182,7 +188,6 @@
             // Find the selected cryptocurrency
             const selectedCryptoObj = assets.find(crypto => crypto.id == selectedCrypto);
 
-
             // Clear existing options
             assetList.innerHTML = "<option value='' selected disabled>Select Asset Network</option>";
 
@@ -190,11 +195,6 @@
             if (selectedCryptoObj && selectedCryptoObj.assets !== null) {
                 // Parse the assets JSON string into an array
                 const assetArray = JSON.parse(selectedCryptoObj.assets);
-
-                const selectedCryptoCharge = selectedCryptoObj.charge * buyRate;
-
-                document.getElementById('charge').innerText = "NGN " + selectedCryptoCharge;
-                document.getElementById('charge-value').value = selectedCryptoCharge;
 
                 // Populate select options with asset networks
                 assetArray.forEach((asset) => {
