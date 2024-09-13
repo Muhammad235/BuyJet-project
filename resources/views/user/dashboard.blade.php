@@ -145,13 +145,13 @@
                                         </button>
                                         <ul class="dropdown-menu" id="dropdownMenu">
                                             @if($type != "Buy")
-                                                <li><a href="{{ url('/dashboard?type=buy') }}">Buy</a></li>
+                                                <li><a href="{{ url('/dashboard?type=buy') }}">Buy Crypto</a></li>
                                             @endif
                                             @if($type != "Sell")
-                                                <li><a href="{{ url('/dashboard?type=sell') }}">Sell</a></li>
+                                                <li><a href="{{ url('/dashboard?type=sell') }}">Sell Crypto</a></li>
                                             @endif
                                             @if($type != "Gift Card")
-                                                <li><a href="{{ url('/dashboard?type=giftcard') }}">GiftCard</a></li>
+                                                <li><a href="{{ url('/dashboard?type=giftcard') }}">Sell Gift Card</a></li>
                                             @endif
                                         </ul>
                                     </div>
