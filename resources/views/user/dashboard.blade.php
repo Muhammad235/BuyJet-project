@@ -80,14 +80,14 @@
 							<div class="rate-sect"></div>
 						</div>
 
-						<div class="col-md-8 col-12">
+						{{-- <div class="col-md-8 col-12">
 							<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<h3>Image</h3>
+										<img src="{{ asset('assets/images/slider_image.png') }}" width="100%" alt="">
 									</div>
 									<div class="carousel-item">
-										<h3>Picture</h3>
+										<img src="{{ asset('assets/images/slider_image.png') }}" alt="" width="100%">
 									</div>
 								</div>
 							</div>
@@ -97,7 +97,21 @@
 								<button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="1"
 									aria-label="Slide 2" class=""></button>
 							</div>
-						</div>
+						</div> --}}
+
+                        <div class="col-md-8 col-12">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img src="{{ asset('assets/images/slider_image.png') }}" width="100%" height="100%" alt="Slide 1" style="border-radius: 10px;">
+                                </div>
+                                <div class="carousel-item">
+                                  <img src="{{ asset('assets/images/slider_image.png') }}" width="100%" height="100%" alt="Slide 2" style="border-radius: 6%;">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
 					</div>
 
 					<div class="quick-action row">

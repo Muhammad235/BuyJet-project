@@ -5,7 +5,7 @@
 	@section('content')
 
     <style>
-  
+
     </style>
 
     <!-- CONTENT -->
@@ -57,14 +57,13 @@
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseOne" aria-expanded="true"
                                             aria-controls="collapseOne">
-                                            Lorem ipsum lorem ipsum ipsum ?
+                                            How do I place an order on the platform?
                                         </button>
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse show"
                                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            Ut enim ad minim veniam quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat aute irure dolor
+                                            To place an order, select the cryptocurrency or gift card you'd like to buy or sell, enter the necessary details, and confirm your order. Once submitted, we will  process and fulfill it within a short period of time.
                                         </div>
                                     </div>
                                 </div>
@@ -74,14 +73,29 @@
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapseThree"
                                             aria-expanded="false" aria-controls="collapseThree">
-                                            Lorem ipsum lorem ipsum ipsum ?
+                                            How long does it take to fulfill an order?
                                         </button>
                                     </h2>
                                     <div id="collapseThree" class="accordion-collapse collapse"
                                         aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            Ut enim ad minim veniam quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat aute irure dolor
+                                            It usually takes between 5 to 30 minutes during business hours. You’ll receive a confirmation once your order is completed.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item mt-3">
+                                    <h2 class="accordion-header" id="headingFour">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseFour" aria-expanded="true"
+                                            aria-controls="collapseFour">
+                                            What payment methods do you accept?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFour" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            We accept  bank transfers, Payment details will be provided during the checkout process.
                                         </div>
                                     </div>
                                 </div>
@@ -90,34 +104,18 @@
                         <div class="col-md-5">
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion-item mt-3">
-                                    <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFour" aria-expanded="true"
-                                            aria-controls="collapseFour">
-                                            Lorem ipsum lorem ipsum ipsum ?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseFour" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            Ut enim ad minim veniam quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat aute irure dolor
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item mt-3">
                                     <h2 class="accordion-header" id="headingFive">
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapseFive"
                                             aria-expanded="false" aria-controls="collapseFive">
-                                            Lorem ipsum lorem ipsum ipsum ?
+                                            Is there a minimum or maximum order limit?
                                         </button>
                                     </h2>
                                     <div id="collapseFive" class="accordion-collapse collapse"
                                         aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            Ut enim ad minim veniam quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat aute irure dolor
+                                            Yes, the minimum and maximum order limits depend on the specific cryptocurrency or gift card. Please refer to the product page for specific limits.
+
                                         </div>
                                     </div>
                                 </div>
@@ -126,14 +124,13 @@
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapseSix"
                                             aria-expanded="false" aria-controls="collapseSix">
-                                            Lorem ipsum lorem ipsum ipsum ?
+                                            What should I do if my order is delayed?
                                         </button>
                                     </h2>
                                     <div id="collapseSix" class="accordion-collapse collapse"
                                         aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            Ut enim ad minim veniam quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat aute irure dolor
+                                            If your order hasn't been processed within the expected time frame, please create a ticket regarding the problem or reach out to our support team via email with your order number. We'll resolve the issue as quickly as possible.
                                         </div>
                                     </div>
                                 </div>
