@@ -291,7 +291,7 @@ input:focus {
 
 
                         <div class="signup-button text-center">
-                            <input type="submit" class="  form-control btn btn-primary"
+                            <input type="submit" class="form-control btn btn-primary"
                                     value="Sign Up">
                         </div>
                     </form>
@@ -326,5 +326,4 @@ input:focus {
     </script>
 
 </body>
-
 </html>

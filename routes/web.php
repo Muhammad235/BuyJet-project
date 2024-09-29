@@ -34,7 +34,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/crypto', [BuyCryptoController::class, 'store'])->name('buy.store');
         Route::get('/{trx_hash}/confirm', [BuyCryptoController::class, 'confirm'])->name('buy.confirm');
         Route::put('/confirm/{trx_hash}', [BuyCryptoController::class, 'update'])->name('buy.update');
-        // Route::get('/{id}',[BuyCryptoController::class, 'show'])->name('buy.show');
     });
 
     Route::prefix('sell')->group(function() {
@@ -42,14 +41,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/crypto', [SellCryptoController::class, 'store'])->name('sell.store');
         Route::get('/{trx_hash}/confirm', [SellCryptoController::class, 'confirm'])->name('sell.confirm');
         Route::put('/confirm/{trx_hash}', [SellCryptoController::class, 'update'])->name('sell.update');
-        // Route::get('/{id}',[BuyCryptoController::class, 'show'])->name('buy.show');
     });
 
     Route::prefix('giftcard')->group(function() {
         Route::get('/',[SellGiftCardController::class, 'create'])->name('giftcard.create');
         Route::post('/giftcard',[SellGiftCardController::class, 'store'])->name('giftcard.store');
-        // Route::get('/{trx_hash}/confirm',[SellCryptoController::class, 'confirm'])->name('sell.confirm');
-        // Route::put('/confirm/{trx_hash}',[SellCryptoController::class, 'update'])->name('sell.update');
     });
 
     Route::prefix('settings')->group(function() {

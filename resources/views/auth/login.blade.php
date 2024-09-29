@@ -44,8 +44,7 @@
                             <p class="FP-link">Forgot Password? </p>
                         </a>
                         <div class="login-button text-center">
-                            <input type="submit" class="form-control btn btn-primary"
-                                    value="Login">
+                            <Button class="form-control btn btn-primary">Login</Button>
                         </div>
                     </form>
                     <p class="text-center text-secondary below-text">New to Buyjet? <a href="{{ route('register') }}"><span

@@ -161,7 +161,8 @@ form button:hover {
                             <img src="{{ asset('assets/images/logo_dark.svg') }}" alt="" width="30%">
                         </div>
 
-                        <h4 class="text pt-4">Enter Your 4 Digit OTP</h4>
+                        <h4 class="text pt-4">Email Verification</h4>
+                        <p class="text-center">Enter the 4-digit code we've sent to your email address</p>
 
                         <form class="form" action="{{ route('verify.otp') }}" method="POST">
                             @csrf
