@@ -161,15 +161,16 @@ form button:hover {
                             <img src="{{ asset('assets/images/logo_dark.svg') }}" alt="" width="30%">
                         </div>
 
-                        <h4 class="text pt-4">Email Verification</h4>
+                        <h4 class="text pt-4">Email Veri
+                            fication</h4>
                         <p class="text-center">Enter the 4-digit code we've sent to your email address</p>
 
-                        <form class="form" action="{{ route('verify.otp') }}" method="POST">
+                        <form class="form" action="{{ route('verify.reset.mail.otp') }}" method="POST">
                             @csrf
                             <div class="input_field_box">
                                 <input type="number" name="otp1" />
                                 <input type="number" name="otp2" disabled />
-                                <input type="number" name="otp3" />
+                                <input type="number" name="otp3" disabled />
                                 <input type="number" name="otp4" disabled />
                             </div>
 
