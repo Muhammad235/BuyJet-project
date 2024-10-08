@@ -142,7 +142,6 @@ class BuyCryptoController extends Controller
             }
 
             Mail::to($admin->email)->send(new CryptoOrderMail($buyorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
-            // Mail::to('adelekeyahaya05@gmail.com')->send(new CryptoOrderMail($buyorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
             Mail::to($buyorder->user->email)->send(new BuyOrderMail($buyorder, $buy_rate));
 
 

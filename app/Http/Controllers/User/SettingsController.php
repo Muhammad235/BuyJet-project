@@ -17,15 +17,17 @@ class SettingsController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $page = 'settings';
 
-        return view('user.settings.index', compact('user'));
+        return view('user.settings.index', compact('user', 'page'));
     }
 
     public function bankInfo()
     {
         $user = auth()->user();
+        $page = 'settings';
 
-        return view('user.settings.bank-info', compact('user'));
+        return view('user.settings.bank-info', compact('user', 'page'));
     }
 
     /**
@@ -34,7 +36,6 @@ class SettingsController extends Controller
     public function update(ProfileUpdateRequest $request)
     {
         $data = $request->validated();
-
         $user = auth()->user();
 
         $data['avatar'] = $this->uploadImage($request, 'avatar', '/upload/avatar');

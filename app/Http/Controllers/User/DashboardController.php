@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 use App\Models\GiftCardOrder;
 use App\Models\Cryptocurrency;
 use App\Models\GeneralSetting;
-use Illuminate\Support\Benchmark;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -20,6 +18,7 @@ class DashboardController extends Controller
     public function index(Request $request) : View
     {
         $user = auth()->user();
+        $page = 'dashboard';
 
         $general_settings = GeneralSetting::first();
         $cryptocurrencies = Cryptocurrency::all();
@@ -63,7 +62,7 @@ class DashboardController extends Controller
             SellOrder::where('user_id', $user->id)->where('status', Status::SUCCESS)->sum('amount');
 
 
-        return view('user.dashboard', compact('user', 'general_settings', 'cryptocurrencies', 'transactions', 'type', 'totalAmount'));
+        return view('user.dashboard', compact('user', 'general_settings', 'cryptocurrencies', 'transactions', 'type', 'totalAmount', 'page'));
     }
 
 
@@ -71,7 +70,6 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
         $general_setings = GeneralSetting::first();
-        // $cryptocurrencies = Cryptocurrency::all();
 
         $type = $request->get('type', 'buy');
 

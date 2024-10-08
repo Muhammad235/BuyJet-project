@@ -41,7 +41,7 @@
                 // estimatedAmountElement.textContent = amountInNaira.toFixed(2);
                 // amountExpected.text(`₦${total.toFixed(2)}`);
 
-                totalAmount.textContent = total.toLocaleString();
+                totalAmount.textContent = total.toFixed(2).toLocaleString();
 
             } else {
                 estimatedAmountElement.textContent = '0';

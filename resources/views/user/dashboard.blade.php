@@ -103,10 +103,10 @@
                             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                               <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                  <img src="{{ asset('assets/images/slider_image.png') }}" width="100%" height="100%" alt="Slide 1" style="border-radius: 10px;">
+                                  <img src="{{ asset('assets/images/slider_image.webp') }}" width="100%" height="100%" alt="Slide 1" style="border-radius: 10px;">
                                 </div>
                                 <div class="carousel-item">
-                                  <img src="{{ asset('assets/images/slider_image.png') }}" width="100%" height="100%" alt="Slide 2" style="border-radius: 6%;">
+                                  <img src="{{ asset('assets/images/slider_image.webp') }}" width="100%" height="100%" alt="Slide 2" style="border-radius: 6%;">
                                 </div>
                               </div>
                             </div>
@@ -318,6 +318,7 @@
 	</section>
 	@endsection
 
+
 	@push('script')
 
     <script>
@@ -374,3 +375,5 @@
     @endpush
 
 </x-app-layout>
+
+<x-bottom-nav :page="$page" />

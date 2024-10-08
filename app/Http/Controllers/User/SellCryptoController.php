@@ -158,7 +158,6 @@ class SellCryptoController extends Controller
             }
 
             Mail::to($admin->email)->send(new CryptoOrderMail($sellorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
-            // Mail::to('adelekeyahaya05@gmail.com')->send(new CryptoOrderMail($sellorder, $type, $general_setings->buy_rate, $general_setings->sell_rate));
             Mail::to($sellorder->user->email)->send(new SellOrderMail($sellorder, $sell_rate));
 
             toastr()->success('Order processing');

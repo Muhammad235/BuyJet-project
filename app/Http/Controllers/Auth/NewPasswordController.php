@@ -21,7 +21,8 @@ class NewPasswordController extends Controller
     public function create(): View
     {
         $user = auth()->user();
-        return view('user.settings.change-password', compact('user'));
+        $page = 'settings';
+        return view('user.settings.change-password', compact('user', 'page'));
     }
 
     /**

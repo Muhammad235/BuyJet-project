@@ -43,3 +43,5 @@
 @endsection
 
 </x-app-layout>
+
+<x-bottom-nav :page="$page" />

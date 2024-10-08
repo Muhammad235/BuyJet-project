@@ -20,8 +20,10 @@ class TicketController extends Controller
      */
     public function index()
     {
+        $page = 'tickets';
         $user =  auth()->user();
-        return view('user.ticket.index', compact('user'));
+
+        return view('user.ticket.index', compact('user', 'page'));
     }
 
     /**
@@ -29,8 +31,10 @@ class TicketController extends Controller
      */
     public function create()
     {
+        $page = 'tickets';
+
         $user =  auth()->user();
-        return view('user.ticket.create', compact('user'));
+        return view('user.ticket.create', compact('user', 'page'));
     }
 
     /**

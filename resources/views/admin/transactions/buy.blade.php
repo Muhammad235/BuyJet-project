@@ -124,6 +124,4 @@
     </footer>
 </div>
 
-
-
 @endsection

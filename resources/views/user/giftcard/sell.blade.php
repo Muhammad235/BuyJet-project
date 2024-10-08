@@ -244,7 +244,7 @@
                                         </div>
                                         <div class="col-md-4 price-text col-6">
                                             <span>Rate</span>
-                                            <h3>₦{{ $general_settings->sell_rate }}/$</h3>
+                                            <h3>₦ @php echo number_format($general_settings->sell_rate, 0) @endphp /$</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -318,3 +318,5 @@
 
 @endsection
 </x-app-layout>
+
+<x-bottom-nav />
