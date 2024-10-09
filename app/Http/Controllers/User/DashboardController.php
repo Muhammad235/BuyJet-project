@@ -69,6 +69,8 @@ class DashboardController extends Controller
     public function allTransactions(Request $request) : View
     {
         $user = auth()->user();
+        $page = 'transactions';
+
         $general_setings = GeneralSetting::first();
 
         $type = $request->get('type', 'buy');
@@ -100,7 +102,7 @@ class DashboardController extends Controller
                     break;
             }
 
-        return view('user.transaction.index', compact('user', 'general_setings', 'type', 'transactions'));
+        return view('user.transaction.index', compact('user', 'general_setings', 'type', 'transactions', 'page'));
     }
 
 }
